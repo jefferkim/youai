@@ -1,0 +1,50 @@
+/*常用颜色*/
+@blue: #025694;		/*蓝色，常用链接颜色*/
+@orange: #f40;		/*橙色，logo、背景常用颜色*/
+@black: #333;		/*黑色，普通文本颜色*/
+@grey: #E2E2E2;		/*灰色，用于浅色背景*/
+@white: #fff;		/*白色，与背景颜色形成反差*/
+
+
+@bgColor:#e8e8e8;   /*背景颜色*/
+@gColor:#9bd132;    /*绿色基调色*/
+
+/*字体大小*/
+@font-size: 14px;
+
+/*CSS Reset*/
+*{margin:0; padding:0;}
+*{-webkit-tap-highlight-color:rgba(0,0,0,0);} //试验性：去掉全部焦点框
+table{border-collapse: collapse;border-spacing: 0;}
+h1,h2,h3,h4,h5,h6{font-size: 100%;}
+ul,ol,li{list-style: none;}
+em,i{font-style: normal;}
+img{border: none;}
+input,img{vertical-align:middle;}
+body{color: @black; font-size: @font-size; font-family: arial; background: @bgColor;}
+body.fullscreen{min-height: 460px!important;}
+body.fullscreen.black-translucent{min-height: 480px!important;}
+body.landscape{min-height:320px;}
+
+a{
+	color: @blue;
+	text-decoration: none;
+
+	&:active{
+		color: @orange;
+	}
+}
+
+/*清除浮动*/
+.clearfix{
+	&:after{
+		display: block; 
+		content: ''; 
+		clear: both; 
+		visibility: hidden;
+	}
+}
+
+
+
+

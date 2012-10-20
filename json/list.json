@@ -1,0 +1,127 @@
+{
+    "api": "com.taobao.wap.rest2.wo",
+    "v": "*",
+    "ret": [
+        "SUCCESS::接口调用成功"
+    ],
+    "data": {
+        "result": {
+            "code": "0",
+            "itemDetailList": [
+                {
+                    "describe": "泰国 Blue Petalz 手工精制手腕式手机包，可收纳你的...",
+                    "favoriteCount": "13",
+                    "follow": "false",
+                    "imageSmallUrl": "http://img03.taobaocdn.com/tps/i3/T1CeDRXdhrXXa_2bLA-152-135.png",
+                    "isvCName": "果库",
+                    "isvCode": "3",
+                    "itemId": "16347211384",
+                    "materialUserNick": "isvguoku",
+                    "originalPrice": "60000",
+                    "recommendedUrl": "http://m.taobao.com/channel/act/mobile/guokudownload.html?sprefer=p23381",
+                    "replyCount": "0",
+                    "smallBrandImage": "#",
+                    "height":135
+                },
+                {
+                    "describe": "[得意][得意][得意][得意][得意][得意]...",
+                    "favoriteCount": "2",
+                    "follow": "false",
+                    "imageSmallUrl": "http://img03.taobaocdn.com/tps/i3/T1cQTYXiFbXXa4_OzC-153-165.png",
+                    "isvCName": "美丽说",
+                    "isvCode": "4",
+                    "itemId": "16176638800",
+                    "materialUserNick": "isvmeilishuo",
+                    "originalPrice": "9900",
+                    "recommendedUrl": "http://m.taobao.com/channel/act/mobile/mlsdownload.html?sprefer=p23384",
+                    "replyCount": "0",
+                    "smallBrandImage": "#",
+                    "height":165
+                },
+                {
+                    "describe": "RSR510迷你dvd播放器cd机mp3iphone4s苹果音响usb床头...",
+                    "favoriteCount": "0",
+                    "follow": "false",
+                    "imageSmallUrl": "http://img02.taobaocdn.com/tps/i2/T1czTRXnloXXbk3ZrA-152-196.png",
+                    "isvCName": "淘精品",
+                    "isvCode": "42",
+                    "itemId": "15138671665",
+                    "materialUserNick": "pc精品池",
+                    "originalPrice": "89900",
+                    "recommendedUrl": "#",
+                    "replyCount": "0",
+                    "smallBrandImage": "#",
+                    "height":196
+                },
+                {
+                    "describe": "巴西鞋履大牌 Melissa 出品的果冻鞋 M:Zero II 男款...",
+                    "favoriteCount": "20",
+                    "follow": "false",
+                    "imageSmallUrl": "http://img04.taobaocdn.com/tps/i4/T1r.nRXchoXXb1wEbc-152-95.png",
+                    "isvCName": "果库",
+                    "isvCode": "3",
+                    "itemId": "12226146886",
+                    "materialUserNick": "isvguoku",
+                    "originalPrice": "96000",
+                    "recommendedUrl": "http://m.taobao.com/channel/act/mobile/guokudownload.html?sprefer=p23381",
+                    "replyCount": "0",
+                    "smallBrandImage": "#",
+                    "height":95
+                },
+                {
+                    "describe": "〓持家太太〓韩国家居*韩国品牌高档双层窗帘BL08",
+                    "favoriteCount": "24",
+                    "follow": "false",
+                    "imageSmallUrl": "http://img01.taobaocdn.com/tps/i1/T1xc6WXm8hXXbj_r6A-152-164.png",
+                    "isvCName": "蘑菇街",
+                    "isvCode": "1",
+                    "itemId": "4967461660",
+                    "materialUserNick": "isvmogujie",
+                    "originalPrice": "236200",
+                    "recommendedUrl": "http://m.taobao.com/channel/act/mobile/youaimogujie.html?sprefer=p23383",
+                    "replyCount": "0",
+                    "smallBrandImage": "#",
+                    "height":164
+                },
+                {
+                    "describe": "人气很旺的 SONY 奶昔系列微单又有新丁，取名为 NEX...",
+                    "favoriteCount": "20",
+                    "follow": "false",
+                    "imageSmallUrl": "http://img02.taobaocdn.com/tps/i2/T1QHPYXhJeXXbj_r6A-152-164.png",
+                    "isvCName": "果库",
+                    "isvCode": "3",
+                    "itemId": "17474276286",
+                    "materialUserNick": "isvguoku",
+                    "originalPrice": "409900",
+                    "recommendedUrl": "http://m.taobao.com/channel/act/mobile/guokudownload.html?sprefer=p23381",
+                    "replyCount": "0",
+                    "smallBrandImage": "#",
+                    "height":164
+                },
+                {
+                    "describe": "Kat 小猫储蓄罐 (男款)白色",
+                    "favoriteCount": "4",
+                    "follow": "false",
+                    "imageSmallUrl": "http://img04.taobaocdn.com/tps/i4/T1PwTYXjlXXXbj_r6A-152-164.png",
+                    "isvCName": "美丽说",
+                    "isvCode": "4",
+                    "itemId": "16168274288",
+                    "materialUserNick": "isvmeilishuo",
+                    "originalPrice": "13100",
+                    "recommendedUrl": "http://m.taobao.com/channel/act/mobile/mlsdownload.html?sprefer=p23384",
+                    "replyCount": "0",
+                    "smallBrandImage": "#",
+                    "height":164
+                }
+
+            ],
+            "itemNum": "2027",
+            "pageNo": "1",
+            "pageSize": "35",
+            "refreshNo": "1",
+            "refreshSize": "35",
+            "type": "5"
+        },
+        "method": "queryItemListByUserChannel"
+    }
+}
