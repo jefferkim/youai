@@ -1,4 +1,4 @@
-/*入口文件122*/
+/*入口文件*/
 
 var Youai = {
     init: function() {
