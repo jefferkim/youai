@@ -1,3 +1,5 @@
+/*入口文件*/
+
 var Youai = {
     init: function() {
         new Youai.Router();
