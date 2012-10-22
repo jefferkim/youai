@@ -47,7 +47,9 @@
 
     .bd{
 
-
+        .block{
+            margin-top:6px;
+        }
 
     }
 }
@@ -80,9 +82,7 @@
             }
         }
     }
-    .block{
-        margin-top:6px;
-    }
+
 }
 
 .home-tags{
@@ -121,13 +121,63 @@
     }
 
     .bd{
-        ul{
-            -webkit-columns:100px 3;
+        .main-album{
+           border:1px solid #dfdfdf;
         }
+        .albums{
+            li{
+                float:left;
+                width:153px;
+                height:188px;
+            }
+        }
+    }
+
+}
+
+.home-youai{
+    .hd{
+        height:41px;
+        .icon{
+            height:41px;
+            text-align:center;
+            font-size:15px;
+            line-height:41px;
+            color:#ffffff;
+        }
+        h3{
+            height:41px;
+            line-height:41px;
+            color:#999999;
+        }
+    }
+    .bd{
         li{
-           -webkit-box-flex:1;
-           width:100px;
-           height:100px;
+            margin-right:4px;
+            margin-top:5px;
+            float:left;
+            width:100px;
+            height:130px;
+            background:#f8f8f8;
+            img{
+              vertical-align:top;
+            }
+            a{
+
+                display:block;
+                width:100px;
+                height:130px;
+                color:#999999;
+                background:#f4f4f4;
+            }
+            span{
+                display:block;
+                margin:0 1px 1px 1px;
+                width:98px;
+                height:30px;
+                line-height:30px;
+                text-indent:5px;
+            }
         }
     }
 }
