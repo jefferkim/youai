@@ -15,6 +15,14 @@
             width:57px;
             height:57px;
             background:@gColor;
+            em{
+                margin:21px 0 0 18px;
+                display:block;
+                width:20px;
+                height:20px;
+                background:url(img/index-icon.png) no-repeat scroll 0 0;
+                background-size:cover;
+            }
         }
         h3{
             margin-left:10px;
@@ -45,11 +53,32 @@
 }
 .home-goods{
     .search-btn{
-        margin:13px 0 0 4px;
+        margin:0 0 0 4px;
         float:right;
         width:57px;
         height:57px;
         border:1px solid #d9d9d9;
+        background:#f8f8f8;
+        a{
+            position:relative;
+            display:block;
+            width:55px;
+            height:55px;
+            margin:1px;
+            clear:both;
+            background:#f4f4f4;
+            em{
+                position:absolute;
+                left:20px;
+                top:20px;
+                display:block;
+                width:19px;
+                height:19px;
+                background:url(img/index-icon.png) no-repeat scroll 0 -66px;
+                text-indent:-9999px;
+                overflow:hidden;
+            }
+        }
     }
     .block{
         margin-top:6px;
@@ -58,9 +87,11 @@
 
 .home-tags{
     ul{
-        -webkit-columns:61px 5;
+
     }
     li{
+        float:left;
+        margin-top:11px;
         width:59px;
         height:25px;
         overflow:hidden;
@@ -81,6 +112,14 @@
 }
 
 .home-album{
+    .hd{
+        .icon{
+            em{
+                background-position:0 -34px;
+            }
+        }
+    }
+
     .bd{
         ul{
             -webkit-columns:100px 3;
