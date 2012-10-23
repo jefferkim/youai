@@ -58,28 +58,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="youai.less" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/less/youai.less">
+      <file leaf-file-name="index_origin.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index_origin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="52" selection-start="1066" selection-end="1066" vertical-scroll-proportion="1.1827956">
+            <state line="64" column="30" selection-start="3180" selection-end="3180" vertical-scroll-proportion="-24.357143">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="goodListView.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/view/goodListView.js">
+      <file leaf-file-name="indexView.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/view/indexView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="24" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
+            <state line="9" column="30" selection-start="165" selection-end="165" vertical-scroll-proportion="0.23655914">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="weather.tpl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/template/weather.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="51" selection-start="6381" selection-end="6381" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home-good.tpl" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/template/home-good.tpl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="276" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -99,8 +108,10 @@
     <option name="changedFiles">
       <list>
         <option value="$USER_HOME$/Desktop/category-template.php" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/less/youai.less" />
+        <option value="$PROJECT_DIR$/index_origin.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/view/indexView.js" />
       </list>
     </option>
   </component>
@@ -307,7 +318,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -425,21 +436,42 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/view/goodListView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="24" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="51" selection-start="6381" selection-end="6381" vertical-scroll-proportion="0.0">
+        <state line="35" column="24" selection-start="586" selection-end="586" vertical-scroll-proportion="0.18518518">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/less/youai.less">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="52" selection-start="1066" selection-end="1066" vertical-scroll-proportion="1.1827956">
+        <state line="89" column="48" selection-start="1778" selection-end="1778" vertical-scroll-proportion="0.6308244">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index_origin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="30" selection-start="3180" selection-end="3180" vertical-scroll-proportion="-24.357143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/template/weather.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/template/home-good.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="276" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/view/indexView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="165" selection-end="165" vertical-scroll-proportion="0.23655914">
           <folding />
         </state>
       </provider>

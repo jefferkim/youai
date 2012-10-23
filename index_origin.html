@@ -37,15 +37,16 @@
                                 <li>逛逛</li>
                             </ul>
                         </div>
+
                         <div class="home-user">
                             <div class="avatar"><img src="http://img01.taobaocdn.com/tps/i1/T1YkfYXoXjXXaCG0rh-50-50.png"/><span class="cover"></span></div>
-                            <div class="user-info"><span class="user-name">大脸猫</span><span class="weather"><s></s>30°C</span></div>
+                            <div class="user-info"><span class="user-name">大脸猫</span><span class="weather" id="J-weather"><s></s>30°C</span></div>
                             <p class="login-info">连续登录<em class="d">12</em>天,欢迎来到有爱。</p>
                         </div>
 
 
                         <!--首页宝贝-->
-                        <div class="mod home-goods clearfix">
+                        <div class="mod home-goods clearfix" id="J-modGood">
                             <div class="search-btn"><a href="#"><em>搜索</em></a></div>
                             <div class="hd">
                                <span class="icon"><em></em></span>
@@ -153,68 +154,22 @@
 
         </div>
     </div>
-
-
     <script src="js/vendor/zepto.js"></script>
     <script src="js/vendor/underscore.js"></script>
     <script src="js/vendor/backbone.js"></script>
-
-
 
     <script src="js/application.js"></script>
     <script src="js/_util/util.js"></script>
 
 
-    <!--<script src="js/view/indexView.js"></script>-->
-
-    <?php
-        function import_static($js){
-              
-            $fileContent = file_get_contents($js);
-
-
-
-            $re1='(templates:)'; # Variable Name 1
-              $re2='.*?';   # Non-greedy match on filler
-              $re3='(\\{.*?\\})';   # Curly Braces 1
-
-              if ($c=preg_match_all ("/".$re1.$re2.$re3."/is", $fileContent, $matches))
-              {
-                  $var1=$matches[1][0];
-                  $cbraces1=$matches[2][0];
-                  echo $cbraces1;
-                  $t = json_decode($cbraces1,true);
-                  
-              }
-             
-
-           foreach ($t as $key => $val) {
-
-                $tmp = file_get_contents("js/".$val.".tpl");
-                
-               // $js = preg_replace("template",$tmp,$fileContent);//字符前后多余空格
-            
-
-            //echo $js;
-            //    echo $key."=> ".$val;
-        }
-
-
-
-        }
-    ?>
-
-    <?php import_static("js/view/indexView.js") ?>
+    <script src="js/view/indexView.js"></script>
 
 
     <script src="js/model/good.js"></script>
     <script src="js/collection/goodList.js"></script>
     <script src="js/view/goodListView.js"></script>
 
-    
-
     <script src="js/router.js"></script>
-    
 
 
     <script type="text/javascript">
