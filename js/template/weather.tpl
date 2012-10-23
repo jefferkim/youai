@@ -1,1 +1,1 @@
-<span class="weather"><s></s><%= t1%></span>
+<span class="weather"><s></s><%= t1 %></span>

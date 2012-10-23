@@ -2,34 +2,31 @@ Youai.indexView = Backbone.View.extend({
 
     el:"#J-List",
 
-
-    template:['{{#lists}}',
-        '<li style="height:{{height}}px;"><a href="#!detail/{{itemId}}"><img src="{{imageSmallUrl}}" alt="""/></a></li>',
-        '{{/lists}}'
-    ].join(""),
-
     templates:{
-      "weather":"template/weather"
+        "weather": "template/weather"
     },
+
 
     events:{
 
     },
 
     initialize:function () {
+
+
         //加载天气数据
         this.loadWeatherData();
         //加载整体框架数据
         this.loadLayout();
 
 
-
-
     },
 
 
-    _parseWeather:function(data){
-       var t =  _.template(tpl(this.templates["weather"]),data.t1);
+    _parseWeather:function (data) {
+
+
+        var t = _.template(tpl(this.templates["weather"]), {"t1":data.t1});
 
         console.log(t);
 
@@ -41,7 +38,7 @@ Youai.indexView = Backbone.View.extend({
         $.ajax({
             url:'http://weather.tao123.com/static/weather/weather_api.php?action=?',
             success:function (data) {
-              self._parseWeather(data);
+                self._parseWeather(data);
             },
             error:function (xhr, type) {
                 alert('Ajax error!')
