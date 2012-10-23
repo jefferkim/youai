@@ -8,22 +8,31 @@ Youai.indexView = Backbone.View.extend({
         '{{/lists}}'
     ].join(""),
 
+    templates:{
+      "weather":"template/weather"
+    },
+
     events:{
 
     },
 
     initialize:function () {
-
         //加载天气数据
         this.loadWeatherData();
         //加载整体框架数据
         this.loadLayout();
+
+
+
+
     },
 
 
     _parseWeather:function(data){
-        var tpl = ''
-       console.log(data.t1);
+       var t =  _.template(tpl(this.templates["weather"]),data.t1);
+
+        console.log(t);
+
 
     },
 
