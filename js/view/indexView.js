@@ -3,8 +3,8 @@ Youai.indexView = Backbone.View.extend({
     el:"#J-List",
 
     templates:{
-        "weather": "template/weather",
-        "home-good":"template/home-good"
+        "weather":tpl("template/weather"),
+        "home-good":tpl("template/home-good")
     },
 
 
@@ -27,10 +27,9 @@ Youai.indexView = Backbone.View.extend({
     _parseWeather:function (data) {
 
 
-        var weather = _.template(tpl,data);
+        var weather = _.template(this.templates["home-good"], {"good_subtitle":data.t1,"good_html":"11111"});
 
-        console.log(weather_tpl);
-
+        console.log(weather);
 
 
     },

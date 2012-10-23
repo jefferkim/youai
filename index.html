@@ -165,46 +165,28 @@
     <script src="js/_util/util.js"></script>
 
 
-    <!--<script src="js/view/indexView.js"></script>-->
+    <script>
+        function tpl(file){
+            var d;
+            $.ajax({
+                url: "js/"+file+".tpl",
+                async:false,
+                success: function(data){
 
-    <?php
-        function import_static($js){
-              
-            $fileContent = file_get_contents($js);
-
-
-
-            $re1='(templates:)'; # Variable Name 1
-              $re2='.*?';   # Non-greedy match on filler
-              $re3='(\\{.*?\\})';   # Curly Braces 1
-
-              if ($c=preg_match_all ("/".$re1.$re2.$re3."/is", $fileContent, $matches))
-              {
-                  $var1=$matches[1][0];
-                  $cbraces1=$matches[2][0];
-                  echo $cbraces1;
-                  $t = json_decode($cbraces1,true);
-                  
-              }
-             
-
-           foreach ($t as $key => $val) {
-
-                $tmp = file_get_contents("js/".$val.".tpl");
-                
-               // $js = preg_replace("template",$tmp,$fileContent);//字符前后多余空格
-            
-
-            //echo $js;
-            //    echo $key."=> ".$val;
+                    d = data;
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!')
+                }
+            });
+            return d;
         }
+    </script>
+
+    <script src="js/view/indexView.js"></script>
 
 
-
-        }
-    ?>
-
-    <?php import_static("js/view/indexView.js") ?>
+    
 
 
     <script src="js/model/good.js"></script>
