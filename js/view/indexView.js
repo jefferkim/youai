@@ -4,7 +4,7 @@ Youai.indexView = Backbone.View.extend({
 
     templates:{
         "home-layout":tpl("template/home_layout"),
-        "weather":tpl("template/weather"),
+        "home-user":tpl("template/home_user"),
         "home-good":tpl("template/home_good"),
         "home-album":tpl("template/home_album"),
         "home-youai":tpl("template/home_youai")
@@ -16,30 +16,47 @@ Youai.indexView = Backbone.View.extend({
     },
 
     initialize:function () {
-
-        //加载天气数据
-        this.loadWeatherData();
         //加载整体框架数据
         this.loadLayout();
-
     },
 
-
-    _parseWeather:function (data) {
-
-
-        var weather = _.template(this.templates["home-good"], {"good_subtitle":data.t1, "good_html":"11111"});
-
-        console.log(weather);
-
+    //将天气参数map到不同的天气情况
+    _parseWeather:function (index) {
+        var map = {
+            'heavyrain':[10, 11, 12, 24, 25], //大雨
+            'cloudy':[2, 20, 29, 30], //多云
+            'clear':[0, 18], //晴
+            'spit':[3, 7, 21, 22], //小雨
+            'snow':[14, 15, 16, 17, 26, 27, 28], //雪
+            'overcast':[1, 13, 31], //阴
+            'moderaterain':[4, 5, 6, 8, 9, 19, 23]//中雨
+        }
+        for (var key in map) {
+            if ($.inArray(parseInt(index), map[key]) != -1) {
+                return key;
+            }
+        }
     },
 
-    loadWeatherData:function () {
+    _addModUser:function (result) {
         var self = this;
         $.ajax({
             url:'http://weather.tao123.com/static/weather/weather_api.php?action=?',
             success:function (data) {
-                // self._parseWeather(data);
+
+                var weatherIcon = self._parseWeather(data.img1);
+
+                var userTpl = _.template(self.templates["home-user"], {
+                    "isLogined":result.user ? true : false,
+                    "userFace":result.user ? result.user.userFace : "",
+                    "userNick":result.user ? result.user.userNick : "",
+                    "loginInfo":result.copywriters[0].content,
+                    "weatherIcon":weatherIcon,
+                    "temperature":data.t1
+                });
+
+                $("#J-homeTab", self.el).html(userTpl);
+
             },
             error:function (xhr, type) {
                 alert('获取天气信息错误!')
@@ -48,10 +65,9 @@ Youai.indexView = Backbone.View.extend({
 
     },
 
-
     _addModGood:function (result) {
         var goodTpl = _.template(this.templates["home-good"], {
-            "home_goodTitle":result.copywriters[0].content,
+            "home_goodTitle":result.copywriters[1].content,
             "home_goodInfo":result.homeOperators
         });
         $("#J-modGood", this.el).html(goodTpl);
@@ -82,6 +98,7 @@ Youai.indexView = Backbone.View.extend({
             url:Youai.Util.parseUrl("getHomeInfo", "83fb97e85b9c12374f8b8426e5d564d8"),
             success:function (resp) {
                 var data = resp.data.result;
+                self._addModUser(data);
                 self._addModGood(data);
                 self._addModAlbum(data);
                 self._addModYouai(data);
@@ -91,6 +108,5 @@ Youai.indexView = Backbone.View.extend({
             }
         });
     }
-
 
 });

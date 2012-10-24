@@ -30,19 +30,36 @@
                             <p class="c-loading"><span></span></p>
                         </div>
 
-                        <!--tab切换：可能要书写一个tab生成组件tab("#id",{"首页"=>"list/index","逛逛"=>"list/gg"})-->
-                        <div class="tab-holder">
-                            <ul>
+
+                       <div id="J-homeLayout">
+
+
+                        <div class="tab-holder" id="J-homeTab">
+                            <ul class="tab-nav">
                                 <li class="cur">首页</li>
                                 <li>逛逛</li>
                             </ul>
+                            <div class="tab-content">
+
+                              <div class="home-user">
+                                <div class="logined">
+                                   <div class="avatar"><img src="http://img01.taobaocdn.com/tps/i1/T1YkfYXoXjXXaCG0rh-50-50.png"/><span class="cover"></span></div>
+                                   <div class="user-info"><span class="user-name">大脸猫</span><span class="weather" id="J-weather"><img src="img/icon/overcast.png"/><em>24℃ ~ 16℃</em></span></div>
+                                   <p class="login-info">连续登录<em class="d">12</em>天,欢迎来到有爱。</p>
+                                </div>
+                                <div class="unlogin">有爱，逛你喜欢。在这里，安静的记录专属你的生活，尽管时光褪色，但你的色彩不会逝去</div>
+                              </div>
+
+                              <div class="home-gg">
+
+
+
+                              </div>
+
+                            </div>
                         </div>
 
-                        <div class="home-user">
-                            <div class="avatar"><img src="http://img01.taobaocdn.com/tps/i1/T1YkfYXoXjXXaCG0rh-50-50.png"/><span class="cover"></span></div>
-                            <div class="user-info"><span class="user-name">大脸猫</span><span class="weather" id="J-weather"><s></s>30°C</span></div>
-                            <p class="login-info">连续登录<em class="d">12</em>天,欢迎来到有爱。</p>
-                        </div>
+
 
 
                         <!--首页宝贝-->
@@ -65,7 +82,7 @@
                         </div>
 
 
-                        <div class="mod home-tags clearfix">
+                        <div class="mod home-tags clearfix" id="J-modTags">
                             <div class="bd">
                                 <ul>
                                     <li><a href="#">最新</a></li>
@@ -84,7 +101,7 @@
 
 
                         <!--首页专辑-->
-                        <div class="mod home-album clearfix">
+                        <div class="mod home-album clearfix" id="J-modAlbum">
                             <div class="hd">
                                 <span class="icon"><em></em></span>
                                 <h3><b>专辑</b><em>它是编辑是流行也是有魅力的导购</em></h3>
@@ -111,7 +128,7 @@
                             </div>
                         </div>
                         <!--最有爱-->
-                        <div class="mod home-youai clearfix">
+                        <div class="mod home-youai clearfix" id="J-modYouai">
                             <div class="hd">
                                 <span class="icon">最有爱</span>
                                 <h3>它是编辑是流行也是有魅力的导购</h3>
@@ -141,6 +158,7 @@
                             </div>
                         </div>
 
+                       </div>
 
 
                     </section>
