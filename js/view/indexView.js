@@ -31,7 +31,6 @@ Youai.indexView = Backbone.View.extend({
 
         console.log(weather);
 
-
     },
 
     loadWeatherData:function () {
@@ -42,13 +41,25 @@ Youai.indexView = Backbone.View.extend({
                 self._parseWeather(data);
             },
             error:function (xhr, type) {
-                alert('Ajax error!')
+                alert('获取天气信息错误!')
             }
         });
 
     },
 
     loadLayout:function () {
+
+
+        $.ajax({
+            url:Youai.Util.parseUrl("getHomeInfo","sidsid"),
+            success:function (data) {
+                self._parseWeather(data);
+            },
+            error:function (xhr, type) {
+                alert('Ajax error!')
+            }
+        });
+
 
     },
 
