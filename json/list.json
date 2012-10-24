@@ -126,6 +126,7 @@
                 },
                 "commentNum":"8",
                 "describe":"商品描述",
+                "comments":"fff",
                 "images":[
                     {
                         "height":"135",
@@ -228,6 +229,7 @@
                 "itemId":"12456",
                 "like":"true",
                 "likeNum":"3",
+                "comments":"fff",
                 "originalPrice":"100",
                 "tags":[
                     {
@@ -305,6 +307,7 @@
                 "itemId":"12456",
                 "like":"true",
                 "likeNum":"3",
+                "comments":"fff",
                 "originalPrice":"100",
                 "tags":[
                     {

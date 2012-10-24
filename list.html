@@ -58,6 +58,29 @@
 
                         </div>
 
+                        <div class="mask">
+
+                        </div>
+                        <div class="slider-holder">
+                            <div id="slider" class="goods-slider" style="overflow: hidden; margin-top:220px;">
+                                <ul>
+                                    <li>
+                                        <img src="http://img01.taobaocdn.com/tps/i1/T1R8DZXbRgXXXEFELS-270-294.png"/>
+                                        <span class="good-operater">23人已喜欢<a href="#" class="J-like"></a></span>
+                                    </li>
+                                    <li><img src="http://img01.taobaocdn.com/tps/i1/T1R8DZXbRgXXXEFELS-270-294.png"/></li>
+                                    <li><img src="http://img01.taobaocdn.com/tps/i1/T1R8DZXbRgXXXEFELS-270-294.png"/></li>
+                                </ul>
+                            </div>
+                            <div class="nav-holder">
+                                <a href="#" class="prev" id="J-prev"></a>
+                                <a href="#" class="next" id="J-next"></a>
+                            </div>
+                        </div>
+
+
+
+
                     </section>
 
                     <footer id="footer" class="footer">
@@ -69,6 +92,25 @@
 
         </div>
     </div>
+    <script src="js/vendor/zepto.js"></script>
+    <script src="js/_component/slider.js"></script>
+    <script>
+
+        var slider = new Swipe(document.getElementById('slider'), {
+            callback: function(e, pos) {
+
+
+
+            }
+        });
+        $("#J-prev").on("click",function(e){
+            slider.prev();
+        });
+        $("#J-next").on("click",function(e){
+            slider.next();
+        })
+
+    </script>
     <!--<script src="js/vendor/zepto.js"></script>
     <script src="js/vendor/underscore.js"></script>
     <script src="js/vendor/backbone.js"></script>

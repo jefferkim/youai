@@ -2,14 +2,13 @@ Youai.goodListView = Backbone.View.extend({
 
     el:"#content",
 
-
     templates:{
         "list-goodLayout":tpl("template/list_good"),
         "list-goodItem":tpl("template/list_goodItem")
     },
 
     events:{
-      ".J-zoom":"zoomPic"
+        "click .J-zoom":"zoomPic"
     },
 
     initialize:function () {
@@ -18,17 +17,11 @@ Youai.goodListView = Backbone.View.extend({
     },
 
     /*图片放大*/
-    zoomPic:function(){
+    zoomPic:function (e) {
+        e.preventDefault();
 
 
-    },
 
-    renderItem:function ($model) {
-
-        /*var itemview = new ItemView({
-         model: $model
-         });
-         $(this.el).append( itemview.render().el );*/
 
     },
 
@@ -46,16 +39,14 @@ Youai.goodListView = Backbone.View.extend({
                 var items = [],
                     heights = [];
                 $.each(collections, function (index, item) {
-                    items.push(_.template(goodItemtpl, {"img":item.images[0].url,"originalPrice":item.originalPrice,"hasPop":item.hasPop}));
-                    heights.push(parseInt(item.images[0].height)+34);
+                    items.push(_.template(goodItemtpl, {"img":item.images[0].url, "originalPrice":item.originalPrice, "comment":item.comments}));
+                    heights.push(parseInt(item.images[0].height) + 34);
                 });
 
                 success(items, heights);
             }
         });
 
-
-       //return this;
 
     }
 
