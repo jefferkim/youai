@@ -9,13 +9,19 @@ Youai.Util = {
     //拼装url
     parseUrl:function (url,sid) {
 
+        var data;
+        if(typeof(url) == "string"){
+            data = this.urlMap[url];
+        }else{
+            data = url;
+        }
 
         var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi),
 
             baseUrl = "http://api" + (host[0] === "" ? ".waptest.taobao.com" : host[0]) +
                       "/rest/api2.do?api=com.taobao.wap.rest2.wo3&type=jsonp&callback=?&v=*&source=wo",
 
-            dataPart = sid ? "&sid=" + sid + "&data=" + JSON.stringify(this.urlMap[url]) : "&data=" + JSON.stringify(this.urlMap[url]);
+            dataPart = sid ? "&sid=" + sid + "&data=" + JSON.stringify(data) : "&data=" + JSON.stringify(data);
 
         return baseUrl + dataPart;
     },
@@ -24,12 +30,11 @@ Youai.Util = {
     /* map函数，将传入的controller路径转成请求地址 */
     urlMap:{
 
-        'queryItemListByUserChannel':{
-            "method":"queryItemListByUserChannel",
-            "pageSize":"35",
-            "pageNo":1,
-            "refreshSize":"35",
-            "refreshNo":"1"
+        'getItemsFromList':{
+            "method":"getItemsFromList",
+            "listCode":"7233559832",
+            "pageSize":"10",
+            "pageNo":"1"
         },
 
         //获取首页的信息
@@ -38,9 +43,32 @@ Youai.Util = {
         }
 
 
+    },
+
+    dataParser:function(){
+
+
+
     }
 
 
 
 
+}
+
+
+function tpl(file){
+    var d;
+    $.ajax({
+        url: "js/"+file+".tpl",
+        async:false,
+        success: function(data){
+
+            d = data;
+        },
+        error: function(xhr, type){
+            alert('Ajax error!')
+        }
+    });
+    return d;
 }

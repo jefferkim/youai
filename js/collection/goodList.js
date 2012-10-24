@@ -21,7 +21,10 @@ Youai.GoodList = Backbone.Collection.extend({
 
     parse:function (resp) {
         if (resp.ret[0].indexOf("SUCCESS::") != -1) {
-            return resp.data.result.itemDetailList;
+
+            //return Youai.Util.dataParser(resp);
+
+            return resp.data.result.data;
         }
     }
 

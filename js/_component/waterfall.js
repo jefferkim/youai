@@ -56,6 +56,7 @@
             }
             // 计算图片间隔
             var margin = Math.max(self.containerWidth - curColCount * setting.colWidth, 0) / (curColCount + 1);
+            console.log(margin);
             item.css({
                 left:dest * setting.colWidth + (dest + 1) * margin,
                 top:guard
@@ -64,7 +65,8 @@
 
             $(self.container).append(item);
 
-            self.curColHeights[dest] += height + 10; //图片垂直间距为10px
+
+            self.curColHeights[dest] += parseInt(height) + 10; //图片垂直间距为10px
             return item;
         },
 

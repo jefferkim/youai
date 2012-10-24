@@ -1,12 +1,12 @@
 Youai.goodListView = Backbone.View.extend({
 
-    el:"#J-List",
+    el:"#content",
 
 
-    template:['{{#lists}}',
-        '<li style="height:{{height}}px;"><a href="#!detail/{{itemId}}"><img src="{{imageSmallUrl}}" alt="""/></a></li>',
-        '{{/lists}}'
-    ].join(""),
+    templates:{
+        "list-goodLayout":tpl("template/list_good"),
+        "list-goodItem":tpl("template/list_goodItem")
+    },
 
     events:{
       ".J-zoom":"zoomPic"
@@ -35,16 +35,19 @@ Youai.goodListView = Backbone.View.extend({
 
     render:function () {
 
-        var tpl = this.template;
+        $(this.el).html(this.templates["list-goodLayout"]);
+
+        var goodItemtpl = this.templates["list-goodItem"];
         var collections = this.options.Collection.toJSON();
 
-        new Youai.Waterfall("#J-List", {
+        new Youai.Waterfall("#J-waterfall", {
+            colWidth:150,
             load:function (success) {
                 var items = [],
                     heights = [];
                 $.each(collections, function (index, item) {
-                    items.push(Mustache.to_html(tpl, {"lists":item}));
-                    heights.push(item.height);
+                    items.push(_.template(goodItemtpl, {"img":item.images[0].url,"originalPrice":item.originalPrice,"hasPop":item.hasPop}));
+                    heights.push(parseInt(item.images[0].height)+34);
                 });
 
                 success(items, heights);
