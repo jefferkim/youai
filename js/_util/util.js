@@ -12,8 +12,8 @@ Youai.Util = {
 
         var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi),
 
-            baseUrl = "http://api" + (host[0] === "" ? ".m.taobao.com" : host[0]) +
-                      "/rest/api2.do?api=com.taobao.wap.rest2.wo&type=jsonp&callback=?&v=*&source=wo",
+            baseUrl = "http://api" + (host[0] === "" ? ".waptest.taobao.com" : host[0]) +
+                      "/rest/api2.do?api=com.taobao.wap.rest2.wo3&type=jsonp&callback=?&v=*&source=wo",
 
             dataPart = sid ? "&sid=" + sid + "&data=" + JSON.stringify(this.urlMap[url]) : "&data=" + JSON.stringify(this.urlMap[url]);
 
