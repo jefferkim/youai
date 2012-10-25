@@ -61,7 +61,14 @@
                         "height":"200",
                         "sequence":"1",
                         "type":"1",
-                        "url":"T1vzXJXeppXXbvfB39_104445.jpg",
+                        "url":"http://img04.taobaocdn.com/tps/i4/T1ORH0XeNaXXac.bYb-350-350.jpg",
+                        "width":"320"
+                    },
+                    {
+                        "height":"200",
+                        "sequence":"1",
+                        "type":"1",
+                        "url":"http://img02.taobaocdn.com/tps/i2/T1NO_ZXb4iXXXmikMy-220-167.jpg",
                         "width":"320"
                     }
                 ],
@@ -74,7 +81,7 @@
                 "itemId":"12456",
                 "like":"true",
                 "likeNum":"3",
-                "originalPrice":"100",
+                "originalPrice":"10098",
                 "tags":[
                     {
                         "describe":"标签描述",
@@ -149,10 +156,10 @@
                     "name":"美丽说",
                     "url":"http://m.taobao.com/channel/act/mobile/guokudownload.html?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
                 },
-                "itemId":"12456",
+                "itemId":"14786",
                 "like":"true",
                 "likeNum":"3",
-                "originalPrice":"100",
+                "originalPrice":"18730",
                 "tags":[
                     {
                         "describe":"标签描述",
@@ -226,11 +233,11 @@
                     "name":"美丽说",
                     "url":"http://m.taobao.com/channel/act/mobile/guokudownload.html?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
                 },
-                "itemId":"12456",
+                "itemId":"22856",
                 "like":"true",
                 "likeNum":"3",
                 "comments":"fff",
-                "originalPrice":"100",
+                "originalPrice":"1980",
                 "tags":[
                     {
                         "describe":"标签描述",
@@ -304,7 +311,7 @@
                     "name":"美丽说",
                     "url":"http://m.taobao.com/channel/act/mobile/guokudownload.html?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
                 },
-                "itemId":"12456",
+                "itemId":"87456",
                 "like":"true",
                 "likeNum":"3",
                 "comments":"fff",

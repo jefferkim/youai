@@ -14,9 +14,15 @@ Youai.GoodList = Backbone.Collection.extend({
 
     url:function () {
         var U = Youai.Util;
-      //  return U.assembleUrl(U.urlMap["queryItemListByUserChannel"], "e2fdc60364a3a979d215dfcd1d85e50b");
+        //  return U.assembleUrl(U.urlMap["queryItemListByUserChannel"], "e2fdc60364a3a979d215dfcd1d85e50b");
 
         return "json/list.json"
+    },
+
+
+    itemHeights:function(){
+
+
     },
 
     parse:function (resp) {

@@ -4,11 +4,11 @@ Youai.goodListView = Backbone.View.extend({
 
     templates:{
         "list-goodLayout":JST["template/list_good"],
-        "list-goodItem":JST["template/list_goodItem"]
+        "list-bigGoodsSlider":JST["template/list_Slider"]
     },
 
     events:{
-        "click .J-zoom":"zoomPic"
+
     },
 
     initialize:function () {
@@ -16,31 +16,30 @@ Youai.goodListView = Backbone.View.extend({
 
     },
 
-    /*图片放大*/
-    zoomPic:function (e) {
-        e.preventDefault();
+    addItem:function (good) {
 
-
-
-
+        var goodView = new Youai.goodItemView({model:good});
+        return goodView.render();
     },
 
 
     render:function () {
 
-        $(this.el).html(this.templates["list-goodLayout"]);
+        var self = this;
 
-        var goodItemtpl = this.templates["list-goodItem"];
-        var collections = this.options.Collection.toJSON();
+        this.$el.html(this.templates["list-goodLayout"]());
+
+        var goodLists = this.collection;
 
         new Youai.Waterfall("#J-waterfall", {
             colWidth:150,
             load:function (success) {
                 var items = [],
                     heights = [];
-                $.each(collections, function (index, item) {
-                    items.push(goodItemtpl({"img":item.images[0].url, "originalPrice":item.originalPrice, "comment":item.comments}));
-                    heights.push(parseInt(item.images[0].height) + 34);
+
+                goodLists.each(function (good) {
+                    items.push(self.addItem(good))
+                    heights.push(parseInt(good.height()) + 34);
                 });
 
                 success(items, heights);

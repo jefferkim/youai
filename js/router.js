@@ -16,7 +16,7 @@ Youai.Router = Backbone.Router.extend({
         var goodList = new Youai.GoodList();
 
         var listview = new Youai.goodListView({
-            Collection:goodList
+            collection:goodList
         });
 
         goodList.fetch();
