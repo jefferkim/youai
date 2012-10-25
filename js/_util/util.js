@@ -51,24 +51,4 @@ Youai.Util = {
 
     }
 
-
-
-
-}
-
-
-function tpl(file){
-    var d;
-    $.ajax({
-        url: "js/"+file+".tpl",
-        async:false,
-        success: function(data){
-
-            d = data;
-        },
-        error: function(xhr, type){
-            alert('Ajax error!')
-        }
-    });
-    return d;
 }

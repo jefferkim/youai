@@ -3,11 +3,11 @@ Youai.indexView = Backbone.View.extend({
     el:"#content",
 
     templates:{
-        "home-layout":tpl("template/home_layout"),
-        "home-user":tpl("template/home_user"),
-        "home-good":tpl("template/home_good"),
-        "home-album":tpl("template/home_album"),
-        "home-youai":tpl("template/home_youai")
+        "home-layout":JST["template/home_layout"],
+        "home-user":JST["template/home_user"],
+        "home-good":JST["template/home_good"],
+        "home-album":JST["template/home_album"],
+        "home-youai":JST["template/home_youai"]
     },
 
 
@@ -46,7 +46,7 @@ Youai.indexView = Backbone.View.extend({
 
                 var weatherIcon = self._parseWeather(data.img1);
 
-                var userTpl = _.template(self.templates["home-user"], {
+                var userTpl = self.templates["home-user"]({
                     "isLogined":result.user ? true : false,
                     "userFace":result.user ? result.user.userFace : "",
                     "userNick":result.user ? result.user.userNick : "",
@@ -66,7 +66,7 @@ Youai.indexView = Backbone.View.extend({
     },
 
     _addModGood:function (result) {
-        var goodTpl = _.template(this.templates["home-good"], {
+        var goodTpl = this.templates["home-good"]({
             "home_goodTitle":result.copywriters[1].content,
             "home_goodInfo":result.homeOperators
         });
@@ -74,7 +74,7 @@ Youai.indexView = Backbone.View.extend({
     },
 
     _addModAlbum:function (result) {
-        var albumTpl = _.template(this.templates["home-album"], {
+        var albumTpl = this.templates["home-album"]({
             "home_albumTitle":result.copywriters[1].content,
             "firstAlbumOperators":result.firstAlbumOperators,
             "albums":result.albums
@@ -83,7 +83,7 @@ Youai.indexView = Backbone.View.extend({
     },
 
     _addModYouai:function (result) {
-        var youaiTpl = _.template(this.templates["home-youai"], {
+        var youaiTpl = this.templates["home-youai"]({
             "home_youaiTitle":result.copywriters[1].content,
             "content":result.itemArea
         });
@@ -92,9 +92,11 @@ Youai.indexView = Backbone.View.extend({
 
     loadLayout:function () {
         var self = this;
-        $(this.el).html(this.templates["home-layout"]);
+
+        $(this.el).html(this.templates["home-layout"]());
 
         $.ajax({
+            //sid开发阶段随便定义
             url:Youai.Util.parseUrl("getHomeInfo", "83fb97e85b9c12374f8b8426e5d564d8"),
             success:function (resp) {
                 var data = resp.data.result;
