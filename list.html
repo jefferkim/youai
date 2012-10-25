@@ -97,16 +97,24 @@
     <script>
 
         var slider = new Swipe(document.getElementById('slider'), {
-            callback: function(e, pos) {
+            callback: function(event,index,elem) {
 
 
             }
         });
         $("#J-prev").on("click",function(e){
             slider.prev();
+            $(".good-operater").animate({
+                height:40,
+                opacity:1
+            },500,'ease')
         });
         $("#J-next").on("click",function(e){
             slider.next();
+            $(".good-operater").animate({
+                height:0,
+                opacity:0.2
+            },500,'ease')
         })
 
     </script>
