@@ -64,7 +64,7 @@
                                 <ul>
                                     <li>
                                         <img src="http://img01.taobaocdn.com/tps/i1/T1R8DZXbRgXXXEFELS-270-294.png"/>
-                                        <span class="good-operater"><a href="#" class="J-like"></a><em>23人已喜欢</em></span>
+                                        <span class="good-operater" id="J-first"><a href="#" class="J-like"></a><em>23人已喜欢</em></span>
                                     </li>
                                     <li><img src="http://img01.taobaocdn.com/tps/i1/T1R8DZXbRgXXXEFELS-270-294.png"/></li>
                                     <li><img src="http://img01.taobaocdn.com/tps/i1/T1R8DZXbRgXXXEFELS-270-294.png"/></li>
@@ -97,27 +97,6 @@
     <script src="js/vendor/zepto.js"></script>
     <script src="js/_component/slider.js"></script>
     <script>
-
-        var slider = new Swipe(document.getElementById('slider'), {
-            callback: function(event,index,elem) {
-
-
-            }
-        });
-        $("#J-prev").on("click",function(e){
-            slider.prev();
-            $(".good-operater").animate({
-                height:40,
-                opacity:1
-            },500,'ease')
-        });
-        $("#J-next").on("click",function(e){
-            slider.next();
-            $(".good-operater").animate({
-                height:0,
-                opacity:0.2
-            },500,'ease')
-        })
 
     </script>
 
