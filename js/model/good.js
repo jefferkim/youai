@@ -10,14 +10,15 @@ Youai.Good = Backbone.Model.extend({
 
     defaults:{
         "flashComment":false, //是否提示气泡消息
-        "albums":false,
-        "like":false
+        "albums":false
     },
 
     url:function(){
-        var base = 'documents';
+       /* var base = 'documents';
         if (this.isNew()) return base;
-        return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
+        return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;*/
+
+        return "json/save.json";
 
     },
 
@@ -53,6 +54,7 @@ Youai.Good = Backbone.Model.extend({
 
     /*获取这个宝贝的专辑信息*/
     getItemAlbumeInfo:function(){
+
 
     }
 

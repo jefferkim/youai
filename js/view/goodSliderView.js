@@ -29,7 +29,9 @@ Youai.goodSliderView = Backbone.View.extend({
 
     addLike:function (e) {
         e.preventDefault();
-        alert(":Fffff");
+
+        this.model.save({"isvCode":"1","itemId":"fsafdsafd"})
+        //t.save();
 
     },
 
