@@ -40,11 +40,6 @@ Youai.Util = {
         //获取首页的信息
         'getHomeInfo':{
             "method":"getHomeInfo"
-        },
-
-        'sycLike':{
-            "method":"dumpAlbum"
-
         }
 
 

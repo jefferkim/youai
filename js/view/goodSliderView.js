@@ -13,7 +13,7 @@ Youai.goodSliderView = Backbone.View.extend({
     },
 
     events:{
-        "click .J-like":"addLike",
+        "click .J-like":"toggleLike",
         "click #J-prev":"_prev",
         "click #J-next":"_next"
 
@@ -27,11 +27,20 @@ Youai.goodSliderView = Backbone.View.extend({
 
     },
 
-    addLike:function (e) {
+    //取消加关注
+    toggleLike:function (e) {
         e.preventDefault();
+        var goodItem = this.model.toJSON();
 
-        this.model.save({"isvCode":"1","itemId":"fsafdsafd"})
-        //t.save();
+        Youai.Mod.toggleLike({
+            eventTarget:t,
+            itemId:goodItem.itemId,
+            isvCode:goodItem.isvInfo["isvCode"]
+        });
+
+
+
+
 
     },
 
