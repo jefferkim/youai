@@ -24,7 +24,7 @@
                 </header>
                 <section id="content" class="content detail">
 
-                    <div class="comments" style="z-index:999;">
+                    <div class="comments" style="display:block;">
                         <ul>
                             <li>
                                 <a href="#" class="avatar"><img src="http://img02.taobaocdn.com/tps/i2/T1N9b1XfljXXXSaEYs-96-96.png" width="48" height="48"/></a>
@@ -48,11 +48,21 @@
                 </section>
                 <footer id="footer" class="footer">
                 </footer>
-                <div class="mask" id="J-mask"></div>
+                <div class="mask" id="J-mask" style="display:block"></div>
             </div>
         </section>
     </div>
 </div>
+
+<script src="http://localhost:9292/youai.js"></script>
+
+
+
+<script type="text/javascript">
+    $(function() {
+        Youai.init();
+    });
+</script>
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+{"api":"com.taobao.wap.rest2.wo3", "v":"*", "ret":["SUCCESS::接口调用成功"], "data":{
+    "result":{
+        "commentTotal":"2",
+        "comments":[
+            {
+                "content":"评论内容",
+                "date":"2012-10-19 15:11:30",
+                "id":"789",
+                "superiors":{
+                    "content":"评论内容",
+                    "date":"2012-10-19 15:11:30",
+                    "id":"789"
+                }
+            },
+            {
+                "content":"评论内容",
+                "date":"2012-10-19 15:11:30",
+                "id":"789",
+                "superiors":{
+                    "content":"评论内容",
+                    "date":"2012-10-19 15:11:30",
+                    "id":"789"
+                }
+            }
+        ],
+        "id":"45678",
+        "pageNo":"1",
+        "pageSize":"10"
+    },
+    "method":"getItemComments"
+}}
