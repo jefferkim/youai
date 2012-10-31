@@ -21,7 +21,7 @@ Youai.goodSliderView = Backbone.View.extend({
 
     initialize:function () {
         this.slider = null;
-        this.model.on("change", this.render, this);
+        //this.model.on("change", this.t, this);
     },
 
     /*TODO::this.model.save*/
@@ -32,10 +32,16 @@ Youai.goodSliderView = Backbone.View.extend({
             likeNum = operater.find(".J-likeNum");
 
         $(target).toggleClass("on");
-
         var dest = $(target).hasClass("on") ? 1 : -1;
 
+        this.model.set({
+            "like":$(target).hasClass("on")? "true":"false",
+            "likeNum":parseInt(likeNum.text()) + dest
+        });
+
+
         likeNum.text(parseInt(likeNum.text()) + dest);
+
 
         likebox.animate({
             "opacity":1,
@@ -83,6 +89,7 @@ Youai.goodSliderView = Backbone.View.extend({
 
     render:function () {
         var self = this;
+
         this.$el.append(this.templates["list-slider"](this.model.getItemList()));
 
         $("#J-mask").show();
