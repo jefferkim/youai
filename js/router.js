@@ -2,7 +2,7 @@ Youai.Router = Backbone.Router.extend({
 
     routes:{
         '':"index",//首页
-        "list/:listCode":"list",//分页查找列表下的商品列表,接口对应getItemsFromList
+        "list/:listCode/p:page":"list",//分页查找列表下的商品列表,接口对应getItemsFromList
         '!detail/:id':'detail' //详情页
     },
 
@@ -11,9 +11,10 @@ Youai.Router = Backbone.Router.extend({
     },
 
     /*列表页*/
-    list:function () {
+    list:function (listCode,page) {
         //collection
-        var goodList = new Youai.GoodList();
+
+        var goodList = new Youai.GoodList({"listCode":listCode,"pageNo":page});
 
         var listview = new Youai.goodListView({
             collection:goodList

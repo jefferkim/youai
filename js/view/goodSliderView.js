@@ -14,6 +14,7 @@ Youai.goodSliderView = Backbone.View.extend({
 
     events:{
         "click .J-like":"toggleLike",
+        "changeUI .J-like":"changeUI",
         "click #J-prev":"_prev",
         "click #J-next":"_next"
 
@@ -22,25 +23,31 @@ Youai.goodSliderView = Backbone.View.extend({
     initialize:function () {
         this.slider = null;
         this.model.on("change", this.render, this);
-
-
-
     },
 
+    /*TODO::this.model.save*/
+    changeUI:function (e) {
+        var target = e.currentTarget,
+            operater = $(target).parents(".good-operater"),
+            likeNum = operater.find(".J-likeNum");
+
+        $(target).toggleClass("on");
+
+        var dest = $(target).hasClass("on") ? 1 : -1;
+
+        likeNum.text(parseInt(likeNum.text()) + dest);
+
+    },
     //取消加关注
     toggleLike:function (e) {
         e.preventDefault();
         var goodItem = this.model.toJSON();
 
         Youai.Mod.toggleLike({
-            eventTarget:t,
+            eventTarget:e.currentTarget,
             itemId:goodItem.itemId,
             isvCode:goodItem.isvInfo["isvCode"]
         });
-
-
-
-
 
     },
 

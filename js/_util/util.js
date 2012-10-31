@@ -9,12 +9,7 @@ Youai.Util = {
     //拼装url
     parseUrl:function (url,sid) {
 
-        var data;
-        if(typeof(url) == "string"){
-            data = this.urlMap[url];
-        }else{
-            data = url;
-        }
+        var data = ("string" == typeof url) ? this.urlMap[url] : url;
 
         var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi),
 
@@ -26,6 +21,11 @@ Youai.Util = {
         return baseUrl + dataPart;
     },
 
+    /*dev环境下的url方式*/
+    _devParseUrl:function(url,data,sid){
+
+        return "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ (sid ? "&sid=" + sid + "&data=" + JSON.stringify(data) : "&data=" + JSON.stringify(data));
+    },
 
     /* map函数，将传入的controller路径转成请求地址 */
     urlMap:{
@@ -53,6 +53,27 @@ Youai.Util = {
         });
 
 
+    },
+
+    //TODO:判断是否登录了
+    _checkLogin:function(data){
+        return true;
+    },
+
+    Ajax:function (url, callback) {
+        var self = this;
+        $.ajax({
+            url:url,
+            error:function () {
+                //tips();
+            },
+            success:function (data) {
+                if(!self._checkLogin(data)){
+                    return false;
+                }
+                callback && callback(data);
+            }
+        });
     },
 
     dataParser:function(){
