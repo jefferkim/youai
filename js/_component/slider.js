@@ -258,6 +258,16 @@ Swipe.prototype = {
         }
 
         e.stopPropagation();
+    },
+
+    destroy:function(){
+        this.element.removeEventListener('touchstart', this);
+        this.element.removeEventListener('touchmove', this);
+        this.element.removeEventListener('touchend', this);
+        this.element.removeEventListener('webkitTransitionEnd', this);
+        this.element.removeEventListener('msTransitionEnd', this);
+        this.element.removeEventListener('oTransitionEnd', this);
+        this.element.removeEventListener('transitionend', this);
     }
 
 };

@@ -17,7 +17,6 @@ Youai.goodSliderView = Backbone.View.extend({
         "changeUI .J-like":"changeUI",
         "click #J-prev":"_prev",
         "click #J-next":"_next"
-
     },
 
     initialize:function () {
@@ -29,6 +28,7 @@ Youai.goodSliderView = Backbone.View.extend({
     changeUI:function (e) {
         var target = e.currentTarget,
             operater = $(target).parents(".good-operater"),
+            likebox = operater.find(".like-num"),
             likeNum = operater.find(".J-likeNum");
 
         $(target).toggleClass("on");
@@ -36,6 +36,19 @@ Youai.goodSliderView = Backbone.View.extend({
         var dest = $(target).hasClass("on") ? 1 : -1;
 
         likeNum.text(parseInt(likeNum.text()) + dest);
+
+        likebox.animate({
+            "opacity":1,
+            "right":40
+        }, 200, 'ease-in', function () {
+            var othis = $(this);
+            setTimeout(function () {
+                othis.animate({
+                    "opacity":0,
+                    "right":0
+                });
+            }, 2000);
+        });
 
     },
     //取消加关注
@@ -54,19 +67,13 @@ Youai.goodSliderView = Backbone.View.extend({
     _prev:function (e) {
         e.preventDefault();
         this.slider.prev();
-        $(".good-operater").animate({
-            height:40,
-            opacity:1
-        }, 500, 'ease')
+
     },
 
     _next:function (e) {
         e.preventDefault();
         this.slider.next();
-        $(".good-operater").animate({
-            height:0,
-            opacity:0.2
-        }, 500, 'ease')
+
     },
 
     destroy:function(){
@@ -75,14 +82,32 @@ Youai.goodSliderView = Backbone.View.extend({
     },
 
     render:function () {
-
+        var self = this;
         this.$el.append(this.templates["list-slider"](this.model.getItemList()));
 
         $("#J-mask").show();
 
         this.slider = new Swipe(document.getElementById('slider'), {
             callback:function (event, index, elem) {
+                var operater = $(".good-operater");
+                if(index == 0){
+                    operater.animate({
+                        opacity:1
+                    }, 500, 'ease');
+                }else{
+                    operater.css({opacity:0});
+                }
+            }
+        });
 
+        $('body > div').click(function(ev){
+            var target=ev.target || ev.srcElement;
+            if(target.nodeName.toUpperCase()==='DIV'){
+                if($(target).attr('id') == 'J-mask'){
+                    self.slider.destroy();
+                    $(".slider-holder").remove();
+                    $("#J-mask").hide();
+                }
             }
         });
 
