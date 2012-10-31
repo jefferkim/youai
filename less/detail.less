@@ -1,0 +1,130 @@
+.content.detail {
+  padding: 0 5px;
+
+  p.collection-title {
+    color: #999;
+    padding: 10px 0 8px 0;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+  }
+
+  header > h1 {
+    padding: 8px 0;
+    line-height: 18px;
+  }
+
+  .collection { display: -webkit-box; }
+
+  .big-pic {
+    width: 250px;
+    height: 260px;
+    img {
+      max-width: 250px;
+      max-height: 225px;
+    }
+  }
+
+  .vslider {
+    width: 55px;
+    margin-left: 5px;
+    background: red;
+  }
+
+  .item-info {
+    display: -webkit-box;
+    height: 35px;
+    background: #f4f4f4;
+    border: 1px solid #d9d9d9;
+    border-top: 0; 
+    .price {
+      -webkit-box-flex: 1; 
+      padding-left: 5px;
+      line-height: 35px;
+    }
+    .comment-count, .like-count {
+      color: #999;
+      min-width: 54px;
+      display: -webkit-box;
+      text-align: right;
+      strong {
+        display: block;
+        line-height: 35px;
+        -webkit-box-flex: 1;
+        font-size: 12px;
+        margin-right: 4px;
+      }
+      span {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        margin-top: 5px;
+        background-size: 25px;
+      }
+    }
+    .comment-count {
+      span {
+        background-image: url(img/comment.png);
+      }
+      
+    }
+    .like-count {
+      margin-right: 7px;
+      span {
+        background-image: url(img/red-star.png);
+      }
+    }
+  }
+
+  .go-buy {
+    text-align: right; 
+    padding-bottom: 10px;
+    //border-bottom: 1px solid #d9d9d9;
+  }
+
+  .go-buy > a {
+    color: #fff;
+    width: 83px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    display: inline-block;
+    border-bottom: 1px solid #8bbb2e;
+    background: -webkit-gradient(linear, left top, left bottom, from(#9ad031), to(#9cd233));
+    & > span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-left: -3px;
+      margin-right: 4px;
+      margin-bottom: -2px;
+      background-image: url(img/gobuy.png);
+      background-size: 15px;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .go-buy + .separator {
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #f3f3f3;
+  }
+
+  .keywords li { display: -webkit-box; }
+
+  .keywords li a {
+    color: #333;
+    width: 56px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 22px;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    background: #f4f4f4;
+    border: 1px solid #d9d9d9;
+    border-top-color: #e2e2e2;
+    margin: 0 5px 10px 0;
+    &:last-child { margin: 0; }
+  }
+}
