@@ -19,7 +19,7 @@ window.Swipe = function(element, options) {
   this.speed = this.options.speed || 300;
   this.callback = this.options.callback || function() {};
   this.delay = this.options.auto || 0;
-  this.vertical = !!this.options.vertical
+  this.vertical = !!this.options.vertical;
 
   // reference dom elements
   this.container = element;
@@ -71,14 +71,19 @@ Swipe.prototype = {
     this.container.style.visibility = 'hidden';
 
     // dynamic css
-    this.element.style.width = Math.ceil(this.slides.length * this.width) + 'px';
-    var index = this.slides.length;
-    while (index--) {
-      var el = this.slides[index];
-      el.style.width = this.width + 'px';
-      el.style.display = 'table-cell';
-      el.style.verticalAlign = 'top';
+    if (this.vertical) {
+      this.element.style.height = Math.ceil(this.slides.length * 60) + 'px';
+    } else {
+      this.element.style.width = Math.ceil(this.slides.length * this.width) + 'px';
+      var index = this.slides.length;
+      while (index--) {
+        var el = this.slides[index];
+        el.style.width = this.width + 'px';
+        el.style.display = 'table-cell';
+        el.style.verticalAlign = 'top';
+      }
     }
+
 
     // set start position and force translate to remove initial flickering
     this.slide(this.index, 0); 
@@ -101,11 +106,22 @@ Swipe.prototype = {
     style.webkitTransitionDuration = style.MozTransitionDuration = style.msTransitionDuration = style.OTransitionDuration = style.transitionDuration = duration + 'ms';
 
     // translate to given index position
-    style.MozTransform = style.webkitTransform = 'translate3d(' + -(index * this.width) + 'px,0,0)';
-    style.msTransform = style.OTransform = 'translateX(' + -(index * this.width) + 'px)';
+    if (this.vertical) {
+      style.MozTransform = style.webkitTransform = 'translate3d(0, ' + -(index * 60) + 'px,0)';
+      //style.msTransform = style.OTransform = 'translateX(' + -(index * this.width) + 'px)';      
+    } else {
+      style.MozTransform = style.webkitTransform = 'translate3d(' + -(index * this.width) + 'px,0,0)';
+      style.msTransform = style.OTransform = 'translateX(' + -(index * this.width) + 'px)';
+    }
 
     // set new index to allow for expression arguments
     this.index = index;
+
+    if (this.vertical) {
+      if (this.index < 0) this.index = 0;
+      if (this.index > this.length - 4) this.index = this.length - 4;
+      style.MozTransform = style.webkitTransform = 'translate3d(0, ' + -(this.index * 60) + 'px,0)';
+    }
 
   },
 
@@ -182,7 +198,7 @@ Swipe.prototype = {
   },
 
   onTouchStart: function(e) {
-    
+
     this.start = {
 
       // get touch coordinates for delta calculations in onTouchMove
@@ -199,6 +215,7 @@ Swipe.prototype = {
     
     // reset deltaX
     this.deltaX = 0;
+    this.deltaY = 0;
 
     // set transition time to 0 for 1-to-1 touch movement
     this.element.style.MozTransitionDuration = this.element.style.webkitTransitionDuration = 0;
@@ -207,11 +224,12 @@ Swipe.prototype = {
   },
 
   onTouchMove: function(e) {
-
+    
     // ensure swiping with one touch and not pinching
     if(e.touches.length > 1 || e.scale && e.scale !== 1) return;
 
     this.deltaX = e.touches[0].pageX - this.start.pageX;
+    this.deltaY = e.touches[0].pageY - this.start.pageY;
 
     // determine if scrolling test has run - one time test
     if ( typeof this.isScrolling == 'undefined') {
@@ -219,7 +237,7 @@ Swipe.prototype = {
     }
 
     // if user is not trying to scroll vertically
-    if (!this.isScrolling) {
+    if (!this.isScrolling && !this.vertical) {
 
       // prevent native scrolling 
       e.preventDefault();
@@ -241,6 +259,28 @@ Swipe.prototype = {
       this.element.style.MozTransform = this.element.style.webkitTransform = 'translate3d(' + (this.deltaX - this.index * this.width) + 'px,0,0)';
       
       e.stopPropagation();
+
+    }
+
+    if (this.vertical) {
+
+      e.preventDefault();
+
+      clearTimeout(this.interval);
+
+      this.deltaY = 
+        this.deltaY / 
+          ( (!this.index && this.deltaY > 0               // if first slide and sliding left
+            || this.index == this.length - 4              // or if last slide and sliding right
+            && this.deltaY < 0                           // and if sliding at all
+          ) ?                      
+          ( Math.abs(this.deltaY) / 60 + 1 )      // determine resistance level
+          : 1 );                                          // no resistance if false
+      
+      // translate immediately 1-to-1
+      this.element.style.MozTransform = this.element.style.webkitTransform = 'translate3d(0, ' + (this.deltaY - this.index * 60) + 'px,0)';
+
+      e.stopPropagation();
     }
 
   },
@@ -258,11 +298,28 @@ Swipe.prototype = {
           !this.index && this.deltaX > 0                          // if first slide and slide amt is greater than 0
           || this.index == this.length - 1 && this.deltaX < 0;    // or if last slide and slide amt is less than 0
 
+    if (this.vertical) {
+      isValidSlide = Number(new Date()) - this.start.time < 250
+          && Math.abs(this.deltaY) > 20                   
+          || Math.abs(this.deltaY) > this.width/2;
+
+      isPastBounds = 
+          !this.index && this.deltaY > 0
+          || this.index == this.length - 4 && this.deltaY < 0; 
+    }
+
     // if not scrolling vertically
-    if (!this.isScrolling) {
+    if (!this.isScrolling && !this.vertical) {
 
       // call slide function with slide end value based on isValidSlide and isPastBounds tests
       this.slide( this.index + ( isValidSlide && !isPastBounds ? (this.deltaX < 0 ? 1 : -1) : 0 ), this.speed );
+
+    }
+
+    if (this.vertical) {
+
+      var deltai = Math.ceil(Math.abs(this.deltaY) / 60);
+      this.slide( this.index + ( isValidSlide && !isPastBounds ? (this.deltaY < 0 ? deltai : -deltai) : 0 ), this.speed );
 
     }
     
