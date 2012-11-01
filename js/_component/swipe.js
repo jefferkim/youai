@@ -20,6 +20,9 @@ window.Swipe = function(element, options) {
   this.callback = this.options.callback || function() {};
   this.delay = this.options.auto || 0;
   this.vertical = !!this.options.vertical;
+  this.preload = this.options.preload;
+  this.lazyloadClass = this.options.lazyloadClass || 'lazy';
+  this.lazyloadDataAttr = this.options.lazyloadDataAttr || 'src';
 
   // reference dom elements
   this.container = element;
@@ -176,6 +179,34 @@ Swipe.prototype = {
     this.begin();
   },
 
+  load: function() {
+    if (!this.preload) return;
+    var self = this;
+
+    for (var i = 0; i < this.preload; i++) {
+      (function() {
+        if (self.index + i < self.length) {
+          var slide = self.slides[self.index + i];
+          if (!slide.getAttribute('loaded')) self._loadImages(slide);
+        }
+      })()
+    }
+  },
+
+  _loadImages: function(slide) {
+    var images = slide.querySelectorAll('img.' + this.lazyloadClass);
+    for (var i = 0; i < images.length; i++) {
+      (function() {
+        var j = i, img = new Image;
+        img.onload = function() { 
+          images[j].parentNode.replaceChild(this, images[j]); 
+          slide.setAttribute('loaded', true);
+        };
+        img.src = images[i].getAttribute('data-' + this.lazyloadDataAttr);
+      }).call(this);
+    }
+  },
+
   handleEvent: function(e) {
     switch (e.type) {
       case 'touchstart': this.onTouchStart(e); break;
@@ -191,6 +222,8 @@ Swipe.prototype = {
 
   transitionEnd: function(e) {
     
+    if (this.preload) this.load();
+
     if (this.delay) this.begin();
 
     this.callback(e, this.index, this.slides[this.index]);

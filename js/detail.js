@@ -3,6 +3,8 @@
 
 $(function() {
 
-  window.vslide = new Swipe($('.vslide')[0], { vertical: true });
+  window.vslide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 });
+
+  vslide.load();
 
 })
