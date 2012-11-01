@@ -13,6 +13,7 @@
   header > h1 {
     padding: 8px 0;
     line-height: 18px;
+    font-weight: normal;
   }
 
   .collection { display: -webkit-box; }
@@ -24,12 +25,6 @@
       max-width: 250px;
       max-height: 225px;
     }
-  }
-
-  .vslider {
-    width: 55px;
-    margin-left: 5px;
-    background: red;
   }
 
   .item-info {
@@ -128,3 +123,89 @@
     &:last-child { margin: 0; }
   }
 }
+
+.collection-items {
+  width: 55px;
+  margin-left: 5px;
+  position: relative;
+
+  .up-arrow, .down-arrow {
+    left: 23px;
+    width: 0px;
+    height: 0px;
+    display: block;
+    border: 5px solid;
+    position: absolute;
+  }
+  .up-arrow {
+    top: -5px;
+    border-color: transparent transparent #666 transparent;
+  }
+  .down-arrow {
+    top: 254px;
+    border-color: #666 transparent transparent transparent;
+  }
+
+  .vslide {
+    top: 12px;
+    width: 100%;
+    height: 235px;
+    overflow-y: hidden;
+    position: absolute;
+
+    li {
+      width: 55px;
+      height: 55px;
+      line-height: 55px;
+      text-align: center; 
+      margin-bottom: 5px;
+      &.selected {
+        img {
+          max-width: 53px;
+          max-height: 53px;
+          border: 1px solid #00d1fe;
+        }
+      }
+      img {
+        max-width: 55px;
+        max-height: 55px;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
