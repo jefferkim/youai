@@ -31,7 +31,6 @@ Youai.commentsView = Backbone.View.extend({
 
         var commentView = new Youai.commentItemView({model:comment});
 
-        console.log(commentView.render());
         $("#J-comment").append(commentView.render());
     },
 
@@ -41,19 +40,18 @@ Youai.commentsView = Backbone.View.extend({
     render:function () {
         var self = this;
 
+        $("#J-mask").show();
+
         this.$el.html(this.templates["comments-Layout"]());
-        console.log(this);
+
 
         var commentList = this.collection;
 
-        console.log(commentList);
 
 
-        console.log(commentList.toJSON());
-
-       /* commentList.each(function (comment) {
+       commentList.each(function (comment) {
             self.addItem(comment);
-        });*/
+        });
 
     }
 

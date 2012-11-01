@@ -17,7 +17,7 @@ Youai.Comment = Backbone.Model.extend({
          if (this.isNew()) return base;
          return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;*/
 
-        return "json/save.json";
+        //return "json/save.json";
 
     },
 

@@ -36,7 +36,9 @@ Youai.Router = Backbone.Router.extend({
 
     comments:function(itemId,page){
 
-        var commentList = new Youai.CommentList({"itemId":itemId,"pageNo":page});
+        var commentList = new Youai.CommentList();
+
+        commentList.url = Youai.Util._devParseUrl("getItemComments.json", {"itemId":itemId, "pageSize":"10", "pageNo":page});
 
         var commentView = new Youai.commentsView({
             collection:commentList
