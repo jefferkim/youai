@@ -18,7 +18,6 @@ Youai.Comment = Backbone.Model.extend({
          return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;*/
 
         //return "json/save.json";
-
     },
 
 
@@ -28,11 +27,14 @@ Youai.Comment = Backbone.Model.extend({
 
     /*获取父级评论*/
     getSuperComment:function () {
-        return {
-           "author":this.get("superiors")["id"],
-           "content":this.get("superiors")["content"]
-        }
+        return (this.get("superiors")["id"] != undefined) ? {
+            "author":this.get("superiors").id,
+            "content":this.get("superiors").content
+        } : false
+    },
 
+    getCommentParentId:function(){
+        return (this.get("superiors").id != undefined) ? this.get("superiors").id : this.get("id");
     },
 
     /*单个comment*/
@@ -41,10 +43,10 @@ Youai.Comment = Backbone.Model.extend({
             "avatar":this._getAvatar(this.get("id")),
             "content":this.get("content"),
             "author":this.get("id"),
-            "superComment":this.getSuperComment()
+            "commentParentId":this.getCommentParentId(),
+            "loopReply":this.getSuperComment()
         };
         return data;
     }
-
 
 });

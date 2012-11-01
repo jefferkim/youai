@@ -1,9 +1,12 @@
 <div class="reply">
-    <a href="#" class="avatar"><img src="http://img02.taobaocdn.com/tps/i2/T1N9b1XfljXXXSaEYs-96-96.png" width="48" height="48"/></a>
-    <span class="author">我超级嫩</span>
-    <p class="comment">超好的衣服，卖家发货神速，态度超赞，特别是衣服做工好。</p>
-    <div class="reply-btn"><a href="#" class="J-reply">回复</a></div>
+    <a href="#" class="avatar"><img src="<%= avatar %>" width="48" height="48"/></a>
+    <span class="author"><%= author %></span>
+    <p class="comment"><%= content %></p>
+    <div class="reply-btn"><a href="#" class="J-reply" data-id="<%= commentParentId %>">回复</a></div>
 </div>
+<% if(loopReply){ %>
 <div class="loop-reply">
-    <span class="loop-author">掌柜：</span>哈哈，谢谢！欢迎常来小店转转哟！~
+    <span class="loop-author"><%= loopReply.author %>：</span><%= loopReply.content %>
 </div>
+<% }%>
+
