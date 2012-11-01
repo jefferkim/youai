@@ -53,7 +53,7 @@ Youai.commentsView = Backbone.View.extend({
             self.addItem(comment);
         });
 
-        new iScroll();
+        new iScroll('J-comment-block');
 
     }
 

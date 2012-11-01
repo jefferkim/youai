@@ -23,9 +23,11 @@ Youai.commentItemView = Backbone.View.extend({
 
     },
 
+
     replyComment:function(e){
         e.preventDefault();
-        alert("Fff");
+        Youai.Util.showAddTextarea();
+
     },
 
     render:function () {

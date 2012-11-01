@@ -86,6 +86,12 @@ Youai.Util = {
 
 
 
+    },
+
+    //显示输入框
+    showAddTextarea:function(){
+        console.log("showAddTextarea");
+
     }
 
 }
