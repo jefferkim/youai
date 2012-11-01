@@ -44,10 +44,8 @@ Youai.Router = Backbone.Router.extend({
 
         commentList.fetch();
 
-        //commentList.on('reset', commentView.render, commentView);
-        console.log("sss");
-        console.log(commentList.toJSON());
-        console.log("sss");
+        commentList.on('reset', commentView.render, commentView);
+
     }
 
 

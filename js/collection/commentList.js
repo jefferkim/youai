@@ -20,7 +20,6 @@ Youai.CommentList = Backbone.Collection.extend({
 
     parse:function (resp) {
         if (resp.ret[0].indexOf("SUCCESS::") != -1) {
-
             //return Youai.Util.dataParser(resp);
             return resp.data.result.comments;
         }

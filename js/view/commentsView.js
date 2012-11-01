@@ -35,15 +35,18 @@ Youai.commentsView = Backbone.View.extend({
         var self = this;
 
         this.$el.html(this.templates["comments-Layout"]());
+        console.log(this);
 
         var commentList = this.collection;
+
+        console.log(commentList);
 
 
         console.log(commentList.toJSON());
 
-        commentList.each(function (comment) {
+       /* commentList.each(function (comment) {
             self.addItem(comment);
-        });
+        });*/
 
     }
 

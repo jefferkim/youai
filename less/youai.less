@@ -486,8 +486,61 @@
     position:relative;
     z-index:999;
     li{
-        color:#fff;
+        width:310px;
         border-bottom:1px solid #000000;
+        padding:8px 3px 10px 0;
+        .reply{
+           position:relative;
+           width:242px;
+           color:#fff;
+           padding:0 0 0 57px;
+
+        }
+        .avatar{
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        .author{
+            font-size:14px;
+            color:#fff;
+        }
+        .comment{
+            margin-top:8px;
+            font-size:12px;
+            color:#cccccc;
+        }
+        .reply-btn{
+            margin-top:7px;
+            height:15px;
+            line-height:15px;
+            text-align:right;
+            .J-reply{
+                 color:#00baf7;
+                 font-size:12px;
+            }
+        }
+
+        .loop-reply{
+           margin-top:13px;
+           position:relative;
+           color:#fff;
+           width:279px;
+           padding:10px;
+           font-size:12px;
+           background:rgba(255,255,255,0.2);
+           box-shadow:0px 0px 7px rgba(0, 0, 0, .2);
+           &:after{
+                position:absolute;
+                right:0;
+                top:-14px;
+                content:"";
+                border:8px solid transparent;
+                border-bottom:6px solid #fff;
+                border-right:0;
+                opacity:0.2;
+           }
+        }
 
     }
 }
