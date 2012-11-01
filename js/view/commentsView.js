@@ -11,13 +11,20 @@ Youai.commentsView = Backbone.View.extend({
     },
 
     events:{
-
+       "click #J-close":"closePop"
     },
 
     initialize:function () {
 
 
     },
+
+
+    closePop:function(){
+
+
+    },
+
 
 
     addItem:function (comment) {

@@ -23,8 +23,14 @@ Youai.Util = {
 
     /*dev环境下的url方式*/
     _devParseUrl:function(url,data,sid){
+         var l;
+        if(location.href.indexOf("127.0.0.1") !=-1){
+            l = "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
+        }else{
+            l = "http://10.13.125.93/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
+        }
+        return l;
 
-        return "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
     },
 
     /* map函数，将传入的controller路径转成请求地址 */
