@@ -44,10 +44,7 @@ Youai.commentsView = Backbone.View.extend({
 
         this.$el.html(this.templates["comments-Layout"]());
 
-
         var commentList = this.collection;
-
-
 
        commentList.each(function (comment) {
             self.addItem(comment);
