@@ -27,7 +27,8 @@ Youai.commentItemView = Backbone.View.extend({
     replyComment:function (e) {
         e.preventDefault();
         Youai.Util.showAddTextarea();
-        $("#J-val").attr("data-replyId", this.model.commentId);
+
+        $("#J-val").attr("data-replyId", this.model.get("id"));
     },
 
 

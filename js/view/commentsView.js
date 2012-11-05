@@ -56,16 +56,7 @@ Youai.commentsView = Backbone.View.extend({
                 if(result.indexOf("SUCCESS::") != -1){
                     console.log(response);
 
-                   var t = {
-                       "content":"评论内容",
-                       "date":"2012-10-19 15:11:51",
-                       "id":"789",
-                       "superiors":{
-                           "content":"评论内容",
-                           "date":"2012-10-19 15:11:51",
-                           "id":"789"
-                       }
-                   };
+
 
                 }
 

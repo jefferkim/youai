@@ -95,6 +95,9 @@ Youai.goodSliderView = Backbone.View.extend({
         $("#J-mask").show();
 
         this.slider = new Swipe(document.getElementById('slider'), {
+            preload:2,
+            lazyloadClass:"lazy-img",
+            lazyloadDataAttr:"data-img",
             callback:function (event, index, elem) {
                 var operater = $(".good-operater");
                 if(index == 0){
@@ -111,6 +114,7 @@ Youai.goodSliderView = Backbone.View.extend({
             var target=ev.target || ev.srcElement;
             if(target.nodeName.toUpperCase()==='DIV'){
                 if($(target).attr('id') == 'J-mask'){
+                    console.log(self.slider);
                     self.slider.destroy();
                     $(".slider-holder").remove();
                     $("#J-mask").hide();
