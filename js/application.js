@@ -2,7 +2,7 @@
 
 var Youai = {
     init: function() {
-        new Youai.Router();
+        Youai.router = new Youai.Router();
         Backbone.history.start();
     }
 };
