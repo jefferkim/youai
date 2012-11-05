@@ -28,7 +28,7 @@ Youai.Comment = Backbone.Model.extend({
     /*获取父级评论*/
     getSuperComment:function () {
         return (this.get("superiors")["id"] != undefined) ? {
-            "author":this.get("superiors").id,
+            "author":this.get("superiors").user["userNick"],
             "content":this.get("superiors").content
         } : false
     },
@@ -38,7 +38,7 @@ Youai.Comment = Backbone.Model.extend({
         var data = {
             "avatar":this._getAvatar(this.get("id")),
             "content":this.get("content"),
-            "author":this.get("id"),
+            "author":this.get("user").userNick,
             "commentId":this.get("id"),
             "loopReply":this.getSuperComment()
         };

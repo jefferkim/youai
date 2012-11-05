@@ -2,9 +2,8 @@ Youai.Router = Backbone.Router.extend({
 
     routes:{
         '':"index",//首页
-        "list/:listCode/p:page":"list",//分页查找列表下的商品列表,接口对应getItemsFromList
-        '!detail/:id':'detail', //详情页
-        "comments/:id/p:page":"comments"//评论
+        "!list/:listCode/p:page":"list",//分页查找列表下的商品列表,接口对应getItemsFromList
+        '!detail/:id':'detail' //详情页
     },
 
     index:function(){
@@ -13,7 +12,6 @@ Youai.Router = Backbone.Router.extend({
 
     /*列表页*/
     list:function (listCode,page) {
-        //collection
 
         var goodList = new Youai.GoodList({"listCode":listCode,"pageNo":page});
 
@@ -31,22 +29,6 @@ Youai.Router = Backbone.Router.extend({
 
         if (!Youai.detail) Youai.detail = new Youai.DetailView()
         Youai.detail.displayItem(id);
-
-    },
-
-    comments:function(itemId,page){
-
-        var commentList = new Youai.CommentList();
-
-        commentList.url = Youai.Util._devParseUrl("getItemComments.json", {"itemId":itemId, "pageSize":"10", "pageNo":page});
-
-        var commentView = new Youai.commentsView({
-            collection:commentList
-        });
-
-        commentList.fetch();
-
-        commentList.on('reset', commentView.render, commentView);
 
     }
 
