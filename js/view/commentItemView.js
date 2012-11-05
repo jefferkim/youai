@@ -8,8 +8,8 @@ Youai.commentItemView = Backbone.View.extend({
 
     tagName:"li",
 
-    templates:{
-        "list-commentItem":JST["template/comments_item"]
+    tpl:{
+        "commentItem":JST["template/comments_item"]
     },
 
     events:{
@@ -32,8 +32,8 @@ Youai.commentItemView = Backbone.View.extend({
 
     render:function () {
 
-        console.log(this.model);
-        return this.$el.html(this.templates["list-commentItem"](this.model.getComment()));
+        $("#J-tplComment").trigger("refreshIscroll");
+        return this.$el.html(this.tpl["commentItem"](this.model.getComment()));
 
     }
 

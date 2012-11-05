@@ -1,8 +1,5 @@
 /*
- * Model:comment
- * price:价格
- * pic:图片
- * comment:CF=>::宝贝列表页 ::列表页气泡浮出
+ * Model:Comment
  *
  *
  * */
