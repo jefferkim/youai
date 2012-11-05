@@ -1,0 +1,68 @@
+<p class="collection-title">该宝贝所属专辑<a href="#">“<%= album.description%>”</a>共 <%= album.items.length %> 件宝贝</p>
+
+<div class="collection">
+  <div class="big-pic">
+    <img src="<%= images[0].url %>" >
+    <div class="item-info">
+      <p class="price">￥<%= originalPrice %></p>
+      <a href="#" class="comment-count"><strong><%= commentNum %></strong><span></span></a>
+      <a href="#" class="like-count"><strong><%= likeNum %></strong><span></span></a>
+    </div>
+  </div>
+  <% if (album.items.length) { %>
+  <div class="collection-items">
+    <span class="up-arrow"></span>
+    <span class="down-arrow"></span>
+    <div class="vslide">
+      <ul>
+        <% for (var i = 0; i < album.items.length; i++) { %>
+          <li>
+            <img class="lazy" data-src="http://a.tbcdn.cn/mw/base/styles/component/more/images/Loading_Taobao_320.gif"
+            src="<%= album.items[i].images[0].url + '_110x110.jpg' %>" >
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <% } %> 
+</div>
+
+<header>
+  <h1><a href="<%= isvInfo.url %>">来自<%= isvInfo.name %></a>
+    卖到爆！2012秋装新款 超显廋纯手工打造 修身羊毛针织衫</h1>
+</header>
+<div class="go-buy"><a href="#" ><span></span>去购买</a></div>
+<div class="separator"></div>
+
+
+<% if (tags && tags.length) { %>
+<section class="recommendations">
+  <header>
+    <h1>相关推荐</h1>
+  </header>
+  <ul class="keywords">
+    <% for (var i = 0; i < Math.ceil(tags.length / 5); i++) { %>
+    <li>
+      <% for (var j = i * 5; j < Math.min(tags.length, (i+1)*5 ); j++) { %>
+        <a href="#"><%= tags[j].name %></a>
+      <% } %>
+    </li>
+    <% } %>
+<!--     <li>
+      <a href="#">最新</a>
+      <a href="#">热门</a>
+      <a href="#">初秋单鞋</a>
+      <a href="#">复古</a>
+      <a href="#">风衣外套</a>
+    </li>
+    <li>
+      <a href="#">开衫</a>
+      <a href="#">新款包</a>
+      <a href="#">波点控</a>
+      <a href="#">秋季补水</a>
+      <a href="#">更多</a>
+    </li>
+ -->
+  </ul>
+</section>
+<% } %>

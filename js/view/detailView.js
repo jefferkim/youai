@@ -19,7 +19,7 @@ Youai.DetailView = Backbone.View.extend({
 
   itemUrl: function(id) {
     //return 'http://api.waptest.taobao.com/rest/api2.do?api=com.taobao.wap.rest2.wo3&type=jsonp&callback=jsonp1&v=*&source=wo&sid=83fb97e85b9c12374f8b8426e5d564d8&data={"method":"getItemDetail","srcType":"10","srcCode":"1","isvCode":"12","itemId":"12121"}'
-    return 'json/detail-single.json'    
+    return 'json/detail-collection.json'    
   },
 
   getItemData: function(id) {
@@ -46,10 +46,9 @@ Youai.DetailView = Backbone.View.extend({
       return;
     }
 
-    console.log(this.data)
-
     if (this.data.album) {  //有专辑
       this.render(JST['template/detail_collection'])
+      this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
     } else {  // 无专辑
       this.render(JST['template/detail_single'])
     }
