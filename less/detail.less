@@ -16,17 +16,27 @@
     font-weight: normal;
   }
 
-
   .collection { display: -webkit-box; }
 
   .single-item {
     margin-top: 10px;
-    .big-pic { margin: auto; }  
+    .main-view { margin: auto; }  
+  }
+
+  .main-view {
+    width: 250px;
+    height: 260px;
   }
 
   .big-pic {
-    width: 250px;
-    height: 260px;
+    display: -webkit-box;
+    margin: auto;
+    width: 248px;
+    height: 225px;
+    background: #fff;
+    text-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
     img {
       max-width: 250px;
       max-height: 225px;

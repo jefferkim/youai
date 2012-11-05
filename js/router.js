@@ -33,7 +33,6 @@ Youai.Router = Backbone.Router.extend({
         }
 
         Youai.detail.displayItem(id);
-
     }
 
 
