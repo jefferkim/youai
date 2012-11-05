@@ -19,8 +19,7 @@ Youai.goodItemView = Backbone.View.extend({
 
     initialize:function () {
 
-        this.model.on("change",this.render,this);
-
+       // this.model.on("change",this.render,this);
 
     },
 

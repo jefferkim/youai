@@ -4,7 +4,7 @@
             <% _.each(images, function(img,index) { %>
             <li>
                 <img src="<%= img.url %>" width="284"/>
-                <span class="good-operater"><a href="#" class="J-like"></a><span class="like-num"><em class="J-likeNum"><%= likeNum %></em>人已喜欢</span></span>
+                <span class="good-operater"><a href="#" class="J-like <%= isLiked ?'on':''%>"></a><span class="like-num"><em class="J-likeNum"><%= likeNum %></em>人已喜欢</span></span>
             </li>
             <%})%>
       </ul>

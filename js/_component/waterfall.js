@@ -60,10 +60,10 @@ Waterfall.prototype = {
         }
 
         // 计算图片间隔
-        var margin = Math.max(self.containerWidth - curColCount * setting.colWidth, 0) / (curColCount + 1);
+        var margin = Math.max(self.containerWidth - curColCount * setting.colWidth, 0) / (curColCount - 1);
 
         item.css({
-            left:dest * setting.colWidth + (dest + 1) * margin,
+            left:dest == 0 ? 0 : dest * setting.colWidth + (dest + 1) * margin,
             top:guard
         });
 

@@ -21,7 +21,7 @@ Youai.goodSliderView = Backbone.View.extend({
 
     initialize:function () {
         this.slider = null;
-        this.model.on("change", this.render, this);
+        //this.model.on("change", this.t, this);
     },
 
     /*TODO::this.model.save*/
@@ -32,21 +32,27 @@ Youai.goodSliderView = Backbone.View.extend({
             likeNum = operater.find(".J-likeNum");
 
         $(target).toggleClass("on");
-
         var dest = $(target).hasClass("on") ? 1 : -1;
 
+        this.model.set({
+            "like":$(target).hasClass("on")? "true":"false",
+            "likeNum":parseInt(likeNum.text()) + dest
+        });
+
+
         likeNum.text(parseInt(likeNum.text()) + dest);
+
 
         likebox.animate({
             "opacity":1,
             "right":40
-        }, 200, 'ease-in', function () {
+        }, 200, (.47,.2,0,.92), function () {
             var othis = $(this);
             setTimeout(function () {
                 othis.animate({
                     "opacity":0,
                     "right":0
-                });
+                },200,(.47,.2,0,.92));
             }, 2000);
         });
 
@@ -83,11 +89,15 @@ Youai.goodSliderView = Backbone.View.extend({
 
     render:function () {
         var self = this;
+
         this.$el.append(this.templates["list-slider"](this.model.getItemList()));
 
         $("#J-mask").show();
 
         this.slider = new Swipe(document.getElementById('slider'), {
+            preload:2,
+            lazyloadClass:"lazy-img",
+            lazyloadDataAttr:"data-img",
             callback:function (event, index, elem) {
                 var operater = $(".good-operater");
                 if(index == 0){
@@ -104,6 +114,7 @@ Youai.goodSliderView = Backbone.View.extend({
             var target=ev.target || ev.srcElement;
             if(target.nodeName.toUpperCase()==='DIV'){
                 if($(target).attr('id') == 'J-mask'){
+                    console.log(self.slider);
                     self.slider.destroy();
                     $(".slider-holder").remove();
                     $("#J-mask").hide();
