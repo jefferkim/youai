@@ -36,7 +36,7 @@ Youai.Comment = Backbone.Model.extend({
     /*单个comment*/
     getComment:function () {
         var data = {
-            "avatar":this._getAvatar(this.get("id")),
+            "avatar":this._getAvatar(this.get("user").userId),
             "content":this.get("content"),
             "author":this.get("user").userNick,
             "commentId":this.get("id"),

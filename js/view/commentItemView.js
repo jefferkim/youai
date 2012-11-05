@@ -18,7 +18,7 @@ Youai.commentItemView = Backbone.View.extend({
 
     initialize:function () {
 
-        // this.model.on("change",this.render,this);
+        this.model.on("change",this.render,this);
 
     },
 
@@ -26,12 +26,13 @@ Youai.commentItemView = Backbone.View.extend({
     replyComment:function (e) {
         e.preventDefault();
         $(".textarea-block","#J-tplComment").addClass("show");
-        $(".J-inputField","#J-tplComment").attr("data-replyId", this.model.get("id"));
+        $(".J-inputField","#J-tplComment").attr("data-replyId", $(e.currentTarget).attr("data-id"));
     },
 
 
     render:function () {
 
+        console.log(this.model);
         return this.$el.html(this.templates["list-commentItem"](this.model.getComment()));
 
     }

@@ -28,9 +28,8 @@ Youai.commentsView = Backbone.View.extend({
 
     closePop:function(e){
         e.preventDefault();
-
-
-
+        $("#J-mask").hide();
+        $("#J-tplComment").hide();
 
     },
 
@@ -38,20 +37,42 @@ Youai.commentsView = Backbone.View.extend({
         e.preventDefault();
         var U = Youai.Util;
 
-        if ($(".J-inputField","#J-tplComment").val() === "") {
-            var pop  = notification.pop("请填写评论内容");
-            pop.show();
-            return false;
+        var commentBlock = $(".textarea-block","#J-tplComment"),
+            inputField = $(".J-inputField","#J-tplComment");
+
+        if (inputField.val() === "") {
+            notification.pop("请填写评论内容").show();
+            return;
         }
         else {
 
             var submitModel = {
                 "method":"addCommentForItem",
-                "content":$("#J-val").val(),
-                "itemId":$("#J-itemId").val(),//链接中取得
-                "commentParentId":$(".J-inputField","#J-tplComment").attr("data-replyId")
+                "content":inputField.val(),
+                "itemId":location.hash.split("/")[1],//链接中取得
+                "commentParentId":inputField.attr("data-replyId")
             }
 
+            var oldComment = this.commentList.get(inputField.attr("data-replyId"));
+
+            oldComment.set({
+                content: inputField.val(),
+                superiors: {
+                    content: inputField.val(),
+                    user: {
+                        userId: oldComment.get("user").userId,
+                        userNick: oldComment.get("user").userNick
+                    }
+                },
+                user: {
+                    userId: 11111,
+                    userNick:"jinjianfeng"
+                }
+            });
+
+
+
+            console.log(submitModel);
             var url = U.parseUrl(submitModel, "111111");
 
             var success = function (response) {
@@ -63,8 +84,9 @@ Youai.commentsView = Backbone.View.extend({
                   //  pop("输入参数错误");
                 }
                 if(result.indexOf("SUCCESS::") != -1){
-                    console.log(response);
-                    $(".textarea-block","#J-tplComment").removeClass("show");
+
+                    commentBlock.removeClass("show");
+                    inputField.val("");
 
 
                 }
@@ -72,6 +94,7 @@ Youai.commentsView = Backbone.View.extend({
             };
 
             Youai.Util.Ajax(url, success);
+
         }
     },
 
