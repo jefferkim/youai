@@ -11,17 +11,25 @@ Youai.commentsView = Backbone.View.extend({
     },
 
     events:{
-       "click #J-close":"closePop",
-        "click #J-submit":"submitComment"//提交评论
+       "click #J-close":"closePop", //关闭pop层
+       "click #J-submit":"submitComment"//提交评论
     },
 
     initialize:function () {
 
+       this.commentList = new Youai.CommentList();
+       this.commentList.url = Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":1});
+
+       this.commentList.fetch();
+       this.commentList.on('reset', this.render, this);
 
     },
 
 
-    closePop:function(){
+    closePop:function(e){
+        e.preventDefault();
+
+
 
 
     },
@@ -30,8 +38,9 @@ Youai.commentsView = Backbone.View.extend({
         e.preventDefault();
         var U = Youai.Util;
 
-        if ($("#J-val").val() === "") {
-            //pop("")//提示错误
+        if ($(".J-inputField","#J-tplComment").val() === "") {
+            var pop  = notification.pop("请填写评论内容");
+            pop.show();
             return false;
         }
         else {
@@ -40,7 +49,7 @@ Youai.commentsView = Backbone.View.extend({
                 "method":"addCommentForItem",
                 "content":$("#J-val").val(),
                 "itemId":$("#J-itemId").val(),//链接中取得
-                "commentParentId":$("#J-val").attr("data-replyId")
+                "commentParentId":$(".J-inputField","#J-tplComment").attr("data-replyId")
             }
 
             var url = U.parseUrl(submitModel, "111111");
@@ -55,7 +64,7 @@ Youai.commentsView = Backbone.View.extend({
                 }
                 if(result.indexOf("SUCCESS::") != -1){
                     console.log(response);
-
+                    $(".textarea-block","#J-tplComment").removeClass("show");
 
 
                 }
@@ -66,14 +75,13 @@ Youai.commentsView = Backbone.View.extend({
         }
     },
 
+
     addItem:function (comment) {
 
         var commentView = new Youai.commentItemView({model:comment});
 
         $("#J-comment").append(commentView.render());
     },
-
-
 
 
     render:function () {
@@ -83,16 +91,11 @@ Youai.commentsView = Backbone.View.extend({
 
         this.$el.html(this.templates["comments-Layout"]());
 
-        var commentList = this.collection;
-
-       commentList.each(function (comment) {
+        this.commentList.each(function (comment) {
             self.addItem(comment);
         });
 
         new iScroll('J-comment-block');
-
     }
-
-
 
 });

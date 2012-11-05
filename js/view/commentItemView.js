@@ -7,7 +7,6 @@
 Youai.commentItemView = Backbone.View.extend({
 
     tagName:"li",
-    //el:"#content",
 
     templates:{
         "list-commentItem":JST["template/comments_item"]
@@ -26,9 +25,8 @@ Youai.commentItemView = Backbone.View.extend({
 
     replyComment:function (e) {
         e.preventDefault();
-        Youai.Util.showAddTextarea();
-
-        $("#J-val").attr("data-replyId", this.model.get("id"));
+        $(".textarea-block","#J-tplComment").addClass("show");
+        $(".J-inputField","#J-tplComment").attr("data-replyId", this.model.get("id"));
     },
 
 
