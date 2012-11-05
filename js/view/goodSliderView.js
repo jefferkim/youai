@@ -46,13 +46,13 @@ Youai.goodSliderView = Backbone.View.extend({
         likebox.animate({
             "opacity":1,
             "right":40
-        }, 200, 'ease-in', function () {
+        }, 200, (.47,.2,0,.92), function () {
             var othis = $(this);
             setTimeout(function () {
                 othis.animate({
                     "opacity":0,
                     "right":0
-                });
+                },200,(.47,.2,0,.92));
             }, 2000);
         });
 

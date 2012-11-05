@@ -90,7 +90,10 @@ Youai.Util = {
 
     //显示输入框
     showAddTextarea:function(){
-        console.log("showAddTextarea");
+       var textarea = JST["template/add_comment"]();
+
+        $("#content").append(textarea);
+        $("input","#J-textarea").focus();
 
     }
 

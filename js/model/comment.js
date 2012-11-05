@@ -33,17 +33,13 @@ Youai.Comment = Backbone.Model.extend({
         } : false
     },
 
-    getCommentParentId:function(){
-        return (this.get("superiors").id != undefined) ? this.get("superiors").id : this.get("id");
-    },
-
     /*单个comment*/
     getComment:function () {
         var data = {
             "avatar":this._getAvatar(this.get("id")),
             "content":this.get("content"),
             "author":this.get("id"),
-            "commentParentId":this.getCommentParentId(),
+            "commentId":this.get("id"),
             "loopReply":this.getSuperComment()
         };
         return data;

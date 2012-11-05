@@ -544,10 +544,13 @@
            &:after{
                 position:absolute;
                 right:0;
-                top:-14px;
+                top:-16px;
                 content:"";
+                width:0;
+                height:0;
+                font-size:0;
                 border:8px solid transparent;
-                border-bottom:6px solid #fff;
+                border-bottom:8px solid #fff;
                 border-right:0;
                 opacity:0.2;
            }
@@ -557,23 +560,31 @@
 }
 
 .textarea-block{
+    position:relative;
     padding:6px 10px 6px 12px;
     height:33px;
     display:-webkit-box;
+    z-index:999;
+
     background:-webkit-gradient(linear, left top, left bottom, from(#d3d3d3), to(#b6b6b6));
-    .text{
-        -webkit-box-flex:1;
-    }
     .textarea{
-        border:none;
+        -webkit-box-flex:1;
         height:33px;
-        border-radius:16px;
-        width:100%;
+        -webkit-border-radius:16px;
         background-color:rgb(229,229,229);
         -webkit-box-shadow:inset 0px 1px 1px 0px rgba(0,0,0,0.4);
         box-shadow:inset 0px 1px 1px 0px rgba(0,0,0,0.4);
-
+        padding:0 16px;
+        input{
+            border:none;
+            background:none;
+            width:100%;
+            line-height:33px;
+            color:#fff;
+            font-size:14px;
+        }
     }
+
     .submit{
         display:block;
         margin-left:8px;

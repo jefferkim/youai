@@ -6,12 +6,13 @@ Youai.commentsView = Backbone.View.extend({
     el:"#content",
 
     templates:{
-        "comments-Layout":JST["template/comments-layout"],
-        "comments-Item":JST["template/comments-item"]
+        "comments-Layout":JST["template/comments_layout"],
+        "add-Comments":JST["template/add_comment"]
     },
 
     events:{
-       "click #J-close":"closePop"
+       "click #J-close":"closePop",
+        "click #J-submit":"submitComment"//提交评论
     },
 
     initialize:function () {
@@ -25,7 +26,54 @@ Youai.commentsView = Backbone.View.extend({
 
     },
 
+    submitComment:function (e) {
+        e.preventDefault();
+        var U = Youai.Util;
 
+        if ($("#J-val").val() === "") {
+            //pop("")//提示错误
+            return false;
+        }
+        else {
+
+            var submitModel = {
+                "method":"addCommentForItem",
+                "content":$("#J-val").val(),
+                "itemId":$("#J-itemId").val(),//链接中取得
+                "commentParentId":$("#J-val").attr("data-replyId")
+            }
+
+            var url = U.parseUrl(submitModel, "111111");
+
+            var success = function (response) {
+                var result = response.ret[0];
+                if (result.indexOf("DUPLICATE_DATA::") != -1) {
+                  // pop("评论重复或过于频繁哦");
+                }
+                if (result.indexOf("PARAM_ERR::") != -1) {
+                  //  pop("输入参数错误");
+                }
+                if(result.indexOf("SUCCESS::") != -1){
+                    console.log(response);
+
+                   var t = {
+                       "content":"评论内容",
+                       "date":"2012-10-19 15:11:51",
+                       "id":"789",
+                       "superiors":{
+                           "content":"评论内容",
+                           "date":"2012-10-19 15:11:51",
+                           "id":"789"
+                       }
+                   };
+
+                }
+
+            };
+
+            Youai.Util.Ajax(url, success);
+        }
+    },
 
     addItem:function (comment) {
 

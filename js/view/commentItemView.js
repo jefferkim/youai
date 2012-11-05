@@ -10,7 +10,7 @@ Youai.commentItemView = Backbone.View.extend({
     //el:"#content",
 
     templates:{
-        "list-commentItem":JST["template/comments-item"]
+        "list-commentItem":JST["template/comments_item"]
     },
 
     events:{
@@ -24,11 +24,12 @@ Youai.commentItemView = Backbone.View.extend({
     },
 
 
-    replyComment:function(e){
+    replyComment:function (e) {
         e.preventDefault();
         Youai.Util.showAddTextarea();
-
+        $("#J-val").attr("data-replyId", this.model.commentId);
     },
+
 
     render:function () {
 
