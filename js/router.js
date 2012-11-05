@@ -28,7 +28,10 @@ Youai.Router = Backbone.Router.extend({
 
     detail:function (id) {
 
-        if (!Youai.detail) Youai.detail = new Youai.DetailView()
+        if (!Youai.detail) {
+          Youai.detail = new Youai.DetailView()
+          $('.content').html(Youai.detail.el)
+        }
 
         Youai.detail.displayItem(id)
     }
