@@ -37,7 +37,7 @@
                         "album": {
                             "albumId": "7898797",
                             "commentNum": "12",
-                            "description": "专辑描述",
+                            "description": "卖到爆！2012秋装新款 超显廋纯手工打造 修身羊毛针织衫",
                             "images": [
                                 {
                                     "height": "200",
@@ -70,7 +70,7 @@
                         },
                         "commentNum": "8",
                         "comments": "评论数据",
-                        "description": "商品描述",
+                        "description": "卖到爆！2012秋装新款 超显廋纯手工打造 修身羊毛针织衫",
                         "images": [
                             {
                                 "height": "200",
@@ -96,7 +96,7 @@
                         "itemId": "12456",
                         "like": "true",
                         "likeNum": "3",
-                        "originalPrice": "100",
+                        "originalPrice": "168",
                         "tags": [
                             {
                                 "describe": "标签描述",
@@ -145,7 +145,7 @@
                                 "userNick": "有爱用户"
                             }
                         },
-                        "commentNum": "8",
+                        "commentNum": "18",
                         "comments": "评论数据",
                         "description": "商品描述",
                         "images": [
@@ -167,12 +167,12 @@
                         "isvInfo": {
                             "brandImage": "http://img01.taobaocdn.com/tps/i1/T1tnuAXiRZXXX1dP6j-60-60.png",
                             "isvCode": "123",
-                            "name": "美丽说",
+                            "name": "蘑菇街",
                             "url": "http://m.taobao.com/channel/act/mobile/guokudownload.html?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
                         },
-                        "itemId": "12456",
-                        "like": "true",
-                        "likeNum": "3",
+                        "itemId": "24689",
+                        "like": "false",
+                        "likeNum": "28",
                         "originalPrice": "100",
                         "tags": [
                             {
@@ -840,7 +840,7 @@
                     }
                 ]
             },
-            "originalPrice": "100",
+            "originalPrice": "168",
             "previous": {
                 "album": {
                     "albumId": "7898797",
@@ -904,7 +904,7 @@
                 "itemId": "12456",
                 "like": "true",
                 "likeNum": "3",
-                "originalPrice": "100",
+                "originalPrice": "123",
                 "tags": [
                     {
                         "describe": "标签描述",
