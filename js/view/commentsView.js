@@ -82,8 +82,8 @@ Youai.commentsView = Backbone.View.extend({
                             }
                         },
                         user: {
-                            userId:$("#J-userId").val(),  //隐藏域
-                            userNick:$("#J-userNick").val()//隐藏域
+                            userId:response.data.result.user.userId,  //隐藏域
+                            userNick:response.data.result.user.userNick//隐藏域
                         }
                     });
 
