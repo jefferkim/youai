@@ -3,19 +3,18 @@
     <div class="big-pic"><img src="<%= images[0].url + '_500x450.jpg' %>" ></div>
     <div class="item-info">
       <p class="price">￥<%= originalPrice %></p>
-      <a href="#" class="comment-count"><strong><%= commentNum %></strong><span></span></a>
-      <a href="#" class="like-count"><strong><%= likeNum %></strong><span></span></a>
+      <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
+      <p class="like-count"><strong><%= likeNum %></strong><span></span></p>
     </div>
   </div>
 </div>
 
 <header>
   <h1><a href="<%= isvInfo.url %>">来自<%= isvInfo.name %></a>
-    卖到爆！2012秋装新款 超显廋纯手工打造 修身羊毛针织衫</h1>
+    <%= description %></h1>
 </header>
 <div class="go-buy"><a href="#" ><span></span>去购买</a></div>
 <div class="separator"></div>
-
 
 <% if (tags && tags.length) { %>
 <section class="recommendations">

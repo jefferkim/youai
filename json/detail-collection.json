@@ -153,14 +153,14 @@
                                 "height": "200",
                                 "sequence": "1",
                                 "type": "1",
-                                "url": "http://img01.taobaocdn.com/tps/i1/T1vzXJXeppXXbvfB39_104445.jpg",
+                                "url": "http://q.i02.wimg.taobao.com/bao/uploaded/i3/T1MeLQXhBaXXcg5_c8_101658.jpg",
                                 "width": "320"
                             },
                             {
                                 "height": "200",
                                 "sequence": "1",
                                 "type": "1",
-                                "url": "http://img01.taobaocdn.com/tps/i1/T1vzXJXeppXXbvfB39_104445.jpg",
+                                "url": "http://q.i03.wimg.taobao.com/bao/uploaded/i8/T1mkDEXeVnXXcWN9I9_104538.jpg",
                                 "width": "320"
                             }
                         ],
@@ -737,7 +737,7 @@
             },
             "commentNum": "8",
             "comments": "评论数据",
-            "description": "商品描述",
+            "description": "卖到爆！2012秋装新款 超显廋纯手工打造 修身羊毛针织衫",
             "images": [
                 {
                     "height": "200",
@@ -922,12 +922,42 @@
                 {
                     "describe": "标签描述",
                     "id": "123",
-                    "name": "女装"
+                    "name": "最新"
                 },
                 {
                     "describe": "标签描述",
                     "id": "123",
-                    "name": "女装"
+                    "name": "热门"
+                },
+                {
+                    "describe": "标签描述",
+                    "id": "123",
+                    "name": "初秋单鞋"
+                },
+                {
+                    "describe": "标签描述",
+                    "id": "123",
+                    "name": "复古"
+                },
+                {
+                    "describe": "标签描述",
+                    "id": "123",
+                    "name": "风衣外套"
+                },
+                {
+                    "describe": "标签描述",
+                    "id": "123",
+                    "name": "开衫"
+                },
+                {
+                    "describe": "标签描述",
+                    "id": "123",
+                    "name": "新款包"
+                },
+                {
+                    "describe": "标签描述",
+                    "id": "123",
+                    "name": "秋季补水"
                 }
             ]
         },
