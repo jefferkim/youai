@@ -110,6 +110,10 @@ Youai.goodSliderView = Backbone.View.extend({
             }
         });
 
+        this.slider.load();
+
+
+
         $('body > div').click(function(ev){
             var target=ev.target || ev.srcElement;
             if(target.nodeName.toUpperCase()==='DIV'){

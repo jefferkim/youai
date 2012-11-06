@@ -5,9 +5,8 @@ Youai.commentsView = Backbone.View.extend({
 
     el:"#content",
 
-    templates:{
-        "comments-Layout":JST["template/comments_layout"],
-        "add-Comments":JST["template/add_comment"]
+    tpl:{
+        "commentsLayout":JST["template/comments_layout"]
     },
 
     events:{
@@ -17,8 +16,13 @@ Youai.commentsView = Backbone.View.extend({
 
     initialize:function () {
 
+        $("#J-mask").show();
+
+        this.$el.html(this.tpl["commentsLayout"]());
+
+
        this.commentList = new Youai.CommentList();
-       this.commentList.url = Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":1});
+       this.commentList.url = Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"});
 
        this.commentList.fetch();
        this.commentList.on('reset', this.render, this);
@@ -28,29 +32,32 @@ Youai.commentsView = Backbone.View.extend({
 
     closePop:function(e){
         e.preventDefault();
-
-
-
-
+        $("#J-mask").hide();
+        $("#J-tplComment").hide();
     },
 
     submitComment:function (e) {
         e.preventDefault();
         var U = Youai.Util;
 
-        if ($(".J-inputField","#J-tplComment").val() === "") {
-            var pop  = notification.pop("请填写评论内容");
-            pop.show();
-            return false;
+        var commentBlock = $(".textarea-block","#J-tplComment"),
+            inputField = $(".J-inputField","#J-tplComment");
+
+        if (inputField.val() === "") {
+            notification.pop("请填写评论内容").show();
+            return;
         }
         else {
 
             var submitModel = {
                 "method":"addCommentForItem",
-                "content":$("#J-val").val(),
-                "itemId":$("#J-itemId").val(),//链接中取得
-                "commentParentId":$(".J-inputField","#J-tplComment").attr("data-replyId")
+                "content":inputField.val(),
+                "itemId":location.hash.split("/")[1],//链接中取得
+                "commentParentId":inputField.attr("data-replyId")
             }
+
+            //获得当前的comment模型
+            var oldComment = this.commentList.get(inputField.attr("data-replyId"));
 
             var url = U.parseUrl(submitModel, "111111");
 
@@ -63,15 +70,30 @@ Youai.commentsView = Backbone.View.extend({
                   //  pop("输入参数错误");
                 }
                 if(result.indexOf("SUCCESS::") != -1){
-                    console.log(response);
-                    $(".textarea-block","#J-tplComment").removeClass("show");
 
+                    oldComment.set({
+                        content: inputField.val(),
+                        superiors: {
+                            content: oldComment.get("content"),
+                            id:oldComment.get("id"),
+                            user: {
+                                userId: oldComment.get("user").userId,
+                                userNick: oldComment.get("user").userNick
+                            }
+                        },
+                        user: {
+                            userId:$("#J-userId").val(),  //隐藏域
+                            userNick:$("#J-userNick").val()//隐藏域
+                        }
+                    });
 
+                    commentBlock.removeClass("show");
+                    inputField.val("");
                 }
-
             };
 
             Youai.Util.Ajax(url, success);
+
         }
     },
 
@@ -87,15 +109,17 @@ Youai.commentsView = Backbone.View.extend({
     render:function () {
         var self = this;
 
-        $("#J-mask").show();
-
-        this.$el.html(this.templates["comments-Layout"]());
-
         this.commentList.each(function (comment) {
             self.addItem(comment);
         });
 
-        new iScroll('J-comment-block');
+        var commentScroll = new iScroll('J-comment-block');
+        //comment评论时高度会有变化
+        $("#J-tplComment").on("refreshIscroll",function(){
+            setTimeout(function(){
+                commentScroll.refresh();
+            },500);
+        })
     }
 
 });

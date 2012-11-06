@@ -418,17 +418,7 @@
     background:#000;
     opacity:0.8;
 }
-.close-btn{
-    position:absolute;
-    right:21px;
-    top:-32px;
-    text-indent:-9999px;
-    display:block;
-    width:18px;
-    height:18px;
-    background:url(img/close.png) no-repeat scroll 0 0;
-    background-size:cover;
-}
+
 .slider-holder{
     z-index:999;
     position:relative;
@@ -493,18 +483,48 @@
         }
     }
 }
+
+/*评论页面模版*/
+.comment-tpl{
+   position:relative;
+   .close-btn{
+       position:absolute;
+       right:21px;
+       top:-32px;
+       text-indent:-9999px;
+       display:block;
+       width:18px;
+       height:18px;
+       z-index:1000;
+       background:url(img/close.png) no-repeat scroll 0 0;
+       background-size:cover;
+   }
+   .textarea-block{
+       top:-1900px;
+       &.show{
+           top:0;
+       }
+   }
+}
 .comments{
     position:relative;
     z-index:999;
     li{
         width:310px;
         border-bottom:1px solid #000000;
-        padding:8px 3px 10px 0;
+        border-top:1px solid rgba(255,255,255,0.19);
+        padding:8px 0 10px 0;
+        &:first-child{
+            border-top:none;
+        }
+        &:last-child{
+            border-bottom:none;
+        }
         .reply{
            position:relative;
-           width:242px;
+           width:250px;
            color:#fff;
-           padding:0 0 0 57px;
+           padding:0 0 0 56px;
 
         }
         .avatar{
@@ -536,8 +556,8 @@
            margin-top:13px;
            position:relative;
            color:#fff;
-           width:279px;
-           padding:10px;
+           width:299px;
+           padding:10px 1px 10px 10px;
            font-size:12px;
            background:rgba(255,255,255,0.2);
            box-shadow:0px 0px 7px rgba(0, 0, 0, .2);
@@ -559,6 +579,7 @@
     }
 }
 
+
 .textarea-block{
     position:relative;
     padding:6px 10px 6px 12px;
@@ -567,7 +588,7 @@
     z-index:999;
 
     background:-webkit-gradient(linear, left top, left bottom, from(#d3d3d3), to(#b6b6b6));
-    .textarea{
+    .field{
         -webkit-box-flex:1;
         height:33px;
         -webkit-border-radius:16px;
@@ -599,4 +620,64 @@
     }
 }
 
+.ablum-list{
+    li{
+        margin-top:15px;
+        width:308px;
+        border:1px solid #e2e2e2;
+        background:#f4f4f4;
 
+    }
+   .ablum-item{
+       padding-left:5px;
+       width:301px;
+       border:1px solid #f8f8f8;
+        .hd{
+            h3{
+                font-size:15px;
+                color:#333333;
+                font-weight:normal;
+            }
+            .desc{
+                font-size:12px;
+                color:#999999;
+            }
+
+        }
+        .bd{
+
+        }
+        .ft{
+            margin:13px 4px 11px 5px;
+            height:25px;
+            .nums{
+                font-size:12px;
+                color:#999999;
+            }
+            .J-comment{
+                display:block;
+                width:
+            }
+
+        }
+   }
+}
+
+
+#tbh5v0{
+
+}
+#tbh5v0 .c-float-popWrap .c-float-modePop{
+    background-color: rgba(51, 51, 51, 0.9);
+    border-radius: 2px;
+    padding: 15px;
+}
+#tbh5v0 .c-float-popWrap .c-float-modePop .warnMsg{
+    padding: 0px;
+    font-size: 14px;
+    color: white;
+}
+#tbh5v0 .c-float-popWrap.msgMode .c-float-modePop .content,
+#tbh5v0 .c-float-popWrap.msgMode .c-float-modePop .doBtn{
+     display:none;
+}

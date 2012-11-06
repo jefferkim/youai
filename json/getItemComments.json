@@ -7,6 +7,14 @@
                 "date":"2012-10-19 15:11:30",
                 "id":"7891",
                 "superiors":{
+                    "user": {
+                        "userId": "213365",
+                        "userNick": "有爱用户"
+                    }
+                },
+                "user": {
+                    "userId": "213365",
+                    "userNick": "有爱用户1111"
                 }
             },
             {
@@ -16,7 +24,15 @@
                 "superiors":{
                     "content":"评论内容",
                     "date":"2012-10-19 15:11:30",
-                    "id":"2"
+                    "id":"2",
+                    "user":{
+                        "userId": "213365",
+                        "userNick": "superiors有爱用户"
+                    }
+                },
+                "user": {
+                    "userId": "213365",
+                    "userNick": "有爱用户2222"
                 }
             },
             {
@@ -26,7 +42,15 @@
                 "superiors":{
                     "content":"评论内容",
                     "date":"2012-10-19 15:11:30",
-                    "id":"4"
+                    "id":"4",
+                    "user": {
+                        "userId": "213365",
+                        "userNick": "superiors有爱用户"
+                    }
+                } ,
+                "user": {
+                    "userId": "213365",
+                    "userNick": "有爱用户34343"
                 }
             },
             {
@@ -34,9 +58,11 @@
                 "date":"2012-10-19 15:11:30",
                 "id":"782",
                 "superiors":{
-                    "content":"评论内容",
-                    "date":"2012-10-19 15:11:30",
-                    "id":"99"
+
+                },
+                "user": {
+                    "userId": "213365",
+                    "userNick": "12323232"
                 }
             },
             {
@@ -44,9 +70,10 @@
                 "date":"2012-10-19 15:11:30",
                 "id":"7892",
                 "superiors":{
-                    "content":"评论内容",
-                    "date":"2012-10-19 15:11:30",
-                    "id":"232"
+                },
+                "user": {
+                    "userId": "213365",
+                    "userNick": "577444"
                 }
             },
             {
@@ -56,17 +83,25 @@
                 "superiors":{
                     "content":"评论内容",
                     "date":"2012-10-19 15:11:30",
-                    "id":"11"
+                    "id":"11",
+                    "user": {
+                        "userId": "213365",
+                        "userNick": "有爱用户"
+                    }
+                },
+                "user": {
+                    "userId": "213365",
+                    "userNick": "有爱用户"
                 }
             },
             {
                 "content":"评论内容111",
                 "date":"2012-10-19 15:11:30",
                 "id":"123",
-                "superiors":{
-                    "content":"评论内容",
-                    "date":"2012-10-19 15:11:30",
-                    "id":"789"
+                "superiors":{},
+                "user": {
+                    "userId": "213365",
+                    "userNick": "有爱用户"
                 }
             }
         ],
