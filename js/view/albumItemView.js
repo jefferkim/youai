@@ -13,7 +13,8 @@ Youai.albumItemView = Backbone.View.extend({
     },
 
     events:{
-        "click .J-fav":"fav"
+        "click .J-fav":"fav",
+        "click .J-comment":"showComments"
     },
 
     initialize:function () {
@@ -33,6 +34,15 @@ Youai.albumItemView = Backbone.View.extend({
 
     },
 
+    showComments:function(e){
+        e.preventDefault();
+        var U = Youai.Util;
+
+        new Youai.commentsView({
+            commentUrl:U._devParseUrl("getAblumComments.json", {"ablumId":111, "pageSize":"10", "pageNo":"1"})
+        });
+
+    },
 
     fav:function (e) {
         e.preventDefault();

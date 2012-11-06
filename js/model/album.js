@@ -17,6 +17,7 @@ Youai.Album = Backbone.Model.extend({
     getAlbum:function () {
 
         var data = {
+            "albumId":this.get("albumId"),
             "title":this.get("title"),
             "description":this.get("description"),
             "goodNum":this.get("goodNum"),

@@ -4,6 +4,10 @@
 
 @import 'pagenav';
 
+.content{
+    position:relative;
+}
+
 .tab-holder{
     ul{
         display:-webkit-box;
@@ -488,7 +492,9 @@
 
 /*评论页面模版*/
 .comment-tpl{
-   position:relative;
+   position:absolute;
+   left:0;
+   top:0;
    .close-btn{
        position:absolute;
        right:21px;
@@ -725,6 +731,9 @@
         }
    }
 }
+
+
+
 
 
 /*后期提到单独文件*/

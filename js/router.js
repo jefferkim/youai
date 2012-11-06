@@ -4,7 +4,8 @@ Youai.Router = Backbone.Router.extend({
         '':"index",//首页
         '!list/:listCode/p:page':'list',//分页查找列表下的商品列表,接口对应getItemsFromList
         '!detail/:id':'detail', //详情页
-        '!album/:id':"album"//专辑
+        '!albums/:page':"albums",//专辑
+        '!album/:id/:page':"getItemsFromAlbum"
     },
 
     index:function(){
@@ -12,17 +13,13 @@ Youai.Router = Backbone.Router.extend({
     },
 
     /*列表页*/
-    list:function (listCode,page) {
+    list:function (listCode,pageNo) {
 
-        var goodList = new Youai.GoodList({"listCode":listCode,"pageNo":page});
+        var url = Youai.Util._devParseUrl("getItemsFromList.json", {"listCode":listCode, "pageSize":"10", "pageNo":pageNo});
 
-        var listview = new Youai.goodListView({
-            collection:goodList
-        });
-
-        goodList.fetch();
-
-        goodList.on('reset', listview.render, listview);
+        new Youai.goodListView({
+            "goodUrl":url
+        })
 
     },
 
@@ -35,19 +32,28 @@ Youai.Router = Backbone.Router.extend({
 
         Youai.detail.displayItem(id);
 
-        new Youai.commentsView();
+        new Youai.commentsView({
+            commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
+        });
 
     },
 
 
-    album:function(albumId,pageNo){
+    albums:function(pageNo){
         var albumList = new Youai.albumList();
-        albumList.url =  Youai.Util._devParseUrl("getRecommendAlbums.json", {"ablumId":albumId, "pageSize":"10", "pageNo":pageNo});;
+        albumList.url =  Youai.Util._devParseUrl("getRecommendAlbums.json", {"pageSize":"10", "pageNo":pageNo});
         var albumview = new Youai.albumsView({
             collection:albumList
         });
         albumList.fetch();
         albumList.on('reset', albumview.render, albumview);
+    },
+
+    getItemsFromAlbum:function(id,pageNo){
+        var url =  Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":id,"pageSize":"10", "pageNo":pageNo});
+        new Youai.goodListView({
+            goodUrl:url
+        });
     }
 
 

@@ -6,16 +6,14 @@
 
 Youai.GoodList = Backbone.Collection.extend({
 
-    initialize:function (op) {
-        this.op = op;
+    initialize:function () {
+
     },
 
     model:Youai.Good,
 
     url:function () {
-        var U = Youai.Util;
-        //  return U.parseUrl(U.urlMap["queryItemListByUserChannel"], "e2fdc60364a3a979d215dfcd1d85e50b");
-        return U._devParseUrl("getItemsFromList.json", {"listCode":this.op.listCode, "pageSize":"10", "pageNo":this.op.pageNo});
+
     },
 
     parse:function (resp) {

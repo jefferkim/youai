@@ -11,9 +11,11 @@ Youai.goodListView = Backbone.View.extend({
 
     },
 
-    initialize:function () {
-
-
+    initialize:function (options) {
+        this.goodList = new Youai.GoodList();
+        this.goodList.url = options.goodUrl;
+        this.goodList.fetch();
+        this.goodList.on('reset', this.render, this);
     },
 
     addItem:function (good) {
@@ -29,15 +31,13 @@ Youai.goodListView = Backbone.View.extend({
 
         this.$el.html(this.templates["list-goodLayout"]());
 
-        var goodLists = this.collection;
-
         new Youai.Waterfall("#J-waterfall", {
             colWidth:150,
             load:function (success) {
                 var items = [],
                     heights = [];
 
-                goodLists.each(function (good) {
+                self.goodList.each(function (good) {
                     items.push(self.addItem(good))
                     heights.push(parseInt(good.height()) + 34);
                 });
