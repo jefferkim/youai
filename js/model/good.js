@@ -18,6 +18,7 @@ Youai.Good = Backbone.Model.extend({
     getItemInfo:function () {
         var data = {
             "itemId":this.get("itemId"),
+            "itemHeight":this.height(),
             "originalPrice":this._parsePrice(),
             "comment":this.get("comments") ? this.get("comments") : false, //comments对象存在的话弹出气泡评论
             "imgUrl":this.get("images")[0].url

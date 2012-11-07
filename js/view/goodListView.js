@@ -46,6 +46,8 @@ Youai.goodListView = Backbone.View.extend({
             }
         });
 
+        lazyload.init();
+
 
     }
 
