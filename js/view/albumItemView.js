@@ -13,25 +13,24 @@ Youai.albumItemView = Backbone.View.extend({
     },
 
     events:{
-        "click .J-fav":"fav",
+        "click .J-fav":"toggleFav",
         "click .J-comment":"showComments"
     },
 
     initialize:function () {
 
-        this.model.on("destroy",this.removeItem,this);
+        this.model.on("destroy",this._removeItem,this);
 
     },
 
 
-    removeItem:function(){
+    _removeItem:function(){
          var el = this.$el;
          el.animate({
              opacity:0
          },800,'ease',function(){
              el.remove();
          });
-
     },
 
     showComments:function(e){
@@ -44,11 +43,15 @@ Youai.albumItemView = Backbone.View.extend({
 
     },
 
-    fav:function (e) {
+
+    //取消和添加收藏
+    toggleFav:function (e) {
         e.preventDefault();
+
         var self = this,
             U = Youai.Util,
-            url = U._devParseUrl("dumpAlbum.json",{"albumId":"464564","isvCode":"1"});
+            target = e.currentTarget,
+            url = U._devParseUrl(($(target).hasClass("added")?"dumpAlbum.json":"likeAlbum.json"),{"albumId":"464564","isvCode":"1"});
 
         var success = function(response){
             if(response.ret[0].indexOf("SUCCESS::") !=-1){
@@ -61,9 +64,9 @@ Youai.albumItemView = Backbone.View.extend({
     },
 
 
-    render:function () {
+    render:function (albumType) {
 
-        return this.$el.html(this.tpl["albumItem"](this.model.getAlbum()));
+        return this.$el.html(this.tpl["albumItem"](this.model.getAlbums()));
 
     }
 

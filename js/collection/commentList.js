@@ -1,21 +1,11 @@
-/*
- * Collection
- *
- * */
-
-
 Youai.CommentList = Backbone.Collection.extend({
 
     initialize:function () {
-
-
     },
 
     model:Youai.Comment,
 
     url:function () {
-
-        //  return U.parseUrl({"method":"getItemComments","itemId":this.op.itemId,"pageSize":"10","pageNo":this.op.pageNo});
     },
 
     parse:function (resp) {
@@ -23,5 +13,4 @@ Youai.CommentList = Backbone.Collection.extend({
             return resp.data.result.comments;
         }
     }
-
 });
