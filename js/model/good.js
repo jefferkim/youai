@@ -11,7 +11,7 @@ Youai.Good = Backbone.Model.extend({
     },
 
     _parsePrice:function () {
-        return parseInt(this.get("originalPrice")) % 100;
+        return Youai.Util.toFixed(parseInt(this.get("originalPrice"))/100,2);
     },
 
     //单个good的iteminfo

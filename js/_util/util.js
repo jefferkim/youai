@@ -61,6 +61,24 @@ Youai.Util = {
 
     },
 
+    //精确到两位小数
+    toFixed:function (num,precision) {
+        var power = Math.pow(10, precision || 0);
+        var n = String(Math.round(num * power) / power);
+        var nf = n.split('.')[1];
+        var suffixLeng = 0;
+        if (nf) {
+            suffixLeng = nf.length;
+        }
+        else if (precision != suffixLeng) {
+            n = n + '.';
+        }
+        for (var i = 0; i < precision - suffixLeng; i++) {
+            n = n + '0';
+        }
+        return n;
+    },
+
     //TODO:判断是否登录了
     _checkLogin:function(data){
         return true;

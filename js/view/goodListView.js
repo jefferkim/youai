@@ -32,7 +32,7 @@ Youai.goodListView = Backbone.View.extend({
         this.$el.html(this.templates["list-goodLayout"]());
 
         new Youai.Waterfall("#J-waterfall", {
-            colWidth:150,
+            colWidth:152,
             load:function (success) {
                 var items = [],
                     heights = [];

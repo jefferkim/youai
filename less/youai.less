@@ -1,5 +1,6 @@
 @import 'global';
 @import 'header';
+@import 'list';
 @import 'detail';
 
 @import 'pagenav';
@@ -327,90 +328,7 @@
 }
 
 
-/*page::列表页面*/
-.list{
-    margin:5px;
-    .good-list{
-        width:310px;
-        position:relative;
-    }
-    .title{
-        height:40px;
-        line-height:40px;
-        color:#999999;
-        font-size:12px;
-    }
-    li{
-        position:absolute;
-        width:150px;
-        border:1px solid #d9d9d9;
 
-        a{
-            display:inline-block;
-
-        }
-        .pop-comment{
-            position:absolute;
-            max-width:123px;
-            padding:8px;
-            left:5px;
-            top:10px;
-            font-size:10px;
-            z-index:2;
-            color:#d2d2d2;
-            em{
-                position:absolute;
-                left:0;
-                top:0;
-                display:block;
-                width:100%;
-                height:100%;
-                display:inline-block;
-                background:#000;
-                opacity:0.8;
-                z-index:-1;
-            }
-
-            i{
-                position: absolute;
-                left:0;
-                top:-6px;
-                width: 0;
-                height: 0;
-                font-size: 0;
-                overflow: hidden;
-                border:3px solid transparent;
-                border-bottom-color:#000;
-                border-left-color:#000;
-
-            }
-        }
-        span{
-            display:block;
-            width:150px;
-            height:34px;
-
-            background:#f4f4f4;
-            line-height:34px;
-            b{
-                float:left;
-                margin-left:10px;
-                font-size:14px;
-                color:#333333;
-                font-weight:normal;
-            }
-            .J-zoom{
-                margin:5px;
-                float:right;
-                width:25px;
-                height:25px;
-                background:url(img/zoom-btn.png) no-repeat scroll 0 0;
-                background-size:cover;
-            }
-        }
-
-    }
-}
 
 
 .mask{
