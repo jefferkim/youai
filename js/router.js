@@ -30,6 +30,7 @@ Youai.Router = Backbone.Router.extend({
             $('.content').html(Youai.detail.el)
         }
 
+
         Youai.detail.displayItem(id)
 
         /*new Youai.commentsView({

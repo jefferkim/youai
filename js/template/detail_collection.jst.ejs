@@ -1,12 +1,13 @@
-<p class="collection-title">该宝贝所属专辑<a href="#">“<%= album.description%>”</a>共 <%= album.items.length %> 件宝贝</p>
+<p class="collection-title">该宝贝所属专辑<a href="#"> “<%= album.description %>” </a>
+  共 <%= album.items.length %> 件宝贝</p>
 
 <div class="collection">
-  <div class="big-pic">
-    <img src="<%= images[0].url %>" >
+  <div class="main-view">
+    <div class="big-pic"><img src="<%= images[0].url + '_500x450.jpg' %>" ></div>
     <div class="item-info">
       <p class="price">￥<%= originalPrice %></p>
-      <a href="#" class="comment-count"><strong><%= commentNum %></strong><span></span></a>
-      <a href="#" class="like-count"><strong><%= likeNum %></strong><span></span></a>
+      <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
+      <p class="like-count"><strong><%= likeNum %></strong><span></span></p>
     </div>
   </div>
   <% if (album.items.length) { %>
@@ -17,14 +18,14 @@
       <ul>
         <% for (var i = 0; i < album.items.length; i++) { %>
           <li>
-            <img class="lazy" data-src="http://a.tbcdn.cn/mw/base/styles/component/more/images/Loading_Taobao_320.gif"
-            src="<%= album.items[i].images[0].url + '_110x110.jpg' %>" >
+            <img class="lazy" src="http://a.tbcdn.cn/mw/base/styles/component/more/images/Loading_Taobao_320.gif"
+            data-src="<%= album.items[i].images[0].url + '_110x110.jpg' %>" >
           </li>
         <% } %>
       </ul>
     </div>
   </div>
-  <% } %> 
+  <% } %>
 </div>
 
 <header>
