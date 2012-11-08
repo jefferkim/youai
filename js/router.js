@@ -3,6 +3,7 @@ Youai.Router = Backbone.Router.extend({
     routes:{
         '':"index",//首页
         "!list/:listCode/p:page":"list",//分页查找列表下的商品列表,接口对应getItemsFromList
+        '!like/p:page': 'like',
         '!detail/:id':'detail' //详情页
     },
 
@@ -23,6 +24,15 @@ Youai.Router = Backbone.Router.extend({
 
         goodList.on('reset', listview.render, listview);
 
+    },
+
+    like: function(page) {
+      if (!Youai.like) {
+        Youai.like = new Youai.LikeView()
+        $('.content').html(Youai.like.el)
+      }
+
+      Youai.like.getLikeData()
     },
 
     detail:function (id) {
