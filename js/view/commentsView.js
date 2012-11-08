@@ -14,17 +14,17 @@ Youai.commentsView = Backbone.View.extend({
        "click #J-submit":"submitComment"//提交评论
     },
 
-    initialize:function () {
+    initialize:function (options) {
 
-        $("#J-mask").show();
+       $("#J-mask").show();
 
-        this.$el.html(this.tpl["commentsLayout"]());
-
+       $("#J-tplComment").length > 0 ? $("#J-tplComment").show() : this.$el.append(this.tpl["commentsLayout"]());
 
        this.commentList = new Youai.CommentList();
-       this.commentList.url = Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"});
+       this.commentList.url = options.commentUrl;
 
        this.commentList.fetch();
+
        this.commentList.on('reset', this.render, this);
 
     },
@@ -34,6 +34,7 @@ Youai.commentsView = Backbone.View.extend({
         e.preventDefault();
         $("#J-mask").hide();
         $("#J-tplComment").hide();
+        $("#J-comment","#J-tplComment").html("");
     },
 
     submitComment:function (e) {
@@ -82,8 +83,8 @@ Youai.commentsView = Backbone.View.extend({
                             }
                         },
                         user: {
-                            userId:$("#J-userId").val(),  //隐藏域
-                            userNick:$("#J-userNick").val()//隐藏域
+                            userId:response.data.result.user.userId,  //隐藏域
+                            userNick:response.data.result.user.userNick//隐藏域
                         }
                     });
 
@@ -102,11 +103,12 @@ Youai.commentsView = Backbone.View.extend({
 
         var commentView = new Youai.commentItemView({model:comment});
 
-        $("#J-comment").append(commentView.render());
+        $("#J-comment","#J-tplComment").append(commentView.render());
     },
 
 
     render:function () {
+
         var self = this;
 
         this.commentList.each(function (comment) {

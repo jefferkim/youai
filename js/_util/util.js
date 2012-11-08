@@ -27,7 +27,7 @@ Youai.Util = {
         if(location.href.indexOf("127.0.0.1") !=-1){
             l = "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
         }else{
-            l = "http://10.13.125.93/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
+            l = "http://10.13.125.66/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
         }
         return l;
 
@@ -59,6 +59,24 @@ Youai.Util = {
         });
 
 
+    },
+
+    //精确到两位小数
+    toFixed:function (num,precision) {
+        var power = Math.pow(10, precision || 0);
+        var n = String(Math.round(num * power) / power);
+        var nf = n.split('.')[1];
+        var suffixLeng = 0;
+        if (nf) {
+            suffixLeng = nf.length;
+        }
+        else if (precision != suffixLeng) {
+            n = n + '.';
+        }
+        for (var i = 0; i < precision - suffixLeng; i++) {
+            n = n + '0';
+        }
+        return n;
     },
 
     //TODO:判断是否登录了

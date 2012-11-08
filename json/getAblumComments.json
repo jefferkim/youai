@@ -1,0 +1,47 @@
+{"api":"com.taobao.wap.rest2.wo3", "v":"*", "ret":["SUCCESS::接口调用成功"], "data":{
+    "result":{
+        "commentTotal":"2",
+        "comments":[
+            {
+                "content":"评论内容",
+                "date":"2012-11-06 21:41:35",
+                "id":"123123",
+                "superiors":{
+                    "content":"评论内容",
+                    "date":"2012-11-06 21:41:35",
+                    "id":"0",
+                    "user":{
+                        "userId":"213365",
+                        "userNick":"有爱用户"
+                    }
+                },
+                "user":{
+                    "userId":"213365",
+                    "userNick":"有爱用户"
+                }
+            },
+            {
+                "content":"评论内容",
+                "date":"2012-11-06 21:41:35",
+                "id":"123124",
+                "superiors":{
+                    "content":"评论内容",
+                    "date":"2012-11-06 21:41:35",
+                    "id":"123123",
+                    "user":{
+                        "userId":"213365",
+                        "userNick":"有爱用户"
+                    }
+                },
+                "user":{
+                    "userId":"213365",
+                    "userNick":"有爱用户"
+                }
+            }
+        ],
+        "id":"45678",
+        "pageNo":"1",
+        "pageSize":"10"
+    },
+    "method":"getAblumComments"
+}}

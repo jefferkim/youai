@@ -1,0 +1,14 @@
+<div class="ablum-item">
+    <div class="hd">
+        <h3><a href="#"><%= title %></a></h3>
+        <span class="desc"><%= description %></span>
+    </div>
+    <div class="bd">
+        <a href="#!album/<%= albumId %>/p1"><img src="<%= albumPic %>" width="299"/></a>
+    </div>
+    <div class="ft">
+        <span class="nums"><%= itemTotal %>件宝贝</span>
+        <span class="comment"><em class="n"><%= commentNum %></em><a href="#" class="J-comment">查看评论</a></span>
+        <a href="#" class="J-fav<%if(isLiked){%> added<%}%>"><%if(isLiked){%>取消收藏<%}else{%>添加收藏<%}%></a>
+    </div>
+</div>

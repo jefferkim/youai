@@ -1,0 +1,73 @@
+.list{
+    margin:5px;
+    .good-list{
+        width:310px;
+        position:relative;
+    }
+    .title{
+        height:40px;
+        line-height:40px;
+        color:#999999;
+        font-size:12px;
+    }
+    li{
+        position:absolute;
+        width:150px;
+        border:1px solid #d9d9d9;
+        a{
+            display:inline-block;
+        }
+        img{
+            background:url("http://a.tbcdn.cn/mw/base/styles/component/more/images/loading.gif") no-repeat scroll center center;
+        }
+        .pop-comment{
+            position:absolute;
+            max-width:123px;
+            padding:8px;
+            left:5px;
+            top:10px;
+            font-size:10px;
+            z-index:2;
+            color:#d2d2d2;
+            background:rgba(0,0,0,0.8);
+            i{
+                position: absolute;
+                left:0;
+                top:-6px;
+                width: 0;
+                height: 0;
+                font-size: 0;
+                overflow: hidden;
+                border:3px solid transparent;
+                border-bottom-color:#000;
+                border-left-color:#000;
+                opacity:0.8;
+            }
+        }
+        .desc{
+            display:block;
+            width:148px;
+            height:34px;
+            border:1px solid #f8f8f8;
+            border-top:none;
+            background:#f4f4f4;
+            line-height:34px;
+            b{
+                float:left;
+                margin-left:10px;
+                font-size:14px;
+                color:#333333;
+                font-weight:normal;
+            }
+            .J-zoom{
+                margin:5px;
+                float:right;
+                width:25px;
+                height:25px;
+                background:url(img/zoom-btn.png) no-repeat scroll 0 0;
+                background-size:cover;
+            }
+        }
+
+    }
+}
