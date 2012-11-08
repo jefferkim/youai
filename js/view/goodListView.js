@@ -31,8 +31,6 @@ Youai.goodListView = Backbone.View.extend({
 
         var self = this;
 
-
-
         new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
             load:function (success) {

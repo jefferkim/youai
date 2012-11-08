@@ -72,23 +72,29 @@ window.lazyload = {
             else {
                 $(window).on('scroll', function () {
                     that.changeimg();
+
                 });
             }
             that.trigger();
         },
-        changeimg:function () {
-            var that = this;
 
-            function inViewport(el) {
-                var top = window.pageYOffset,
+        _inViewport:function(el,threshold){
+              var top = window.pageYOffset,
                     btm = window.pageYOffset + window.innerHeight,
                     elTop = el.offset().top;
-                return elTop >= top && elTop - 100 <= btm;
-            }
+                return elTop >= top && elTop + (threshold || -100) <= btm;
+        },
 
+        
+        changeimg:function () {
+            var that = this;
+           
             function act(_self, n) {
                 var original = _self.attr('dataimg');
                 _self.attr('src', original);
+                 
+                 
+
                 if (!_self[0].onload) {
                     _self[0].onload = function () {
                         $(this).removeClass('lazy').removeAttr('dataimg');
@@ -104,12 +110,22 @@ window.lazyload = {
                 }
             }
 
+
+            function showPop(_self, n){
+                if(_self.attr("data-comment")){                    
+                    alert(_self.attr("data-comment"));
+                    _self.removeAttr("data-comment");
+                }  
+            }
+
             that['imglist'].each(function (index, node) {
                 if (!node) return;
                 var $this = $(node);
-                if (!inViewport($this)) return
-                if (!$this.attr('dataimg')) return
+                if (!that._inViewport($this)) return
                 act($this, index);
+                if(that._inViewport($this,10)){
+                    showPop($this,index);
+                }
             });
         }
     }
