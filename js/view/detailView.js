@@ -40,7 +40,7 @@ Youai.DetailView = Backbone.View.extend({
 
   displayItem: function(id) {
 
-    if (!this.data) {
+    if (!this.data || this.data.itemId != id) {
       this.getItemData()
       return;
     }
