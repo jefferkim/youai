@@ -28,6 +28,7 @@ Youai.goodItemView = Backbone.View.extend({
     zoomPic:function (e) {
         e.preventDefault();
 
+        console.log(this.model);
         var goodSliderView = new Youai.goodSliderView({model:this.model});
         goodSliderView.render();
     },

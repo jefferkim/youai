@@ -2,9 +2,8 @@ Youai.goodListView = Backbone.View.extend({
 
     el:"#content",
 
-    templates:{
-        "list-goodLayout":JST["template/list_good"],
-        "list-bigGoodsSlider":JST["template/list_Slider"]
+    tpl:{
+        "goodLayout":JST["template/list_good"]
     },
 
     events:{
@@ -12,6 +11,9 @@ Youai.goodListView = Backbone.View.extend({
     },
 
     initialize:function (options) {
+
+        this.$el.html(this.tpl["goodLayout"]());
+
         this.goodList = new Youai.GoodList();
         this.goodList.url = options.goodUrl;
         this.goodList.fetch();
@@ -29,7 +31,7 @@ Youai.goodListView = Backbone.View.extend({
 
         var self = this;
 
-        this.$el.html(this.templates["list-goodLayout"]());
+
 
         new Youai.Waterfall("#J-waterfall", {
             colWidth:152,

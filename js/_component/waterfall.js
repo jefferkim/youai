@@ -79,6 +79,8 @@ Waterfall.prototype = {
         for (var i = 0; i < items.length; i++) {
             this.adjustItem(items[i], heights[i]);
         }
+        //获得最高的高度，赋值给container
+        $(this.container).height(Math.max.apply(Math, this.curColHeights));
     },
 
     loadData:function () {
