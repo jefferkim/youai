@@ -3,7 +3,8 @@ Youai.DetailView = Backbone.View.extend({
   className: 'detail',
 
   events: {
-    'click .comment-count': 'showComemnts'
+    'click .comment-count': 'showComemnts',
+    'click .vslide li': 'displayAnotherItem'
   },
 
   initialize: function() {
@@ -30,7 +31,7 @@ Youai.DetailView = Backbone.View.extend({
           self.data = json.data.result
           self.displayItem(id)
         } else {
-          alert('error')
+          console.log('mtop error')
         }
       },
       error: function() { console.log('error') }
@@ -39,7 +40,7 @@ Youai.DetailView = Backbone.View.extend({
 
   displayItem: function(id) {
 
-    if (!this.data) {
+    if (!this.data || this.data.itemId != id) {
       this.getItemData()
       return;
     }
@@ -52,6 +53,42 @@ Youai.DetailView = Backbone.View.extend({
       this.render(JST['template/detail_single'])
     }
 
+  },
+
+  displayAnotherItem: function(e) {
+    $('.vslide li').removeClass('selected')
+    $(e.currentTarget).addClass('selected')
+
+    var index = parseInt($(e.currentTarget).attr('data-index'))
+    var item  = this.data.album.items[index]
+
+    // 更新大图
+    $('.big-pic img').attr('src', item.images[0].url)
+
+    // 更新价格
+    $('.main-view .price').text('￥' + item.originalPrice)
+
+    // 更新评论数
+    if (parseInt(item.commentNum) > 0) $('.comment-count strong').text(item.commentNum)
+
+    // 更新喜欢UI
+    $('.like-count strong').html(item.likeNum);
+    if (item.like == "true") $('.like-count span').addClass('liked')
+    else $('.like-count span').removeClass('liked')
+
+    // 更新ISV信息
+    $('h1 .isv').attr('href', item.isvInfo.url)
+    $('h1 .isv-name').text(item.isvInfo.name)
+
+    // 更新商品描述
+    $('h1 .description').text(item.description)
+
+    // TODO 更新详情页链接
+
+    // 更新标签
+    $('.recommendations').empty().html(JST['template/detail_tags'](item))
+
+    Youai.router.navigate('!detail/' + item.itemId)
   },
 
   showComemnts: function() {

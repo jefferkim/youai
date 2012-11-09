@@ -20,7 +20,7 @@
 
   .single-item {
     margin-top: 10px;
-    .main-view { margin: auto; }  
+    .main-view { margin: auto; }
   }
 
   .main-view {
@@ -48,9 +48,9 @@
     height: 35px;
     background: #f4f4f4;
     border: 1px solid #d9d9d9;
-    border-top: 0; 
+    border-top: 0;
     .price {
-      -webkit-box-flex: 1; 
+      -webkit-box-flex: 1;
       padding-left: 5px;
       line-height: 35px;
     }
@@ -78,18 +78,19 @@
       span {
         background-image: url(img/comment.png);
       }
-      
+
     }
     .like-count {
       margin-right: 7px;
       span {
-        background-image: url(img/red-star.png);
+        &.liked { background-image: url(img/red-star.png); }
+        background-image: url(img/star.png);
       }
     }
   }
 
   .go-buy {
-    text-align: right; 
+    text-align: right;
     padding-bottom: 10px;
     //border-bottom: 1px solid #d9d9d9;
   }
@@ -173,7 +174,7 @@
       width: 55px;
       height: 55px;
       line-height: 55px;
-      text-align: center; 
+      text-align: center;
       margin-bottom: 5px;
       &.selected {
         img {

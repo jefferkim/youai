@@ -23,6 +23,15 @@ Youai.Router = Backbone.Router.extend({
 
     },
 
+    like: function(page) {
+      if (!Youai.like) {
+        Youai.like = new Youai.LikeView()
+        $('.content').html(Youai.like.el)
+      }
+
+      Youai.like.getLikeData()
+    },
+
     detail:function (id) {
 
         if (!Youai.detail) {
