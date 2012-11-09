@@ -8,8 +8,8 @@ Youai.goodSliderView = Backbone.View.extend({
 
     el:"#content",
 
-    templates:{
-        "list-slider":JST["template/list_slider"]
+    tpl:{
+        "goodSlider":JST["template/list_slider"]
     },
 
     events:{
@@ -90,11 +90,26 @@ Youai.goodSliderView = Backbone.View.extend({
     render:function () {
         var self = this;
 
-        this.$el.append(this.templates["list-slider"](this.model.getItemList()));
+        this.$el.append(this.tpl["goodSlider"](this.model.getItemList()));
 
+
+        var docEl = document.documentElement,
+            sliderEl = $(".slider-holder"),
+            top = document.body.scrollTop;
+
+        sliderEl.css({"top":top + 100});
+        sliderEl.show();
+
+        $("#J-mask").css({
+            "top":top
+        })
         $("#J-mask").show();
 
-        this.slider = new Swipe(document.getElementById('slider'), {
+
+
+
+
+        this.slider = new Swipe($('slider')[0], {
             preload:2,
             lazyloadClass:"lazy-img",
             lazyloadDataAttr:"data-img",

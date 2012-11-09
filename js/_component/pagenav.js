@@ -1,6 +1,3 @@
-
-
-
  window.PageNav = function Page(options) {
         this.init(options);
     }
