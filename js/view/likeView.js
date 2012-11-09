@@ -18,7 +18,7 @@ Youai.LikeView = Backbone.View.extend({
             var items = [], heights = [], records = self.data[i].records
             for (var j = 0; j < records.length; j++) {
               items.push(JST['template/like_item'](records[j]))
-              heights.push(parseInt(records[j].images[0].height) + 34)
+              heights.push(parseInt(records[j].images[0].height) + 26)
             }
             console.log(heights)
             success(items, heights);
