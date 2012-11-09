@@ -1,3 +1,6 @@
-  <a href="#!detail/<%= itemId %>"><img class="lazy" dataimg="<%= imgUrl %>" src=""  height="<%= itemHeight %>" width="150" <%if(comment){%>data-comment="<%= comment %>"<%}%>/></a>
+  <a href="#!detail/<%= itemId %>"><img class="lazy" dataimg="<%= imgUrl %>" src=""  height="<%= itemHeight %>" width="150"/></a>
   <span class="desc"><b>￥<%= originalPrice %></b><a href="#" class="J-zoom"></a></span>
+  <%if(comment){%>
+  <div class="pop-comment hide"><%= comment %><i></i></div>
+  <%}%>
   

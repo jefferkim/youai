@@ -112,10 +112,17 @@ window.lazyload = {
 
 
             function showPop(_self, n){
-                if(_self.attr("data-comment")){                    
-                    alert(_self.attr("data-comment"));
-                    _self.removeAttr("data-comment");
-                }  
+                if(that._inViewport(_self,10)){
+                    console.log(_self);
+
+                    var comment = _self.parents("li").find(".pop-comment");
+                    if(comment.length >0){
+                        console.log(comment);
+                        comment.show();
+                    }
+                }
+
+
             }
 
             that['imglist'].each(function (index, node) {
@@ -123,9 +130,7 @@ window.lazyload = {
                 var $this = $(node);
                 if (!that._inViewport($this)) return
                 act($this, index);
-                if(that._inViewport($this,10)){
-                    showPop($this,index);
-                }
+
             });
         }
     }

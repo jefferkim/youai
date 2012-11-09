@@ -123,6 +123,7 @@ $.extend(ModePop.prototype, {
         onShow && onShow.call(that);
     },
 
+
     show:function () {
         var that = this
             ;
@@ -242,5 +243,14 @@ window.notification = new function () {
     this.pop = function (options) {
         return new ModePop(options);
     }
+
+    this.popTip = function(text,options){
+        return new ModePop($.extend({
+            mode:'msg',
+            text:text
+        }, options || {}));
+
+    }
+
 
 };
