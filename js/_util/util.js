@@ -27,7 +27,7 @@ Youai.Util = {
         if(location.href.indexOf("127.0.0.1") !=-1){
             l = "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
         }else{
-            l = "http://10.13.125.66/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
+            l = "http://10.13.125.100/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
         }
         return l;
 

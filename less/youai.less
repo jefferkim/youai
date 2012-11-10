@@ -10,8 +10,62 @@
 
 @import 'pagenav';
 
-.content{
+.main,.content{
     position:relative;
+}
+
+
+.menu-list{
+    display:none;
+    position:absolute;
+    right:5px;
+    top:48px;
+    z-index:9999;
+    width:140px;
+    background:rgba(0,0,0,0.8);
+    box-shadow:0 0 3px rgba(0,0,0,0.8);
+    li{
+        width:140px;
+        height:39px;
+        a{
+           display:block;
+           width:140px;
+           height:39px;
+           text-align:center;
+           line-height:39px;
+           color:#fdf7f7;
+           font-size:15px;
+        }
+        &.line{
+            height:0;
+            border-top:1px solid #000;
+            border-bottom:1px solid #484642;
+        }
+        &.my-like{
+            position:relative;
+            em{
+                position:absolute;
+                left:19px;
+                top:12px;
+                display:block;
+                width:16px;
+                height:14px;
+                background:url(img/menu-star.png) no-repeat scroll 0 0;
+                background-size:cover;
+            }
+        }
+    }
+    &:after{
+        position:absolute;
+        top:-8px;
+        right:22px;
+        content:"";
+        width:0;
+        height:0;
+        border:8px solid transparent;
+        border-bottom:8px solid rgba(0,0,0,0.8);
+        border-top:none;
+    }
 }
 
 .mask{
@@ -23,7 +77,7 @@
     width:100%;
     height:100%;
     background:#000;
-    opacity:0.8;
+    opacity:0;
 }
 
 /*slider组件样式*/
@@ -106,6 +160,7 @@
 }
 
 
+/*slider bounceIn*/
 @-webkit-keyframes bounceIn {
     0% {
         opacity: 0;
@@ -115,31 +170,31 @@
         opacity: 1;
         -webkit-transform: scale(1.05);
     }
-    70% {
-        -webkit-transform: scale(.9);
+    70%{
+        opacity: 1;
+        transform: scale(1);
     }
     100% {
         -webkit-transform: scale(1);
     }
 }
 
-
-
 @keyframes bounceIn {
-        0% {
-            opacity: 0;
-            transform: scale(.3);
-        }
-        50% {
-            opacity: 1;
-            transform: scale(1.05);
-        }
-        70% {
-            transform: scale(.9);
-        }
-        100% {
-            transform: scale(1);
-        }
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70%{
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .bounceIn {
@@ -147,19 +202,14 @@
     animation-name: bounceIn;
 }
 
-
+/*slider bounceOut*/
 @-webkit-keyframes bounceOut {
     0% {
         -webkit-transform: scale(1);
     }
 
     25% {
-        -webkit-transform: scale(.95);
-    }
-
-    50% {
-        opacity: 1;
-        -webkit-transform: scale(1.1);
+        -webkit-transform: scale(.9);
     }
 
     100% {
@@ -175,12 +225,7 @@
     }
 
     25% {
-        transform: scale(.95);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scale(1.1);
+        transform: scale(.9);
     }
 
     100% {
@@ -191,11 +236,23 @@
 
 .bounceOut {
     -webkit-animation-name: bounceOut;
-    -moz-animation-name: bounceOut;
-    -o-animation-name: bounceOut;
     animation-name: bounceOut;
 }
 
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 0.8;}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 0.8;}
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
 
 /*评论页面模版*/
 .comment-tpl{

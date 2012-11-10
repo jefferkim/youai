@@ -1,0 +1,96 @@
+{
+    "api":"com.taobao.wap.rest2.wo3",
+    "v":"*",
+    "ret":[
+        "SUCCESS::接口调用成功"
+    ],
+    "data":{
+        "result":{
+            "albums":[
+                {
+                    "albumId":"7898797",
+                    "commentNum":"12",
+                    "description":"专辑描述",
+                    "isvInfo":{
+                        "brandImage":"http: //***",
+                        "isvCode":"123",
+                        "name":"美丽说",
+                        "url":"http://***?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
+                    },
+                    "like":"true",
+                    "likeNum":"2",
+                    "title":"专辑标题",
+                    "titlePages":[
+                        {
+                            "height":"200",
+                            "sequence":"1",
+                            "type":"1",
+                            "url":"http: //***",
+                            "width":"320"
+                        },
+                        {
+                            "height":"200",
+                            "sequence":"1",
+                            "type":"1",
+                            "url":"http: //***",
+                            "width":"320"
+                        }
+                    ],
+                    "user":{
+                        "userFace":"http://***?userId=74199100&width=40&height=40&type=sns",
+                        "userId":"213365",
+                        "userNick":"有爱用户"
+                    }
+                },
+                {
+                    "albumId":"7898797",
+                    "commentNum":"12",
+                    "description":"专辑描述",
+                    "isvInfo":{
+                        "brandImage":"http: //***",
+                        "isvCode":"123",
+                        "name":"美丽说",
+                        "url":"http: //***"
+                    },
+                    "like":"true",
+                    "likeNum":"2",
+                    "title":"专辑标题",
+                    "titlePages":[
+                        {
+                            "height":"200",
+                            "sequence":"1",
+                            "type":"1",
+                            "url":"http: //***",
+                            "width":"320"
+                        },
+                        {
+                            "height":"200",
+                            "sequence":"1",
+                            "type":"1",
+                            "url":"http: //***",
+                            "width":"320"
+                        }
+                    ],
+                    "user":{
+                        "userFace":"http://***/avatar/getAvatar.do?userId=74199100&width=40&height=40&type=sns",
+                        "userId":"213365",
+                        "userNick":"有爱用户"
+                    }
+                }
+            ],
+            "copywriters":[
+                {
+                    "content":"方案内容",
+                    "type":"1"
+                },
+                {
+                    "content":"方案内容",
+                    "type":"1"
+                }
+            ],
+            "homeOperators":"html code",
+            "itemArea":"html code"
+        },
+        "method":"getHomeInfo"
+    }
+}

@@ -23,6 +23,7 @@ window.Swipe = function(element, options) {
   this.preload = this.options.preload;
   this.lazyloadClass = this.options.lazyloadClass || 'lazy';
   this.lazyloadDataAttr = this.options.lazyloadDataAttr || 'src';
+  this.fixWidth = this.options.fixWidth;  //not to calculate the container width
 
   // reference dom elements
   this.container = element;
@@ -65,7 +66,8 @@ Swipe.prototype = {
     if (this.length < 2) return null;
 
     // determine width of each slide
-    this.width = Math.ceil(("getBoundingClientRect" in this.container) ? this.container.getBoundingClientRect().width : this.container.offsetWidth);
+
+    this.width = this.fixWidth || (Math.ceil(("getBoundingClientRect" in this.container) ? this.container.getBoundingClientRect().width : this.container.offsetWidth));
 
     // return immediately if measurement fails
     if (!this.width) return null;

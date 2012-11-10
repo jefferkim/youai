@@ -27,12 +27,8 @@ Youai.goodItemView = Backbone.View.extend({
     /*图片放大*/
     zoomPic:function (e) {
         e.preventDefault();
-        var M = Youai.Mod;
-        M.showSlider('#slider',this.model.getItemList());
 
-        /*console.log(this.model);
-        var goodSliderView = new Youai.goodSliderView({model:this.model});
-        goodSliderView.render();*/
+        Youai.sliderShow.init('slider',this.model.getItemList());
     },
 
 

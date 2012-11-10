@@ -55,7 +55,7 @@ Youai.indexView = Backbone.View.extend({
                     "temperature":data.t1
                 });
 
-                $("#J-homeTab", self.el).html(userTpl);
+                $("#J-modUser", self.el).html(userTpl);
 
             },
             error:function (xhr, type) {
@@ -97,7 +97,8 @@ Youai.indexView = Backbone.View.extend({
 
         $.ajax({
             //sid开发阶段随便定义
-            url:Youai.Util.parseUrl("getHomeInfo", "83fb97e85b9c12374f8b8426e5d564d8"),
+            //url:Youai.Util.parseUrl("getHomeInfo", "83fb97e85b9c12374f8b8426e5d564d8"),
+            url:Youai.Util._devParseUrl("getHomeInfo.json", "83fb97e85b9c12374f8b8426e5d564d8"),
             success:function (resp) {
                 var data = resp.data.result;
                 self._addModUser(data);
