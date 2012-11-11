@@ -11,6 +11,8 @@
         font-size:17px;
 
         -webkit-box-flex:1;
+        width: 1%;/*http://stackoverflow.com/questions/6673555/something-about-display-webkit-box-webkit-box-flex1*/
+
         background:-webkit-gradient(linear, 0 0, 0 50%, color-stop(0, #a5acb4),color-stop(0.2,#cad2d9), color-stop(1, #d5d9dd));
         a{
             color:#666666;
@@ -217,7 +219,10 @@
         overflow:hidden;
         border:1px solid #dddddd;
         background:#f8f8f8;
-        &.end{
+        &:nth-child(5){
+            margin-right:0;
+        }
+        &:last-child{
             margin-right:0;
         }
         a{
@@ -308,7 +313,10 @@
             height:130px;
             border:1px solid #d9d9d9;
             background:#f8f8f8;
-            &.end{
+            &:nth-child(3){
+                margin-right:0;
+            }
+            &:last-child{
                 margin-right:0;
             }
             img{
