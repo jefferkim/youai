@@ -103,21 +103,12 @@ Youai.Router = Backbone.Router.extend({
         Youai.Util.Ajax(url,function(resp){
             var result = resp.data.result;
             albumGoods.reset(result.data);
-            var albumInfo = {
-                userId:result.user.userId,
-                userNick:result.user.userNick,
-                description:result.description,
-                likeNum:result.likeNum,
-                commentNum:result.commentNum
-            }
-
-
 
             new Youai.goodListView({
                data:albumGoods
             });
 
-            $("#content").prepend(JST["template/album_info"](albumInfo));
+            $("#content").prepend(JST["template/album_info"]({"albumInfo":result}));
         });
 
     }
