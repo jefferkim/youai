@@ -7,12 +7,9 @@ var Youai = {
       Youai.router = new Youai.Router();
       Backbone.history.start();
 
-      $("#J-menu").on("click",function(e){
-          e.preventDefault();
-          $(".menu-list").show();
-      });
 
       Youai.Util.init();
+      Youai.Util.menu();
 
 
 

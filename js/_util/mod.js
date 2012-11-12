@@ -22,14 +22,6 @@ Youai.Mod = {
         };
 
         U.Ajax(url, success);
-    },
-
-    //显示slider
-    showSlider:function(id,data){
-
-
-
-
     }
 
 

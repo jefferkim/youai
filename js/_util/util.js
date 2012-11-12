@@ -91,6 +91,26 @@ Youai.Util = {
 
     init:function(){
         linkfocus("a");
+    },
+
+
+    menu:function(){
+        $("#J-menu").on("click",function(e){
+            e.preventDefault();
+            $(".menu-list").show();
+        });
+
+        $('body > div').click(function (ev) {
+            var target = ev.target || ev.srcElement;
+            if (target.nodeName.toUpperCase() === 'DIV') {
+                if ($(target).attr('id') != 'J-menuList') {
+                    $("#J-menuList").hide();
+                }
+            }
+        });
+        window.addEventListener("hashchange",function(){
+            $("#J-menuList").hide();
+        },false);
     }
 
 
