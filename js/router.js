@@ -2,6 +2,7 @@ Youai.Router = Backbone.Router.extend({
 
     routes:{
         '':"index", //首页
+        '!home':"index",//首页
         '!list/:listCode/p:page':'list', //商品列表
         '!detail/:id':'detail', //详情页
         '!tag':'tag',//类目页
@@ -88,12 +89,22 @@ Youai.Router = Backbone.Router.extend({
         })
     },
 
-
+    //专辑
     albumItems:function (albumId, pageNo) {
+
+       var albumInfo = JST["template/album_info"]();
+
         var url = Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":albumId, "pageSize":"10", "pageNo":pageNo});
-        new Youai.goodListView({
-            goodUrl:url
+
+        var albumGoods = new Youai.GoodList();
+
+        Youai.Util.Ajax(url,function(resp){
+            albumGoods.reset(resp.data.result.data);
+            new Youai.goodListView({
+               data:albumGoods
+            });
         });
+
     }
 
 });

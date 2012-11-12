@@ -8,7 +8,6 @@
     </div>
     <div class="ft">
         <span class="nums"><%= itemTotal %>件宝贝</span>
-        <span class="comment"><em class="n"><%= commentNum %></em><a href="#" class="J-comment">查看评论</a></span>
-        <a href="#" class="J-fav<%if(isLiked){%> added<%}%>"><%if(isLiked){%>取消收藏<%}else{%>添加收藏<%}%></a>
+        <a href="#" class="J-fav<%if(isLiked){%> added<%}%>"><%if(isLiked){%>取消收集<%}else{%><em>收集</em><b><%= likeNum %></b><%}%></a>
     </div>
 </div>

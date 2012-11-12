@@ -14,16 +14,24 @@ Youai.goodListView = Backbone.View.extend({
 
         this.$el.html(this.tpl["goodLayout"]());
 
-        this.goodList = new Youai.GoodList();
-        this.goodList.url = options.goodUrl;
-        this.goodList.fetch();
-        this.goodList.on('reset', this.render, this);
+        if (options.goodUrl) {
+            this.goodList = new Youai.GoodList();
+            this.goodList.url = options.goodUrl;
+            this.goodList.fetch();
+            this.goodList.on('reset', this.render, this);
+        }
+        if (options.data) {
+            this.goodList = options.data;
+            this.render();
+        }
+
     },
 
     addItem:function (good) {
 
         var goodView = new Youai.goodItemView({model:good});
         return goodView.render();
+
     },
 
 
@@ -48,9 +56,6 @@ Youai.goodListView = Backbone.View.extend({
 
         lazyload.init();
 
-
     }
-
-
 
 });
