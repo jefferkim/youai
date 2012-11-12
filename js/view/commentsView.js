@@ -39,7 +39,8 @@ Youai.commentsView = Backbone.View.extend({
 
     submitComment:function (e) {
         e.preventDefault();
-        var U = Youai.Util;
+        var self = this,
+            U = Youai.Util;
 
         var commentBlock = $(".textarea-block","#J-tplComment"),
             inputField = $(".J-inputField","#J-tplComment");
@@ -50,19 +51,12 @@ Youai.commentsView = Backbone.View.extend({
         }
         else {
 
-            var submitModel = {
+            var url = U._devParseUrl("addCommentForItem.json",{
                 "method":"addCommentForItem",
                 "content":inputField.val(),
                 "itemId":location.hash.split("/")[1],//链接中取得
                 "commentParentId":inputField.attr("data-replyId")
-            }
-
-            //获得当前的comment模型
-            var oldComment = this.commentList.get(inputField.attr("data-replyId"));
-
-            //var url = U.parseUrl(submitModel, "111111");
-
-            var url = U._devParseUrl("addCommentForItem.json",submitModel);
+            });
 
             var success = function (response) {
                 var result = response.ret[0];
@@ -74,15 +68,17 @@ Youai.commentsView = Backbone.View.extend({
                 }
                 if(result.indexOf("SUCCESS::") != -1){
 
-                    var t = new Youai.Comment({
+                    var newComment = new Youai.Comment({
                         itemId:location.hash.split("/")[1],
                         content:inputField.val(),
                         user: {
-                            userId:response.data.result.user.userId,  //隐藏域
-                            userNick:response.data.result.user.userNick//隐藏域
+                            userId:response.data.user.userId,  //隐藏域
+                            userNick:response.data.user.userNick//隐藏域
                         }
                     });
-                    console.log(t);
+
+                    self.addComment(newComment,"reply");
+                    self.commentScroll._scrollbarPos(0,0);
 
                     commentBlock.removeClass("show");
                     inputField.val("");
@@ -95,11 +91,18 @@ Youai.commentsView = Backbone.View.extend({
     },
 
 
-    addItem:function (comment) {
+    addComment:function (comment) {
 
         var commentView = new Youai.commentItemView({model:comment});
 
-        $("#J-comment","#J-tplComment").append(commentView.render());
+        var commentListWrap = $("#J-comment","#J-tplComment");
+
+        if(arguments[1]){
+            commentListWrap.prepend(commentView.render());
+        }else{
+            $("#J-comment","#J-tplComment").append(commentView.render());
+        }
+
     },
 
 
@@ -108,14 +111,14 @@ Youai.commentsView = Backbone.View.extend({
         var self = this;
 
         this.commentList.each(function (comment) {
-            self.addItem(comment);
+            self.addComment(comment);
         });
 
-        var commentScroll = new iScroll('J-comment-block');
+        this.commentScroll = new iScroll('J-comment-block');
         //comment评论时高度会有变化
         $("#J-tplComment").on("refreshIscroll",function(){
             setTimeout(function(){
-                commentScroll.refresh();
+                self.commentScroll.refresh();
             },500);
         })
     }

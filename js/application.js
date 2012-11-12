@@ -11,9 +11,6 @@ var Youai = {
       Youai.Util.init();
       Youai.Util.menu();
 
-
-
-
     }
 
 };

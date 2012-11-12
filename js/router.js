@@ -93,17 +93,31 @@ Youai.Router = Backbone.Router.extend({
     //专辑
     albumItems:function (albumId, pageNo) {
 
-       var albumInfo = JST["template/album_info"]();
+
+
 
         var url = Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":albumId, "pageSize":"10", "pageNo":pageNo});
 
         var albumGoods = new Youai.GoodList();
 
         Youai.Util.Ajax(url,function(resp){
-            albumGoods.reset(resp.data.result.data);
+            var result = resp.data.result;
+            albumGoods.reset(result.data);
+            var albumInfo = {
+                userId:result.user.userId,
+                userNick:result.user.userNick,
+                description:result.description,
+                likeNum:result.likeNum,
+                commentNum:result.commentNum
+            }
+
+
+
             new Youai.goodListView({
                data:albumGoods
             });
+
+            $("#content").prepend(JST["template/album_info"](albumInfo));
         });
 
     }

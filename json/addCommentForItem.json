@@ -1,4 +1,8 @@
 {"api":"com.taobao.wap.rest2.wo3", "v":"*", "ret":["SUCCESS::接口调用成功"], "data":{
     "result":"123",
-    "method":"addCommentForItem"
+    "method":"addCommentForItem",
+    "user":{
+        "userId":1100,
+        "userNick":"jinjianfeng"
+    }
 }}
