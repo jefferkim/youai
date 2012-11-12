@@ -24,8 +24,7 @@ Youai.Comment = Backbone.Model.extend({
             "avatar":this._getAvatar(this.get("user").userId),
             "content":this.get("content"),
             "author":this.get("user").userNick,
-            "commentId":this.get("id"),
-            "loopReply":this.getSuperComment()
+            "commentId":this.get("id")
         };
         return data;
     }

@@ -12,6 +12,8 @@ var Youai = {
           $(".menu-list").show();
       });
 
+      Youai.Util.init();
+
 
 
 

@@ -60,7 +60,9 @@ Youai.commentsView = Backbone.View.extend({
             //获得当前的comment模型
             var oldComment = this.commentList.get(inputField.attr("data-replyId"));
 
-            var url = U.parseUrl(submitModel, "111111");
+            //var url = U.parseUrl(submitModel, "111111");
+
+            var url = U._devParseUrl("addCommentForItem.json",submitModel);
 
             var success = function (response) {
                 var result = response.ret[0];
@@ -72,21 +74,15 @@ Youai.commentsView = Backbone.View.extend({
                 }
                 if(result.indexOf("SUCCESS::") != -1){
 
-                    oldComment.set({
-                        content: inputField.val(),
-                        superiors: {
-                            content: oldComment.get("content"),
-                            id:oldComment.get("id"),
-                            user: {
-                                userId: oldComment.get("user").userId,
-                                userNick: oldComment.get("user").userNick
-                            }
-                        },
+                    var t = new Youai.Comment({
+                        itemId:location.hash.split("/")[1],
+                        content:inputField.val(),
                         user: {
                             userId:response.data.result.user.userId,  //隐藏域
                             userNick:response.data.result.user.userNick//隐藏域
                         }
                     });
+                    console.log(t);
 
                     commentBlock.removeClass("show");
                     inputField.val("");

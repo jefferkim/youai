@@ -3,15 +3,9 @@
         "commentTotal":"2",
         "comments":[
             {
-                "content":"评论内容",
+                "content":"回复金建峰:评论内容",
                 "date":"2012-10-19 15:11:30",
                 "id":"7891",
-                "superiors":{
-                    "user": {
-                        "userId": "213365",
-                        "userNick": "有爱用户"
-                    }
-                },
                 "user": {
                     "userId": "213365",
                     "userNick": "有爱用户1111"
@@ -21,15 +15,6 @@
                 "content":"评论内容111",
                 "date":"2012-10-19 15:11:30",
                 "id":"892",
-                "superiors":{
-                    "content":"评论内容",
-                    "date":"2012-10-19 15:11:30",
-                    "id":"2",
-                    "user":{
-                        "userId": "213365",
-                        "userNick": "superiors有爱用户"
-                    }
-                },
                 "user": {
                     "userId": "213365",
                     "userNick": "有爱用户2222"
@@ -39,27 +24,15 @@
                 "content":"评论内容2222",
                 "date":"2012-10-19 15:11:30",
                 "id":"73",
-                "superiors":{
-                    "content":"评论内容",
-                    "date":"2012-10-19 15:11:30",
-                    "id":"4",
-                    "user": {
-                        "userId": "213365",
-                        "userNick": "superiors有爱用户"
-                    }
-                } ,
                 "user": {
                     "userId": "213365",
                     "userNick": "有爱用户34343"
                 }
             },
             {
-                "content":"评论内容111",
+                "content":"回复金建峰:评论内容111",
                 "date":"2012-10-19 15:11:30",
                 "id":"782",
-                "superiors":{
-
-                },
                 "user": {
                     "userId": "213365",
                     "userNick": "12323232"
@@ -69,8 +42,6 @@
                 "content":"评论内容111",
                 "date":"2012-10-19 15:11:30",
                 "id":"7892",
-                "superiors":{
-                },
                 "user": {
                     "userId": "213365",
                     "userNick": "577444"
@@ -80,15 +51,6 @@
                 "content":"评论内容111",
                 "date":"2012-10-19 15:11:30",
                 "id":"87",
-                "superiors":{
-                    "content":"评论内容",
-                    "date":"2012-10-19 15:11:30",
-                    "id":"11",
-                    "user": {
-                        "userId": "213365",
-                        "userNick": "有爱用户"
-                    }
-                },
                 "user": {
                     "userId": "213365",
                     "userNick": "有爱用户"
@@ -98,7 +60,6 @@
                 "content":"评论内容111",
                 "date":"2012-10-19 15:11:30",
                 "id":"123",
-                "superiors":{},
                 "user": {
                     "userId": "213365",
                     "userNick": "有爱用户"

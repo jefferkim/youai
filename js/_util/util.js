@@ -27,7 +27,7 @@ Youai.Util = {
         if(location.href.indexOf("127.0.0.1") !=-1){
             l = "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
         }else{
-            l = "http://10.13.125.100/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
+            l = "http://10.13.125.92/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
         }
         return l;
 
@@ -47,19 +47,8 @@ Youai.Util = {
         'getHomeInfo':{
             "method":"getHomeInfo"
         }
-
-
     },
 
-
-    urlGenreget:function(urlflag,data){
-        var url = this.urlMap[urlflag];
-        _.filter_(data, function (num, key) {
-            return url[key];
-        });
-
-
-    },
 
     //精确到两位小数
     toFixed:function (num,precision) {
@@ -100,10 +89,9 @@ Youai.Util = {
         });
     },
 
-    dataParser:function(){
-
-
-
+    init:function(){
+        linkfocus("a");
     }
+
 
 }
