@@ -4,6 +4,7 @@ Youai.Router = Backbone.Router.extend({
         '':"index", //首页
         '!home':"index",//首页
         '!list/:listCode/p:page':'list', //商品列表
+        '!like/:id': 'like',
         '!detail/:id':'detail', //详情页
         '!tag':'tag',//类目页
         '!search/:keyword/p:page':'search',//搜索页
