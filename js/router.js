@@ -33,8 +33,13 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-searchBtn").on("click", function (e) {
             e.preventDefault();
-            var searchTxt = $("#J-searchContent").val(),
-                searchGoodList = new Youai.GoodList();
+
+            var searchTxt = $("#J-searchContent").val();
+            if(searchTxt === ""){
+                self.navigate('!albums/like/p1',true);
+                return;
+            }
+            var searchGoodList = new Youai.GoodList();
 
             var url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(searchTxt), "pageSize":"10", "pageNo":1});
 
@@ -43,13 +48,13 @@ Youai.Router = Backbone.Router.extend({
                     var result = resp.data.result;
                     if (result.recordTotal === "0") {
                         $(".no-search-result").show();
-
                     } else {
-                        Backbone.history.navigate('!search/' + searchTxt + '/p1');
+                        self.navigate('!search/' + searchTxt + '/p1');
                         searchGoodList.reset(result.data);
                         new Youai.searchListView({
                             data:searchGoodList
                         });
+                        new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(result.recordTotal / 30), 'objId':'p'});
                     }
 
                 }
@@ -127,6 +132,17 @@ Youai.Router = Backbone.Router.extend({
             });
 
             $("#content").prepend(JST["template/album_info"]({"albumInfo":result}));
+
+            new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(result.recordTotal / 30), 'objId':'p'});
+
+
+            $(".comments").on("click",function(e){
+                e.preventDefault();
+                new Youai.commentsView({
+                    commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
+                });
+
+            })
 
             $("#content").delegate(".J-fav", "click", function (e) {
                 e.preventDefault();

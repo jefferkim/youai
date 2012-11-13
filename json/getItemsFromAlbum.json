@@ -259,6 +259,7 @@
         ],
         "like":"true",
         "likeNum":"2",
+        "recordTotal":"100",
         "title":"专辑标题",
         "user":{
             "userId":"213365",
