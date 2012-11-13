@@ -7,26 +7,25 @@ Youai.Router = Backbone.Router.extend({
         '!like/:id':'like',
         '!detail/:id':'detail', //详情页
         '!tag':'tag', //类目页
+        '!style':'style', //风格
         '!search/:keyword/p:page':'search', //搜索页
         '!albums/:type/p:page':'albums', //专辑列表
         '!album/:id/p:page':"albumItems" //专辑中商品列表
     },
-
+    //首页
     index:function () {
         var indexView = new Youai.indexView();
     },
 
-
+    //列表页
     list:function (listCode, pageNo) {
-
         var url = Youai.Util._devParseUrl("getItemsFromList.json", {"listCode":listCode, "pageSize":"10", "pageNo":pageNo});
 
         new Youai.goodListView({
             "goodUrl":url
         });
-
     },
-
+    //类目
     tag:function () {
         var self = this;
 
@@ -34,27 +33,48 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-searchBtn").on("click", function (e) {
             e.preventDefault();
-            var searchTxt = $("#J-searchContent").val();
+            var searchTxt = $("#J-searchContent").val(),
+                searchGoodList = new Youai.GoodList();
 
-            Backbone.history.navigate('!search/' + searchTxt + '/p1');
+            var url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(searchTxt), "pageSize":"10", "pageNo":1});
 
-            self.search(searchTxt);
+            Youai.Util.Ajax(url, function (resp) {
+                if (resp.ret[0].indexOf("SUCCESS::") != -1) {
+                    var result = resp.data.result;
+                    if (result.recordTotal === "0") {
+                        $(".no-search-result").show();
+
+                    } else {
+                        Backbone.history.navigate('!search/' + searchTxt + '/p1');
+                        searchGoodList.reset(result.data);
+                        new Youai.searchListView({
+                            data:searchGoodList
+                        });
+                    }
+
+                }
+            });
+
         })
+
+    },
+     //风格
+    style:function () {
+
+        $("#content").html(JST["template/style_layout"]());
 
     },
     //搜索页
     search:function (keyword, pageNo) {
 
-        var searchList = new Youai.GoodList();
-        searchList.url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(keyword), "pageSize":"10", "pageNo":pageNo||1});
+        var url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(keyword), "pageSize":"10", "pageNo":pageNo || 1});
         //searchList.url = Youai.Util.parseUrl({"method":"getItemsFromSearch","pageSize":"10","pageNo":pageNo||1,"keyword":encodeURI(keyword)});
-        searchList.fetch();
 
-        var searchListView = new Youai.searchListView({
-            "collection":searchList
+        new Youai.searchListView({
+            "searchUrl":url
         });
 
-        searchList.on('reset', searchListView.render, searchListView);
+
     },
     //我的喜欢
     like:function (page) {
@@ -77,8 +97,8 @@ Youai.Router = Backbone.Router.extend({
         Youai.detail.displayItem(id)
 
         /*new Youai.commentsView({
-            commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
-        });*/
+         commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
+         });*/
 
     },
 

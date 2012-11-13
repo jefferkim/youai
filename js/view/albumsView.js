@@ -17,7 +17,7 @@ Youai.albumsView = Backbone.View.extend({
     initialize:function (options) {
 
         this.options = options;
-        this.$el.html(this.tpl["albumsLayout"]());
+        this.$el.html(this.tpl["albumsLayout"]({"type":options.albumType}));
 
         var method = (options.albumType === "recommend" ? "getRecommendAlbums.json" : "getLikeAlbums.json");
         this.albumList = new Youai.albumList();

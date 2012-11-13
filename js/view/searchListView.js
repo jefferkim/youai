@@ -14,6 +14,19 @@ Youai.searchListView = Backbone.View.extend({
 
         this.$el.html(this.tpl["goodLayout"]());
 
+
+        if (options.searchUrl) {
+            this.searchGoodList = new Youai.GoodList();
+            this.searchGoodList.url = options.searchUrl;
+            this.searchGoodList.fetch();
+            this.searchGoodList.on('reset', this.render, this);
+        }
+        if (options.data) {
+            this.searchGoodList = options.data;
+            this.render();
+        }
+
+
     },
 
     addItem:function (good) {
@@ -26,7 +39,6 @@ Youai.searchListView = Backbone.View.extend({
     render:function () {
 
         var self = this;
-        var collection = self.options.collection;
 
         new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
@@ -34,7 +46,7 @@ Youai.searchListView = Backbone.View.extend({
                 var items = [],
                     heights = [];
 
-                collection.each(function (good) {
+                self.searchGoodList.each(function (good) {
                     items.push(self.addItem(good))
                     heights.push(parseInt(good.height()) + 34);
                 });
