@@ -97,8 +97,7 @@ Youai.indexView = Backbone.View.extend({
 
         $.ajax({
             //sid开发阶段随便定义
-            //url:Youai.Util.parseUrl("getHomeInfo", "83fb97e85b9c12374f8b8426e5d564d8"),
-            url:Youai.Util._devParseUrl("getHomeInfo.json", "83fb97e85b9c12374f8b8426e5d564d8"),
+            url:Youai.Util.parseUrl({"method":"getHomeInfo"}, $("#J-sid").val()),
             success:function (resp) {
                 var data = resp.data.result;
                 self._addModUser(data);

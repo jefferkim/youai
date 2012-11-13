@@ -47,6 +47,7 @@ Youai.Router = Backbone.Router.extend({
 
         var searchList = new Youai.GoodList();
         searchList.url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(keyword), "pageSize":"10", "pageNo":pageNo||1});
+        //searchList.url = Youai.Util.parseUrl({"method":"getItemsFromSearch","pageSize":"10","pageNo":pageNo||1,"keyword":encodeURI(keyword)});
         searchList.fetch();
 
         var searchListView = new Youai.searchListView({
@@ -75,9 +76,9 @@ Youai.Router = Backbone.Router.extend({
 
         Youai.detail.displayItem(id)
 
-        new Youai.commentsView({
+        /*new Youai.commentsView({
             commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
-        });
+        });*/
 
     },
 

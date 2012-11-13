@@ -36,13 +36,6 @@ Youai.Util = {
     /* map函数，将传入的controller路径转成请求地址 */
     urlMap:{
 
-        'getItemsFromList':{
-            "method":"getItemsFromList",
-            "listCode":"7233559832",
-            "pageSize":"10",
-            "pageNo":"1"
-        },
-
         //获取首页的信息
         'getHomeInfo':{
             "method":"getHomeInfo"
