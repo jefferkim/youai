@@ -15,13 +15,29 @@ Youai.Mod = {
 
         var url = U.parseUrl({"method":method, "itemId":cfg.itemId, "isvCode":cfg.isvCode}, $("#J_Sid").val());
 
-        var success = function (response) {
+        var success = (cfg.success || function (response) {
             if(response.ret[0].indexOf("SUCCESS::") != -1){
                 $(t).trigger("changeUI");
             }
-        };
+        });
 
         U.Ajax(url, success);
+    },
+
+    toggleAlbumLike:function(cfg){
+
+        var self = this,
+            U = Youai.Util,
+            t = cfg.eventTarget,
+            url = U._devParseUrl(($(t).hasClass("added")?"dumpAlbum.json":"likeAlbum.json"),{"albumId":cfg.itemId,"isvCode":cfg.isvCode});
+
+        var success = (cfg.success || function(response){
+            if(response.ret[0].indexOf("SUCCESS::") !=-1){
+                $(t).trigger("changeUI");
+            }
+        });
+
+        U.Ajax(url,success);
     }
 
 

@@ -14,6 +14,7 @@ Youai.albumItemView = Backbone.View.extend({
 
     events:{
         "click .J-fav":"toggleFav",
+        "changeUI .J-fav":"changeUI",
         "click .J-comment":"showComments"
     },
 
@@ -44,23 +45,19 @@ Youai.albumItemView = Backbone.View.extend({
     },
 
 
+    changeUI:function(){
+
+        this.model.destroy();
+    },
     //取消和添加收藏
     toggleFav:function (e) {
         e.preventDefault();
-
-        var self = this,
-            U = Youai.Util,
-            target = e.currentTarget,
-            url = U._devParseUrl(($(target).hasClass("added")?"dumpAlbum.json":"likeAlbum.json"),{"albumId":"464564","isvCode":"1"});
-
-        var success = function(response){
-            if(response.ret[0].indexOf("SUCCESS::") !=-1){
-                self.model.destroy();
-            }
-        }
-
-        U.Ajax(url,success);
-
+        var album = this.model.toJSON();
+        Youai.Mod.toggleAlbumLike({
+            eventTarget:e.currentTarget,
+            itemId:album.albumId,
+            isvCode:album.isvInfo.isvCode
+        });
     },
 
 

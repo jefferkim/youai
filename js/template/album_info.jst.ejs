@@ -10,7 +10,7 @@
         </div>
 
         <div class="album-handle clearfix">
-            <a href="#" class="J-fav"><em>收集</em><b><%= albumInfo.likeNum %></b></a>
+            <a href="#" class="J-fav<%if(albumInfo.like=='true'){%> added<%}%>"><%if(albumInfo.like=="true"){%>取消收集<%}else{%><em>收集</em><b><%= albumInfo.likeNum %></b><%}%></a>
             <a href="#" class="comments"><em></em><%= albumInfo.commentNum %></a>
         </div>
     </div>
