@@ -1,6 +1,7 @@
 Youai.Album = Backbone.Model.extend({
 
     defaults:{
+
     },
 
     url:function () {

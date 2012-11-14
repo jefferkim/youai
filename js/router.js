@@ -20,7 +20,7 @@ Youai.Router = Backbone.Router.extend({
             var h1Map = {
                     '首页'        :/#!home/,
                     '逛逛'        :/#!stroll\/p\d*/,
-                    '列表'        :/#!list\/p[0-9]*/,
+                    '列表'        :/#!list\/[0-9]*\/p[0-9]*/,
                     '喜欢'        :/#!like\/[0-9]*/,
                     '详情页'       :/#!detail\/[0-9]*/,
                     '类目'        :/#!category/,
@@ -58,26 +58,29 @@ Youai.Router = Backbone.Router.extend({
 
     //逛逛
     stroll:function (pageNo) {
-        $("#content").html(JST["template/stroll_layout"]());
+
+        $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
+
         var url = Youai.Util._devParseUrl("getItemsFromVisit.json", {"pageSize":"10", "pageNo":pageNo || 1});
         new Youai.goodListView({
             "goodUrl":url
-        });
+        }).render();
 
     },
     //列表页
     list:function (listCode, pageNo) {
-        var url = Youai.Util._devParseUrl("getItemsFromList.json", {"listCode":listCode, "pageSize":"10", "pageNo":pageNo});
+
+        $("#J-list").length < 1&&$("#content").html(JST["template/list_good"]());
 
         new Youai.goodListView({
-            "goodUrl":url
-        });
+            "goodUrl":Youai.Util._devParseUrl("getItemsFromList.json", {"listCode":listCode, "pageSize":"10", "pageNo":pageNo})
+        }).render();
     },
     //类目
     category:function () {
         var self = this;
 
-        $("#content").html(JST["template/tag_layout"]());
+        $("#J-tagLayout").length <1 && $("#content").html(JST["template/tag_layout"]());
 
         $("#J-searchBtn").on("click", function (e) {
             e.preventDefault();
@@ -114,7 +117,7 @@ Youai.Router = Backbone.Router.extend({
     //风格
     style:function () {
 
-        $("#content").html(JST["template/style_layout"]());
+        $("#J-styleLayout").length <1 && $("#content").html(JST["template/style_layout"]());
 
     },
     //搜索页
@@ -147,10 +150,6 @@ Youai.Router = Backbone.Router.extend({
 
         Youai.detail.displayItem(id)
 
-        /*new Youai.commentsView({
-         commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
-         });*/
-
     },
 
     //推荐专辑和我关注的专辑
@@ -164,32 +163,28 @@ Youai.Router = Backbone.Router.extend({
     //专辑商品列表
     albumItems:function (albumId, pageNo) {
 
-        var url = Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":albumId, "pageSize":"10", "pageNo":pageNo});
+        var self = this,
+            url = Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":albumId, "pageSize":"10", "pageNo":pageNo});
 
         var albumGoods = new Youai.GoodList();
 
-        $("#content").html(JST["template/list_good"]());
+        $("#J-albumItemInfo").length <1 && $("#content").html(JST["template/album_info_layout"]());
 
         Youai.Util.Ajax(url, function (resp) {
-            var result = resp.data.result;
 
+            var result = resp.data.result;
             albumGoods.reset(result.data);
+            //如果albumId没变化，则说明是同一张专辑
+            if(result.albumId != self.albumId){
+                self.albumId = result.albumId;
+                var albumInfo = new Youai.albumInfo();
+                $("#J-albumInfoWrap").html(albumInfo.render({"albumInfo":result}).el);
+            }
             new Youai.goodListView({
                 data:albumGoods
-            });
-
-
-            $("#content").prepend(JST["template/album_info"]({"albumInfo":result}));
-
+            }).render();
             new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(result.recordTotal / 30), 'objId':'p'});
-
-
-
-            new Youai.albumInfo();
-
-
         });
-
     }
 
 });

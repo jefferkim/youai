@@ -6,10 +6,12 @@
 
 Youai.albumInfo = Backbone.View.extend({
 
-    el:"#content",
+    tagName:"div",
+
+    className:"album-info",
 
     tpl:{
-        "albumItem":JST["template/album_info"]
+        "albumInfo":JST["template/album_info"]
     },
 
     events:{
@@ -22,14 +24,14 @@ Youai.albumInfo = Backbone.View.extend({
 
     },
 
-    showComment:function(e){
+    showComment:function (e) {
         e.preventDefault();
         new Youai.commentsView({
             commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
         });
     },
 
-    toggleFav:function(e){
+    toggleFav:function (e) {
 
         e.preventDefault();
         var target = e.currentTarget;
@@ -54,12 +56,9 @@ Youai.albumInfo = Backbone.View.extend({
     },
 
 
-    render:function (albumType) {
-
-        return this.$el.html(this.tpl["albumItem"](this.model.getAlbums()));
-
+    render:function (data) {
+        this.$el.html(this.tpl["albumInfo"](data));
+        return this;
     }
-
-
 
 });

@@ -1,17 +1,12 @@
-<div class="album-items-tpl">
-    <div class="album-info" id="J-albumInfo">
-        <div class="user">
-            <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=<%= albumInfo.user.userId %>&width=40&height=40&type=sns" width="48"/>
-            <h3><%= albumInfo.user.userNick %></h3>
-        </div>
-        <div class="seperater"></div>
-        <div class="desc">
-            <%= albumInfo.description %>
-        </div>
-
-        <div class="album-handle clearfix">
-            <a href="#" data-likeNum="<%= albumInfo.likeNum %>" data-isvCode="<%= albumInfo.isvInfo.isvCode %>" data-itemId="<%= albumInfo.albumId %>" class="J-fav<%if(albumInfo.like=='true'){%> added<%}%>"><%if(albumInfo.like=="true"){%>取消收集<%}else{%><em>收集</em><b><%= albumInfo.likeNum %></b><%}%></a>
-            <a href="#" class="comments"><em></em><%= albumInfo.commentNum %></a>
-        </div>
-    </div>
+<div class="user">
+    <img src="http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=<%= albumInfo.user.userId %>&width=40&height=40&type=sns" width="48"/>
+    <h3><%= albumInfo.user.userNick %></h3>
+</div>
+<div class="seperater"></div>
+<div class="desc">
+    <%= albumInfo.description %>
+</div>
+<div class="album-handle clearfix">
+    <a href="#" data-likeNum="<%= albumInfo.likeNum %>" data-isvCode="<%= albumInfo.isvInfo.isvCode %>" data-itemId="<%= albumInfo.albumId %>" class="J-fav<%if(albumInfo.like=='true'){%> added<%}%>"><%if(albumInfo.like=="true"){%>取消收集<%}else{%><em>收集</em><b><%= albumInfo.likeNum %></b><%}%></a>
+    <a href="#" class="comments"><em></em><%= albumInfo.commentNum %></a>
 </div>

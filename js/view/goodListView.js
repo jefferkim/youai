@@ -12,8 +12,6 @@ Youai.goodListView = Backbone.View.extend({
 
     initialize:function (options) {
 
-       // this.$el.html(this.tpl["goodLayout"]());
-
         if (options.goodUrl) {
             this.goodList = new Youai.GoodList();
             this.goodList.url = options.goodUrl;
@@ -22,7 +20,6 @@ Youai.goodListView = Backbone.View.extend({
         }
         if (options.data) {
             this.goodList = options.data;
-            this.render();
         }
 
     },
