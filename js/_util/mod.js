@@ -29,7 +29,7 @@ Youai.Mod = {
         var self = this,
             U = Youai.Util,
             t = cfg.eventTarget,
-            url = U._devParseUrl(($(t).hasClass("added")?"dumpAlbum.json":"likeAlbum.json"),{"albumId":cfg.itemId,"isvCode":cfg.isvCode});
+            url = U._devParseUrl(($(t).hasClass("added")?"dumpAlbum.json":"likeAlbum.json"),{"albumId":cfg.albumId,"isvCode":cfg.isvCode});
 
         var success = (cfg.success || function(response){
             if(response.ret[0].indexOf("SUCCESS::") !=-1){

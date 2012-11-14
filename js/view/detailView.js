@@ -93,6 +93,9 @@ Youai.DetailView = Backbone.View.extend({
 
   showComemnts: function() {
     $('#J_Main').trigger('datail:comment')
+      new Youai.commentsView({
+          commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
+      });
   }
 
 })
