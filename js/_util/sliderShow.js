@@ -9,11 +9,6 @@ Youai.sliderShow = {
         this.destroyUI();
     },
 
-    _pos:function () {
-        var docEl = document.documentElement,
-            maskEl = $("#J-mask"),
-            top = document.body.scrollTop;
-    },
 
     /*TODO::this.model.save*/
     changeUI:function (e) {
@@ -63,9 +58,6 @@ Youai.sliderShow = {
     },
 
     _showMask:function () {
-        this.maskEl.css({
-            top:document.body.scrollTop
-        });
         this.maskEl.show().animate({
             opacity:0.8
         }, 1000, 'ease');
