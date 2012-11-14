@@ -89,10 +89,8 @@ Youai.Router = Backbone.Router.extend({
     //详情页
     detail:function (id) {
 
-        if (!Youai.detail) {
-            Youai.detail = new Youai.DetailView()
-            $('.content').html(Youai.detail.el)
-        }
+        Youai.detail = new Youai.DetailView()
+        $('.content').html(Youai.detail.el)
 
         Youai.detail.displayItem(id)
 
