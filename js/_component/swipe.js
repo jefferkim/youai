@@ -91,7 +91,7 @@ Swipe.prototype = {
 
 
     // set start position and force translate to remove initial flickering
-    this.slide(this.index, 0); 
+    this.slide(this.index, 0);
 
     // show slider element
     this.container.style.visibility = 'visible';
@@ -113,7 +113,7 @@ Swipe.prototype = {
     // translate to given index position
     if (this.vertical) {
       style.MozTransform = style.webkitTransform = 'translate3d(0, ' + -(index * 60) + 'px,0)';
-      //style.msTransform = style.OTransform = 'translateX(' + -(index * this.width) + 'px)';      
+      //style.msTransform = style.OTransform = 'translateX(' + -(index * this.width) + 'px)';
     } else {
       style.MozTransform = style.webkitTransform = 'translate3d(' + -(index * this.width) + 'px,0,0)';
       style.msTransform = style.OTransform = 'translateX(' + -(index * this.width) + 'px)';
@@ -131,7 +131,7 @@ Swipe.prototype = {
   },
 
   getPos: function() {
-    
+
     // return current index position
     return this.index;
 
@@ -164,18 +164,18 @@ Swipe.prototype = {
     var _this = this;
 
     this.interval = (this.delay)
-      ? setTimeout(function() { 
+      ? setTimeout(function() {
         _this.next(_this.delay);
       }, this.delay)
       : 0;
-  
+
   },
-  
+
   stop: function() {
     this.delay = 0;
     clearTimeout(this.interval);
   },
-  
+
   resume: function() {
     this.delay = this.options.auto || 0;
     this.begin();
@@ -200,10 +200,11 @@ Swipe.prototype = {
     for (var i = 0; i < images.length; i++) {
       (function() {
         var j = i, img = new Image;
-        img.onload = function() { 
-          images[j].parentNode.replaceChild(this, images[j]); 
+        img.onload = function() {
+          images[j].src = this.src;
           slide.setAttribute('loaded', true);
         };
+        // TODO img.onerror for 404s
         img.src = images[i].getAttribute('data-' + this.lazyloadDataAttr);
       }).call(this);
     }
@@ -223,7 +224,7 @@ Swipe.prototype = {
   },
 
   transitionEnd: function(e) {
-    
+
     if (this.preload) this.load();
 
     if (this.delay) this.begin();
@@ -247,19 +248,19 @@ Swipe.prototype = {
 
     // used for testing first onTouchMove event
     this.isScrolling = undefined;
-    
+
     // reset deltaX
     this.deltaX = 0;
     this.deltaY = 0;
 
     // set transition time to 0 for 1-to-1 touch movement
     this.element.style.MozTransitionDuration = this.element.style.webkitTransitionDuration = 0;
-    
+
     e.stopPropagation();
   },
 
   onTouchMove: function(e) {
-    
+
     // ensure swiping with one touch and not pinching
     if(e.touches.length > 1 || e.scale && e.scale !== 1) return;
 
@@ -274,25 +275,25 @@ Swipe.prototype = {
     // if user is not trying to scroll vertically
     if (!this.isScrolling && !this.vertical) {
 
-      // prevent native scrolling 
+      // prevent native scrolling
       e.preventDefault();
 
       // cancel slideshow
       clearTimeout(this.interval);
 
       // increase resistance if first or last slide
-      this.deltaX = 
-        this.deltaX / 
+      this.deltaX =
+        this.deltaX /
           ( (!this.index && this.deltaX > 0               // if first slide and sliding left
             || this.index == this.length - 1              // or if last slide and sliding right
             && this.deltaX < 0                            // and if sliding at all
-          ) ?                      
+          ) ?
           ( Math.abs(this.deltaX) / this.width + 1 )      // determine resistance level
           : 1 );                                          // no resistance if false
-      
+
       // translate immediately 1-to-1
       this.element.style.MozTransform = this.element.style.webkitTransform = 'translate3d(' + (this.deltaX - this.index * this.width) + 'px,0,0)';
-      
+
       e.stopPropagation();
 
     }
@@ -303,15 +304,15 @@ Swipe.prototype = {
 
       clearTimeout(this.interval);
 
-      this.deltaY = 
-        this.deltaY / 
+      this.deltaY =
+        this.deltaY /
           ( (!this.index && this.deltaY > 0               // if first slide and sliding left
             || this.index == this.length - 4              // or if last slide and sliding right
             && this.deltaY < 0                           // and if sliding at all
-          ) ?                      
+          ) ?
           ( Math.abs(this.deltaY) / 60 + 1 )      // determine resistance level
           : 1 );                                          // no resistance if false
-      
+
       // translate immediately 1-to-1
       this.element.style.MozTransform = this.element.style.webkitTransform = 'translate3d(0, ' + (this.deltaY - this.index * 60) + 'px,0)';
 
@@ -323,24 +324,24 @@ Swipe.prototype = {
   onTouchEnd: function(e) {
 
     // determine if slide attempt triggers next/prev slide
-    var isValidSlide = 
+    var isValidSlide =
           Number(new Date()) - this.start.time < 250      // if slide duration is less than 250ms
           && Math.abs(this.deltaX) > 20                   // and if slide amt is greater than 20px
           || Math.abs(this.deltaX) > this.width/2,        // or if slide amt is greater than half the width
 
     // determine if slide attempt is past start and end
-        isPastBounds = 
+        isPastBounds =
           !this.index && this.deltaX > 0                          // if first slide and slide amt is greater than 0
           || this.index == this.length - 1 && this.deltaX < 0;    // or if last slide and slide amt is less than 0
 
     if (this.vertical) {
       isValidSlide = Number(new Date()) - this.start.time < 250
-          && Math.abs(this.deltaY) > 20                   
+          && Math.abs(this.deltaY) > 20
           || Math.abs(this.deltaY) > this.width/2;
 
-      isPastBounds = 
+      isPastBounds =
           !this.index && this.deltaY > 0
-          || this.index == this.length - 4 && this.deltaY < 0; 
+          || this.index == this.length - 4 && this.deltaY < 0;
     }
 
     // if not scrolling vertically
@@ -357,7 +358,7 @@ Swipe.prototype = {
       this.slide( this.index + ( isValidSlide && !isPastBounds ? (this.deltaY < 0 ? deltai : -deltai) : 0 ), this.speed );
 
     }
-    
+
     e.stopPropagation();
   },
 
