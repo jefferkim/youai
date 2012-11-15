@@ -1,7 +1,7 @@
 /*
-* 专辑列表
-*
-* */
+ * 专辑列表
+ *
+ * */
 Youai.albumsView = Backbone.View.extend({
 
     el:"#content",
@@ -21,8 +21,7 @@ Youai.albumsView = Backbone.View.extend({
 
         var method = (options.albumType === "recommend" ? "getRecommendAlbums.json" : "getLikeAlbums.json");
         this.albumList = new Youai.albumList();
-        this.albumList.url =  Youai.Util._devParseUrl(method, {"pageSize":"10", "pageNo":options.pageNo});
-
+        this.albumList.url = Youai.Util._devParseUrl(method, {"pageSize":"10", "pageNo":options.pageNo});
         this.albumList.fetch();
         this.albumList.on('reset', this.render, this);
 

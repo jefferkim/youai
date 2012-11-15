@@ -27,40 +27,7 @@
         },
         "data":[
             {
-                "album":{
-                    "albumId":"7898797",
-                    "commentNum":"12",
-                    "description":"专辑描述",
-                    "images":[
-                        {
-                            "height":"164",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http://img01.taobaocdn.com/tps/i1/T1xc6WXm8hXXbj_r6A-152-164.png",
-                            "width":"320"
-                        },
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http://img01.taobaocdn.com/tps/i1/T1vzXJXeppXXbvfB39_104445.jpg",
-                            "width":"320"
-                        }
-                    ],
-                    "isvInfo":{
-                        "brandImage":"http://img01.taobaocdn.com/tps/i1/T1tnuAXiRZXXX1dP6j-60-60.png",
-                        "isvCode":"123",
-                        "name":"美丽说",
-                        "url":"http://m.taobao.com/channel/act/mobile/guokudownload.html?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
-                    },
-                    "like":"true",
-                    "likeNum":"2",
-                    "title":"专辑标题",
-                    "user":{
-                        "userId":"213365",
-                        "userNick":"有爱用户"
-                    }
-                },
+
                 "commentNum":"8",
                 "comments":"评论数据",
                 "description":"商品描述",
@@ -103,40 +70,7 @@
                     }
                 ]
             },  {
-                "album":{
-                    "albumId":"7898797",
-                    "commentNum":"12",
-                    "description":"专辑描述",
-                    "images":[
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http://img01.taobaocdn.com/tps/i1/T1vzXJXeppXXbvfB39_104445.jpg",
-                            "width":"320"
-                        },
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http://img01.taobaocdn.com/tps/i1/T1vzXJXeppXXbvfB39_104445.jpg",
-                            "width":"320"
-                        }
-                    ],
-                    "isvInfo":{
-                        "brandImage":"http://img01.taobaocdn.com/tps/i1/T1tnuAXiRZXXX1dP6j-60-60.png",
-                        "isvCode":"123",
-                        "name":"美丽说",
-                        "url":"http://m.taobao.com/channel/act/mobile/guokudownload.html?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
-                    },
-                    "like":"true",
-                    "likeNum":"2",
-                    "title":"专辑标题",
-                    "user":{
-                        "userId":"213365",
-                        "userNick":"有爱用户"
-                    }
-                },
+
                 "commentNum":"8",
                 "comments":"评论数据",
                 "description":"商品描述",
@@ -180,40 +114,7 @@
                 ]
             },
             {
-                "album":{
-                    "albumId":"7898797",
-                    "commentNum":"12",
-                    "description":"专辑描述",
-                    "images":[
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http://img01.taobaocdn.com/tps/i1/T1vzXJXeppXXbvfB39_104445.jpg",
-                            "width":"320"
-                        },
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http://img01.taobaocdn.com/tps/i1/T1vzXJXeppXXbvfB39_104445.jpg",
-                            "width":"320"
-                        }
-                    ],
-                    "isvInfo":{
-                        "brandImage":"http://img01.taobaocdn.com/tps/i1/T1tnuAXiRZXXX1dP6j-60-60.png",
-                        "isvCode":"123",
-                        "name":"美丽说",
-                        "url":"http://m.taobao.com/channel/act/mobile/guokudownload.html?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
-                    },
-                    "like":"true",
-                    "likeNum":"2",
-                    "title":"专辑标题",
-                    "user":{
-                        "userId":"213365",
-                        "userNick":"有爱用户"
-                    }
-                },
+
                 "commentNum":"8",
                 "comments":"评论数据",
                 "description":"商品描述",
@@ -260,7 +161,7 @@
         "like":"true",
         "likeNum":"2",
         "recordTotal":"100",
-        "title":"专辑标题",
+        "title":"小清新专辑",
         "user":{
             "userId":"213365",
             "userNick":"有爱用户"

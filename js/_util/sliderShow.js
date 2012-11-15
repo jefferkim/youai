@@ -9,8 +9,6 @@ Youai.sliderShow = {
         this.destroyUI();
     },
 
-
-    /*TODO::this.model.save*/
     changeUI:function (e) {
         var target = e.currentTarget,
             operater = $(target).parents(".good-operater"),
@@ -83,7 +81,7 @@ Youai.sliderShow = {
         var self = this;
         for (var i = 0, LIS = "", imgs = data.images; i < imgs.length; i++) {
 
-            LIS += '<li><img src="' + imgs[i].url + '" width="284"/>'
+            LIS += '<li><img class="lazy" data-src="' + imgs[i].url + '_570x570.jpg" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png" width="284"/>'
                 + (i == 0 ? '<span class="good-operater"><a href="#" class="J-like ' + data.isLiked + '"></a><span class="like-num"><em class="J-likeNum">' + data.likeNum + '</em>人已喜欢</span></span>' : "")
                 + '</li>';
 
@@ -106,9 +104,7 @@ Youai.sliderShow = {
 
         this.goodSlider = new Swipe(document.getElementById(sliderID), {
             fixWidth:284,
-            preload:2,
-            lazyloadClass:"lazy-img",
-            lazyloadDataAttr:"data-img"
+            preload:2
         });
 
         this.goodSlider.load();

@@ -37,7 +37,7 @@ Youai.albumItemView = Backbone.View.extend({
     showComments:function(e){
         e.preventDefault();
         var U = Youai.Util;
-
+        //显示评论
         new Youai.commentsView({
             commentUrl:U._devParseUrl("getAblumComments.json", {"ablumId":111, "pageSize":"10", "pageNo":"1"})
         });

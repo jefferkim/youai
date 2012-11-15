@@ -950,7 +950,7 @@
         "recordTotal":"200",
         "scrType":"1",
         "srcCode":"2",
-        "title":"标题",
+        "title":"搜索列表标题",
         "todayLikeNum":"20"
     },
     "method":"getItemsFromList"

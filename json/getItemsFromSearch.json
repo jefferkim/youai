@@ -722,5 +722,5 @@
         "title":"标题",
         "todayLikeNum":"20"
     },
-    "method":"getItemsFromList"
+    "method":"getItemsFromSearch"
 }}

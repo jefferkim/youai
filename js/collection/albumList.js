@@ -9,6 +9,7 @@ Youai.albumList = Backbone.Collection.extend({
     },
 
     parse:function (resp) {
+        Youai.Util._checkLogin(resp);
         if (resp.ret[0].indexOf("SUCCESS::") != -1) {
             //我关注的专辑数据接口是不一样的
             var result = resp.data.result.data;

@@ -19,16 +19,16 @@ Youai.Router = Backbone.Router.extend({
         var wTitle = function(){
             var h1Map = {
                     '首页'        :/#!home/,
-                    '逛逛'        :/#!stroll\/p\d*/,
-                    '列表'        :/#!list\/[0-9]*\/p[0-9]*/,
+                    '逛逛'        :/#!stroll\/p\d*/,/*
+                    '列表'        :/#!list\/[0-9]*\/p[0-9]*//*,*/
                     '喜欢'        :/#!like\/[0-9]*/,
                     '详情页'       :/#!detail\/[0-9]*/,
                     '类目'        :/#!category/,
                     '风格'        :/#!style/,
                     '搜索'        :/#!search\/((.|\n)*)\/p[0-9]*/,
                     '专辑'        :/#!albums\/recommend\/p[0-9]*/,
-                    '我关注的专辑'  :/#!albums\/like\/p[0-9]*/,
-                    '专辑列表'      :/#!album\/[0-9]*\/p[0-9]*/
+                    '我关注的专辑'  :/#!albums\/like\/p[0-9]*//*,
+                    '专辑列表'      :/#!album\/[0-9]*\/p[0-9]*///头部专辑列表中的文字改掉
                 },
                 lc = location.hash;
             for (var key in h1Map) {
@@ -75,6 +75,7 @@ Youai.Router = Backbone.Router.extend({
         new Youai.goodListView({
             "goodUrl":Youai.Util._devParseUrl("getItemsFromList.json", {"listCode":listCode, "pageSize":"10", "pageNo":pageNo})
         }).render();
+
     },
     //类目
     category:function () {
@@ -117,7 +118,7 @@ Youai.Router = Backbone.Router.extend({
     //风格
     style:function () {
 
-        $("#J-styleLayout").length <1 && $("#content").html(JST["template/style_layout"]());
+       $("#J-styleLayout").length <1 && $("#content").html(JST["template/style_layout"]());
 
     },
     //搜索页
@@ -163,26 +164,25 @@ Youai.Router = Backbone.Router.extend({
     //专辑商品列表
     albumItems:function (albumId, pageNo) {
 
+        $("#J-albumItemInfo").length <1 && $("#content").html(JST["template/album_info_layout"]());
+
         var self = this,
             url = Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":albumId, "pageSize":"10", "pageNo":pageNo});
 
         var albumGoods = new Youai.GoodList();
 
-        $("#J-albumItemInfo").length <1 && $("#content").html(JST["template/album_info_layout"]());
-
         Youai.Util.Ajax(url, function (resp) {
 
             var result = resp.data.result;
+            $("#J-headerT").text(result.title);
             albumGoods.reset(result.data);
-            //如果albumId没变化，则说明是同一张专辑
-            if(result.albumId != self.albumId){
-                self.albumId = result.albumId;
-                var albumInfo = new Youai.albumInfo();
-                $("#J-albumInfoWrap").html(albumInfo.render({"albumInfo":result}).el);
-            }
+            var albumInfo = new Youai.albumInfo();
+            $("#J-albumInfoWrap").html(albumInfo.render({"albumInfo":result}).el);
+
             new Youai.goodListView({
                 data:albumGoods
             }).render();
+
             new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(result.recordTotal / 30), 'objId':'p'});
         });
     }

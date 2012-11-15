@@ -92,8 +92,6 @@ window.lazyload = {
             function act(_self, n) {
                 var original = _self.attr('dataimg');
                 _self.attr('src', original);
-                 
-                 
 
                 if (!_self[0].onload) {
                     _self[0].onload = function () {
@@ -112,23 +110,34 @@ window.lazyload = {
 
 
             function showPop(_self, n){
-                if(that._inViewport(_self,10)){
                     console.log(_self);
 
                     var comment = _self.parents("li").find(".pop-comment");
                     if(comment.length >0){
                         console.log(comment);
-                        comment.show();
+
+                            comment.show().animate({
+                                opacity:1
+                            },1000,'ease',function(){
+                                var that = this;
+                                setTimeout(function(){
+                                    $(that).animate({
+                                        opacity:0
+                                    },500,'ease',function(){
+                                       $(that).hide();
+                                    })
+                                },2000);
+                            });
+
+
                     }
-                }
-
-
             }
 
             that['imglist'].each(function (index, node) {
                 if (!node) return;
                 var $this = $(node);
                 if (!that._inViewport($this)) return
+                showPop($this,index);
                 act($this, index);
 
             });

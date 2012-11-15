@@ -11,7 +11,7 @@
 
         <% _.each(albums, function(album,index) { %>
             <li <% if(index % 2 != 0){%> class="even"  <%}%>>
-                <a href="#"><img src="<%= album.isvInfo.brandImage %>"/>
+                <a href="#"><img src="<%= album.isvInfo.brandImage %>" width="148"/>
                    <span><%= album.title %></span>
                 </a>
             </li>

@@ -201,7 +201,8 @@ Swipe.prototype = {
       (function() {
         var j = i, img = new Image;
         img.onload = function() { 
-          images[j].parentNode.replaceChild(this, images[j]); 
+          //images[j].parentNode.replaceChild(this, images[j]);
+          images[j].src = this.src;
           slide.setAttribute('loaded', true);
         };
         img.src = images[i].getAttribute('data-' + this.lazyloadDataAttr);
