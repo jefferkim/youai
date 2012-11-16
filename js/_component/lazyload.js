@@ -109,30 +109,16 @@ window.lazyload = {
             }
 
 
-            function showPop(_self, n) {
 
-                var comment = _self.parents("li").find(".pop-comment");
-                if (comment.length > 0) {
-                    comment.show().animate({
-                        opacity:1
-                    }, 1000, 'ease', function () {
-                        var that = this;
-                        setTimeout(function () {
-                            $(that).animate({
-                                opacity:0
-                            }, 500, 'ease', function () {
-                                $(that).hide();
-                            })
-                        }, 2000);
-                    });
-                }
+            var hasCommentItem = $('img.hascomment');
+            if(hasCommentItem.length >0 && that._inViewport(hasCommentItem,20)){
+                $(document.body).trigger("list:popcomment",[hasCommentItem]);
             }
 
             that['imglist'].each(function (index, node) {
                 if (!node) return;
                 var $this = $(node);
                 if (!that._inViewport($this)) return
-                showPop($this,index);
                 act($this, index);
 
             });

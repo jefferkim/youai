@@ -97,7 +97,7 @@ Youai.sliderShow = {
             sliderDOM.push(nav_holder);
             sliderDOM.push('</div>');
 
-            $("#content").append(sliderDOM.join(""));
+            $("#J-popWrap").append(sliderDOM.join(""));
         } else {
             $("#" + sliderID+"_UL", "#content").html(LIS);
         }

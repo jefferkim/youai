@@ -21,6 +21,24 @@ Youai.goodListView = Backbone.View.extend({
         if (options.data) {
             this.goodList = options.data;
         }
+        //弹出气泡提示
+        $(document.body).on("list:popcomment",function(e,_self){
+            var comment = _self.parents("li").find(".pop-comment");
+            _self.removeClass("hascomment");
+            comment.show().animate({
+                opacity:1
+            }, 1000, 'ease', function () {
+                var that = this;
+                setTimeout(function () {
+                    $(that).animate({
+                        opacity:0
+                    }, 500, 'ease', function () {
+                        $(that).hide();
+
+                    })
+                }, 2000);
+            })
+        });
 
     },
 
