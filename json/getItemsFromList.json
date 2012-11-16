@@ -81,6 +81,7 @@
                 "itemId":"12456",
                 "like":"true",
                 "likeNum":"3",
+                "comments":"这是一条测试信息啊啊啊！",
                 "originalPrice":"10098",
                 "tags":[
                     {
@@ -929,7 +930,6 @@
                 "itemId":"87456",
                 "like":"true",
                 "likeNum":"3",
-                "comments":"这是一条测试信息啊啊啊！",
                 "originalPrice":"100",
                 "tags":[
                     {

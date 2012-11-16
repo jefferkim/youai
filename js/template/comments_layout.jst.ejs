@@ -1,16 +1,12 @@
 <div class="layout-tpl comment-tpl" id="J-tplComment">
     <a href="#" id="J-close" class="close-btn">关闭</a>
-    <div class="comments" id="J-comment-block" style="height:300px;">
-        <ul id="J-comment"> </ul>
+    <div class="comments-wrap">
+        <div class="comments" id="J-comment-block">
+            <ul id="J-comment"> </ul>
+        </div>
+        <div class="textarea-block">
+           <div class="field"><input type="text" name="content" class="J-inputField"/></div>
+           <a href="#" class="submit" id="J-submit">发送</a>
+        </div>
     </div>
-    <div class="textarea-block">
-       <div class="field"><input type="text" name="content" class="J-inputField"/></div>
-       <a href="#" class="submit" id="J-submit">发送</a>
-    </div>
-    <style>
-        #J-mask{
-            opacity:0.8;
-            height:500px;
-        }
-    </style>
 </div>

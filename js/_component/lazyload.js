@@ -109,28 +109,23 @@ window.lazyload = {
             }
 
 
-            function showPop(_self, n){
-                    console.log(_self);
+            function showPop(_self, n) {
 
-                    var comment = _self.parents("li").find(".pop-comment");
-                    if(comment.length >0){
-                        console.log(comment);
-
-                            comment.show().animate({
-                                opacity:1
-                            },1000,'ease',function(){
-                                var that = this;
-                                setTimeout(function(){
-                                    $(that).animate({
-                                        opacity:0
-                                    },500,'ease',function(){
-                                       $(that).hide();
-                                    })
-                                },2000);
-                            });
-
-
-                    }
+                var comment = _self.parents("li").find(".pop-comment");
+                if (comment.length > 0) {
+                    comment.show().animate({
+                        opacity:1
+                    }, 1000, 'ease', function () {
+                        var that = this;
+                        setTimeout(function () {
+                            $(that).animate({
+                                opacity:0
+                            }, 500, 'ease', function () {
+                                $(that).hide();
+                            })
+                        }, 2000);
+                    });
+                }
             }
 
             that['imglist'].each(function (index, node) {

@@ -3,7 +3,7 @@
 * */
 Youai.commentsView = Backbone.View.extend({
 
-    el:"#content",
+    el:"#J-webapp",
 
     tpl:{
         "commentsLayout":JST["template/comments_layout"]
@@ -16,9 +16,16 @@ Youai.commentsView = Backbone.View.extend({
 
     initialize:function (options) {
 
-       $("#J-mask").show();
+        $("#J-mask").show().animate({
+            opacity:0.8
+        }, 1000, 'ease');
 
-       $("#J-tplComment").length > 0 ? $("#J-tplComment").show() : this.$el.append(this.tpl["commentsLayout"]());
+        if($("#J-tplComment").length > 0){
+            $("#J-tplComment").show()
+        }else{
+            $("#J-popWrap").html(this.tpl["commentsLayout"]());
+            $("#J-comment-block").height(window.innerHeight-100)
+        }
 
        this.commentList = new Youai.CommentList();
        this.commentList.url = options.commentUrl;
@@ -32,7 +39,11 @@ Youai.commentsView = Backbone.View.extend({
 
     closePop:function(e){
         e.preventDefault();
-        $("#J-mask").hide();
+        $("#J-mask").animate({
+            opacity:0
+        }, 1000, 'ease', function () {
+            $(this).hide();
+        });
         $("#J-tplComment").hide();
         $("#J-comment","#J-tplComment").html("");
     },
