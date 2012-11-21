@@ -31,7 +31,9 @@ Youai.Good = Backbone.Model.extend({
         return {
             "images":this.get("images"),
             "likeNum":this.get("likeNum"),
-            "isLiked":this.get("like") === "true"
+            "isLiked":this.get("like") === "true",
+            "itemId":this.get("itemId"),
+            "isvCode":this.get("isvInfo").isvCode
         };
     },
 

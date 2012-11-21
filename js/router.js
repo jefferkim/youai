@@ -61,7 +61,8 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
-        var url = Youai.Util._devParseUrl("getItemsFromVisit.json", {"pageSize":"10", "pageNo":pageNo || 1});
+        //var url = Youai.Util._devParseUrl("getItemsFromVisit.json", {"pageSize":"10", "pageNo":pageNo || 1});
+        var url = Youai.Util.parseUrl({"method":"getItemsFromVisit","pageSize":"10", "pageNo":pageNo || 1});
         new Youai.goodListView({
             "goodUrl":url
         }).render();
@@ -73,29 +74,37 @@ Youai.Router = Backbone.Router.extend({
         $("#J-list").length < 1&&$("#content").html(JST["template/list_good"]());
 
         new Youai.goodListView({
-            "goodUrl":Youai.Util._devParseUrl("getItemsFromList.json", {"listCode":listCode, "pageSize":"10", "pageNo":pageNo})
+            //"goodUrl":Youai.Util._devParseUrl("getItemsFromList.json", {"listCode":listCode, "pageSize":"10", "pageNo":pageNo})
+            "goodUrl":Youai.Util.parseUrl({"method":"getItemsFromList","listCode":listCode,"pageSize":"30","pageNo":pageNo},$("#J-sid").val())
         }).render();
 
     },
     //类目
     category:function () {
-        var self = this;
+        var self = this,
+            U = Youai.Util;
 
         $("#J-tagLayout").length <1 && $("#content").html(JST["template/tag_layout"]());
+
+        U.Ajax(U.parseUrl({"method":"getCategoryConfig","type":"1"}),function(resp){
+            $("#J-tagPageContent").html(resp.data.result.data);
+        });
+
 
         $("#J-searchBtn").on("click", function (e) {
             e.preventDefault();
 
-            var searchTxt = $("#J-searchContent").val();
+            var searchTxt = $.trim($("#J-searchContent").val());
             if (searchTxt === "") {
                 self.navigate('!stroll/p1', true);
                 return;
             }
             var searchGoodList = new Youai.GoodList();
 
-            var url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(searchTxt), "pageSize":"10", "pageNo":1});
+            //var url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(searchTxt), "pageSize":"10", "pageNo":1});
+            var url = U.parseUrl({"method":"getItemsFromSearch","pageSize":"30","pageNo":"1","keyword":encodeURI(searchTxt)} );
 
-            Youai.Util.Ajax(url, function (resp) {
+            U.Ajax(url, function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                     var result = resp.data.result;
                     if (result.recordTotal === "0") {
@@ -119,13 +128,16 @@ Youai.Router = Backbone.Router.extend({
     style:function () {
 
        $("#J-styleLayout").length <1 && $("#content").html(JST["template/style_layout"]());
+        Youai.Util.Ajax(Youai.Util.parseUrl({"method":"getCategoryConfig","type":"2"}),function(resp){
+            $("#J-stylePageContent").html(resp.data.result.data);
+        });
 
     },
     //搜索页
     search:function (keyword, pageNo) {
 
-        var url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(keyword), "pageSize":"10", "pageNo":pageNo || 1});
-        //searchList.url = Youai.Util.parseUrl({"method":"getItemsFromSearch","pageSize":"10","pageNo":pageNo||1,"keyword":encodeURI(keyword)});
+       // var url = Youai.Util._devParseUrl("getItemsFromSearch.json", {"keyword":encodeURI(keyword), "pageSize":"10", "pageNo":pageNo || 1});
+        var url  = Youai.Util.parseUrl({"method":"getItemsFromSearch","pageSize":"10","pageNo":pageNo||1,"keyword":encodeURI(keyword)});
 
         new Youai.searchListView({
             "searchUrl":url

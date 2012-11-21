@@ -13,7 +13,8 @@ Youai.Mod = {
             t = cfg.eventTarget,
             method = $(t).hasClass("on") ? "dumpAlbum" : "likeItem";
 
-        var url = U.parseUrl({"method":method, "itemId":cfg.itemId, "isvCode":cfg.isvCode}, $("#J_Sid").val());
+        //var url = U.parseUrl({"method":method, "itemId":cfg.itemId, "isvCode":cfg.isvCode}, $("#J_Sid").val());
+        var url = U._devParseUrl(method+".json",{"itemId":cfg.itemId, "isvCode":cfg.isvCode}, $("#J_Sid").val());
 
         var success = (cfg.success || function (response) {
             if(response.ret[0].indexOf("SUCCESS::") != -1){

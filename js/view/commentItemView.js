@@ -27,9 +27,8 @@ Youai.commentItemView = Backbone.View.extend({
         e.preventDefault();
         var comment = this.model.toJSON(),
             input = $(".J-inputField","#J-tplComment");
-        console.log(comment);
+
         $(".textarea-block","#J-tplComment").addClass("show");
-        input.attr("data-replyId", comment.id);
         input.val("回复"+comment.user.userNick+":").focus();
 
     },

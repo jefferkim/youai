@@ -56,18 +56,24 @@ Youai.commentsView = Backbone.View.extend({
         var commentBlock = $(".textarea-block","#J-tplComment"),
             inputField = $(".J-inputField","#J-tplComment");
 
-        if (inputField.val() === "") {
+        if ($.trim(inputField.val()) === "") {
             notification.pop("请填写评论内容").show();
             return;
         }
         else {
 
-            var url = U._devParseUrl("addCommentForItem.json",{
+            /*var url = U._devParseUrl("addCommentForItem.json",{
                 "method":"addCommentForItem",
                 "content":inputField.val(),
                 "itemId":location.hash.split("/")[1],//链接中取得
                 "commentParentId":inputField.attr("data-replyId")
-            });
+            });*/
+            var url = U.parseUrl({
+                "method":"addCommentForItem",
+                "content":$.trim(inputField.val()),
+                "itemId":location.hash.split("/")[1],//链接中取得
+                "isvCode":25 //TODO:后期获取
+            },"9ba7387ef40444973921f48e0a6d1b20");
 
             var success = function (response) {
                 var result = response.ret[0];
