@@ -4,7 +4,8 @@ Youai.DetailView = Backbone.View.extend({
 
   events: {
     'click .comment-count': 'showComemnts',
-    'click .vslide li': 'displayAnotherItem'
+    'click .vslide li': 'displayAnotherItem',
+    'click .big-pic': 'showImageSlide'
   },
 
   initialize: function() {
@@ -29,6 +30,9 @@ Youai.DetailView = Backbone.View.extend({
       success: function(json) {
         if (json.ret[0].search('SUCCESS') > -1) {
           self.data = json.data.result
+          self.currentItemImages = self.data.images;
+          self.currentItemLikeNum = self.data.likeNum;
+          self.likeCurrentItem    = self.data.like == 'true';
           self.displayItem(id)
         } else {
           console.log('mtop error')
@@ -88,6 +92,10 @@ Youai.DetailView = Backbone.View.extend({
     // 更新标签
     $('.recommendations').empty().html(JST['template/detail_tags'](item))
 
+    this.currentItemImages = item.images;
+    this.currentItemLikeNum = item.likeNum;
+    this.likeCurrentItem = item.like == 'true';
+
     Youai.router.navigate('!detail/' + item.itemId)
   },
 
@@ -95,6 +103,18 @@ Youai.DetailView = Backbone.View.extend({
     new Youai.commentsView({
         //commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
         commentUrl:Youai.Util.parseUrl({"method":"getItemComments","itemId":"1605745989","pageSize":"10","pageNo":"1","isvCode":"25"},"83fb97e85b9c12374f8b8426e5d564d8")
+    });
+  },
+
+  showImageSlide: function() {
+//      "images":this.get("images"),
+//  "likeNum":this.get("likeNum"),
+//  "isLiked":this.get("like") === "true"
+// Youai.sliderShow.init('slider',data);
+    Youai.sliderShow.init('slider', {
+      images: this.currentItemImages,
+      likeNum: this.currentItemLikeNum,
+      isLiked: this.likeCurrentItem
     });
   }
 
