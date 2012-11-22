@@ -61,8 +61,8 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
-        //var url = Youai.Util._devParseUrl("getItemsFromVisit.json", {"pageSize":"10", "pageNo":pageNo || 1});
-        var url = Youai.Util.parseUrl({"method":"getItemsFromVisit","pageSize":"10", "pageNo":pageNo || 1});
+        var url = Youai.Util._devParseUrl("getItemsFromVisit.json", {"pageSize":"10", "pageNo":pageNo || 1});
+        //var url = Youai.Util.parseUrl({"method":"getItemsFromVisit","pageSize":"10", "pageNo":pageNo || 1});
         new Youai.goodListView({
             "goodUrl":url
         }).render();
