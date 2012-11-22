@@ -1,6 +1,6 @@
 <% if(isLogined){ %>
     <div class="logined">
-       <div class="avatar"><img src="<%= userFace %>"/><span class="cover"></span></div>
+       <div class="avatar"><img src="<%= userFace %>" width="50" height="50"/><span class="cover"></span></div>
        <div class="user-info"><span class="user-name"><%= userNick %></span><span class="weather" id="J-weather"><img src="img/icon/<%= weatherIcon %>.png"/><em><%= temperature %></em></span></div>
        <p class="login-info"><%= loginInfo %></p>
     </div>

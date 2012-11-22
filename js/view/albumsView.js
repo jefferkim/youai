@@ -21,8 +21,8 @@ Youai.albumsView = Backbone.View.extend({
 
         var method = (options.albumType === "recommend" ? "getRecommendAlbums" : "getLikeAlbums");
         this.albumList = new Youai.albumList();
-        this.albumList.url = Youai.Util._devParseUrl(method+".json", {"pageSize":"10", "pageNo":options.pageNo});
-        //this.albumList.url = Youai.Util.parseUrl({"method":method,"pageSize":"10", "pageNo":options.pageNo},"");
+        //this.albumList.url = Youai.Util._devParseUrl(method+".json", {"pageSize":"10", "pageNo":options.pageNo});
+        this.albumList.url = Youai.Util.parseUrl({"method":method,"pageSize":"10", "pageNo":options.pageNo},$("#J_Sid").val());
         this.albumList.fetch();
         this.albumList.on('reset', this.render, this);
 

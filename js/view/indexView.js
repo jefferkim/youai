@@ -48,7 +48,7 @@ Youai.indexView = Backbone.View.extend({
 
                 var userTpl = self.templates["home-user"]({
                     "isLogined":result.user ? true : false,
-                    "userFace":result.user ? result.user.userFace : "",
+                    "userFace":result.user ? "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + result.user.userId + "&width=40&height=40&type=sns" : "",
                     "userNick":result.user ? result.user.userNick : "",
                     "loginInfo":result.copywriters[0].content,
                     "weatherIcon":weatherIcon,
@@ -97,7 +97,7 @@ Youai.indexView = Backbone.View.extend({
 
         $.ajax({
             //sid开发阶段随便定义
-            url:Youai.Util.parseUrl({"method":"getHomeInfo"}, $("#J-sid").val()),
+            url:Youai.Util.parseUrl({"method":"getHomeInfo"}, $("#J_Sid").val()),
             //url:Youai.Util._devParseUrl("getHomeInfo.json","11111"),
             success:function (resp) {
                 var data = resp.data.result;
