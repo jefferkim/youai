@@ -43,14 +43,14 @@ Youai.Util = {
     },
 
 
-     _setCookie:function (name, value,domain) {
+    setCookie:function (name, value,domain) {
             var Days = 365; //保存 30 天
             var exp = new Date();    //new Date("December 31, 9998");
             exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
             document.cookie = name + "=" + escape(value) + ";domain=" + domain +";expires=" + exp.toGMTString();
     },
 
-    _getCookie:function (name) {
+    getCookie:function (name) {
         var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
         if (arr != null) return unescape(arr[2]);
         return null;
@@ -103,26 +103,40 @@ Youai.Util = {
 
     init:function(){
         linkfocus("a");
+      /*  var mtopH5 = mtop_h5();
+        mtopH5.getFirstToken();
+*/
+        this.menu();
     },
 
 
     menu:function(){
+        var menuList = $("#J-menuList");
+
         $("#J-menu").on("click",function(e){
             e.preventDefault();
-            $(".menu-list").show();
+            $(".menu-list").toggleClass("show");
         });
 
         $('body > div').click(function (ev) {
             var target = ev.target || ev.srcElement;
             if (target.nodeName.toUpperCase() === 'DIV') {
                 if ($(target).attr('id') != 'J-menuList') {
-                    $("#J-menuList").hide();
+                    menuList.removeClass("show");
                 }
             }
         });
-        window.addEventListener("hashchange",function(){
-            $("#J-menuList").hide();
-        },false);
+        $("a","#J-menuList").click(function(e){
+            e.preventDefault();
+            var target = e.currentTarget,
+                goToHash = $(target).attr("href");
+            menuList.removeClass("show");
+            //不关心返回
+            $.post('maidian.json', {menuType:1}, function(response){
+                console.log(response)
+            });
+            Youai.router.navigate(goToHash,true);
+        });
     }
 
 

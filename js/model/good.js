@@ -7,7 +7,7 @@ Youai.Good = Backbone.Model.extend({
     },
 
     height:function () {
-        return 150/(this.get("images")[0].width/this.get("images")[0].height);
+        return parseInt(150/(this.get("images")[0].width/this.get("images")[0].height));
     },
 
     _parsePrice:function () {

@@ -50,7 +50,7 @@ Youai.indexView = Backbone.View.extend({
                     "isLogined":result.user ? true : false,
                     "userFace":result.user ? "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + result.user.userId + "&width=40&height=40&type=sns" : "",
                     "userNick":result.user ? result.user.userNick : "",
-                    "loginInfo":result.copywriters[0].content,
+                    "loginInfo":result.msg ? result.msg.content : result.copywriters[0].content,
                     "weatherIcon":weatherIcon,
                     "temperature":data.t1
                 });
@@ -91,20 +91,28 @@ Youai.indexView = Backbone.View.extend({
     },
 
     loadLayout:function () {
-        var self = this;
+        var self = this,
+            U = Youai.Util;
 
         $(this.el).html(this.templates["home-layout"]());
 
+        var woMsgId = U.getCookie("WO_MSG");
+
         $.ajax({
-            //sid开发阶段随便定义
-            url:Youai.Util.parseUrl({"method":"getHomeInfo","msgval":"1,2"}, $("#J_Sid").val()),
+
+            url:Youai.Util.parseUrl({"method":"getHomeInfo","msgval":woMsgId||""}, $("#J_Sid").val()),
             //url:Youai.Util._devParseUrl("getHomeInfo.json","11111"),
             success:function (resp) {
                 var data = resp.data.result;
+                if(data.msg){
+                    var msgIds = woMsgId ? woMsgId+","+data.msg.id : data.msg.id;
+                    U.setCookie("WO_MSG",msgIds,location.hostname.match(/$|(?:m|waptest|wapa)\.taobao\.com/gi)[0]);
+                }
                 self._addModUser(data);
                 self._addModGood(data);
                 self._addModAlbum(data);
                 self._addModYouai(data);
+
             },
             error:function (xhr, type) {
                 alert('获取首页信息错误')

@@ -1,96 +1,123 @@
-{
-    "api":"com.taobao.wap.rest2.wo3",
-    "v":"*",
-    "ret":[
-        "SUCCESS::接口调用成功"
-    ],
-    "data":{
-        "result":{
-            "albums":[
-                {
-                    "albumId":"7898797",
-                    "commentNum":"12",
-                    "description":"专辑描述",
-                    "isvInfo":{
-                        "brandImage":"http: //***",
-                        "isvCode":"123",
-                        "name":"美丽说",
-                        "url":"http://***?ttid=32sms019&sid=83fb97e85b9c12374f8b8426e5d564d8&sprefer=p23381"
-                    },
-                    "like":"true",
-                    "likeNum":"2",
-                    "title":"专辑标题",
-                    "titlePages":[
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http: //***",
-                            "width":"320"
-                        },
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http: //***",
-                            "width":"320"
-                        }
-                    ],
-                    "user":{
-                        "userFace":"http://***?userId=74199100&width=40&height=40&type=sns",
-                        "userId":"213365",
-                        "userNick":"有爱用户"
+{"api":"com.taobao.wap.rest2.wo3", "v":"*", "ret":["SUCCESS::接口调用成功"], "data":{
+    "result":{
+        "albums":[
+            {
+                "albumId":"30",
+                "attribute":"total->15;albumId->286007;owner->2027131157",
+                "commentNum":"0",
+                "description":"  宝贝描述有空格  ",
+                "images":[
+                    {
+                        "height":"0",
+                        "sequence":"3",
+                        "type":"0",
+                        "url":"http://img06.daily.taobaocdn.net/bao/uploaded/T1wCCyXjXgXXagOFbX",
+                        "width":"0"
                     }
+                ],
+                "isvInfo":{
+                    "isvCode":"27"
                 },
-                {
-                    "albumId":"7898797",
-                    "commentNum":"12",
-                    "description":"专辑描述",
-                    "isvInfo":{
-                        "brandImage":"http: //***",
-                        "isvCode":"123",
-                        "name":"美丽说",
-                        "url":"http: //***"
-                    },
-                    "like":"true",
-                    "likeNum":"2",
-                    "title":"专辑标题",
-                    "titlePages":[
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http: //***",
-                            "width":"320"
-                        },
-                        {
-                            "height":"200",
-                            "sequence":"1",
-                            "type":"1",
-                            "url":"http: //***",
-                            "width":"320"
-                        }
-                    ],
-                    "user":{
-                        "userFace":"http://***/avatar/getAvatar.do?userId=74199100&width=40&height=40&type=sns",
-                        "userId":"213365",
-                        "userNick":"有爱用户"
+                "itemTotal":"15",
+                "like":"false",
+                "likeNum":"0",
+                "title":"专辑标题接口测试 &&286007"
+            },
+            {
+                "albumId":"31",
+                "attribute":"total->15;albumId->286010;owner->2027131157",
+                "commentNum":"0",
+                "description":"  宝贝描述有空格  ",
+                "images":[
+                    {
+                        "height":"0",
+                        "sequence":"3",
+                        "type":"0",
+                        "url":"http://img01.daily.taobaocdn.net/bao/uploaded/T1wCCyXjXgXXagOFbX",
+                        "width":"0"
                     }
-                }
-            ],
-            "copywriters":[
-                {
-                    "content":"方案内容",
-                    "type":"1"
+                ],
+                "isvInfo":{
+                    "isvCode":"27"
                 },
-                {
-                    "content":"方案内容",
-                    "type":"1"
-                }
-            ],
-            "homeOperators":"html code",
-            "itemArea":"html code"
+                "itemTotal":"15",
+                "like":"false",
+                "likeNum":"0",
+                "title":"专辑标题接口测试 &&286010"
+            },
+            {
+                "albumId":"32",
+                "attribute":"total->9;albumId->286013;owner->2027131157",
+                "commentNum":"0",
+                "description":"  宝贝描述有空格  ",
+                "images":[
+                    {
+                        "height":"0",
+                        "sequence":"3",
+                        "type":"0",
+                        "url":"http://img08.daily.taobaocdn.net/bao/uploaded/T1wCCyXjXgXXagOFbX",
+                        "width":"0"
+                    }
+                ],
+                "isvInfo":{
+                    "isvCode":"27"
+                },
+                "itemTotal":"9",
+                "like":"false",
+                "likeNum":"0",
+                "title":"专辑标题接口测试 &&286013"
+            },
+            {
+                "albumId":"33",
+                "attribute":"total->17;albumId->363008;owner->2052692281",
+                "commentNum":"0",
+                "images":[
+                    {
+                        "height":"0",
+                        "sequence":"3",
+                        "type":"0",
+                        "url":"http://img01.daily.taobaocdn.net/bao/uploaded/T1wCCyXjXgXXagOFbX",
+                        "width":"0"
+                    }
+                ],
+                "isvInfo":{
+                    "isvCode":"27"
+                },
+                "itemTotal":"17",
+                "like":"false",
+                "likeNum":"0",
+                "title":"啦啦啦&&363008"
+            }
+        ],
+        "copywriters":[
+            {
+                "content":"你来了，2天数，今天是连续登录有爱第{visitday}天",
+                "type":"1"
+            },
+            {
+                "content":"宝贝运营22222",
+                "type":"2"
+            },
+            {
+                "content":"专辑运营222",
+                "type":"3"
+            },
+            {
+                "content":"最有爱运营2222",
+                "type":"4"
+            }
+        ],
+        "firstAlbumOperators":"<a href=\"#\"><img src=\"http://img03.taobaocdn.com/tps/i3/T13JbYXjJjXXaeHbsb-100-100.png\"/><span>13474喜欢</span></a>",
+        "homeOperators":"<div class=\"block\"><img src=\"http://img02.taobaocdn.com/tps/i2/T10KDWXdFdXXaoAkL_-310-138.png\"/></div><div class=\"block\"><img src=\"http://img01.taobaocdn.com/tps/i1/T11DnVXe0hXXXfnJrd-153-73.png\"/><img src=\"http://img04.taobaocdn.com/tps/i4/T1ZKTWXf0fXXaep_Yc-152-73.png\"/></div><div class=\"home-tags clearfix\" id=\"J-modTags\"><div class=\"bd\"><ul><li><a href=\"#\">最新</a></li><li><a href=\"#\">热门</a></li><li><a href=\"#\">初秋单鞋</a></li><li><a href=\"#\">复古</a></li><li><a href=\"#\">风衣外套</a></li><li><a href=\"#\">开衫</a></li><li><a href=\"#\">新款包</a></li><li><a href=\"#\">波点控</a></li><li><a href=\"#\">秋季补水</a></li><li><a href=\"#\">更多</a></li></ul></div></div>",
+        "itemArea":"<ul><li><a href=\"#\"><img src=\"http://img03.taobaocdn.com/tps/i3/T13JbYXjJjXXaeHbsb-100-100.png\"/><span>13474喜欢</span></a></li><li><a href=\"#\"><img src=\"http://img03.taobaocdn.com/tps/i3/T13JbYXjJjXXaeHbsb-100-100.png\"/><span>13474喜欢</span></a></li><li><a href=\"#\"><img src=\"http://img03.taobaocdn.com/tps/i3/T13JbYXjJjXXaeHbsb-100-100.png\"/><span>13474喜欢</span></a></li><li><a href=\"#\"><img src=\"http://img03.taobaocdn.com/tps/i3/T13JbYXjJjXXaeHbsb-100-100.png\"/><span>13474喜欢</span></a></li><li><a href=\"#\"><img src=\"http://img03.taobaocdn.com/tps/i3/T13JbYXjJjXXaeHbsb-100-100.png\"/><span>13474喜欢</span></a></li><li><a href=\"#\"><img src=\"http://img03.taobaocdn.com/tps/i3/T13JbYXjJjXXaeHbsb-100-100.png\"/><span>13474喜欢</span></a></li></ul>",
+        "user":{
+            "userId":"182155179",
+            "userNick":"tbtestall"
         },
-        "method":"getHomeInfo"
-    }
-}
+        "msg":{
+            "id":1,
+            "content":"ffffff"
+        }
+    },
+    "method":"getHomeInfo"
+}}

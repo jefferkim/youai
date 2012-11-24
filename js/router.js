@@ -54,6 +54,36 @@ Youai.Router = Backbone.Router.extend({
     //首页
     index:function () {
         var indexView = new Youai.indexView();
+
+
+        /*var mtoph5 =  mtop_h5();
+        var url = {'api':'com.taobao.wap.rest2.wo3', 'data':{"method":"getCategoryConfig", "type":"2"}, 'extParam':{}};
+        mtoph5.getApi(url.api, "1.0", url.data, url.extParam,
+            function (a) {
+                console.log("fffff");
+                console.log(a);
+                console.log("fffff");
+                 mtopAjax({
+                 json: a,
+                 error: function(a) {
+
+
+                 },
+                 success: function(a) {
+
+
+                 }
+                 })
+
+            },
+            function () {
+
+
+            }
+        );*/
+
+
+
     },
 
     //逛逛
