@@ -43,6 +43,19 @@ Youai.Util = {
     },
 
 
+     _setCookie:function (name, value,domain) {
+            var Days = 365; //保存 30 天
+            var exp = new Date();    //new Date("December 31, 9998");
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + escape(value) + ";domain=" + domain +";expires=" + exp.toGMTString();
+    },
+
+    _getCookie:function (name) {
+        var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+        if (arr != null) return unescape(arr[2]);
+        return null;
+    },
+
     //精确到两位小数
     toFixed:function (num,precision) {
         var power = Math.pow(10, precision || 0);
