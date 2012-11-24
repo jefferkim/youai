@@ -53,6 +53,9 @@ Youai.albumItemView = Backbone.View.extend({
     toggleFav:function (e) {
         e.preventDefault();
         var album = this.model.toJSON();
+
+        console.log(album);
+
         Youai.Mod.toggleAlbumLike({
             eventTarget:e.currentTarget,
             itemId:album.albumId,

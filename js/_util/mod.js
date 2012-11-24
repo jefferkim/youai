@@ -30,7 +30,9 @@ Youai.Mod = {
         var self = this,
             U = Youai.Util,
             t = cfg.eventTarget,
-            url = U._devParseUrl(($(t).hasClass("added")?"dumpAlbum.json":"likeAlbum.json"),{"albumId":cfg.albumId,"isvCode":cfg.isvCode});
+            method = $(t).hasClass("added") ? "dumpAlbum" : "likeAlbum",
+           // url = U._devParseUrl(($(t).hasClass("added")?"dumpAlbum.json":"likeAlbum.json"),{"albumId":cfg.albumId,"isvCode":cfg.isvCode});
+            url = U.parseUrl({"method":method,"albumId":cfg.albumId,"isvCode":cfg.isvCode},$("#J_Sid").val());
 
         var success = (cfg.success || function(response){
             if(response.ret[0].indexOf("SUCCESS::") !=-1){

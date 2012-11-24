@@ -62,7 +62,7 @@ Youai.Router = Backbone.Router.extend({
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
         //var url = Youai.Util._devParseUrl("getItemsFromVisit.json", {"pageSize":"10", "pageNo":pageNo || 1});
-        var url = Youai.Util.parseUrl({"method":"getItemsFromVisit","pageSize":"10", "pageNo":pageNo || 1});
+        var url = Youai.Util.parseUrl({"method":"getItemsFromVisit","pageSize":"10", "pageNo":pageNo || 1},$("#J_Sid").val());
         new Youai.goodListView({
             "goodUrl":url
         }).render();
@@ -179,7 +179,8 @@ Youai.Router = Backbone.Router.extend({
         $("#J-albumItemInfo").length <1 && $("#content").html(JST["template/album_info_layout"]());
 
         var self = this,
-            url = Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":albumId, "pageSize":"10", "pageNo":pageNo});
+           // url = Youai.Util._devParseUrl("getItemsFromAlbum.json", {"albumId":albumId, "pageSize":"10", "pageNo":pageNo});
+            url = Youai.Util.parseUrl({"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"10", "pageNo":pageNo},$("#J_Sid").val());
 
         var albumGoods = new Youai.GoodList();
 
