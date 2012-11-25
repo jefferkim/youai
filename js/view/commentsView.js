@@ -16,7 +16,9 @@ Youai.commentsView = Backbone.View.extend({
 
     initialize:function (options) {
 
-        $("#J-mask").show().animate({
+        $("#J-mask").show().css({
+            height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
+        }).animate({
             opacity:0.8
         }, 1000, 'ease');
 

@@ -46,6 +46,7 @@ Youai.albumItemView = Backbone.View.extend({
 
 
     changeUI:function(){
+        console.log(this.model);
 
         this.model.destroy();
     },
@@ -54,7 +55,7 @@ Youai.albumItemView = Backbone.View.extend({
         e.preventDefault();
         var album = this.model.toJSON();
 
-        console.log(album);
+        //console.log(album);
 
         Youai.Mod.toggleAlbumLike({
             eventTarget:e.currentTarget,
