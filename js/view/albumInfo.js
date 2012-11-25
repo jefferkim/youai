@@ -26,24 +26,26 @@ Youai.albumInfo = Backbone.View.extend({
 
     showComment:function (e) {
         e.preventDefault();
+        var target = e.currentTarget;
+
         new Youai.commentsView({
-            commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
+            "method":"getAblumComments"
         });
     },
 
     toggleFav:function (e) {
 
         e.preventDefault();
-        var target = e.currentTarget;
-        var likeNum = parseInt($(target).attr("data-likeNum"));
+        var target = e.currentTarget,
+            likeNum = $(target).attr("data-likeNum");
+
         Youai.Mod.toggleAlbumLike({
             eventTarget:target,
-            albumId:$(target).attr("data-albumId"),
-            isvCode:$(target).attr("data-isvCode"),
+            albumId:YA_GLOBAL.albumId,
+            isvCode:YA_GLOBAL.isvCode,
             success:function (response) {
                 if (response.ret[0].indexOf("SUCCESS::") != -1) {
                     $(target).toggleClass("added");
-                    likeNum = likeNum + ($(target).hasClass("added") ? 1 : -1);
                     if (response.data.method === "likeAlbum") {
                         $(target).html("取消收集");
                     } else {

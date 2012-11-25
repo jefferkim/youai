@@ -10,9 +10,9 @@ Youai.sliderShow = {
     },
 
     _showMask:function () {
-        this.maskEl.show().css({
+        this.maskEl.css({
             height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
-        }).animate({
+        }).show().animate({
             opacity:0.8
         }, 1000, 'ease');
 

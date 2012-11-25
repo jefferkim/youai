@@ -7,7 +7,7 @@
 Youai.Util = {
 
     //拼装url
-    parseUrl:function (url,sid) {
+    parseUrl:function (url) {
 
         var data = ("string" == typeof url) ? this.urlMap[url] : url;
 
@@ -16,18 +16,18 @@ Youai.Util = {
             baseUrl = "http://api" + (host[0] === "" ? ".waptest.taobao.com" : host[0]) +
                       "/rest/api2.do?api=com.taobao.wap.rest2.wo3&type=jsonp&callback=?&v=*&source=wo",
 
-            dataPart = sid ? "&sid=" + sid + "&data=" + JSON.stringify(data) : "&data=" + JSON.stringify(data);
+            dataPart = "&sid=" + location.search.split("?sid=")[1] + "&data=" + JSON.stringify(data);
 
         return baseUrl + dataPart;
     },
 
     /*dev环境下的url方式*/
-    _devParseUrl:function(url,data,sid){
+    _devParseUrl:function(url,data){
          var l;
         if(location.href.indexOf("127.0.0.1") !=-1){
-            l = "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
+            l = "http://127.0.0.1/gitRep/youai-v3/json/" + url +"?"+ "sid=" + location.search.split("?sid=")[1] + "data=" + JSON.stringify(data);
         }else{
-            l = "http://10.13.125.92/gitRep/youai-v3/json/" + url +"?"+ (sid ? "sid=" + sid + "data=" + JSON.stringify(data) : "data=" + JSON.stringify(data));
+            l = "http://10.13.125.92/gitRep/youai-v3/json/" + url +"?"+ "sid=" + location.search.split("?sid=")[1] + "data=" + JSON.stringify(data);
         }
         return l;
 

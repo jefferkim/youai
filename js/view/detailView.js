@@ -48,6 +48,9 @@ Youai.DetailView = Backbone.View.extend({
       this.getItemData()
       return;
     }
+    //added by jinjianfeng, for comments
+    YA_GLOBAL.itemId = this.data.itemId;
+    YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
 
     if (this.data.album) {  //有专辑
       this.render(JST['template/detail_collection'])
@@ -95,14 +98,16 @@ Youai.DetailView = Backbone.View.extend({
     this.currentItemImages = item.images;
     this.currentItemLikeNum = item.likeNum;
     this.likeCurrentItem = item.like == 'true';
+    //added by jinjianfeng , for comments
+    YA_GLOBAL.itemId = item.itemId;
+    YA_GLOBAL.isvCode = item.isvInfo.isvCode;
 
     Youai.router.navigate('!detail/' + item.itemId)
   },
 
   showComemnts: function() {
     new Youai.commentsView({
-        //commentUrl:Youai.Util._devParseUrl("getItemComments.json", {"itemId":111, "pageSize":"10", "pageNo":"1"})
-        commentUrl:Youai.Util.parseUrl({"method":"getItemComments","itemId":"1605745989","pageSize":"10","pageNo":"1","isvCode":"25"},"83fb97e85b9c12374f8b8426e5d564d8")
+        method:"getItemComments"
     });
   },
 

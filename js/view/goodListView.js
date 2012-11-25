@@ -12,32 +12,9 @@ Youai.goodListView = Backbone.View.extend({
 
     initialize:function (options) {
 
-        if (options.goodUrl) {
-            this.goodList = new Youai.GoodList();
-            this.goodList.url = options.goodUrl;
-            this.goodList.fetch();
-            this.goodList.on('reset', this.render, this);
-        }
-        if (options.data) {
-            this.goodList = options.data;
-        }
+        this.goodList = options.data;
         //弹出气泡提示
-        $(document.body).on("list:popcomment",function(e,_self){
-            var comment = _self.parents("li").find(".pop-comment");
-            _self.removeClass("hascomment");
-            comment.show().animate({
-                opacity:1
-            }, 1000, 'ease', function () {
-                var that = this;
-                setTimeout(function () {
-                    $(that).animate({
-                        opacity:0
-                    }, 500, 'ease', function () {
-                        $(that).hide();
-                    })
-                }, 2000);
-            })
-        });
+        Youai.Mod.popComment();
 
     },
 
@@ -86,8 +63,6 @@ Youai.goodListView = Backbone.View.extend({
 
         var currentGood = this.goodList.where({"itemId":$(target).attr("data-itemId")}),
             currentGoodInfo = currentGood[0].getItemList();
-
-
 
         Youai.Mod.toggleLike({
             eventTarget:target,
