@@ -3,6 +3,7 @@
 //= require vendor/backbone
 
 //= require application
+
 //= require_directory ./_util
 //= require_directory ./_component
 

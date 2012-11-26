@@ -21,6 +21,7 @@ Youai.albumsView = Backbone.View.extend({
 
     render:function () {
         var self = this;
+        $("#J-ablums").html("");
         this.albumList.each(function (album) {
             self.addItem(album);
         });

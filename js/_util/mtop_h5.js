@@ -868,3 +868,4 @@ function mtop_h5() {
     return exports;
 }
 
+Youai.mtopH5 = mtop_h5();
