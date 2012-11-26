@@ -4,7 +4,7 @@ Youai.Router = Backbone.Router.extend({
         '':"index", //首页
         '!home':"index", //首页
         '!list/:listCode/p:page':'list', //商品列表
-        '!like/:id':'like',
+        '!like/:userId/p:page':'like',
         '!detail/:id':'detail', //详情页
         '!category':'category', //类目页
         '!style':'style', //风格
@@ -222,7 +222,7 @@ Youai.Router = Backbone.Router.extend({
 
     },
     //我的喜欢
-    like:function (page) {
+    like:function (userId, page) {
         if (!Youai.like) {
             Youai.like = new Youai.LikeView()
             $('.content').html(Youai.like.el)
