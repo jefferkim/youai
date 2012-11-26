@@ -223,12 +223,11 @@ Youai.Router = Backbone.Router.extend({
     },
     //我的喜欢
     like:function (userId, page) {
-        if (!Youai.like) {
-            Youai.like = new Youai.LikeView()
-            $('.content').html(Youai.like.el)
-        }
 
-        Youai.like.getLikeData()
+        Youai.likeView = new Youai.LikeView()
+        $('.content').html(Youai.likeView.el)
+
+        Youai.likeView.getLikeData()
     },
 
     //详情页
