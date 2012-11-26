@@ -1,9 +1,3 @@
-/*
- * 专辑单个item
- *
- *
- * */
-
 Youai.albumItemView = Backbone.View.extend({
 
     tagName:"li",
@@ -13,53 +7,49 @@ Youai.albumItemView = Backbone.View.extend({
     },
 
     events:{
-        "click .J-fav":"toggleFav",
-        "changeUI .J-fav":"changeUI",
-        "click .J-comment":"showComments"
+        "click .J-fav":"toggleFav"
     },
 
     initialize:function () {
-
-        this.model.on("destroy",this._removeItem,this);
-
+        this.model.on("destroy", this._removeItem, this);
     },
 
-
-    _removeItem:function(){
-         var el = this.$el;
-         el.animate({
-             opacity:0
-         },800,'ease',function(){
-             el.remove();
-         });
-    },
-
-    showComments:function(e){
-        e.preventDefault();
-        var U = Youai.Util;
-        //显示评论
-        new Youai.commentsView({
-            commentUrl:U._devParseUrl("getAblumComments.json", {"ablumId":111, "pageSize":"10", "pageNo":"1"})
+    _removeItem:function () {
+        var el = this.$el;
+        el.animate({
+            opacity:0
+        }, 800, 'ease', function () {
+            el.remove();
         });
-
     },
 
-
-    changeUI:function(){
-
-        this.model.destroy();
-    },
     //取消和添加收藏
     toggleFav:function (e) {
         e.preventDefault();
-        var album = this.model.toJSON();
-
-        console.log(album);
-
+        var self = this,
+            target = e.currentTarget,
+            albumsType = location.hash.split("/")[1],
+            album = this.model.toJSON();
         Youai.Mod.toggleAlbumLike({
             eventTarget:e.currentTarget,
-            itemId:album.albumId,
-            isvCode:album.isvInfo.isvCode
+            albumId:album.albumId,
+            isvCode:album.isvInfo.isvCode,
+            success:function (response) {
+                if (response.ret[0].indexOf("SUCCESS::") != -1) {
+                    $(target).toggleClass("added");
+                    if (albumsType === "recommend") {
+                        //喜欢后文案显示为取消收集
+                        //取消收集后数字在没刷新前提下跟先前收集前一致，所以没set Model
+                        if (response.data.method === "likeAlbum") {
+                            $(target).html("取消收集");
+                        } else {
+                            $(target).html("<em>收集</em><b>" + album.likeNum + "</b>");
+                        }
+                    } else {
+                        self.model.destroy();
+                    }
+                }
+            }
         });
     },
 
@@ -69,7 +59,5 @@ Youai.albumItemView = Backbone.View.extend({
         return this.$el.html(this.tpl["albumItem"](this.model.getAlbums()));
 
     }
-
-
 
 });

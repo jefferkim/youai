@@ -15,8 +15,13 @@ Youai.commentsView = Backbone.View.extend({
     },
 
     initialize:function (options) {
+        var self = this,
+            commentUrl,
+            U = Youai.Util;
 
-        $("#J-mask").show().animate({
+        $("#J-mask").show().css({
+            height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
+        }).animate({
             opacity:0.8
         }, 1000, 'ease');
 
@@ -27,13 +32,22 @@ Youai.commentsView = Backbone.View.extend({
             $("#J-comment-block").height(window.innerHeight-100)
         }
 
+        this.options = options;
+
+        if(options.method === "getAblumComments"){
+            commentUrl = U.parseUrl({"method":"getAblumComments","albumId":YA_GLOBAL.albumId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"});
+        }else{
+            commentUrl = U.parseUrl({"method":"getItemComments","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"});
+        }
+
        this.commentList = new Youai.CommentList();
-       this.commentList.url = options.commentUrl;
 
-       this.commentList.fetch();
-
-       this.commentList.on('reset', this.render, this);
-
+        U.Ajax(commentUrl,function(resp){
+            if (resp.ret[0].indexOf("SUCCESS::") != -1) {
+                self.commentList.reset(resp.data.result.comments);
+                self.render();
+            }
+        });
     },
 
 
@@ -51,29 +65,23 @@ Youai.commentsView = Backbone.View.extend({
     submitComment:function (e) {
         e.preventDefault();
         var self = this,
+            url,
             U = Youai.Util;
 
         var commentBlock = $(".textarea-block","#J-tplComment"),
-            inputField = $(".J-inputField","#J-tplComment");
+            inputField = $(".J-inputField","#J-tplComment"),
+            inputContent = $.trim(inputField.val());
 
         if ($.trim(inputField.val()) === "") {
             notification.pop("请填写评论内容").show();
             return;
         }
         else {
-
-            /*var url = U._devParseUrl("addCommentForItem.json",{
-                "method":"addCommentForItem",
-                "content":inputField.val(),
-                "itemId":location.hash.split("/")[1],//链接中取得
-                "commentParentId":inputField.attr("data-replyId")
-            });*/
-            var url = U.parseUrl({
-                "method":"addCommentForItem",
-                "content":$.trim(inputField.val()),
-                "itemId":location.hash.split("/")[1],//链接中取得
-                "isvCode":25 //TODO:后期获取
-            },"9ba7387ef40444973921f48e0a6d1b20");
+            if(this.options.method == "getAblumComments"){
+                url = U.parseUrl({"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode});
+            }else{
+                url = U.parseUrl({"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode});
+            }
 
             var success = function (response) {
                 var result = response.ret[0];
@@ -85,12 +93,13 @@ Youai.commentsView = Backbone.View.extend({
                 }
                 if(result.indexOf("SUCCESS::") != -1){
 
+                    console.log(response);
                     var newComment = new Youai.Comment({
-                        itemId:location.hash.split("/")[1],
+                        itemId:YA_GLOBAL.itemId,
                         content:inputField.val(),
                         user: {
-                            userId:response.data.user.userId,  //隐藏域
-                            userNick:response.data.user.userNick//隐藏域
+                            userId:response.data.result.user.userId,  //隐藏域
+                            userNick:response.data.result.user.userNick//隐藏域
                         }
                     });
 
@@ -102,7 +111,7 @@ Youai.commentsView = Backbone.View.extend({
                 }
             };
 
-            Youai.Util.Ajax(url, success);
+            U.Ajax(url, success);
 
         }
     },
@@ -117,6 +126,7 @@ Youai.commentsView = Backbone.View.extend({
         if(arguments[1]){
             commentListWrap.prepend(commentView.render());
         }else{
+            //TODO:减少reflow
             $("#J-comment","#J-tplComment").append(commentView.render());
         }
 

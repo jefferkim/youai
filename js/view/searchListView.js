@@ -14,18 +14,10 @@ Youai.searchListView = Backbone.View.extend({
 
         this.$el.html(this.tpl["goodLayout"]());
 
+        this.searchGoodList = options.data;
 
-        if (options.searchUrl) {
-            this.searchGoodList = new Youai.GoodList();
-            this.searchGoodList.url = options.searchUrl;
-            this.searchGoodList.fetch();
-            this.searchGoodList.on('reset', this.render, this);
-        }
-        if (options.data) {
-            this.searchGoodList = options.data;
-            this.render();
-        }
-
+        //弹出气泡提示
+        Youai.Mod.popComment();
 
     },
 

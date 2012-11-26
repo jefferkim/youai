@@ -7,6 +7,6 @@
     <%= albumInfo.description %>
 </div>
 <div class="album-handle clearfix">
-    <a href="#" data-likeNum="<%= albumInfo.likeNum %>" data-isvCode="<%= albumInfo.isvInfo.isvCode %>" data-itemId="<%= albumInfo.albumId %>" class="J-fav<%if(albumInfo.like=='true'){%> added<%}%>"><%if(albumInfo.like=="true"){%>取消收集<%}else{%><em>收集</em><b><%= albumInfo.likeNum %></b><%}%></a>
+    <a href="#" class="J-fav<%if(albumInfo.like=='true'){%> added<%}%>"  data-likeNum="<%= albumInfo.likeNum %>"><%if(albumInfo.like=="true"){%>取消收集<%}else{%><em>收集</em><b><%= albumInfo.likeNum %></b><%}%></a>
     <a href="#" class="comments"><em></em><%= albumInfo.commentNum %></a>
 </div>

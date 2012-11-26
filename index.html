@@ -55,7 +55,7 @@
             </section>
 
             <input type="hidden" id="J_app_key" value="12574478" />
-            <input type="hidden" id="J_Sid" value="c3f5ceb71c2951213e27ce8f4e6bf868"/>
+
 
         </div>
     </div>
@@ -66,9 +66,14 @@
     <script src="http://127.0.0.1:9292/youai.js"></script>
 
     <script type="text/javascript">
+        //有爱全局变量配置,对应的功能页面
+        var YA_GLOBAL = {
+            "itemId":0,//详情：(可能需要，或者从hash中获取)
+            "albumId":0,//专辑：同上
+            "isvCode":0//专辑：地址中未涉及
+        };
         $(function() {
             Youai.init();
-
         });
     </script>
 
