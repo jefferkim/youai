@@ -22,9 +22,10 @@ Youai.Good = Backbone.Model.extend({
     },
 
     //单个good的iteminfo
-    getItemInfo:function () {        
+    getItemInfo:function () {     
         var data = {
             "itemId":this.get("itemId"),
+            "isvCode":this.get("isvInfo").isvCode,
             "itemHeight":this.height(),
             "originalPrice":this._parsePrice(),
             "comment":this.get("comments") ? this.get("comments") : false, //comments对象存在的话弹出气泡评论

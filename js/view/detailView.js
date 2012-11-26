@@ -17,42 +17,42 @@ Youai.DetailView = Backbone.View.extend({
     this.$el.html(content)
   },
 
-  itemUrl: function(id) {
+  itemUrl: function(id,isvCode) {
     //return 'http://api.waptest.taobao.com/rest/api2.do?api=com.taobao.wap.rest2.wo3&type=jsonp&callback=jsonp1&v=*&source=wo&sid=83fb97e85b9c12374f8b8426e5d564d8&data={"method":"getItemDetail","srcType":"10","srcCode":"1","isvCode":"12","itemId":"12121"}'
-    return 'json/detail-collection.json'
+    
+    return {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemDetail","itemId":id,"isvCode":isvCode}};
   },
 
-  getItemData: function(id) {
-    var self = this
-    $.ajax({
-      url: this.itemUrl(id),
-      dataType: 'json',
-      success: function(json) {
+  getItemData: function(id,isvCode) {
+      var self = this;
+      var url = this.itemUrl(id,isvCode);
+      
+      Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
+
         if (json.ret[0].search('SUCCESS') > -1) {
-          self.data = json.data.result
-          self.currentItemImages = self.data.images;
-          self.currentItemLikeNum = self.data.likeNum;
-          self.likeCurrentItem    = self.data.like == 'true';
-          self.displayItem(id)
-        } else {
-          console.log('mtop error')
-        }
-      },
-      error: function() { console.log('error') }
-    })
+            self.data = json.data.result
+            self.currentItemImages = self.data.images;
+            self.currentItemLikeNum = self.data.likeNum;
+            self.likeCurrentItem    = self.data.like == 'true';
+            self.displayItem(id)
+          } else {
+            console.log('mtop error')
+          }
+      });
+
   },
 
-  displayItem: function(id) {
+  displayItem: function(id,isvCode) {
 
     if (!this.data) {
-      this.getItemData()
+      this.getItemData(id,isvCode)
       return;
     }
     //added by jinjianfeng, for comments
     YA_GLOBAL.itemId = this.data.itemId;
     YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
 
-    if (this.data.album) {  //有专辑
+    if (this.data.album && this.data.album.items) {  //有专辑
       this.render(JST['template/detail_collection'])
       this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
       this.slide.load()
@@ -102,7 +102,7 @@ Youai.DetailView = Backbone.View.extend({
     YA_GLOBAL.itemId = item.itemId;
     YA_GLOBAL.isvCode = item.isvInfo.isvCode;
 
-    Youai.router.navigate('!detail/' + item.itemId)
+    Youai.router.navigate('!detail/' + item.itemId + '/' + item.isvInfo.isvCode)
   },
 
   showComemnts: function() {

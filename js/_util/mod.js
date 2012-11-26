@@ -13,15 +13,14 @@ Youai.Mod = {
             t = cfg.eventTarget,
             method = $(t).hasClass("on") ? "dumpAlbum" : "likeItem";
 
-        var url = U.parseUrl({"method":method, "itemId":cfg.itemId, "isvCode":cfg.isvCode});
-
-        var success = (cfg.success || function (response) {
-            if(response.ret[0].indexOf("SUCCESS::") != -1){
+        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":method, "itemId":cfg.itemId, "isvCode":cfg.isvCode}};
+   
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},(cfg.success || function(response){
+              if(response.ret[0].indexOf("SUCCESS::") != -1){
                 $(t).trigger("changeUI");
             }
-        });
-
-        U.Ajax(url, success);
+          })
+        )
     },
 
     toggleAlbumLike:function(cfg){
@@ -30,15 +29,15 @@ Youai.Mod = {
             U = Youai.Util,
             t = cfg.eventTarget,
             method = $(t).hasClass("added") ? "dumpAlbum" : "likeAlbum",
-            url = U.parseUrl({"method":method,"albumId":cfg.albumId,"isvCode":cfg.isvCode});
+            
+            url = {api:"com.taobao.wap.rest2.wo3",data:{"method":method,"albumId":cfg.albumId,"isvCode":cfg.isvCode}};
 
-        var success = (cfg.success || function(response){
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},(cfg.success || function(response){
             if(response.ret[0].indexOf("SUCCESS::") !=-1){
                 $(t).trigger("changeUI");
             }
-        });
-
-        U.Ajax(url,success);
+          })
+        );
     },
 
     popComment:function(){

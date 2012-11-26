@@ -98,7 +98,7 @@ Youai.indexView = Backbone.View.extend({
 
          var woMsgId = U.getCookie("WO_MSG");        
 
-         var url = {api:'com.taobao.wap.rest2.wo3', data:{"method":"getHomeInfo", "msgval":woMsgId||""}, 'extParam':{}};
+         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getHomeInfo", "msgval":woMsgId||""}, 'extParam':{}};
        
          Youai.mtopH5.getApi(url.api, "1.0", url.data, url.extParam,function (resp) {       
                    
