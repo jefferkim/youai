@@ -50,7 +50,7 @@ Youai.indexView = Backbone.View.extend({
                     "isLogined":result.user ? true : false,
                     "userFace":result.user ? "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + result.user.userId + "&width=40&height=40&type=sns" : "",
                     "userNick":result.user ? result.user.userNick : "",
-                    "loginInfo":result.msg ? result.msg.content : result.copywriters[0].content,
+                    "loginInfo":result.msg ? result.msg.msg : result.copywriters[0].content,
                     "weatherIcon":weatherIcon,
                     "temperature":data.t1
                 });
@@ -100,8 +100,7 @@ Youai.indexView = Backbone.View.extend({
 
         $.ajax({
 
-            url:Youai.Util.parseUrl({"method":"getHomeInfo","msgval":woMsgId||""}, $("#J_Sid").val()),
-            //url:Youai.Util._devParseUrl("getHomeInfo.json","11111"),
+            url:Youai.Util.parseUrl({"method":"getHomeInfo","msgval":woMsgId||""}),
             success:function (resp) {
                 var data = resp.data.result;
                 if(data.msg){

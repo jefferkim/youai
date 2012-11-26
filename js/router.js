@@ -35,7 +35,7 @@ Youai.Router = Backbone.Router.extend({
                 var m = lc.match(h1Map[key]);
                 if (m) {
                     if (m[1]) {
-                        $("#J-headerT").text("搜索:" + m[1]);
+                        $("#J-headerT").text(m[1]);
                     } else {
                         $("#J-headerT").text(key);
                     }
@@ -90,7 +90,7 @@ Youai.Router = Backbone.Router.extend({
         var U = Youai.Util;
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
-        var url = U.parseUrl({"method":"getItemsFromVisit", "pageSize":"100", "pageNo":pageNo || 1});
+        var url = U.parseUrl({"method":"getItemsFromVisit", "pageSize":"30", "pageNo":pageNo || 1});
 
         var strollGoodList = new Youai.GoodList();
 

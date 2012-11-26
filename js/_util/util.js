@@ -120,7 +120,7 @@ Youai.Util = {
 
         $('body > div').click(function (ev) {
             var target = ev.target || ev.srcElement;
-            if (target.nodeName.toUpperCase() === 'DIV') {
+            if (target.nodeName.toUpperCase() === 'DIV') {                
                 if ($(target).attr('id') != 'J-menuList') {
                     menuList.removeClass("show");
                 }
