@@ -6,8 +6,15 @@ Youai.Good = Backbone.Model.extend({
     url:function () {
     },
 
+    getMainPic:function(){
+
+      return _.filter(this.get("images"), function(image){ return image.type == 0; }); 
+
+    },
+
     height:function () {
-        return parseInt(150/(this.get("images")[0].width/this.get("images")[0].height));
+        var mainPic = this.getMainPic();
+        return parseInt(150/(mainPic[0].width/mainPic[0].height));
     },
 
     _parsePrice:function () {
@@ -15,14 +22,13 @@ Youai.Good = Backbone.Model.extend({
     },
 
     //单个good的iteminfo
-    getItemInfo:function () {
-        var mainPic = _.filter(this.get("images"), function(image){ return image.type == 0; });
+    getItemInfo:function () {        
         var data = {
             "itemId":this.get("itemId"),
             "itemHeight":this.height(),
             "originalPrice":this._parsePrice(),
             "comment":this.get("comments") ? this.get("comments") : false, //comments对象存在的话弹出气泡评论
-            "imgUrl":mainPic[0].url
+            "imgUrl":this.getMainPic()[0].url
         };
         return data;
     },
