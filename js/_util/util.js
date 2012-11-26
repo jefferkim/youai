@@ -6,6 +6,7 @@
 
 Youai.Util = {
 
+    
     //拼装url
     parseUrl:function (url) {
 
@@ -41,6 +42,7 @@ Youai.Util = {
             "method":"getHomeInfo"
         }
     },
+
 
 
     setCookie:function (name, value,domain) {
@@ -102,11 +104,10 @@ Youai.Util = {
     },
 
     init:function(){
-        linkfocus("a");
-      /*  var mtopH5 = mtop_h5();
-        mtopH5.getFirstToken();
-*/
+        
         this.menu();
+
+        linkfocus("a");  
     },
 
 

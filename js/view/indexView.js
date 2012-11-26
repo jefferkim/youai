@@ -94,14 +94,14 @@ Youai.indexView = Backbone.View.extend({
         var self = this,
             U = Youai.Util;
 
-        $(this.el).html(this.templates["home-layout"]());
+         $(this.el).html(this.templates["home-layout"]());
 
-        var woMsgId = U.getCookie("WO_MSG");
+         var woMsgId = U.getCookie("WO_MSG");        
 
-        $.ajax({
-
-            url:Youai.Util.parseUrl({"method":"getHomeInfo","msgval":woMsgId||""}),
-            success:function (resp) {
+         var url = {api:'com.taobao.wap.rest2.wo3', data:{"method":"getHomeInfo", "msgval":woMsgId||""}, 'extParam':{}};
+       
+         Youai.mtopH5.getApi(url.api, "1.0", url.data, url.extParam,function (resp) {       
+                   
                 var data = resp.data.result;
                 if(data.msg){
                     var msgIds = woMsgId ? woMsgId+","+data.msg.id : data.msg.id;
@@ -112,11 +112,13 @@ Youai.indexView = Backbone.View.extend({
                 self._addModAlbum(data);
                 self._addModYouai(data);
 
-            },
-            error:function (xhr, type) {
+             },function (xhr, type) {
+
                 alert('获取首页信息错误')
-            }
-        });
+             }
+         );
+
+        
     }
 
 });

@@ -35,14 +35,14 @@ Youai.commentsView = Backbone.View.extend({
         this.options = options;
 
         if(options.method === "getAblumComments"){
-            commentUrl = U.parseUrl({"method":"getAblumComments","albumId":YA_GLOBAL.albumId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"});
+            commentUrl = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getAblumComments","albumId":YA_GLOBAL.albumId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"}};
         }else{
-            commentUrl = U.parseUrl({"method":"getItemComments","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"});
+            commentUrl = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemComments","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"}};
         }
 
        this.commentList = new Youai.CommentList();
 
-        U.Ajax(commentUrl,function(resp){
+        Youai.mtopH5.getApi(commentUrl.api, "1.0", commentUrl.data, {},function (resp) {
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 self.commentList.reset(resp.data.result.comments);
                 self.render();
@@ -78,12 +78,12 @@ Youai.commentsView = Backbone.View.extend({
         }
         else {
             if(this.options.method == "getAblumComments"){
-                url = U.parseUrl({"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode});
+                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
             }else{
-                url = U.parseUrl({"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode});
+                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
             }
-
-            var success = function (response) {
+           
+            Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
                 var result = response.ret[0];
                 if (result.indexOf("DUPLICATE_DATA::") != -1) {
                   // pop("评论重复或过于频繁哦");
@@ -109,9 +109,7 @@ Youai.commentsView = Backbone.View.extend({
                     commentBlock.removeClass("show");
                     inputField.val("");
                 }
-            };
-
-            U.Ajax(url, success);
+            });
 
         }
     },

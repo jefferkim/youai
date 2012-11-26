@@ -4,7 +4,7 @@ Youai.sliderShow = {
         var self = this;
         this.maskEl = $("#J-mask"),
         this.goodSlider = null;
-
+        
         this.renderUI(id, data);
         this.destroyUI();
     },
@@ -77,10 +77,17 @@ Youai.sliderShow = {
             self.goodSlider.next();
         });
 
+        this.postStatistics(data);
         this._showMask();
         this._bounceSlider();
     },
+    //打点，统计点击次数
+    postStatistics:function(data){
+       
+        console.log(data);
+        $.post('zoom.json', {}, function(){});
 
+    },
     destroyUI:function () {
         var self = this;
         $('body > div').click(function (ev) {
