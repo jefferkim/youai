@@ -2,12 +2,12 @@ Youai.LikeView = Backbone.View.extend({
 
   className: 'like-items',
 
-  initialize: function() {
-    this.$el.html(JST['template/like_header'](/* need some real data here */))
-  },
+  initialize: function() {},
 
   render: function() {
     var self = this;
+
+    this.$el.html(JST['template/like_header']({ total: this.result.totalLikeNum }))
 
     for (var i = 0; i < this.data.length; i++) {
 
@@ -81,10 +81,12 @@ Youai.LikeView = Backbone.View.extend({
           self.render()
       } else {
           console.log('mtop error')
+          notification.flash('加载失败，请刷新页面重试').show()
       }
 
     }, function() {
       console.log('network error')
+      notification.flash('加载失败，请刷新页面重试').show()
     })
   }
 })
