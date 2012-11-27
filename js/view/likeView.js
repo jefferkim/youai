@@ -81,10 +81,12 @@ Youai.LikeView = Backbone.View.extend({
           self.render()
       } else {
           console.log('mtop error')
+          notification.flash('加载失败，请刷新页面重试').show()
       }
 
     }, function() {
       console.log('network error')
+      notification.flash('加载失败，请刷新页面重试').show()
     })
   }
 })
