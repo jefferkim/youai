@@ -2,7 +2,7 @@
   <div class="main-view">
     <div class="big-pic"><img src="<%= images[0].url + '_500x450.jpg' %>" ></div>
     <div class="item-info">
-      <p class="price">￥<%= originalPrice %></p>
+      <p class="price">￥<%= (originalPrice / 100).toFixed(2) %></p>
       <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
       <p class="like-count"><strong><%= likeNum %></strong><span></span></p>
     </div>
