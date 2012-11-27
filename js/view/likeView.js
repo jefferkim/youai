@@ -7,7 +7,10 @@ Youai.LikeView = Backbone.View.extend({
   render: function() {
     var self = this;
 
-    this.$el.html(JST['template/like_header']({ total: this.result.totalLikeNum }))
+    this.$el.html(JST['template/like_header']({
+      total: this.result.totalLikeNum,
+      userId: this.options.userId
+    }))
 
     for (var i = 0; i < this.data.length; i++) {
 
