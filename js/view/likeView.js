@@ -2,14 +2,26 @@ Youai.LikeView = Backbone.View.extend({
 
   className: 'like-items',
 
-  initialize: function() {},
+  initialize: function() {
+
+    this.isCurrentUser = (this.options.userId == "currentUser")
+
+    if (this.isCurrentUser) $('h1.title').text('我的喜欢')
+    else $('h1.title').text('TA 的喜欢')
+
+  },
 
   render: function() {
     var self = this;
 
+    if (this.data.length == 0) {
+      this.$el.html( JST['template/no_like']({isCurrentUser: this.isCurrentUser}) )
+      return;
+    }
+
     this.$el.html(JST['template/like_header']({
       total: this.result.totalLikeNum,
-      userId: this.options.userId
+      isCurrentUser: this.isCurrentUser
     }))
 
     for (var i = 0; i < this.data.length; i++) {
@@ -46,7 +58,7 @@ Youai.LikeView = Backbone.View.extend({
 
   likeDataUrl: function() {
     // return 'json/like.json'
-    if (this.options.userId == "currentUser") {
+    if (this.isCurrentUser) {
       //return {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemDetail","itemId":id,"isvCode":isvCode}}
       return {
         api:"com.taobao.wap.rest2.wo3",
