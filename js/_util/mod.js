@@ -13,6 +13,7 @@ Youai.Mod = {
         var U = Youai.Util,
             t = cfg.eventTarget,
             method = $(t).hasClass("on") ? "dumpItem" : "likeItem";
+            console.log("this actions is "+method );
 
         var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":method, "itemId":cfg.itemId, "isvCode":cfg.isvCode}};
    
