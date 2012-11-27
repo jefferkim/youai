@@ -19,7 +19,7 @@ Youai.Router = Backbone.Router.extend({
         var wTitle = function () {
             var h1Map = {
                     '首页':/#!home/,
-                    '逛逛':/#!stroll\/p\d*/, 
+                    '逛逛':/#!stroll\/p\d*/,
                     '喜欢':/#!like\/[0-9]*/,
                     '详情页':/#!detail\/[0-9]*/,
                     '类目':/#!category/,
@@ -60,8 +60,8 @@ Youai.Router = Backbone.Router.extend({
 
         var strollGoodList = new Youai.GoodList();
 
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {          
-            
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
+
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
 
@@ -86,7 +86,7 @@ Youai.Router = Backbone.Router.extend({
 
         var goodList = new Youai.GoodList();
 
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {  
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
                 $("#J-headerT").text(result.title); //增加标题
@@ -193,10 +193,9 @@ Youai.Router = Backbone.Router.extend({
     //我的喜欢
     like:function (userId, page) {
 
-        Youai.likeView = new Youai.LikeView()
+        Youai.likeView = new Youai.LikeView({ userId: userId, page: page })
         $('.content').html(Youai.likeView.el)
-
-        Youai.likeView.getLikeData()
+        Youai.likeView.getLikeData(userId, page)
     },
 
     //详情页

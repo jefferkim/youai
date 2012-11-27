@@ -19,14 +19,14 @@ Youai.DetailView = Backbone.View.extend({
 
   itemUrl: function(id,isvCode) {
     //return 'http://api.waptest.taobao.com/rest/api2.do?api=com.taobao.wap.rest2.wo3&type=jsonp&callback=jsonp1&v=*&source=wo&sid=83fb97e85b9c12374f8b8426e5d564d8&data={"method":"getItemDetail","srcType":"10","srcCode":"1","isvCode":"12","itemId":"12121"}'
-    
+
     return {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemDetail","itemId":id,"isvCode":isvCode}};
   },
 
   getItemData: function(id,isvCode) {
       var self = this;
       var url = this.itemUrl(id,isvCode);
-      
+
       Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
 
         if (json.ret[0].search('SUCCESS') > -1) {
