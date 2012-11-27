@@ -50,7 +50,7 @@ Youai.indexView = Backbone.View.extend({
                     "isLogined":result.user ? true : false,
                     "userFace":result.user ? "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + result.user.userId + "&width=40&height=40&type=sns" : "",
                     "userNick":result.user ? result.user.userNick : "",
-                    "loginInfo":result.msg ? result.msg.msg : result.copywriters[0].content,
+                    "loginInfo":result.msg ? result.msg.msg : _.find(result.copywriters, function(cw){ return cw.type == "1"}).content,
                     "weatherIcon":weatherIcon,
                     "temperature":data.t1
                 });
@@ -59,7 +59,7 @@ Youai.indexView = Backbone.View.extend({
 
             },
             error:function (xhr, type) {
-                notification.flash('获取天气信息错误!')
+                notification.flash('获取天气信息错误!').show();
             }
         });
 
@@ -67,7 +67,7 @@ Youai.indexView = Backbone.View.extend({
 
     _addModGood:function (result) {
         var goodTpl = this.templates["home-good"]({
-            "home_goodTitle":result.copywriters[1].content,
+            "home_goodTitle":_.find(result.copywriters, function(cw){ return cw.type == "2"}).content,
             "home_goodInfo":result.homeOperators
         });
         $("#J-modGood", this.el).html(goodTpl);
@@ -75,7 +75,7 @@ Youai.indexView = Backbone.View.extend({
 
     _addModAlbum:function (result) {
         var albumTpl = this.templates["home-album"]({
-            "home_albumTitle":result.copywriters[1].content,
+            "home_albumTitle":_.find(result.copywriters, function(cw){ return cw.type == "3"}).content,
             "firstAlbumOperators":result.firstAlbumOperators,
             "albums":result.albums
         });
@@ -84,7 +84,7 @@ Youai.indexView = Backbone.View.extend({
 
     _addModYouai:function (result) {
         var youaiTpl = this.templates["home-youai"]({
-            "home_youaiTitle":result.copywriters[1].content,
+            "home_youaiTitle":_.find(result.copywriters, function(cw){ return cw.type == "4"}).content,
             "content":result.itemArea
         });
         $("#J-modYouai", this.el).html(youaiTpl);

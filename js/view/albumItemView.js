@@ -35,6 +35,7 @@ Youai.albumItemView = Backbone.View.extend({
             albumId:album.albumId,
             isvCode:album.isvInfo.isvCode,
             success:function (response) {
+                Youai.Util._checkLogin(response);
                 if (response.ret[0].indexOf("SUCCESS::") != -1) {
                     $(target).toggleClass("added");
                     if (albumsType === "recommend") {
@@ -48,6 +49,8 @@ Youai.albumItemView = Backbone.View.extend({
                     } else {
                         self.model.destroy();
                     }
+                }else{
+                    notification.flash('接口调用错误，请刷新重试').show();
                 }
             }
         });

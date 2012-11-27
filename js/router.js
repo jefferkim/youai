@@ -212,13 +212,13 @@ Youai.Router = Backbone.Router.extend({
     //推荐专辑和我关注的专辑
     albums:function (type, pageNo) {
 
-        var U = Youai.Util,
-            url = {api:"com.taobao.wap.rest2.wo3",data:{"method":(type === "recommend" ? "getRecommendAlbums" : "getLikeAlbums"), "pageSize":"30", "pageNo":pageNo || 1}};
+        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":(type === "recommend" ? "getRecommendAlbums" : "getLikeAlbums"), "pageSize":"30", "pageNo":pageNo || 1}};
         $("#content").html(JST["template/album_layout"]({"type":type}));
 
         var albumList = new Youai.albumList();
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
-            if (resp.ret[0].indexOf("SUCCESS::") != -1) {
+            Youai.Util._checkLogin(resp);
+            if (resp.ret[0].indexOf("SUCCESS::") != -1) {                
                 var result = resp.data.result,
                     data = result.data;
                 //我关注的专辑数据接口是不一样的
@@ -248,26 +248,28 @@ Youai.Router = Backbone.Router.extend({
 
         var albumGoods = new Youai.GoodList();
 
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {            
+           if (resp.ret[0].indexOf("SUCCESS::") != -1) {    
+                var result = resp.data.result;
+                //设置全局变量，方便喜欢专辑操作和评论列表
+                YA_GLOBAL.isvCode = result.isvInfo.isvCode;
+                YA_GLOBAL.albumId = result.albumId;
 
-            var result = resp.data.result;
-            //设置全局变量，方便喜欢专辑操作和评论列表
-            YA_GLOBAL.isvCode = result.isvInfo.isvCode;
-            YA_GLOBAL.albumId = result.albumId;
+                $("#J-headerT").text(result.title);
+                albumGoods.reset(result.data);
 
-            $("#J-headerT").text(result.title);
-            albumGoods.reset(result.data);
+                var albumInfo = new Youai.albumInfo();
 
-            var albumInfo = new Youai.albumInfo();
+                $("#J-albumInfoWrap").html(albumInfo.render({"albumInfo":result}).el);
 
-            $("#J-albumInfoWrap").html(albumInfo.render({"albumInfo":result}).el);
+                new Youai.goodListView({
+                    data:albumGoods
+                }).render();
 
-            new Youai.goodListView({
-                data:albumGoods
-            }).render();
-
-            Youai.Mod.renderPageNav(result.itemTotal);
-
+                Youai.Mod.renderPageNav(result.itemTotal);
+          }else{
+               notification.flash('接口调用错误，请刷新重试').show();
+          }
         });
     }
 

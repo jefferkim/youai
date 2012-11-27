@@ -42,10 +42,12 @@ Youai.commentsView = Backbone.View.extend({
 
        this.commentList = new Youai.CommentList();
 
-        Youai.mtopH5.getApi(commentUrl.api, "1.0", commentUrl.data, {},function (resp) {
+        Youai.mtopH5.getApi(commentUrl.api, "1.0", commentUrl.data, {},function (resp) {            
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 self.commentList.reset(resp.data.result.comments);
                 self.render();
+            }else{
+                notification.flash('接口调用错误，请刷新重试').show();
             }
         });
     },
@@ -84,22 +86,22 @@ Youai.commentsView = Backbone.View.extend({
             }
            
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
+                Youai.Util._checkLogin(response);
                 var result = response.ret[0];
                 if (result.indexOf("DUPLICATE_DATA::") != -1) {
-                  // pop("评论重复或过于频繁哦");
+                    notification.flash('评论重复或过于频繁哦').show();
                 }
                 if (result.indexOf("PARAM_ERR::") != -1) {
-                  //  pop("输入参数错误");
+                    notification.flash('输入参数错误').show();
                 }
+                
                 if(result.indexOf("SUCCESS::") != -1){
-
-                    console.log(response);
                     var newComment = new Youai.Comment({
                         itemId:YA_GLOBAL.itemId,
                         content:inputField.val(),
                         user: {
-                            userId:response.data.result.user.userId,  //隐藏域
-                            userNick:response.data.result.user.userNick//隐藏域
+                            userId:response.data.result.user.userId, 
+                            userNick:response.data.result.user.userNick
                         }
                     });
 
@@ -109,6 +111,7 @@ Youai.commentsView = Backbone.View.extend({
                     commentBlock.removeClass("show");
                     inputField.val("");
                 }
+                
             });
 
         }
