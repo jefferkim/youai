@@ -6,7 +6,7 @@ Youai.Router = Backbone.Router.extend({
         '!list/:listCode/p:page':'list', //商品列表
         '!like/:userId/p:page':'like',
         '!detail/:id/:isvCode':'detail', //详情页
-        '!category':'category', //类目页
+        '!category/:type':'category', //类目页,v=>查看，s=>搜索
         '!style':'style', //风格
         '!stroll/p:page':'stroll', //逛逛
         '!search/:keyword/p:page':'search', //搜索页
@@ -103,7 +103,7 @@ Youai.Router = Backbone.Router.extend({
 
     },
     //类目
-    category:function () {
+    category:function (type) {
         var self = this,
             U = Youai.Util;
 
@@ -116,7 +116,10 @@ Youai.Router = Backbone.Router.extend({
 
         var searchInput = $("#J-searchContent");
 
-        searchInput.focus();
+        if(type == "s"){
+            searchInput.focus();
+        }
+        
 
         searchInput.focus(function () {
             $(".no-search-result").hide();
@@ -132,7 +135,7 @@ Youai.Router = Backbone.Router.extend({
 
             var searchGoodList = new Youai.GoodList();
 
-            var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":"1", "keyword":encodeURI(searchTxt)}};
+            var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":"1", "keyword":searchTxt}};
 
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {

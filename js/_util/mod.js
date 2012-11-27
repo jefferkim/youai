@@ -8,6 +8,7 @@
 Youai.Mod = {
     //增加喜欢和取消喜欢
     toggleLike:function (cfg) {
+        console.log("mod toggleLike");
 
         var U = Youai.Util,
             t = cfg.eventTarget,

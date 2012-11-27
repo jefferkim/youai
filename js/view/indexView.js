@@ -59,7 +59,7 @@ Youai.indexView = Backbone.View.extend({
 
             },
             error:function (xhr, type) {
-                alert('获取天气信息错误!')
+                notification.flash('获取天气信息错误!')
             }
         });
 
@@ -102,19 +102,23 @@ Youai.indexView = Backbone.View.extend({
        
          Youai.mtopH5.getApi(url.api, "1.0", url.data, url.extParam,function (resp) {       
                    
-                var data = resp.data.result;
-                if(data.msg){
-                    var msgIds = woMsgId ? woMsgId+","+data.msg.id : data.msg.id;
-                    U.setCookie("WO_MSG",msgIds,location.hostname.match(/$|(?:m|waptest|wapa)\.taobao\.com/gi)[0]);
+               if (resp.ret[0].indexOf("SUCCESS::") != -1) {
+                    var data = resp.data.result;
+                    if(data.msg){
+                        var msgIds = woMsgId ? woMsgId+","+data.msg.id : data.msg.id;
+                        U.setCookie("WO_MSG",msgIds,location.hostname.match(/$|(?:m|waptest|wapa)\.taobao\.com/gi)[0]);
+                    }
+                    self._addModUser(data);
+                    self._addModGood(data);
+                    self._addModAlbum(data);
+                    self._addModYouai(data);
+                }else{
+                    notification.flash('系统错误').show();
                 }
-                self._addModUser(data);
-                self._addModGood(data);
-                self._addModAlbum(data);
-                self._addModYouai(data);
 
              },function (xhr, type) {
 
-                alert('获取首页信息错误')
+                notification.flash('获取首页信息错误').show();
              }
          );
 

@@ -5,10 +5,6 @@ var win = $(window),
         '<div class="c-float-modePop">',
         '<div class="warnMsg"></div>',
         '<div class="content"></div>',
-        '<div class="doBtn">',
-        '<button class="ok">确定</button>',
-        '<button class="cancel">取消</button>',
-        '</div>',
         '</div>',
         '</div>'
     ].join(''),
@@ -16,8 +12,6 @@ var win = $(window),
     E_float = $(T_float),
     E_floatMsg = E_float.find('.warnMsg'),
     E_floatContent = E_float.find('.content'),
-    E_floatOk = E_float.find('.doBtn .ok'),
-    E_floatCancel = E_float.find('.doBtn .cancel'),
 
     initDom = false,
     domContainer = '#tbh5v0',
@@ -43,8 +37,7 @@ $.extend(ModePop.prototype, {
             content = opt.content,
             callback = opt.callback,
             background = opt.background,
-            clickEvent = opt.useTap ? 'tap' : 'click',
-            usedInWangWang = opt.usedInWangWang;
+            clickEvent = opt.useTap ? 'tap' : 'click';
         ;
 
         // set mode
@@ -59,26 +52,15 @@ $.extend(ModePop.prototype, {
         text && E_floatMsg.html(text);
         content && E_floatContent.html(content);
 
-        // click event
-        E_floatOk.off(clickEvent)
-            .on(clickEvent, function (e) {
-                callback.call(that, e, true);
-            });
-        E_floatCancel.off(clickEvent)
-            .on(clickEvent, function (e) {
-                callback.call(that, e, false);
-            });
 
         if (!initDom) {
             initDom = true;
-            $(domContainer).append(E_float);
-            if (!usedInWangWang) {
-                win.on('resize', function () {
-                    setTimeout(function () {
-                        that._pos();
-                    }, 500);
-                });
-            }
+            $(domContainer).append(E_float);            
+            win.on('resize', function () {
+                setTimeout(function () {
+                    that._pos();
+                }, 500);
+            });
         }
     },
 
@@ -198,7 +180,7 @@ $.extend(ModePop.prototype, {
 
 window.notification = new function () {
 
-    this.simple = function (text, bg, timeout) {
+    this.flash = function (text, bg, timeout) {
         if (arguments.length == 2) {
             if (typeof arguments[1] == 'number') {
                 timeout = arguments[1];
@@ -214,42 +196,6 @@ window.notification = new function () {
 
         pop.flash(timeout || 2000);
         return pop;
-    }
-
-    this.msg = function (text, options) {
-        return new ModePop($.extend({
-            mode:'msg',
-            text:text
-        }, options || {}));
-    }
-
-    this.alert = function (text, callback, options) {
-        return new ModePop($.extend({
-            mode:'alert',
-            text:text,
-            callback:callback
-        }, options || {}));
-    }
-
-    this.confirm = function (text, content, callback, options) {
-        return new ModePop($.extend({
-            mode:'confirm',
-            text:text,
-            content:content,
-            callback:callback
-        }, options || {}));
-    }
-
-    this.pop = function (options) {
-        return new ModePop(options);
-    }
-
-    this.popTip = function(text,options){
-        return new ModePop($.extend({
-            mode:'msg',
-            text:text
-        }, options || {}));
-
     }
 
 

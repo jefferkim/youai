@@ -77,7 +77,7 @@ Youai.sliderShow = {
             self.goodSlider.next();
         });
 
-        this.postStatistics(data);
+       // this.postStatistics(data);
         this._showMask();
         this._bounceSlider();
     },
