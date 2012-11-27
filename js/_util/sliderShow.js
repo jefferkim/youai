@@ -36,21 +36,19 @@ Youai.sliderShow = {
     renderUI:function (sliderID, data) {
         var self = this;
         for (var i = 0, LIS = "", imgs = data.images; i < imgs.length; i++) {
-
-            LIS += '<li><img class="lazy" data-src="' + imgs[i].url + '_570x570.jpg" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png" width="284"/>'
-                + (i == 0 ? '<span class="good-operater"><a href="#" class="J-like ' + (data.isLiked ? 'on' : '') + '"'+(data.itemId ? 'data-itemId="'+data.itemId+'"':'')+'></a><span class="like-num"><em class="J-likeNum">' + data.likeNum + '</em>人已喜欢</span></span>' : "")
-                + '</li>';
-
+            LIS += '<li><img class="lazy" data-src="' + imgs[i].url + '_570x570.jpg" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png"/></li>';
         }
-
+        
 
         if ($("#" + sliderID).length < 1) {
             var sliderDOM = [],
+                operater =  '<div class="good-operater"><a href="#" class="J-like ' + (data.isLiked ? 'on' : '') + '"'+(data.itemId ? 'data-itemId="'+data.itemId+'"':'')+' data-modelIndex="'+data.modelIndex+'"></a><span class="like-num"><em class="J-likeNum">' + data.likeNum + '</em>人已喜欢</span></div>',
                 nav_holder = '<div class="nav-holder"><a href="#" class="prev" id="J-prev"></a><a href="#" class="next" id="J-next"></a></div>';
 
-            sliderDOM.push('<div class="slider-holder" id="J-sliderHolder" style="display:none;">');
+            sliderDOM.push('<div class="slider-holder" id="J-sliderHolder" style="display:none;"><div class="sliderWrap">');
             sliderDOM.push('<div id="' + sliderID + '" class="goods-slider" style="overflow: hidden;"><ul id="' + sliderID + "_UL" + '">');
             sliderDOM.push(LIS + "</ul></div>");
+            sliderDOM.push(operater+"</div>");
             sliderDOM.push(nav_holder);
             sliderDOM.push('</div>');
 

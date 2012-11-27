@@ -61,8 +61,12 @@ Youai.goodListView = Backbone.View.extend({
         var self = this,
             target = e.currentTarget;
 
-        var currentGood = this.goodList.where({"itemId":$(target).attr("data-itemId")}),
-            currentGoodInfo = currentGood[0].getItemList();
+        $(target).toggleClass("on");
+        
+        var currentGood = this.goodList.at(parseInt($(target).attr("data-modelIndex")));
+        console.log(currentGood);
+        var currentGoodInfo = currentGood.getItemList();
+        
         console.log("====click on like");
         Youai.Mod.toggleLike({
             eventTarget:target,

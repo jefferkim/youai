@@ -23,7 +23,7 @@ Youai.Good = Backbone.Model.extend({
 
     //单个good的iteminfo
     getItemInfo:function () {     
-        var data = {
+        var data = {            
             "itemId":this.get("itemId"),
             "isvCode":this.get("isvInfo").isvCode,
             "itemHeight":this.height(),
@@ -37,10 +37,11 @@ Youai.Good = Backbone.Model.extend({
     //单个宝贝的图片的合集
     getItemList:function () {
         return {
+            "modelIndex":this.cid.split("c")[1],
+            "itemId":this.get("itemId"),
             "images":this.get("images"),
             "likeNum":this.get("likeNum"),
-            "isLiked":this.get("like") === "true",
-            "itemId":this.get("itemId"),
+            "isLiked":this.get("like") === "true",            
             "isvCode":this.get("isvInfo").isvCode
         };
     },
