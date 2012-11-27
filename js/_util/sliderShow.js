@@ -1,11 +1,13 @@
 Youai.sliderShow = {
 
-    init:function (id, data) {
+    init:function (id, model) {
         var self = this;
         this.maskEl = $("#J-mask"),
         this.goodSlider = null;
+
+        this.model = model;
         
-        this.renderUI(id, data);
+        this.renderUI(id);
         this.destroyUI();
     },
 
@@ -33,16 +35,22 @@ Youai.sliderShow = {
         sliderEL.removeClass("bounceOut").addClass("bounceIn");
     },
 
-    renderUI:function (sliderID, data) {
+    renderUI:function (sliderID) {
+
+        
+        var currentModel = this.model.toJSON();
+        console.log("<<<<this model is ====");
+        console.log(currentModel);
+        console.log(">>>>this model is ====");
         var self = this;
-        for (var i = 0, LIS = "", imgs = data.images; i < imgs.length; i++) {
+        for (var i = 0, LIS = "", imgs = currentModel.images; i < imgs.length; i++) {
             LIS += '<li><img class="lazy" data-src="' + imgs[i].url + '_570x570.jpg" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png"/></li>';
         }
         
 
         if ($("#" + sliderID).length < 1) {
             var sliderDOM = [],
-                operater =  '<div class="good-operater"><a href="#" class="J-like ' + (data.isLiked ? 'on' : '') + '"'+(data.itemId ? 'data-itemId="'+data.itemId+'"':'')+' data-modelIndex="'+data.modelIndex+'"></a><span class="like-num"><em class="J-likeNum">' + data.likeNum + '</em>人已喜欢</span></div>',
+                operater =  '<div class="good-operater"><a href="#" class="J-like ' + (currentModel.like === "true" ? 'on' : '') + '"></a><span class="like-num"><em class="J-likeNum">' + currentModel.likeNum + '</em>人已喜欢</span></div>',
                 nav_holder = '<div class="nav-holder"><a href="#" class="prev" id="J-prev"></a><a href="#" class="next" id="J-next"></a></div>';
 
             sliderDOM.push('<div class="slider-holder" id="J-sliderHolder" style="display:none;"><div class="sliderWrap">');
@@ -75,9 +83,39 @@ Youai.sliderShow = {
             self.goodSlider.next();
         });
 
+        $(".J-like").on("click",function(e){
+             self.toggleLike(e);
+        });
+         
        // this.postStatistics(data);
         this._showMask();
         this._bounceSlider();
+    },
+
+    toggleLike:function(e){
+
+        e.preventDefault();
+
+        var self = this,
+            target = e.currentTarget;
+
+        $(target).toggleClass("on");
+        
+        
+        var currentGoodInfo = this.model.getItemList();
+        
+        console.log("====click on like");
+        Youai.Mod.toggleLike({
+            eventTarget:target,
+            itemId:currentGoodInfo.itemId,
+            isvCode:currentGoodInfo.isvCode,
+            success:function(response){
+                if(response.ret[0].indexOf("SUCCESS::") != -1){
+                    self.changeUI(target,currentGood[0]);
+                }
+            }
+        });
+
     },
     //打点，统计点击次数
     postStatistics:function(data){
