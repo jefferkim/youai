@@ -25,7 +25,7 @@ Youai.Good = Backbone.Model.extend({
     getItemInfo:function () {     
         var data = {            
             "itemId":this.get("itemId"),
-            "albumId":this.get("album") ? this.get("album").albumId : YA_GLOBAL.albumId,
+            "albumId":this.get("album") ? this.get("album").albumId : YA_GLOBAL.albumId,  //后端没有返回严格的Good的模型
             "isvCode":this.get("isvInfo").isvCode,
             "itemHeight":this.height(),
             "originalPrice":this._parsePrice(),

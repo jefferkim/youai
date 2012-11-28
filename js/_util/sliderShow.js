@@ -70,6 +70,8 @@ Youai.sliderShow = {
             likeNum: this.currentItemLikeNum,
             isLiked: this.likeCurrentItem*/
 
+
+
         var sliderDOM = JST["template/slider"]({ID:sliderID,images:currentModel.images,isLiked:currentModel.like === "true"});
 
         $("#J-popWrap").html(sliderDOM);
@@ -108,11 +110,16 @@ Youai.sliderShow = {
     },
 
 
-    changeUI:function (target) {
+    changeUI:function (target,method) {
         var timer,
             model = this.model,
             operater = $(target).parents(".good-operater"),
             likebox = operater.find(".like-num");
+            if(method === "dumpItem"){
+                likebox.text("成功取消");
+            }else{
+                likebox.text("成功收藏");
+            }
 
             $(target).toggleClass("on");
             $(target).removeClass("disable");
@@ -150,7 +157,7 @@ Youai.sliderShow = {
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function(response){
             Youai.Util._checkLogin(response);
             if(response.ret[0].indexOf("SUCCESS::") != -1){
-                    self.changeUI(target);
+                    self.changeUI(target,response.data.method);
                 }else{
                     notification.flash('接口调用错误，请刷新重试').show();
                 }
