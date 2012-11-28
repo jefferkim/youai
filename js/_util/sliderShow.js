@@ -37,19 +37,20 @@ Youai.sliderShow = {
 
     renderUI:function (sliderID) {
         
-        var currentModel = this.model.toJSON();
+        var self = this,
+            currentModel = this.model.toJSON();
         console.log("<<<<this model is ====");
         console.log(currentModel);
         console.log(">>>>this model is ====");
-        var self = this;
-        for (var i = 0, LIS = "", imgs = currentModel.images; i < imgs.length; i++) {
+
+       /* for (var i = 0, LIS = "", imgs = currentModel.images; i < imgs.length; i++) {
             LIS += '<li><img class="lazy" data-src="' + imgs[i].url + '_570x570.jpg" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png"/></li>';
         }
         
 
         if ($("#" + sliderID).length < 1) {
             var sliderDOM = [],
-                operater =  '<div class="good-operater"><a href="#" class="J-like ' + (currentModel.like === "true" ? 'on' : '') + '"></a><span class="like-num"><em class="J-likeNum">' + currentModel.likeNum + '</em>人已喜欢</span></div>',
+                operater =  '<div class="good-operater"><a href="#" class="J-like ' + (currentModel.like === "true" ? 'on' : '') + '"></a><span class="like-num">添加喜欢成功</span></div>',
                 nav_holder = '<div class="nav-holder"><a href="#" class="prev" id="J-prev"></a><a href="#" class="next" id="J-next"></a></div>';
 
             sliderDOM.push('<div class="slider-holder" id="J-sliderHolder" style="display:none;"><div class="sliderWrap">');
@@ -63,8 +64,17 @@ Youai.sliderShow = {
         } else {
             $("#" + sliderID+"_UL", "#J-webapp").html(LIS);
         }
+        */
 
-        this.goodSlider = new Swipe(document.getElementById(sliderID), {
+        /*images: this.currentItemImages,
+            likeNum: this.currentItemLikeNum,
+            isLiked: this.likeCurrentItem*/
+
+        var sliderDOM = JST["template/slider"]({ID:sliderID,images:currentModel.images,isLiked:currentModel.like === "true"});
+
+        $("#J-popWrap").html(sliderDOM);
+
+        this.goodSlider = new Swipe($("#"+sliderID)[0], {
             fixWidth:284,
             preload:2
         });
@@ -84,8 +94,9 @@ Youai.sliderShow = {
         $(".J-like").off("click");
         $(".J-like").on("click",function(e){
             e.preventDefault();
+            //暂时去掉disable状态
             if($(e.currentTarget).hasClass("disable")){
-                notification.flash('接口请求有问题').show();
+                notification.flash('请求太频繁').show();
                 return;
             }
             self.toggleLike(e);
@@ -98,34 +109,27 @@ Youai.sliderShow = {
 
 
     changeUI:function (target) {
-        var model = this.model,
+        var timer,
+            model = this.model,
             operater = $(target).parents(".good-operater"),
-            likebox = operater.find(".like-num"),
-            likeNum = operater.find(".J-likeNum");
+            likebox = operater.find(".like-num");
 
             $(target).toggleClass("on");
             $(target).removeClass("disable");
 
-        var dest = $(target).hasClass("on") ? 1 : -1,
-            num  = parseInt(model.get("likeNum")) + dest;
-        
-        likeNum.text(num);
-
         model.set({
-          "like":$(target).hasClass("on"),
-          "likeNum":num
+          "like":$(target).hasClass("on")
         });
 
-        likebox.animate({
-            "opacity":1,
-            "right":40
-        }, 200, (.47,.2,0,.92), function () {
+        clearTimeout(timer);
+        likebox.animate({ "opacity":1,"right":40}, 200, (.47,.2,0,.92), function () {
             var othis = $(this);
-            setTimeout(function () {
-                othis.animate({
-                    "opacity":0,
-                    "right":0
-                },200,(.47,.2,0,.92));
+            timer = setTimeout(function () {
+                othis.animate({"opacity":0,"right":60},200,(.47,.2,0,.92),function(){
+                    othis.css({
+                        right:0
+                    });
+                });
             }, 2000);
         });
     },
@@ -133,14 +137,13 @@ Youai.sliderShow = {
 
     toggleLike:function(e){
         var self = this,
-            target = e.currentTarget;     
-        
+            target = e.currentTarget;
+
         $(target).addClass("disable");
 
         var currentGoodInfo = this.model.getItemInfo(),
             method = $(target).hasClass("on") ? "dumpItem" : "likeItem";
-          
-            console.log("this actions is "+method );
+        console.log("this actions is "+method );
 
         var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":method, "itemId":currentGoodInfo.itemId, "isvCode":currentGoodInfo.isvCode}};
    
