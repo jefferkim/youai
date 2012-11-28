@@ -25,7 +25,7 @@ Youai.Good = Backbone.Model.extend({
     getItemInfo:function () {     
         var data = {            
             "itemId":this.get("itemId"),
-            "albumId":this.get("album").albumId,
+            "albumId":this.get("album") ? this.get("album").albumId : this.get("albumId"),
             "isvCode":this.get("isvInfo").isvCode,
             "itemHeight":this.height(),
             "originalPrice":this._parsePrice(),
