@@ -36,41 +36,12 @@ Youai.sliderShow = {
     },
 
     renderUI:function (sliderID) {
-        
+
         var self = this,
             currentModel = this.model.toJSON();
         console.log("<<<<this model is ====");
         console.log(currentModel);
         console.log(">>>>this model is ====");
-
-       /* for (var i = 0, LIS = "", imgs = currentModel.images; i < imgs.length; i++) {
-            LIS += '<li><img class="lazy" data-src="' + imgs[i].url + '_570x570.jpg" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png"/></li>';
-        }
-        
-
-        if ($("#" + sliderID).length < 1) {
-            var sliderDOM = [],
-                operater =  '<div class="good-operater"><a href="#" class="J-like ' + (currentModel.like === "true" ? 'on' : '') + '"></a><span class="like-num">添加喜欢成功</span></div>',
-                nav_holder = '<div class="nav-holder"><a href="#" class="prev" id="J-prev"></a><a href="#" class="next" id="J-next"></a></div>';
-
-            sliderDOM.push('<div class="slider-holder" id="J-sliderHolder" style="display:none;"><div class="sliderWrap">');
-            sliderDOM.push('<div id="' + sliderID + '" class="goods-slider" style="overflow: hidden;"><ul id="' + sliderID + "_UL" + '">');
-            sliderDOM.push(LIS + "</ul></div>");
-            sliderDOM.push(operater+"</div>");
-            sliderDOM.push(nav_holder);
-            sliderDOM.push('</div>');
-
-            $("#J-popWrap").append(sliderDOM.join(""));
-        } else {
-            $("#" + sliderID+"_UL", "#J-webapp").html(LIS);
-        }
-        */
-
-        /*images: this.currentItemImages,
-            likeNum: this.currentItemLikeNum,
-            isLiked: this.likeCurrentItem*/
-
-
 
         var sliderDOM = JST["template/slider"]({ID:sliderID,images:currentModel.images,isLiked:currentModel.like === "true"});
 

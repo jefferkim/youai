@@ -19,10 +19,10 @@ Youai.albumInfoView = Backbone.View.extend({
 
     showComment:function (e) {
         e.preventDefault();
-        var target = e.currentTarget;
+        var currentModel = this.model.toJSON();
 
         new Youai.commentsView({
-            "method":"getAblumComments"
+            "method":{api:"com.taobao.wap.rest2.wo3",data:{"method":"getAblumComments","albumId":currentModel.albumId,"isvCode":currentModel.isvInfo.isvCode,"pageSize":"100","pageNo":"1"}}
         });
     },
 

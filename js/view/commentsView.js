@@ -25,17 +25,15 @@ Youai.commentsView = Backbone.View.extend({
             opacity:0.8
         }, 1000, 'ease');
 
-        if($("#J-tplComment").length > 0){
-            $("#J-tplComment").show()
-        }else{
-            $("#J-popWrap").html(this.tpl["commentsLayout"]());
-            $("#J-comment-block").height(window.innerHeight-100)
-        }
+        $(this.el).undelegate("#J-submit","click");
+
+        $("#J-popWrap").html(this.tpl["commentsLayout"]());
+        $("#J-comment-block").height(window.innerHeight-100);
 
         this.options = options;
 
-        if(options.method === "getAblumComments"){
-            commentUrl = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getAblumComments","albumId":YA_GLOBAL.albumId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"}};
+        if(typeof options.method == 'object'){ //只有getAblumComments接口
+            commentUrl = options.method;
         }else{
             commentUrl = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemComments","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"}};
         }
@@ -79,10 +77,10 @@ Youai.commentsView = Backbone.View.extend({
             return;
         }
         else {
-            if(this.options.method == "getAblumComments"){
-                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
-            }else{
+            if(this.options.method == "getItemComments"){
                 url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
+            }else{
+                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
             }
            
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
