@@ -180,7 +180,6 @@ Youai.DetailView = Backbone.View.extend({
 // Youai.sliderShow.init('slider',data);
     Youai.sliderShow.init('slider', {
       images: this.currentItemImages,
-      likeNum: this.currentItemLikeNum,
       isLiked: this.likeCurrentItem
     });
   }
