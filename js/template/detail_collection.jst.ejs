@@ -9,7 +9,9 @@
         ￥<%= (originalPrice / 100).toFixed(2) %></a></p>
       <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
       <p class="like-count">
-        <% if (parseInt(likeNum) > 0) { %><strong><%= likeNum %></strong><% } %>
+        <% if (parseInt(likeNum) > 0) { %>
+          <strong><%= likeNum %></strong>
+        <% } %>
         <span class="<%= like == 'true' ?  'liked' : '' %>"></span></p>
     </div>
   </div>
