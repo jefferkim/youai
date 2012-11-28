@@ -2,48 +2,26 @@
   <div class="main-view">
     <div class="big-pic"><img src="<%= img.url + '_500x450.jpg' %>" ></div>
     <div class="item-info">
-      <p class="price">￥<%= (originalPrice / 100).toFixed(2) %></p>
+      <p class="price"><a style="color: #333" href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>">
+        ￥<%= (originalPrice / 100).toFixed(2) %></a></p>
       <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
-      <p class="like-count"><strong><%= likeNum %></strong><span></span></p>
+      <p class="like-count">
+        <strong><%= likeNum %></strong>
+        <span class="<%= like == 'true' ?  'liked' : '' %>"></span></p>
     </div>
   </div>
 </div>
 
 <header>
-  <h1><a href="<%= isvInfo.url %>">来自<%= isvInfo.name %></a>
-    <%= description %></h1>
+  <h1><a class="isv" href="<%= isvInfo.url %>">
+    来自<span class="isv-name"><%= isvInfo.name %></span></a>
+    <a style="color: #333" href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>" class="description">
+      <%= description %></a>
+  </h1>
 </header>
-<div class="go-buy"><a href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>" ><span></span>去购买</a></div>
+<div class="go-buy"><a href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>" >
+  <span></span>去购买</a></div>
 <div class="separator"></div>
 
-<% if (tags && tags.length) { %>
 <section class="recommendations">
-  <header>
-    <h1>相关推荐</h1>
-  </header>
-  <ul class="keywords">
-    <% for (var i = 0; i < Math.ceil(tags.length / 5); i++) { %>
-    <li>
-      <% for (var j = i * 5; j < Math.min(tags.length, (i+1)*5 ); j++) { %>
-        <a href="#"><%= tags[j].name %></a>
-      <% } %>
-    </li>
-    <% } %>
-<!--     <li>
-      <a href="#">最新</a>
-      <a href="#">热门</a>
-      <a href="#">初秋单鞋</a>
-      <a href="#">复古</a>
-      <a href="#">风衣外套</a>
-    </li>
-    <li>
-      <a href="#">开衫</a>
-      <a href="#">新款包</a>
-      <a href="#">波点控</a>
-      <a href="#">秋季补水</a>
-      <a href="#">更多</a>
-    </li>
- -->
-  </ul>
 </section>
-<% } %>
