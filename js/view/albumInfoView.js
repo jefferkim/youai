@@ -43,11 +43,13 @@ Youai.albumInfoView = Backbone.View.extend({
                     if (response.data.method === "likeAlbum") {
                         $(target).html("取消收集");
                         self.model.set({
-                            "likeNum":likeNum + 1
+                            "likeNum":likeNum + 1,
+                            "like":"true"
                         });
                     } else {
                         self.model.set({
-                            "likeNum":likeNum - 1
+                            "likeNum":likeNum - 1,
+                            "like":"false"
                         });
                         $(target).html("<em>收集</em><b>" + (likeNum - 1) + "</b>");
                     }

@@ -26,8 +26,7 @@ Youai.Router = Backbone.Router.extend({
                     '风格':/#!style/,
                     '搜索':/#!search\/((.|\n)*)\/p[0-9]*/,
                     '专辑':/#!albums\/recommend\/p[0-9]*/,
-                    '我关注的专辑':/#!albums\/like\/p[0-9]*//*,
-                     '专辑列表'      :/#!album\/[0-9]*\/p[0-9]*///头部专辑列表中的文字改掉
+                    '我关注的专辑':/#!albums\/like\/p[0-9]*/
                 },
                 lc = location.hash;
             for (var key in h1Map) {
@@ -74,7 +73,7 @@ Youai.Router = Backbone.Router.extend({
     },
     //列表页
     list:function (listCode, pageNo) {
-        var U = Youai.Util;
+
         $("#J-list").length < 1 && $("#content").html(JST["template/list_good"]());
 
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromList", "listCode":listCode, "pageSize":"30", "pageNo":pageNo || 1}};
@@ -106,8 +105,8 @@ Youai.Router = Backbone.Router.extend({
         Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"1"}, {},
             function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {
-                   $("#J-tagPageContent").html(resp.data.result.data);
-                }else{
+                    $("#J-tagPageContent").html(resp.data.result.data);
+                } else {
                     notification.flash('接口调用错误，请刷新重试').show();
                 }
             }
@@ -163,8 +162,8 @@ Youai.Router = Backbone.Router.extend({
         Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"2"}, {},
             function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {
-                   $("#J-stylePageContent").html(resp.data.result.data);
-                }else{
+                    $("#J-stylePageContent").html(resp.data.result.data);
+                } else {
                     notification.flash('接口调用错误，请刷新重试').show();
                 }
             }
@@ -173,7 +172,6 @@ Youai.Router = Backbone.Router.extend({
     },
     //搜索页
     search:function (keyword, pageNo) {
-        var U = Youai.Util;
 
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":encodeURI(keyword)}};
 
@@ -237,7 +235,7 @@ Youai.Router = Backbone.Router.extend({
                 }).render();
 
                 Youai.Mod.renderPageNav(result.recordTotal);
-            }else{
+            } else {
                 notification.flash('接口调用错误，请刷新重试').show();
             }
         });

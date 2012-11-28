@@ -29,7 +29,8 @@ Youai.albumItemView = Backbone.View.extend({
         var self = this,
             target = e.currentTarget,
             albumsType = location.hash.split("/")[1],
-            album = this.model.toJSON();
+            album = this.model.toJSON(),
+            likeNum = parseInt(album.likeNum);
         Youai.Mod.toggleAlbumLike({
             eventTarget:e.currentTarget,
             albumId:album.albumId,
@@ -39,12 +40,18 @@ Youai.albumItemView = Backbone.View.extend({
                 if (response.ret[0].indexOf("SUCCESS::") != -1) {
                     $(target).toggleClass("added");
                     if (albumsType === "recommend") {
-                        //喜欢后文案显示为取消收集
-                        //取消收集后数字在没刷新前提下跟先前收集前一致，所以没set Model
                         if (response.data.method === "likeAlbum") {
                             $(target).html("取消收集");
+                            self.model.set({
+                                "likeNum":likeNum + 1,
+                                "like":"true"
+                            });
                         } else {
-                            $(target).html("<em>收集</em><b>" + album.likeNum + "</b>");
+                            self.model.set({
+                                "likeNum":likeNum - 1,
+                                "like":"false"
+                            });
+                            $(target).html("<em>收集</em><b>" + (likeNum - 1) + "</b>");
                         }
                     } else {
                         self.model.destroy();
