@@ -56,11 +56,11 @@ Youai.Router = Backbone.Router.extend({
         var U = Youai.Util;
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
-        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemsFromVisit", "pageSize":"30", "pageNo":pageNo || 1}};
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromVisit", "pageSize":"30", "pageNo":pageNo || 1}};
 
         var strollGoodList = new Youai.GoodList();
 
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
 
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
@@ -82,11 +82,11 @@ Youai.Router = Backbone.Router.extend({
         var U = Youai.Util;
         $("#J-list").length < 1 && $("#content").html(JST["template/list_good"]());
 
-        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemsFromList", "listCode":listCode, "pageSize":"30", "pageNo":pageNo || 1}};
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromList", "listCode":listCode, "pageSize":"30", "pageNo":pageNo || 1}};
 
         var goodList = new Youai.GoodList();
 
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
                 $("#J-headerT").text(result.title); //增加标题
@@ -110,16 +110,16 @@ Youai.Router = Backbone.Router.extend({
         $("#J-tagLayout").length < 1 && $("#content").html(JST["template/tag_layout"]());
 
 
-        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"1"}, {},function (resp) {
-             $("#J-tagPageContent").html(resp.data.result.data);
+        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"1"}, {}, function (resp) {
+            $("#J-tagPageContent").html(resp.data.result.data);
         });
 
         var searchInput = $("#J-searchContent");
 
-        if(type == "s"){
+        if (type == "s") {
             searchInput.focus();
         }
-        
+
 
         searchInput.focus(function () {
             $(".no-search-result").hide();
@@ -135,9 +135,9 @@ Youai.Router = Backbone.Router.extend({
 
             var searchGoodList = new Youai.GoodList();
 
-            var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":"1", "keyword":searchTxt}};
+            var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":"1", "keyword":searchTxt}};
 
-            Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
+            Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                     var result = resp.data.result;
                     if (result.recordTotal === "0") {
@@ -162,7 +162,7 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-styleLayout").length < 1 && $("#content").html(JST["template/style_layout"]());
 
-        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"2"}, {},function (resp) {
+        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"2"}, {}, function (resp) {
             $("#J-stylePageContent").html(resp.data.result.data);
         });
 
@@ -171,11 +171,11 @@ Youai.Router = Backbone.Router.extend({
     search:function (keyword, pageNo) {
         var U = Youai.Util;
 
-        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":encodeURI(keyword)}};
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":encodeURI(keyword)}};
 
         var searchList = new Youai.GoodList();
 
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
 
@@ -193,31 +193,31 @@ Youai.Router = Backbone.Router.extend({
     //我的喜欢
     like:function (userId, page) {
 
-        Youai.likeView = new Youai.LikeView({ userId: userId, page: page })
+        Youai.likeView = new Youai.LikeView({ userId:userId, page:page })
         $('.content').html(Youai.likeView.el)
         Youai.likeView.getLikeData(userId, page)
     },
 
     //详情页
-    detail:function (id,isvCode) {
+    detail:function (id, isvCode) {
 
         Youai.detail = new Youai.DetailView()
         $('.content').html(Youai.detail.el)
 
-        Youai.detail.displayItem(id,isvCode)
+        Youai.detail.displayItem(id, isvCode)
 
     },
 
     //推荐专辑和我关注的专辑
     albums:function (type, pageNo) {
 
-        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":(type === "recommend" ? "getRecommendAlbums" : "getLikeAlbums"), "pageSize":"30", "pageNo":pageNo || 1}};
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":(type === "recommend" ? "getRecommendAlbums" : "getLikeAlbums"), "pageSize":"30", "pageNo":pageNo || 1}};
         $("#content").html(JST["template/album_layout"]({"type":type}));
 
         var albumList = new Youai.albumList();
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             Youai.Util._checkLogin(resp);
-            if (resp.ret[0].indexOf("SUCCESS::") != -1) {                
+            if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result,
                     data = result.data;
                 //我关注的专辑数据接口是不一样的
@@ -243,32 +243,31 @@ Youai.Router = Backbone.Router.extend({
         $("#J-albumItemInfo").length < 1 && $("#content").html(JST["template/album_info_layout"]());
 
         var self = this,
-            url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"10", "pageNo":pageNo}};
+            url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"10", "pageNo":pageNo}};
 
         var albumGoods = new Youai.GoodList();
 
-        Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (resp) {            
-           if (resp.ret[0].indexOf("SUCCESS::") != -1) {    
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
+            if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
-                //设置全局变量，方便喜欢专辑操作和评论列表
-                YA_GLOBAL.isvCode = result.isvInfo.isvCode;
-                YA_GLOBAL.albumId = result.albumId;
-
                 $("#J-headerT").text(result.title);
+
                 albumGoods.reset(result.data);
 
-                var albumInfo = new Youai.albumInfo();
+                var albumInfo = new Youai.Album();
+                albumInfo.set(result);
+                var albumInfoView = new Youai.albumInfoView({model:albumInfo});
 
-                $("#J-albumInfoWrap").html(albumInfo.render({"albumInfo":result}).el);
+                $("#J-albumInfoWrap").html(albumInfoView.render().el);
 
                 new Youai.goodListView({
                     data:albumGoods
                 }).render();
 
                 Youai.Mod.renderPageNav(result.itemTotal);
-          }else{
-               notification.flash('接口调用错误，请刷新重试').show();
-          }
+            } else {
+                notification.flash('接口调用错误，请刷新重试').show();
+            }
         });
     }
 

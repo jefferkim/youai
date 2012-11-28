@@ -21,6 +21,17 @@ Youai.Album = Backbone.Model.extend({
             "albumPic":this.get("images")[0].url
         };
         return data;
+    },
+
+    getAlbumInfo:function(){
+        var data = {
+            "user":this.get("user"),
+            "likeNum":this.get("likeNum"),
+            "isLiked":this.get("like") === "true",
+            "commentNum":this.get("commentNum"),
+            "description":this.get("description")
+        };
+        return data;
     }
 
 });
