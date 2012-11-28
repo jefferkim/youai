@@ -3,7 +3,7 @@
 
 <div class="collection">
   <div class="main-view">
-    <div class="big-pic"><img src="<%= images[0].url + '_500x450.jpg' %>" ></div>
+    <div class="big-pic"><img src="<%= img.url + '_500x450.jpg' %>" ></div>
     <div class="item-info">
       <p class="price">￥<%= (originalPrice / 100).toFixed(2) %></p>
       <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
@@ -21,7 +21,7 @@
         <% for (var i = 0; i < album.items.length; i++) { %>
           <li data-index="<%= i %>">
             <img class="lazy" src="http://a.tbcdn.cn/mw/base/styles/component/more/images/Loading_Taobao_320.gif"
-            data-src="<%= album.items[i].images[0].url + '_110x110.jpg' %>" >
+            data-src="<%= _.filter(album.items[i].images, function(img) { return img.type == '0' })[0].url + '_110x110.jpg' %>" >
           </li>
         <% } %>
       </ul>
