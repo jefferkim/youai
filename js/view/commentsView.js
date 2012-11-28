@@ -25,12 +25,10 @@ Youai.commentsView = Backbone.View.extend({
             opacity:0.8
         }, 1000, 'ease');
 
-        if($("#J-tplComment").length > 0){
-            $("#J-tplComment").show()
-        }else{
-            $("#J-popWrap").html(this.tpl["commentsLayout"]());
-            $("#J-comment-block").height(window.innerHeight-100)
-        }
+        $(this.el).undelegate("#J-submit","click");
+
+        $("#J-popWrap").html(this.tpl["commentsLayout"]());
+        $("#J-comment-block").height(window.innerHeight-100);
 
         this.options = options;
 
