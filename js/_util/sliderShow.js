@@ -36,7 +36,6 @@ Youai.sliderShow = {
     },
 
     renderUI:function (sliderID) {
-
         
         var currentModel = this.model.toJSON();
         console.log("<<<<this model is ====");
@@ -133,20 +132,20 @@ Youai.sliderShow = {
 
 
     toggleLike:function(e){
-
         var self = this,
             target = e.currentTarget;     
-         $(target).addClass("disable");
+        
+        $(target).addClass("disable");
+
         var currentGoodInfo = this.model.getItemInfo(),
-
             method = $(target).hasClass("on") ? "dumpItem" : "likeItem";
-
-console.log(currentGoodInfo);
+          
             console.log("this actions is "+method );
 
         var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":method, "itemId":currentGoodInfo.itemId, "isvCode":currentGoodInfo.isvCode}};
    
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function(response){
+            Youai.Util._checkLogin(response);
             if(response.ret[0].indexOf("SUCCESS::") != -1){
                     self.changeUI(target);
                 }else{
