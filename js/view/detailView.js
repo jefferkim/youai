@@ -15,12 +15,12 @@ Youai.DetailView = Backbone.View.extend({
 
 
   getValidImage: function(images) {
-    return _.filter(this.data.images, function(img) { return img.type ==  '0' })[0]
+    return _.filter(images, function(img) { return img.type ==  '0' })[0]
   },
 
   render: function(template) {
 
-    var content = template( $.extend(this.data, { img: this.getValidImage(this.data.images) }) )
+    var content = template( $.extend(this.data, { img: this.getValidImage(this.data.images), tags: this.data.tags }) )
     this.$el.html(content)
   },
 
@@ -62,7 +62,7 @@ Youai.DetailView = Backbone.View.extend({
     YA_GLOBAL.itemId = this.data.itemId;
     YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
 
-    if (this.data.album && this.data.album.items) {  //有专辑
+    if (this.data.album && this.data.album.data) {  //有专辑
       this.render(JST['template/detail_collection'])
       this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
       this.slide.load()
@@ -78,10 +78,10 @@ Youai.DetailView = Backbone.View.extend({
     $(e.currentTarget).addClass('selected')
 
     var index = parseInt($(e.currentTarget).attr('data-index'))
-    var item  = this.data.album.items[index]
+    var item  = this.data.album.data[index]
 
     // 更新大图
-    $('.big-pic img').attr('src', this.getValidImage(item.images).url )
+    $('.big-pic img').attr('src', this.getValidImage(item.images).url)
 
     // 更新价格
     $('.main-view .price a').text('￥' + (item.originalPrice / 100).toFixed(2) )
@@ -108,7 +108,10 @@ Youai.DetailView = Backbone.View.extend({
     $('h1 .description').attr('href', itemLink)
 
     // 更新标签
-    $('.recommendations').empty().html(JST['template/detail_tags'](item))
+    $('.recommendations').empty()
+    if (item.tags && item.tags.length) {
+      $('.recommendations').html( JST['template/detail_tags'](item) )
+    }
 
     this.currentItemImages = item.images;
     this.currentItemLikeNum = item.likeNum;
