@@ -182,7 +182,6 @@ Youai.DetailView = Backbone.View.extend({
 
     var model = new Youai.Good();
         model.set(this.currentItemForSlider);
-        model.set(this.currentItemForSlider);
     Youai.sliderShow.init('slider',model);
 
   }
