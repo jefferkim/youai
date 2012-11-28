@@ -12,11 +12,14 @@ Youai.DetailView = Backbone.View.extend({
     $('h1.title').text('详情页')
   },
 
+
+  getValidImage: function(images) {
+    return _.filter(this.data.images, function(img) { return img.type ==  '0' })[0]
+  },
+
   render: function(template) {
 
-    var img = _.filter(this.data.images, function(img) { return img.type ==  '0' })[0]
-
-    var content = template( $.extend(this.data, { img: img }) )
+    var content = template( $.extend(this.data, { img: this.getValidImage(this.data.images) }) )
     this.$el.html(content)
   },
 
@@ -37,7 +40,7 @@ Youai.DetailView = Backbone.View.extend({
             self.currentItemImages = self.data.images;
             self.currentItemLikeNum = self.data.likeNum;
             self.likeCurrentItem    = self.data.like == 'true';
-            self.displayItem(id)
+            self.displayItem(id, isvCode)
           } else {
             console.log('mtop error')
           }
@@ -73,10 +76,10 @@ Youai.DetailView = Backbone.View.extend({
     var item  = this.data.album.items[index]
 
     // 更新大图
-    $('.big-pic img').attr('src', item.images[0].url)
+    $('.big-pic img').attr('src', this.getValidImage(item.images).url )
 
     // 更新价格
-    $('.main-view .price').text('￥' + item.originalPrice)
+    $('.main-view .price a').text('￥' + (item.originalPrice / 100).toFixed(2) )
 
     // 更新评论数
     if (parseInt(item.commentNum) > 0) $('.comment-count strong').text(item.commentNum)
@@ -93,8 +96,11 @@ Youai.DetailView = Backbone.View.extend({
     // 更新商品描述
     $('h1 .description').text(item.description)
 
-    // TODO 更新详情页链接
-    $('.go-buy a').attr('href', 'http://a.m.taobao.com/i' + item.itemId + '.htm')
+    // 更新详情页链接
+    var itemLink = 'http://a.m.taobao.com/i' + item.itemId + '.htm'
+    $('.price a').attr('href', itemLink)
+    $('.go-buy a').attr('href', itemLink)
+    $('h1 .description').attr('href', itemLink)
 
     // 更新标签
     $('.recommendations').empty().html(JST['template/detail_tags'](item))
