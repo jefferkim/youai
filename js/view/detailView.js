@@ -67,6 +67,9 @@ Youai.DetailView = Backbone.View.extend({
       this.render(JST['template/detail_collection'])
       this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
       this.slide.load()
+
+      this.currentItem = this.data.album.data[0]
+
     } else {  // 无专辑
       this.isSingleItem = true
       this.render(JST['template/detail_single'])
@@ -80,6 +83,8 @@ Youai.DetailView = Backbone.View.extend({
 
     var index = parseInt($(e.currentTarget).attr('data-index'))
     var item  = this.data.album.data[index]
+
+    this.currentItem = item
     this.currentItemForSlider = item
 
     // 更新大图
@@ -143,12 +148,14 @@ Youai.DetailView = Backbone.View.extend({
       if (json.ret[0].search('SUCCESS') > -1) {
         if (json.data.result == "true") {
           $('.like-count span').addClass('liked')
-          if (self.isSingleItem) {
+          if (self.isSingleItem) { // 单个商品
             self.data.like = "true"
             self.data.likeNum = parseInt(self.data.likeNum) + 1
             $('.like-count strong').text(self.data.likeNum)
-          } else {
-
+          } else {  // 专辑商品
+            self.currentItem.like == "true"
+            self.currentItem.likeNum = parseInt(self.currentItem.likeNum) + 1
+            $('.like-count strong').text(self.currentItem.likeNum)
           }
         }
       } else {
@@ -169,6 +176,11 @@ Youai.DetailView = Backbone.View.extend({
             var likeNum = parseInt(self.data.likeNum);
             if (likeNum) self.data.likeNum = likeNum - 1
             $('.like-count strong').text(self.data.likeNum)
+          } else {
+            self.currentItem.like = "false"
+            var likeNum = parseInt(self.currentItem.likeNum)
+            if (likeNum) self.currentItem.likeNum = likeNum - 1
+            $('.like-count strong').text(self.currentItem.likeNum)
           }
         }
       } else {
