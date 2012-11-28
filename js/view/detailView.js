@@ -174,9 +174,11 @@ Youai.DetailView = Backbone.View.extend({
   },
 
   showImageSlide: function() {
+
     var model = new Youai.Good();
         model.set(this.data);
     Youai.sliderShow.init('slider',model);
+
   }
 
 })

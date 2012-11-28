@@ -1,6 +1,8 @@
 <header>
   <% if (isCurrentUser) { %>
   <h1>亲，您已经喜欢过 <%= total %> 个宝贝咯。</h1>
+  <% } else if (user) { %>
+  <h1><%= user.userNick %>已经喜欢过 <%= total %> 个宝贝咯。</h1>
   <% } %>
   <p>小提示：已经下架的商品您是看不到的哦。</p>
 </header>

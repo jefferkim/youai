@@ -15,13 +15,14 @@ Youai.LikeView = Backbone.View.extend({
     else $('h1.title').text('TA 的喜欢')
 
     if (this.data.length == 0) {
-      this.$el.html( JST['template/no_like']({isCurrentUser: this.isCurrentUser}) )
+      this.$el.html( JST['template/no_like']({isCurrentUser: this.isCurrentUser, user: this.user}) )
       return;
     }
 
     this.$el.html(JST['template/like_header']({
       total: this.result.totalLikeNum,
-      isCurrentUser: this.isCurrentUser
+      isCurrentUser: this.isCurrentUser,
+      user: this.user
     }))
 
     for (var i = 0; i < this.data.length; i++) {
@@ -93,6 +94,8 @@ Youai.LikeView = Backbone.View.extend({
       if (json.ret[0].search('SUCCESS') > -1) {
           self.result = json.data.result;
           self.data = json.data.result.data;
+          self.user = json.data.result.user;
+
           self.render()
       } else {
           console.log('mtop error')
