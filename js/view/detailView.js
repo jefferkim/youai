@@ -174,15 +174,9 @@ Youai.DetailView = Backbone.View.extend({
   },
 
   showImageSlide: function() {
-//      "images":this.get("images"),
-//  "likeNum":this.get("likeNum"),
-//  "isLiked":this.get("like") === "true"
-// Youai.sliderShow.init('slider',data);
-    Youai.sliderShow.init('slider', {
-      images: this.currentItemImages,
-      likeNum: this.currentItemLikeNum,
-      isLiked: this.likeCurrentItem
-    });
+    var model = new Youai.Good();
+        model.set(this.data);
+    Youai.sliderShow.init('slider',model);
   }
 
 })

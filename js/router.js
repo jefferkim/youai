@@ -263,8 +263,9 @@ Youai.Router = Backbone.Router.extend({
                 var albumInfoView = new Youai.albumInfoView({model:albumInfo});
 
                 $("#J-albumInfoWrap").html(albumInfoView.render().el);
-                //good model里面每个接口都不是返回相同的模型，导致需要加入全局
+                //good model里面每个接口都不是返回相同的模型，导致需要加入全局，评论中也需要
                 YA_GLOBAL.albumId = result.albumId;
+                YA_GLOBAL.isvCode = result.isvInfo.isvCode;
 
                 new Youai.goodListView({
                     data:albumGoods
