@@ -2,8 +2,8 @@
   <h1 style="color: #666">
     <% if (isCurrentUser) { %>
       您
-    <% } else { %>
-      TA
+    <% } else if (user) { %>
+      <%= user.userNick %>
     <% } %>
     还没有喜欢任何宝贝，现在就去逛逛吧！
   </h1>

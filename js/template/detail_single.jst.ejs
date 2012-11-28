@@ -24,18 +24,4 @@
 <div class="separator"></div>
 
 <section class="recommendations">
-<% if (tags && tags.length) { %>
-<header>
-  <h1>相关推荐</h1>
-</header>
-<ul class="keywords">
-  <% for (var i = 0; i < Math.ceil(tags.length / 5); i++) { %>
-  <li>
-    <% for (var j = i * 5; j < Math.min(tags.length, (i+1)*5 ); j++) { %>
-      <a href="#"><%= tags[j].name %></a>
-    <% } %>
-  </li>
-  <% } %>
-</ul>
-<% } %>
 </section>
