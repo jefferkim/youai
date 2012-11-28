@@ -5,7 +5,8 @@ Youai.DetailView = Backbone.View.extend({
   events: {
     'click .comment-count': 'showComemnts',
     'click .vslide li': 'displayAnotherItem',
-    'click .big-pic': 'showImageSlide'
+    'click .big-pic': 'showImageSlide',
+    'click .like-count span': 'toggleLike'
   },
 
   initialize: function() {
@@ -63,6 +64,7 @@ Youai.DetailView = Backbone.View.extend({
       this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
       this.slide.load()
     } else {  // 无专辑
+      this.isSingleItem = true
       this.render(JST['template/detail_single'])
     }
 
@@ -119,6 +121,53 @@ Youai.DetailView = Backbone.View.extend({
     new Youai.commentsView({
         method:"getItemComments"
     });
+  },
+
+  toggleLike: function(e) {
+    if ( !$(e.target).hasClass('liked') ) this.doLikeItem()
+    else this.notLikeItem()
+  },
+
+  doLikeItem: function() {
+    var self = this
+    var url = { api:"com.taobao.wap.rest2.wo3",data:{"method":"likeItem","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode}}
+    Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
+      if (json.ret[0].search('SUCCESS') > -1) {
+        if (json.data.result == "true") {
+          $('.like-count span').addClass('liked')
+          if (self.isSingleItem) {
+            self.data.like = "true"
+            self.data.likeNum = parseInt(self.data.likeNum) + 1
+            $('.like-count strong').text(self.data.likeNum)
+          } else {
+
+          }
+        }
+      } else {
+        console.log('mtop error')
+        notification.flash('加载失败，请刷新页面重试').show()
+      }
+    })
+  },
+
+  notLikeItem: function() {
+    var url = { api:"com.taobao.wap.rest2.wo3",data:{"method":"likeItem","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode}}
+    Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
+      if (json.ret[0].search('SUCCESS') > -1) {
+        if (json.data.result == "true") {
+          $('.like-count span').removeClass('liked')
+          if (self.isSingleItem) {
+            self.data.like = "false";
+            var likeNum = parseInt(self.data.likeNum);
+            if (likeNum) self.data.likeNum = likeNum - 1
+            $('.like-count strong').text(self.data.likeNum)
+          }
+        }
+      } else {
+        console.log('mtop error')
+        notification.flash('加载失败，请刷新页面重试').show()
+      }
+    })
   },
 
   showImageSlide: function() {
