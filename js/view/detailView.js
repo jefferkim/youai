@@ -61,6 +61,7 @@ Youai.DetailView = Backbone.View.extend({
     //added by jinjianfeng, for comments
     YA_GLOBAL.itemId = this.data.itemId;
     YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
+    YA_GLOBAL.albumId = albumId
 
     if (this.data.album && this.data.album.data) {  //有专辑
       this.render(JST['template/detail_collection'])
@@ -120,7 +121,7 @@ Youai.DetailView = Backbone.View.extend({
     YA_GLOBAL.itemId = item.itemId;
     YA_GLOBAL.isvCode = item.isvInfo.isvCode;
 
-    Youai.router.navigate('!detail/' + item.itemId + '/' + item.isvInfo.isvCode)
+    Youai.router.navigate('!detail/' + item.itemId + '/' + item.isvInfo.isvCode + '/' + YA_GLOBAL.albumId)
   },
 
   showComemnts: function() {
