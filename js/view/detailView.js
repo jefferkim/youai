@@ -94,6 +94,7 @@ Youai.DetailView = Backbone.View.extend({
     $('h1 .description').text(item.description)
 
     // TODO 更新详情页链接
+    $('.go-buy a').attr('href', 'http://a.m.taobao.com/i' + item.itemId + '.htm')
 
     // 更新标签
     $('.recommendations').empty().html(JST['template/detail_tags'](item))
