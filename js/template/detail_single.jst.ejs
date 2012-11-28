@@ -1,6 +1,6 @@
 <div class="single-item">
   <div class="main-view">
-    <div class="big-pic"><img src="<%= images[0].url + '_500x450.jpg' %>" ></div>
+    <div class="big-pic"><img src="<%= img.url + '_500x450.jpg' %>" ></div>
     <div class="item-info">
       <p class="price">￥<%= (originalPrice / 100).toFixed(2) %></p>
       <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
@@ -13,7 +13,7 @@
   <h1><a href="<%= isvInfo.url %>">来自<%= isvInfo.name %></a>
     <%= description %></h1>
 </header>
-<div class="go-buy"><a href="#" ><span></span>去购买</a></div>
+<div class="go-buy"><a href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>" ><span></span>去购买</a></div>
 <div class="separator"></div>
 
 <% if (tags && tags.length) { %>

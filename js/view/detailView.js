@@ -13,7 +13,10 @@ Youai.DetailView = Backbone.View.extend({
   },
 
   render: function(template) {
-    var content = template(this.data)
+
+    var img = _.filter(this.data.images, function(img) { return img.type ==  '0' })[0]
+
+    var content = template( $.extend(this.data, { img: img }) )
     this.$el.html(content)
   },
 
