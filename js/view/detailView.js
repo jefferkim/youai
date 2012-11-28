@@ -79,6 +79,7 @@ Youai.DetailView = Backbone.View.extend({
 
     var index = parseInt($(e.currentTarget).attr('data-index'))
     var item  = this.data.album.data[index]
+    this.currentItemForSlider = item
 
     // 更新大图
     $('.big-pic img').attr('src', this.getValidImage(item.images).url)
@@ -179,7 +180,8 @@ Youai.DetailView = Backbone.View.extend({
   showImageSlide: function() {
 
     var model = new Youai.Good();
-        model.set(this.data);
+        model.set(this.currentItemForSlider);
+        model.set(this.currentItemForSlider);
     Youai.sliderShow.init('slider',model);
 
   }
