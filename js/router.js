@@ -51,9 +51,9 @@ Youai.Router = Backbone.Router.extend({
         var indexView = new Youai.indexView();
     },
 
-    //逛逛  TODO:统一goodList函数
+    //逛逛
     stroll:function (pageNo) {
-        var U = Youai.Util;
+
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromVisit", "pageSize":"30", "pageNo":pageNo || 1}};
@@ -64,18 +64,13 @@ Youai.Router = Backbone.Router.extend({
 
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
-
                 strollGoodList.reset(result.data);
-
                 new Youai.goodListView({
                     "data":strollGoodList
                 }).render();
-
                 Youai.Mod.renderPageNav(result.recordTotal);
             }
         });
-
-
     },
     //列表页
     list:function (listCode, pageNo) {
@@ -104,22 +99,25 @@ Youai.Router = Backbone.Router.extend({
     },
     //类目
     category:function (type) {
-        var self = this,
-            U = Youai.Util;
+        var self = this;
 
         $("#J-tagLayout").length < 1 && $("#content").html(JST["template/tag_layout"]());
 
-
-        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"1"}, {}, function (resp) {
-            $("#J-tagPageContent").html(resp.data.result.data);
-        });
+        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"1"}, {},
+            function (resp) {
+                if (resp.ret[0].indexOf("SUCCESS::") != -1) {
+                   $("#J-tagPageContent").html(resp.data.result.data);
+                }else{
+                    notification.flash('接口调用错误，请刷新重试').show();
+                }
+            }
+        );
 
         var searchInput = $("#J-searchContent");
 
         if (type == "s") {
             searchInput.focus();
         }
-
 
         searchInput.focus(function () {
             $(".no-search-result").hide();
@@ -162,9 +160,15 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-styleLayout").length < 1 && $("#content").html(JST["template/style_layout"]());
 
-        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"2"}, {}, function (resp) {
-            $("#J-stylePageContent").html(resp.data.result.data);
-        });
+        Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"2"}, {},
+            function (resp) {
+                if (resp.ret[0].indexOf("SUCCESS::") != -1) {
+                   $("#J-stylePageContent").html(resp.data.result.data);
+                }else{
+                    notification.flash('接口调用错误，请刷新重试').show();
+                }
+            }
+        );
 
     },
     //搜索页
@@ -211,10 +215,11 @@ Youai.Router = Backbone.Router.extend({
     //推荐专辑和我关注的专辑
     albums:function (type, pageNo) {
 
-        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":(type === "recommend" ? "getRecommendAlbums" : "getLikeAlbums"), "pageSize":"30", "pageNo":pageNo || 1}};
         $("#content").html(JST["template/album_layout"]({"type":type}));
 
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":(type === "recommend" ? "getRecommendAlbums" : "getLikeAlbums"), "pageSize":"10", "pageNo":pageNo || 1}};
         var albumList = new Youai.albumList();
+
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             Youai.Util._checkLogin(resp);
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
@@ -232,6 +237,8 @@ Youai.Router = Backbone.Router.extend({
                 }).render();
 
                 Youai.Mod.renderPageNav(result.recordTotal);
+            }else{
+                notification.flash('接口调用错误，请刷新重试').show();
             }
         });
 
@@ -239,11 +246,10 @@ Youai.Router = Backbone.Router.extend({
 
     //专辑商品列表
     albumItems:function (albumId, pageNo) {
-        var U = Youai.Util;
-        $("#J-albumItemInfo").length < 1 && $("#content").html(JST["template/album_info_layout"]());
 
+        $("#J-albumItemInfo").length < 1 && $("#content").html(JST["template/album_info_layout"]());
         var self = this,
-            url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"10", "pageNo":pageNo}};
+            url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"30", "pageNo":pageNo}};
 
         var albumGoods = new Youai.GoodList();
 

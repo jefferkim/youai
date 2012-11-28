@@ -113,7 +113,7 @@ Youai.indexView = Backbone.View.extend({
                     self._addModAlbum(data);
                     self._addModYouai(data);
                 }else{
-                    notification.flash('系统错误').show();
+                    notification.flash('接口调用错误，请刷新重试').show();
                 }
 
              },function (xhr, type) {
