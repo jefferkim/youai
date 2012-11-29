@@ -164,6 +164,7 @@ Youai.DetailView = Backbone.View.extend({
               console.log("---");
 
           }
+          $(document.body).trigger("likeAction:like");
         }
       } else {
         console.log('mtop error')
@@ -190,10 +191,8 @@ Youai.DetailView = Backbone.View.extend({
             var likeNum = parseInt(self.currentItem.likeNum)
             if (likeNum) self.currentItem.likeNum = likeNum - 1
             $('.like-count strong').text(self.currentItem.likeNum)
-              /*console.log("---");
-              console.log(self.currentItemForSlider);
-              console.log("---");*/
           }
+          $(document.body).trigger("likeAction:dump");
         }
       } else {
         console.log('mtop error')
@@ -202,13 +201,26 @@ Youai.DetailView = Backbone.View.extend({
     })
   },
 
-  showImageSlide: function() {
-
-    var model = new Youai.Good();
-    console.log(this.currentItemForSlider);
+  showImageSlide:function () {
+        var self = this,
+            model = new Youai.Good();
         model.set(this.currentItemForSlider);
-    Youai.sliderShow.init('slider',model);
-
+        Youai.sliderShow.init('slider', model, function () {
+            $("#J-webapp").undelegate(".J-like","click");
+            $("#J-webapp").delegate(".J-like", "click", function (e) {
+                e.preventDefault();
+                if (!$(e.target).hasClass('on')) self.doLikeItem()
+                else self.notLikeItem()
+            });
+            $(document.body).off("likeAction:like");
+            $(document.body).off("likeAction:dump");
+            $(document.body).on("likeAction:like", function () {
+                $(".J-like").addClass("on");
+            });
+            $(document.body).on("likeAction:dump",function(){
+                $(".J-like").removeClass("on");
+            });
+        });
   }
 
 })

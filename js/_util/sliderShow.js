@@ -1,6 +1,6 @@
 Youai.sliderShow = {
 
-    init:function (id, model) {
+    init:function (id, model,likeAction) {
         var self = this;
         this.maskEl = $("#J-mask"),
         this.goodSlider = null;
@@ -9,6 +9,12 @@ Youai.sliderShow = {
         
         this.renderUI(id);
         this.destroyUI();
+        if(likeAction){
+            likeAction();
+        }else{
+            this.likeAction();
+        }
+
     },
 
     _showMask:function () {
@@ -64,6 +70,17 @@ Youai.sliderShow = {
             e.preventDefault();
             self.goodSlider.next();
         });
+
+
+         
+       // this.postStatistics(data);
+        this._showMask();
+        this._bounceSlider();
+    },
+
+
+    likeAction:function(){
+        var self = this;
         $(".J-like").off("click");
         $(".J-like").on("click",function(e){
             e.preventDefault();
@@ -74,12 +91,7 @@ Youai.sliderShow = {
             }
             self.toggleLike(e);
         });
-         
-       // this.postStatistics(data);
-        this._showMask();
-        this._bounceSlider();
     },
-
 
     changeUI:function (target,method) {
         var timer,

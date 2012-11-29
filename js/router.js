@@ -140,7 +140,7 @@ Youai.Router = Backbone.Router.extend({
             e.preventDefault();
             var searchTxt = $.trim(searchInput.val());
             if (searchTxt === "") {
-                self.navigate('!stroll/p1', true);
+                self.navigate('!stroll/p1', {trigger: true, replace: true});
                 return;
             }
 
@@ -154,7 +154,7 @@ Youai.Router = Backbone.Router.extend({
                     if (result.recordTotal === "0") {
                         $(".no-search-result").show();
                     } else {
-                        self.navigate('!search/' + searchTxt + '/p1');
+                        self.navigate('!search/' + searchTxt + '/p1',{replace: true});
                         searchGoodList.reset(result.data);
                         new Youai.searchListView({
                             data:searchGoodList
