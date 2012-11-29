@@ -39,8 +39,22 @@ Youai.Router = Backbone.Router.extend({
         }
         wTitle();
 
+        // 在相应的页面显示主页或返回按钮
+        function displayHomeOrBackButton() {
+            if (location.hash.search('!home') > -1) {
+                $('.home-back .home').show()
+                $('.home-back .back').hide()
+            } else {
+                $('.home-back .home').hide()
+                $('.home-back .back').show()
+            }
+        }
+
+        $(displayHomeOrBackButton)
+
         window.addEventListener("hashchange", function () {
             wTitle();
+            displayHomeOrBackButton()
         }, false);
 
 
