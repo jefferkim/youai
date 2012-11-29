@@ -3,7 +3,9 @@ Youai.LikeView = Backbone.View.extend({
   className: 'like-items',
 
   initialize: function() {
-
+    //add by jinjianfeng
+    $("#J-mask").hide();
+    $("#J-tplComment").remove();
     this.isCurrentUser = (this.options.userId == "currentUser")
 
   },

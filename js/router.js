@@ -22,7 +22,7 @@ Youai.Router = Backbone.Router.extend({
                     '逛逛':/#!stroll\/p\d*/,
                     '喜欢':/#!like\/[0-9]*/,
                     '详情页':/#!detail\/[0-9]*/,
-                    '类目':/#!category/,
+                    '分类':/#!category/,
                     '风格':/#!style/,
                     '搜索':/#!search\/((.|\n)*)\/p[0-9]*/,
                     '专辑':/#!albums\/recommend\/p[0-9]*/,
@@ -187,7 +187,7 @@ Youai.Router = Backbone.Router.extend({
     //搜索页
     search:function (keyword, pageNo) {
 
-        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":encodeURI(keyword)}};
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":keyword}};
 
         var searchList = new Youai.GoodList();
 

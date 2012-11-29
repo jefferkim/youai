@@ -6,6 +6,13 @@ Youai.Comment = Backbone.Model.extend({
     url:function () {
     },
 
+
+    validate: function(attrs) {
+        if ($.trim(attrs.content).replace("/[^/x00-/xff]/g", "**").length > 140) {
+            return "不能超出140个字数";
+        }
+    },
+
     _getAvatar:function (id) {
         return "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + id + "&width=40&height=40&type=sns";
     },
@@ -20,10 +27,10 @@ Youai.Comment = Backbone.Model.extend({
 
     /*单个comment*/
     getComment:function () {
-        console.log(this);
         var data = {
             "avatar":this._getAvatar(this.get("user").userId),
             "content":this.get("content"),
+            "userId":this.get("user").userId,
             "author":this.get("user").userNick,
             "commentId":this.get("id")
         };

@@ -73,7 +73,11 @@ Youai.commentsView = Backbone.View.extend({
             inputContent = $.trim(inputField.val());
 
         if ($.trim(inputField.val()) === "") {
-            notification.pop("请填写评论内容").show();
+            notification.flash("请填写评论内容").show();
+            return;
+        }
+        if($.trim(inputField.val()).replace("/[^/x00-/xff]/g", "**").length > 140){
+            notification.flash("不能超出140个字数").show();
             return;
         }
         else {
@@ -82,7 +86,7 @@ Youai.commentsView = Backbone.View.extend({
             }else{
                 url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
             }
-           
+
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
                 Youai.Util._checkLogin(response);
                 var result = response.ret[0];
@@ -92,7 +96,7 @@ Youai.commentsView = Backbone.View.extend({
                 if (result.indexOf("PARAM_ERR::") != -1) {
                     notification.flash('输入参数错误').show();
                 }
-                
+
                 if(result.indexOf("SUCCESS::") != -1){
                     var newComment = new Youai.Comment({
                         itemId:YA_GLOBAL.itemId,
@@ -102,11 +106,15 @@ Youai.commentsView = Backbone.View.extend({
                             userNick:response.data.result.user.userNick
                         }
                     });
+                    //TODO：考虑将校验都加入到model
+                    newComment.on("error",function(model,error){
+                        notification.flash(error).show();
+                    });
 
                     self.addComment(newComment,"reply");
                     self.commentScroll._scrollbarPos(0,0);
 
-                    commentBlock.removeClass("show");
+                   // commentBlock.removeClass("show");
                     inputField.val("");
                 }
                 

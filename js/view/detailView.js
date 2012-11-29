@@ -205,7 +205,7 @@ Youai.DetailView = Backbone.View.extend({
   showImageSlide:function () {
         var self = this,
             model = new Youai.Good();
-      console.log(this.currentItemForSlider);
+        //TODO:后期优化
         model.set(this.currentItemForSlider);
         Youai.sliderShow.init('slider', model, function () {
             $("#J-webapp").undelegate(".J-like","click");
@@ -216,11 +216,27 @@ Youai.DetailView = Backbone.View.extend({
             });
             $(document.body).off("likeAction:like");
             $(document.body).off("likeAction:dump");
+            var likeAnim = function(){
+                $(".like-num").animate({ "opacity":1,"right":40}, 200, (.47,.2,0,.92), function () {
+                    var othis = $(this);
+                    setTimeout(function () {
+                        othis.animate({"opacity":0,"right":60},200,(.47,.2,0,.92),function(){
+                            othis.css({
+                                right:0
+                            });
+                        });
+                    }, 2000);
+                });
+            }
             $(document.body).on("likeAction:like", function () {
                 $(".J-like").addClass("on");
+                $(".like-num").text("成功收藏");
+                likeAnim();
             });
             $(document.body).on("likeAction:dump",function(){
                 $(".J-like").removeClass("on");
+                $(".like-num").text("成功取消");
+                likeAnim();
             });
         });
   }
