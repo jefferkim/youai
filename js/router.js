@@ -250,7 +250,7 @@ Youai.Router = Backbone.Router.extend({
 
                 Youai.Mod.renderPageNav(result.recordTotal);
             } else {
-                notification.flash('接口调用错误，请刷新重试').show();
+                //notification.flash('接口调用错误，请刷新重试').show();
             }
         });
 

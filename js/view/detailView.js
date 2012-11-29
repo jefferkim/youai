@@ -69,6 +69,7 @@ Youai.DetailView = Backbone.View.extend({
       this.slide.load()
 
       this.currentItem = this.data.album.data[0]
+      this.currentItemForSlider = this.data.album.data[0]
 
     } else {  // 无专辑
       this.isSingleItem = true
@@ -194,6 +195,7 @@ Youai.DetailView = Backbone.View.extend({
   showImageSlide: function() {
 
     var model = new Youai.Good();
+    console.log(this.currentItemForSlider);
         model.set(this.currentItemForSlider);
     Youai.sliderShow.init('slider',model);
 
