@@ -127,7 +127,7 @@ Youai.DetailView = Backbone.View.extend({
     YA_GLOBAL.itemId = item.itemId;
     YA_GLOBAL.isvCode = item.isvInfo.isvCode;
 
-    Youai.router.navigate('!detail/' + item.itemId + '/' + item.isvInfo.isvCode + '/' + YA_GLOBAL.albumId)
+    Youai.router.navigate('!detail/' + item.itemId + '/' + item.isvInfo.isvCode + '/' + YA_GLOBAL.albumId, { replace: true })
   },
 
   showComemnts: function() {
