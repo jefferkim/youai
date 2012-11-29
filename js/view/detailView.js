@@ -74,6 +74,7 @@ Youai.DetailView = Backbone.View.extend({
     } else {  // 无专辑
       this.isSingleItem = true
       this.render(JST['template/detail_single'])
+      this.currentItemForSlider = this.data
     }
 
   },
@@ -204,6 +205,7 @@ Youai.DetailView = Backbone.View.extend({
   showImageSlide:function () {
         var self = this,
             model = new Youai.Good();
+      console.log(this.currentItemForSlider);
         model.set(this.currentItemForSlider);
         Youai.sliderShow.init('slider', model, function () {
             $("#J-webapp").undelegate(".J-like","click");
