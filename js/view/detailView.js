@@ -154,9 +154,15 @@ Youai.DetailView = Backbone.View.extend({
             self.data.likeNum = parseInt(self.data.likeNum) + 1
             $('.like-count strong').text(self.data.likeNum)
           } else {  // 专辑商品
-            self.currentItem.like == "true"
+            self.currentItem.like = "true"
             self.currentItem.likeNum = parseInt(self.currentItem.likeNum) + 1
             $('.like-count strong').text(self.currentItem.likeNum)
+              console.log("---");
+              console.log(self.data);
+              console.log(self.currentItem);
+              console.log(self.currentItemForSlider);
+              console.log("---");
+
           }
         }
       } else {
@@ -178,11 +184,15 @@ Youai.DetailView = Backbone.View.extend({
             var likeNum = parseInt(self.data.likeNum);
             if (likeNum) self.data.likeNum = likeNum - 1
             $('.like-count strong').text(self.data.likeNum)
+
           } else {
             self.currentItem.like = "false"
             var likeNum = parseInt(self.currentItem.likeNum)
             if (likeNum) self.currentItem.likeNum = likeNum - 1
             $('.like-count strong').text(self.currentItem.likeNum)
+              /*console.log("---");
+              console.log(self.currentItemForSlider);
+              console.log("---");*/
           }
         }
       } else {
