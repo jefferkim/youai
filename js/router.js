@@ -41,7 +41,8 @@ Youai.Router = Backbone.Router.extend({
 
         // 在相应的页面显示主页或返回按钮
         function displayHomeOrBackButton() {
-            if (location.hash.search('!home') > -1) {
+            var hash = location.hash
+            if (hash.search('!home') > -1 || hash == '#' || !hash) {
                 $('.home-back .home').show()
                 $('.home-back .back').hide()
             } else {
