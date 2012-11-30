@@ -6,12 +6,13 @@ Youai.LikeView = Backbone.View.extend({
     //add by jinjianfeng
     $("#J-mask").hide();
     $("#J-tplComment").remove();
-    this.isCurrentUser = (this.options.userId == "currentUser")
 
   },
 
   render: function() {
     var self = this;
+
+    this.isCurrentUser = (this.options.userId == this.user.userId) || (this.options.userId == "currentUser")
 
     if (this.isCurrentUser) $('h1.title').text('我的喜欢')
     else $('h1.title').text('TA 的喜欢')
@@ -96,7 +97,6 @@ Youai.LikeView = Backbone.View.extend({
           self.result = json.data.result;
           self.data = json.data.result.data;
           self.user = json.data.result.user;
-
           self.render()
       } else {
           console.log('mtop error')
