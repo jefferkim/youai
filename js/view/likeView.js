@@ -89,9 +89,8 @@ Youai.LikeView = Backbone.View.extend({
     var url = this.likeDataUrl()
 
     Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
-      if (self.options.userId == "currentUser") {
-        Youai.Util._checkLogin(json)
-      }
+
+      if (this.isCurrentUser && !Youai.Util._checkLogin(json)) return
 
       if (json.ret[0].search('SUCCESS') > -1) {
           self.result = json.data.result;
