@@ -96,9 +96,13 @@ Youai.indexView = Backbone.View.extend({
 
          $(this.el).html(this.templates["home-layout"]());
 
-         var woMsgId = U.getCookie("WO_MSG");        
+         var woMsgId = U.getCookie("WO_MSG");
 
-         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getHomeInfo", "msgval":woMsgId||""}, 'extParam':{}};
+        var args = U._isPreview();
+
+        var extraParams = args ? {isPreview:args["isPreview"], homeOprCode:args["homeOprCode"],albumOprCode:args["albumOprCode"]} : {};
+
+         var url = {api:"com.taobao.wap.rest2.wo3", data:$.extend({"method":"getHomeInfo", "msgval":woMsgId||""},extraParams), 'extParam':{}};
        
          Youai.mtopH5.getApi(url.api, "1.0", url.data, url.extParam,function (resp) {       
                    

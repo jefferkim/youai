@@ -137,6 +137,28 @@ Youai.Util = {
         }
     },
 
+    _isPreview:function(){
+        var args;
+        if(location.search.indexOf("isPreview") !=-1 ){
+            args = this.GetUrlParms();
+        }
+        return args;
+    },
+    //获取url参数
+    GetUrlParms:function () {
+        var args = {};
+        var query = location.search.substring(1);//获取查询串
+        var pairs = query.split("&");//在逗号处断开
+        for (var i = 0; i < pairs.length; i++) {
+            var pos = pairs[i].indexOf('=');//查找name=value
+            if (pos == -1)   continue;//如果没有找到就跳过
+            var argname = pairs[i].substring(0, pos);//提取name
+            var value = pairs[i].substring(pos + 1);//提取value
+            args[argname] = unescape(value);//存为属性
+        }
+        return args;
+    },
+
     menu:function(){
         var menuList = $("#J-menuList");
 
@@ -158,12 +180,17 @@ Youai.Util = {
             var target = e.currentTarget,
                 goToHash = $(target).attr("href");
             menuList.removeClass("show");
+
             var pds = $(target).attr("data-pds");
 
             var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi);
             //不关心返回
-            $.post('http://wo.'+host[0]+'/operation.htm'+pds, function(response){
-                console.log(response)
+            $.ajax({
+                url:'http://wo.'+host[0]+'/operation.htm',
+                data:{pds:pds},
+                success:function(response){
+                    console.log(response)
+                }
             });
             Youai.router.navigate(goToHash,true);
         });

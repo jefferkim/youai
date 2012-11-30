@@ -65,12 +65,17 @@ Youai.Router = Backbone.Router.extend({
         var indexView = new Youai.indexView();
     },
 
+
     //逛逛
     stroll:function (pageNo) {
 
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
-        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromVisit", "pageSize":"30", "pageNo":pageNo || 1}};
+        //判断是否是预览状态
+        var args = Youai.Util._isPreview();
+        var extraParams = args ? {isPreview:args["isPreview"], visitCode:args["visitCode"]} : {};
+
+        var url = {api:"com.taobao.wap.rest2.wo3",data:$.extend({"method":"getItemsFromVisit", "pageSize":"30", "pageNo":pageNo || 1},extraParams)};
 
         var strollGoodList = new Youai.GoodList();
 
@@ -91,7 +96,10 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-list").length < 1 && $("#content").html(JST["template/list_good"]());
 
-        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromList", "listCode":listCode, "pageSize":"30", "pageNo":pageNo || 1}};
+        var args = Youai.Util._isPreview();
+        var extraParams = args ? {isPreview:args["isPreview"]} : {};
+
+        var url = {api:"com.taobao.wap.rest2.wo3", data:$.extend({"method":"getItemsFromList", "listCode":listCode, "pageSize":"30", "pageNo":pageNo || 1},extraParams)};
 
         var goodList = new Youai.GoodList();
 
