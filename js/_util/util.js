@@ -158,8 +158,11 @@ Youai.Util = {
             var target = e.currentTarget,
                 goToHash = $(target).attr("href");
             menuList.removeClass("show");
+            var pds = $(target).attr("data-pds");
+
+            var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi);
             //不关心返回
-            $.post('maidian.json', {menuType:1}, function(response){
+            $.post('http://wo.'+host[0]+'/operation.htm'+pds, function(response){
                 console.log(response)
             });
             Youai.router.navigate(goToHash,true);
