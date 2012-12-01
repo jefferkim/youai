@@ -156,9 +156,13 @@ Youai.commentsView = Backbone.View.extend({
         this.commentScroll = new iScroll('J-comment-block');
         //comment评论时高度会有变化
         $("#J-tplComment").on("refreshIscroll",function(){
+            window.addEventListener("onresize",function(){
+
+            });
             setTimeout(function(){
                 self.commentScroll.refresh();
             },500);
+
         })
     }
 
