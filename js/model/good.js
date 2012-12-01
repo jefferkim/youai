@@ -29,7 +29,7 @@ Youai.Good = Backbone.Model.extend({
             "isvCode":this.get("isvInfo").isvCode,
             "itemHeight":this.height(),
             "originalPrice":this._parsePrice(),
-            "comment":this.get("comments") ? Youai.Util.cutstr(this.get("comments"),25) : false, //comments对象存在的话弹出气泡评论
+            "comment":this.get("comments") ? Youai.Util.cutstr(this.get("comments"),50) : false, //comments对象存在的话弹出气泡评论
             "imgUrl":this.getMainPic()[0].url
         };
         return data;

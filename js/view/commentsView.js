@@ -21,15 +21,18 @@ Youai.commentsView = Backbone.View.extend({
             innerHeight = document;
 
 
+
+
         $("#J-mask").show().css({
             height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
+            //height:window.innerHeight
         }).animate({
             opacity:0.8
         }, 1000, 'ease');
 
         $(this.el).undelegate("#J-submit","click");
 
-        $("#J-popWrap").html(this.tpl["commentsLayout"]());
+        $("#J-popWrap").html(this.tpl["commentsLayout"]()) ;
         $("#J-comment-block").height(window.innerHeight-100);
 
         this.options = options;

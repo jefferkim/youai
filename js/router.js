@@ -56,6 +56,7 @@ Youai.Router = Backbone.Router.extend({
         $(displayHomeOrBackButton)
 
         window.addEventListener("hashchange", function () {
+            window.scrollTo(0,0)
             wTitle();
             displayHomeOrBackButton()
         }, false);
