@@ -165,7 +165,7 @@ function h5_base() {
 function _checkSysType() {
     var _checkSysType = 'waptest';
     if (window.location.host == 'localhost' || window.location.host.match('.*\\waptest\\.(taobao|tmall|etao|alibaba|alipay|aliyun)\\.com.*')) {
-        _checkSysType = 'waptest';
+        _checkSysType = 'wapa';
     } else if (window.location.host.match('.*\\wapa\\.(taobao|tmall|etao|alibaba|alipay|aliyun)\\.com.*')) {
         _checkSysType = 'wapa';
     }
