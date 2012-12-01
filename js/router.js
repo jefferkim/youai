@@ -26,14 +26,14 @@ Youai.Router = Backbone.Router.extend({
                     '分类':/#!category/,
                     '风格':/#!style/,
                     '搜索':/#!search\/((.|\n)*)\/p[0-9]*/,
-                    '专辑':/#!albums\/recommend\/p[0-9]*/,
-                    '我关注的专辑':/#!albums\/like\/p[0-9]*/
+                    '热门专辑':/#!albums\/recommend\/p[0-9]*/,
+                    '我收集的专辑':/#!albums\/like\/p[0-9]*/
                 },
                 lc = location.hash;
             for (var key in h1Map) {
                 var m = lc.match(h1Map[key]);
                 if (m) {
-                    $("#J-headerT").text(m[1] ? m[1] : key);
+                    $("#J-headerT").text(m[1] ? decodeURI(m[1]) : key);//decodeURI是避免safari获取过来的参数是编译过的
                     break;
                 }
             }
@@ -260,8 +260,13 @@ Youai.Router = Backbone.Router.extend({
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result,
                     data = result.data;
+
                 //我关注的专辑数据接口是不一样的
                 if (resp.data.method === "getLikeAlbums") {
+                    if(data.length == 0){
+                        $("#J-ablums").html('<div style="margin-top:30px;">您还没有收集任何专辑,先去逛逛吧!</div>');
+                        return;
+                    }
                     albumList.reset(_.flatten(_.pluck(data, "records"), "albumId"));
                 } else {
                     albumList.reset(data);

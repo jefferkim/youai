@@ -113,7 +113,7 @@ Youai.Util = {
         
         this.menu();
 
-        linkfocus("a");  
+        linkfocus("a");
     },
 
     cutstr:function (str, len) {
