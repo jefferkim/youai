@@ -7,6 +7,8 @@ Youai.LikeView = Backbone.View.extend({
     $("#J-mask").hide();
     $("#J-tplComment").remove();
 
+    this.isCurrentUser = (this.options.userId == "currentUser") // used in likeDataUrl method
+
   },
 
   render: function() {
