@@ -65,8 +65,11 @@ Youai.DetailView = Backbone.View.extend({
 
     if (this.data.album && this.data.album.data) {  //有专辑
       this.render(JST['template/detail_collection'])
-      this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
-      this.slide.load()
+
+      if (this.data.album.length > 3) {
+        this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
+        this.slide.load()
+      }
 
       this.currentItem = _.find(this.data.album.data, function(item) { return item.itemId == YA_GLOBAL.itemId })
       this.currentItemForSlider = this.currentItem
