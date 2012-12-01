@@ -159,6 +159,9 @@ Youai.DetailView = Backbone.View.extend({
     var self = this
     var url = { api:"com.taobao.wap.rest2.wo3",data:{"method":"likeItem","itemId":YA_GLOBAL.itemId, "albumId": this.data.album.albumId, "isvCode":YA_GLOBAL.isvCode}}
     Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
+
+      if (!Youai.Util._checkLogin(json)) return
+
       if (json.ret[0].search('SUCCESS') > -1) {
         if (json.data.result == "true") {
           $('.like-count span').addClass('liked')
@@ -190,6 +193,9 @@ Youai.DetailView = Backbone.View.extend({
     var self = this;
     var url = { api:"com.taobao.wap.rest2.wo3",data:{"method":"dumpItem","itemId":YA_GLOBAL.itemId, "albumId": this.data.album.albumId, "isvCode":YA_GLOBAL.isvCode}}
     Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
+
+      if (!Youai.Util._checkLogin(json)) return
+
       if (json.ret[0].search('SUCCESS') > -1) {
         if (json.data.result == "true") {
           $('.like-count span').removeClass('liked')
