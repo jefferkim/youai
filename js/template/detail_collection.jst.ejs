@@ -57,7 +57,7 @@
   <% for (var i = 0; i < Math.ceil(tags.length / 5); i++) { %>
   <li>
     <% for (var j = i * 5; j < Math.min(tags.length, (i+1)*5 ); j++) { %>
-      <a href="#"><%= tags[j].name %></a>
+      <a href="#!search/<%= tags[j].name %>/p1"><%= tags[j].name %></a>
     <% } %>
   </li>
   <% } %>
