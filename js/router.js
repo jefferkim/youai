@@ -23,6 +23,7 @@ Youai.Router = Backbone.Router.extend({
                     '逛逛':/#!stroll\/p\d*/,
                     '喜欢':/#!like\/[0-9]*/,
                     '详情页':/#!detail\/[0-9]*/,
+                    '相关推荐':/#!association\/[0-9]*/,
                     '分类':/#!category/,
                     '风格':/#!style/,
                     '搜索':/#!search\/((.|\n)*)\/p[0-9]*/,
@@ -199,8 +200,9 @@ Youai.Router = Backbone.Router.extend({
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAssociation", "pageSize":"10", "pageNo":1, "itemId":itemId}};
         var associationList = new Youai.GoodList();
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
+            console.log(resp);
             if(resp.ret[0].indexOf("SUCCESS::") != -1){
-                associationList.reset(result.data);
+                associationList.reset(resp.data.result.data);
                 new Youai.searchListView({
                     "data":associationList
                 }).render();
