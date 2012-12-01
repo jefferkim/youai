@@ -84,6 +84,9 @@ Youai.Util = {
             if(location.href.indexOf("localhost") != -1){
                host[0] = ".waptest.taobao.com";
             }
+            if(location.href.indexOf("ued.dyndns") !=-1){
+                host[0] = ".wapa.taobao.com";
+            }
             location.href = "http://login" + host[0] + "/login.htm?redirectURL=" + currentUrl;
             return false;
         }
