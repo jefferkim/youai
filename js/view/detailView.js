@@ -13,6 +13,13 @@ Youai.DetailView = Backbone.View.extend({
     $('h1.title').text('详情页')
   },
 
+  addAssociationTagToItem: function(item) {
+    if (item.tags) {
+      item.tags.splice(0, 0, { name: '推荐' })
+    } else {
+      item.tags = [ {name: '推荐'} ];
+    }
+  },
 
   getValidImage: function(images) {
     return _.filter(images, function(img) { return img.type ==  '0' })[0]
@@ -41,6 +48,7 @@ Youai.DetailView = Backbone.View.extend({
 
         if (json.ret[0].search('SUCCESS') > -1) {
             self.data = json.data.result
+            self.addAssociationTagToItem(self.data)
             self.currentItemImages = self.data.images;
             self.currentItemLikeNum = self.data.likeNum;
             self.likeCurrentItem    = self.data.like == 'true';
@@ -87,6 +95,7 @@ Youai.DetailView = Backbone.View.extend({
 
     var index = parseInt($(e.currentTarget).attr('data-index'))
     var item  = this.data.album.data[index]
+    this.addAssociationTagToItem(item)
 
     this.currentItem = item
     this.currentItemForSlider = item
