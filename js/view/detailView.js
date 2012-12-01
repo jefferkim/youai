@@ -11,6 +11,7 @@ Youai.DetailView = Backbone.View.extend({
 
   initialize: function() {
     $('h1.title').text('详情页')
+    this.$el.html('<div class="loading"><span></span></div>')
   },
 
   addAssociationTagToItem: function(item) {
