@@ -1,10 +1,9 @@
 <header style="margin-top: 30px;">
   <h1 style="color: #666">
     <% if (isCurrentUser) { %>
-      您
+      您还没有喜欢任何宝贝，现在就去逛逛吧！
     <% } else if (user) { %>
-      <%= user.userNick %>
+      <%= user.userNick %>还没有喜欢任何宝贝，现在就去逛逛吧！
     <% } %>
-    还没有喜欢任何宝贝，现在就去逛逛吧！
   </h1>
 </header>
