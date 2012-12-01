@@ -68,9 +68,8 @@ Youai.DetailView = Backbone.View.extend({
       this.slide = new Swipe($('.vslide')[0], { vertical: true, preload: 4 })
       this.slide.load()
 
-      this.currentItem = this.data.album.data[0]
-      this.currentItemForSlider = this.data.album.data[0]
-
+      this.currentItem = _.find(this.data.album.data, function(item) { item.itemId == YA_GLOBAL.itemId }
+      this.currentItemForSlider = this.currentItem
     } else {  // 无专辑
       this.isSingleItem = true
       this.render(JST['template/detail_single'])
