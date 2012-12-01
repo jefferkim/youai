@@ -17,7 +17,9 @@ Youai.commentsView = Backbone.View.extend({
     initialize:function (options) {
         var self = this,
             commentUrl,
-            U = Youai.Util;
+            U = Youai.Util,
+            innerHeight = document;
+
 
         $("#J-mask").show().css({
             height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)

@@ -48,8 +48,9 @@ Youai.sliderShow = {
         console.log("<<<<this model is ====");
         console.log(currentModel);
         console.log(">>>>this model is ====");
+        //TODO:查看是否有album字段
 
-        var sliderDOM = JST["template/slider"]({ID:sliderID,images:currentModel.images,isLiked:currentModel.like === "true"});
+        var sliderDOM = JST["template/slider"]({ID:sliderID,images:currentModel.images,isLiked:currentModel.like === "true",albumId:currentModel.album.albumId?currentModel.album.albumId :0});
 
         $("#J-popWrap").html(sliderDOM);
 
