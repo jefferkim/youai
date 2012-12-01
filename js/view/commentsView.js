@@ -35,7 +35,7 @@ Youai.commentsView = Backbone.View.extend({
         if(typeof options.method == 'object'){ //只有getAblumComments接口
             commentUrl = options.method;
         }else{
-            commentUrl = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemComments","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode,"pageSize":"100","pageNo":"1"}};
+            commentUrl = {api:"com.taobao.wap.rest2.wo3",data:{"method":"getItemComments","itemId":YA_GLOBAL.itemId,"isvCode":YA_GLOBAL.isvCode,"albumId":YA_GLOBAL.albumId,"pageSize":"100","pageNo":"1"}};
         }
 
        this.commentList = new Youai.CommentList();
@@ -82,7 +82,7 @@ Youai.commentsView = Backbone.View.extend({
         }
         else {
             if(this.options.method == "getItemComments"){
-                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
+                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode,"albumId":YA_GLOBAL.albumId}};
             }else{
                 url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
             }
