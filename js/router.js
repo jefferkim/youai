@@ -7,6 +7,7 @@ Youai.Router = Backbone.Router.extend({
         '!like/:userId/p:page':'like',
         '!detail/:id/:isvCode/:albumId':'detail', //详情页
         '!category/:type':'category', //类目页,v=>查看，s=>搜索
+        '!association/:itemId':'queryAssociation', //相关推荐
         '!style':'style', //风格
         '!stroll/p:page':'stroll', //逛逛
         '!search/:keyword/p:page':'search', //搜索页
@@ -191,6 +192,22 @@ Youai.Router = Backbone.Router.extend({
                 }
             }
         );
+
+    },
+
+    queryAssociation:function(itemId){
+        console.log(itemId);
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAssociation", "pageSize":"10", "pageNo":1, "itemId":itemId}};
+        var associationList = new Youai.GoodList();
+        Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
+
+            console.log(resp);
+            associationList.reset(result.data);
+            new Youai.searchListView({
+                "data":associationList
+            }).render();
+        });
+
 
     },
     //搜索页
