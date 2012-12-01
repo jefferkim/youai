@@ -15,7 +15,7 @@ Youai.LikeView = Backbone.View.extend({
   render: function() {
     var self = this
 
-    this.isCurrentUser = (this.options.userId == this.user.userId) || (this.options.userId == "currentUser")
+    this.isCurrentUser = (this.result.current == "true") || (this.options.userId == "currentUser")
 
     if (this.isCurrentUser) $('h1.title').text('我的喜欢')
     else $('h1.title').text('TA 的喜欢')
