@@ -23,7 +23,7 @@ Youai.Router = Backbone.Router.extend({
                     '逛逛':/#!stroll\/p\d*/,
                     '喜欢':/#!like\/[0-9]*/,
                     '详情页':/#!detail\/[0-9]*/,
-                    '相关推荐':/#!association\/[0-9]*/,
+                    '推荐':/#!association\/[0-9]*/,
                     '分类':/#!category/,
                     '风格':/#!style/,
                     '搜索':/#!search\/((.|\n)*)\/p[0-9]*/,
@@ -34,7 +34,7 @@ Youai.Router = Backbone.Router.extend({
             for (var key in h1Map) {
                 var m = lc.match(h1Map[key]);
                 if (m) {
-                    $("#J-headerT").text(m[1] ? decodeURI(m[1]) : key);//decodeURI是避免safari获取过来的参数是编译过的
+                    $("#J-headerT").text(m[1]?decodeURI(m[1]):key);
                     break;
                 }
             }
@@ -151,7 +151,7 @@ Youai.Router = Backbone.Router.extend({
             e.preventDefault();
             var searchTxt = $.trim(searchInput.val());
             if (searchTxt === "") {
-                self.navigate('!stroll/p1', {trigger: true, replace: true});
+                self.navigate('!stroll/p1', {trigger: true});
                 return;
             }
 
@@ -165,11 +165,13 @@ Youai.Router = Backbone.Router.extend({
                     if (result.recordTotal === "0") {
                         $(".no-search-result").show();
                     } else {
-                        self.navigate('!search/' + searchTxt + '/p1',{replace: true});
+
                         searchGoodList.reset(result.data);
                         new Youai.searchListView({
                             data:searchGoodList
                         }).render();
+
+                        self.navigate('!search/'+encodeURI(searchTxt)+'/p1');//不encode会出问题
 
                         Youai.Mod.renderPageNav(result.recordTotal);
                     }
@@ -202,6 +204,7 @@ Youai.Router = Backbone.Router.extend({
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             console.log(resp);
             if(resp.ret[0].indexOf("SUCCESS::") != -1){
+                YA_GLOBAL.albumId = 0;  //关联推荐默认albumId设置成0
                 associationList.reset(resp.data.result.data);
                 new Youai.searchListView({
                     "data":associationList
@@ -211,15 +214,13 @@ Youai.Router = Backbone.Router.extend({
     },
     //搜索页
     search:function (keyword, pageNo) {
-
-        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":keyword}};
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":unescape(keyword)}};
 
         var searchList = new Youai.GoodList();
 
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
-
                 searchList.reset(result.data);
 
                 new Youai.searchListView({
