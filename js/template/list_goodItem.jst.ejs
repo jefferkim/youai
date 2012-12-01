@@ -1,4 +1,4 @@
-  <a href="#!detail/<%= itemId %>/<%= isvCode %>/<%= albumId %>"><img class="lazy <%if(comment){%>hascomment<%}%>" dataimg="<%= imgUrl %>_300x1000.jpg" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png"  height="<%= itemHeight %>" width="150"/></a>
+  <a href="#!detail/<%= itemId %>/<%= isvCode %>/<%= albumId %>"><img class="lazy <%if(comment){%>hascomment<%}%>" dataimg="<%= imgUrl %>_300x1000.jpg<%= Youai.imageFormat%>" src="http://img01.taobaocdn.com/tps/i1/T1_uZXXj0cXXbQbJvh-50-52.png"  height="<%= itemHeight %>" width="150"/></a>
   <span class="desc"><b><a href="#!detail/<%= itemId %>/<%= isvCode %>/<%= albumId %>">￥<%= originalPrice %></a></b><a href="#" class="J-zoom"></a></span>
   <%if(comment){%>
   <div class="pop-comment"><%= comment %><i></i></div>
