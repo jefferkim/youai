@@ -239,7 +239,7 @@ Youai.Router = Backbone.Router.extend({
     like:function (userId, page) {
 
         Youai.likeView = new Youai.LikeView({ userId:userId, page:page })
-        $('.content').html(Youai.likeView.el)
+        $('#content').html(Youai.likeView.el)
         Youai.likeView.getLikeData(userId, page)
     },
 
@@ -247,7 +247,7 @@ Youai.Router = Backbone.Router.extend({
     detail:function (id, isvCode, albumId) {
 
         Youai.detail = new Youai.DetailView()
-        $('.content').html(Youai.detail.el)
+        $('#content').html(Youai.detail.el)
 
         Youai.detail.getItemData(id, isvCode, albumId)
 
