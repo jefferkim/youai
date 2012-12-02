@@ -14,7 +14,7 @@ Youai.Comment = Backbone.Model.extend({
     },
 
     _getAvatar:function (id) {
-        return "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + id + "&width=40&height=40&type=sns";
+        return "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + id + "&width=80&height=80&type=sns";
     },
 
     /*获取父级评论*/
