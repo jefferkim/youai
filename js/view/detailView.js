@@ -181,7 +181,7 @@ Youai.DetailView = Backbone.View.extend({
         }
       } else {
         console.log('mtop error')
-        notification.flash('加载失败，请刷新页面重试').show()
+        notification.flash('网络在偷懒哦，去看看设置').show()
       }
     })
   },
@@ -212,7 +212,7 @@ Youai.DetailView = Backbone.View.extend({
         }
       } else {
         console.log('mtop error')
-        notification.flash('加载失败，请刷新页面重试').show()
+        notification.flash('网络在偷懒哦，去看看设置').show()
       }
     })
   },
