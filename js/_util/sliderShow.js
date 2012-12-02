@@ -36,7 +36,7 @@ Youai.sliderShow = {
 
     _bounceSlider:function () {
         var sliderEL = $("#J-sliderHolder");
-        sliderEL.css({"top":document.body.scrollTop + 100});
+        sliderEL.css({"top":document.body.scrollTop + 20});
         sliderEL.show();
         sliderEL.removeClass("bounceOut").addClass("bounceIn");
     },
