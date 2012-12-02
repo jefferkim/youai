@@ -249,7 +249,7 @@ Youai.Router = Backbone.Router.extend({
         Youai.detail = new Youai.DetailView()
         $('.content').html(Youai.detail.el)
 
-        Youai.detail.displayItem(id, isvCode, albumId)
+        Youai.detail.getItemData(id, isvCode, albumId)
 
     },
 

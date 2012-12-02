@@ -16,7 +16,7 @@ Youai.DetailView = Backbone.View.extend({
 
   addAssociationTagToItem: function(item) {
     if (item.tags) {
-      item.tags.splice(0, 0, { name: '推荐' })
+      if (item.tags[0].name != '推荐') item.tags.splice(0, 0, { name: '推荐' })
     } else {
       item.tags = [ {name: '推荐'} ];
     }
@@ -64,10 +64,6 @@ Youai.DetailView = Backbone.View.extend({
 
   displayItem: function(id,isvCode, albumId) {
 
-    if (!this.data) {
-      this.getItemData(id,isvCode, albumId)
-      return;
-    }
     //added by jinjianfeng, for comments
     YA_GLOBAL.itemId = this.data.itemId;
     YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
@@ -185,7 +181,7 @@ Youai.DetailView = Backbone.View.extend({
         }
       } else {
         console.log('mtop error')
-        notification.flash('加载失败，请刷新页面重试').show()
+        notification.flash('网络在偷懒哦，去看看设置').show()
       }
     })
   },
@@ -216,7 +212,7 @@ Youai.DetailView = Backbone.View.extend({
         }
       } else {
         console.log('mtop error')
-        notification.flash('加载失败，请刷新页面重试').show()
+        notification.flash('网络在偷懒哦，去看看设置').show()
       }
     })
   },
