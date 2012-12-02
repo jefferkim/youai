@@ -3,7 +3,7 @@
 
 <div class="collection">
   <div class="main-view">
-    <div class="big-pic"><img src="<%= img.url + '_500x450.jpg' %>" ></div>
+    <div class="big-pic"><img src="<%= img.url + '_500x450.jpg' + Youai.imageFormat %>" ></div>
     <div class="item-info">
       <p class="price"><a style="color: #333" href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>">
         ￥<%= (originalPrice / 100).toFixed(2) %></a></p>
@@ -23,13 +23,13 @@
           <% for (var i = 0; i < album.data.length; i++) { %>
             <li data-index="<%= i %>">
               <img class="lazy" src="http://a.tbcdn.cn/mw/base/styles/component/more/images/Loading_Taobao_320.gif"
-              data-src="<%= _.filter(album.data[i].images, function(img) { return img.type == '0' })[0].url + '_110x110xz.jpg' %>" >
+              data-src="<%= _.filter(album.data[i].images, function(img) { return img.type == '0' })[0].url + '_110x110xz.jpg' + Youai.imageFormat %>" >
             </li>
           <% } %>
         <% } else { %>
           <% for (var i = 0; i < album.data.length; i++) { %>
             <li data-index="<%= i %>">
-              <img src="<%= _.filter(album.data[i].images, function(img) { return img.type == '0' })[0].url + '_110x110xz.jpg' %>" >
+              <img src="<%= _.filter(album.data[i].images, function(img) { return img.type == '0' })[0].url + '_110x110xz.jpg' + Youai.imageFormat %>" >
             </li>
           <% } %>
         <% } %>
