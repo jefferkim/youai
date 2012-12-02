@@ -64,10 +64,6 @@ Youai.DetailView = Backbone.View.extend({
 
   displayItem: function(id,isvCode, albumId) {
 
-    if (!this.data) {
-      this.getItemData(id,isvCode, albumId)
-      return;
-    }
     //added by jinjianfeng, for comments
     YA_GLOBAL.itemId = this.data.itemId;
     YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
