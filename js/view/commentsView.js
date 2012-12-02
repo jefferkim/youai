@@ -58,11 +58,12 @@ Youai.commentsView = Backbone.View.extend({
 
     closePop:function(e){
         e.preventDefault();
-        $("#J-mask").animate({
+        /*$("#J-mask").animate({
             opacity:0
         }, 1000, 'ease', function () {
             $(this).hide();
-        });
+        });*/
+        $("#J-mask").hide();
         $("#J-tplComment").hide();
         $("#J-comment","#J-tplComment").html("");
     },

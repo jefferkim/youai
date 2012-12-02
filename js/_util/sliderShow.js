@@ -27,11 +27,7 @@ Youai.sliderShow = {
     },
 
     _hideMask:function () {
-        this.maskEl.animate({
-            opacity:0
-        }, 1000, 'ease', function () {
-            $(this).hide();
-        });
+        this.maskEl.hide();
     },
 
     _bounceSlider:function () {
