@@ -32,7 +32,8 @@ Youai.sliderShow = {
 
     _bounceSlider:function () {
         var sliderEL = $("#J-sliderHolder");
-        sliderEL.css({"top":document.body.scrollTop + 20});
+        var sliderH = 325;
+        sliderEL.css({"top":document.body.scrollTop + (window.innerHeight-sliderH)/2});
         sliderEL.show();
         sliderEL.removeClass("bounceOut").addClass("bounceIn");
     },
@@ -41,18 +42,16 @@ Youai.sliderShow = {
 
         var self = this,
             currentModel = this.model.toJSON();
-        console.log("<<<<this model is ====");
-        console.log(currentModel);
-        console.log(">>>>this model is ====");
-        //TODO:查看是否有album字段
 
+        //TODO:查看是否有album字段
         var sliderDOM = JST["template/slider"]({ID:sliderID,images:currentModel.images,isLiked:currentModel.like === "true",albumId:currentModel.album?currentModel.album.albumId :YA_GLOBAL.albumId});
 
         $("#J-popWrap").html(sliderDOM);
 
         this.goodSlider = new Swipe($("#"+sliderID)[0], {
             fixWidth:284,
-            preload:2
+            preload:2,
+            lazyloadClass:"lazyImg"
         });
 
         this.goodSlider.load();

@@ -17,18 +17,14 @@ Youai.commentsView = Backbone.View.extend({
     initialize:function (options) {
         var self = this,
             commentUrl,
-            U = Youai.Util,
-            innerHeight = document;
-
-
-
-
+            U = Youai.Util;
         $("#J-mask").show().css({
             height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
             //height:window.innerHeight
         }).animate({
             opacity:0.8
         }, 1000, 'ease');
+        window.scrollTo(0,0);
 
         $(this.el).undelegate("#J-submit","click");
 
@@ -159,9 +155,7 @@ Youai.commentsView = Backbone.View.extend({
         this.commentScroll = new iScroll('J-comment-block');
         //comment评论时高度会有变化
         $("#J-tplComment").on("refreshIscroll",function(){
-           /* window.addEventListener("onresize",function(){
-
-            });*/
+            window.scrollTo(0,0);
             setTimeout(function(){
                 self.commentScroll.refresh();
             },500);
