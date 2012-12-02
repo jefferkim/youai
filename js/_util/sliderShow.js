@@ -27,16 +27,12 @@ Youai.sliderShow = {
     },
 
     _hideMask:function () {
-        this.maskEl.animate({
-            opacity:0
-        }, 1000, 'ease', function () {
-            $(this).hide();
-        });
+        this.maskEl.hide();
     },
 
     _bounceSlider:function () {
         var sliderEL = $("#J-sliderHolder");
-        sliderEL.css({"top":document.body.scrollTop + 100});
+        sliderEL.css({"top":document.body.scrollTop + 20});
         sliderEL.show();
         sliderEL.removeClass("bounceOut").addClass("bounceIn");
     },

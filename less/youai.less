@@ -84,6 +84,7 @@
     height:100%;
     background:#000;
     opacity:0;
+
 }
 
 .search-box{
@@ -207,7 +208,12 @@
                     img{
                        max-width:284px;
                        max-height:284px;
+                       &.lazy{
+                           background:url("http://a.tbcdn.cn/mw/base/styles/component/more/images/loading.gif") no-repeat scroll center center;
+                           background-size:26%;
+                       }
                     }
+
                     width:284px;
                     height:284px;
                     vertical-align:middle !important;
@@ -241,7 +247,10 @@
     }
 
 
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility:hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
     -webkit-animation-duration: 1s;
     -webkit-animation-delay: .2s;
     -webkit-animation-timing-function: ease;
@@ -266,7 +275,7 @@
     }
     70%{
         opacity: 1;
-        transform: scale(1);
+        -webkit-transform: scale(1);
     }
     100% {
         -webkit-transform: scale(1);
@@ -393,6 +402,10 @@
             &:last-child{
                 border-bottom:none;
             }
+            img{
+                max-width:48px;
+                max-height:48px;
+            }
             .reply{
                 position:relative;
                 width:250px;
@@ -422,6 +435,7 @@
                 .J-reply{
                     color:#00baf7;
                     font-size:12px;
+                    padding:4px 5px;
                 }
             }
 

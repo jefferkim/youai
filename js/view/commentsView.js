@@ -58,11 +58,12 @@ Youai.commentsView = Backbone.View.extend({
 
     closePop:function(e){
         e.preventDefault();
-        $("#J-mask").animate({
+        /*$("#J-mask").animate({
             opacity:0
         }, 1000, 'ease', function () {
             $(this).hide();
-        });
+        });*/
+        $("#J-mask").hide();
         $("#J-tplComment").hide();
         $("#J-comment","#J-tplComment").html("");
     },
@@ -111,6 +112,10 @@ Youai.commentsView = Backbone.View.extend({
                             userNick:response.data.result.user.userNick
                         }
                     });
+                   //TODO:先只是修改dom
+                    var commentNumObj = $("strong",".comment-count");
+                    var commentNum = commentNumObj.text() == "" ? 0 :parseInt(commentNumObj.text());
+                    commentNumObj.text(commentNum+1);
                     //TODO：考虑将校验都加入到model
                     newComment.on("error",function(model,error){
                         notification.flash(error).show();
@@ -118,8 +123,6 @@ Youai.commentsView = Backbone.View.extend({
 
                     self.addComment(newComment,"reply");
                     self.commentScroll._scrollbarPos(0,0);
-
-                   // commentBlock.removeClass("show");
                     inputField.val("");
                 }
                 
