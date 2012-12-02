@@ -282,7 +282,7 @@ Youai.Router = Backbone.Router.extend({
                     "data":albumList
                 }).render();
 
-                Youai.Mod.renderPageNav(result.recordTotal);
+                Youai.Mod.renderPageNav(result.recordTotal,10);
             } else {
                 //notification.flash('接口调用错误，请刷新重试').show();
             }
@@ -319,7 +319,7 @@ Youai.Router = Backbone.Router.extend({
                     data:albumGoods
                 }).render();
 
-                Youai.Mod.renderPageNav(result.itemTotal,10);
+                Youai.Mod.renderPageNav(result.itemTotal);
             } else {
                 notification.flash('接口调用错误，请刷新重试').show();
             }

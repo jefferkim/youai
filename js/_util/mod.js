@@ -63,8 +63,8 @@ Youai.Mod = {
 
     renderPageNav:function(total,pageSize){//TODO:后期统一处理为传入页码
         if(total > 0){
-           var t = total/pageSize||30 > 100 ? 100 : total/pageSize||30; //总页码超过100
-
+            var pSize = pageSize || 30;
+            var t = total/pSize > 100 ? 100 : total/pSize; //总页码超过100
             //pageNav组件增加destroy方法
             return new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(t), 'objId':'p'});
         }else{
