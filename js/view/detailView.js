@@ -103,7 +103,7 @@ Youai.DetailView = Backbone.View.extend({
     this.currentItemForSlider = item
 
     // 更新大图
-    $('.big-pic img').attr('src', this.getValidImage(item.images).url)
+    $('.big-pic img').attr('src', this.getValidImage(item.images).url + Youai.imageFormat)
 
     // 更新价格
     $('.main-view .price a').text('￥' + (item.originalPrice / 100).toFixed(2) )
