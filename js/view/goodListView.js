@@ -29,6 +29,7 @@ Youai.goodListView = Backbone.View.extend({
 
         var self = this;
         $("#J-waterfall").html("");
+
         window.scrollTo(0,0);//点分页时页面可能会停留在中间
         new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
