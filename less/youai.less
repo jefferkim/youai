@@ -352,6 +352,7 @@
 /*评论页面模版*/
 .comment-tpl{
    position:absolute;
+   width:310px;
    left:50%;
    margin-left:-155px;
    top:0;
@@ -360,22 +361,19 @@
        position:absolute;
        right:21px;
        top:10px;
+       padding:5px;
        text-indent:-9999px;
-       display:block;
-       width:18px;
-       height:18px;
-       z-index:1000;
-       background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUZFOTc4NzAyM0ZBMTFFMkJCN0M4NUE3QzcxRjlDNkEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUZFOTc4NzEyM0ZBMTFFMkJCN0M4NUE3QzcxRjlDNkEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1RkEzNkM3RjIzRkExMUUyQkI3Qzg1QTdDNzFGOUM2QSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1RkEzNkM4MDIzRkExMUUyQkI3Qzg1QTdDNzFGOUM2QSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlNUAI4AAAGMSURBVHjavNhBbsIwEAVQZ5QDwA3Y9AS9At3SDdchUel12JQtuULu0GV2cAAk6pFsKTVOPPb8YGmkSCjOw4nHHlfDMJhIO9j4tLG1cTO4trLR2fix8R3+WEduaGx8uesOCPKQdxcmBNEMxLibOtcRCuLb0b2BKCaEoEAxSBRECYgWNAd5AtUCSAiSfkMSyBhU8cjsMv6pdIRyIL7tGPNhoweCSiD8/C1jrkBQMYRfvf+AESAVJJzaGtBGC+FWRZaDtY1LZsf3iWwuhsQycOkIqSFTmFKQCjKHWQLUpxImJTq4ug76pSESjHEdaEAiiBTjQXs3a0zmLNtL90NSDCe0U+as8bPsJF3tSQjJTWhF248UZq2EZIEoAbkAIGIQvQgiAhEIckeACADhPPKG2A8RAMIJ7bcgMT6BCAC5KTL1PxCBIAYBIiBEDWLMeYFFrwR0JldAtcjVtwDEheSRRhVdC4TkgBp/GkFBidkCIRJQMz4WoUjN2wIhc6AmPJ+pJ4rwxwInVx40eXL1J8AAWnae68oeivQAAAAASUVORK5CYII=") no-repeat scroll 0 0;
-       background-size:cover;
+       z-index:1009;
+       overflow:hidden;
+       em{
+           display:block;
+           width:18px;
+           height:18px;
+           background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUZFOTc4NzAyM0ZBMTFFMkJCN0M4NUE3QzcxRjlDNkEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUZFOTc4NzEyM0ZBMTFFMkJCN0M4NUE3QzcxRjlDNkEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1RkEzNkM3RjIzRkExMUUyQkI3Qzg1QTdDNzFGOUM2QSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1RkEzNkM4MDIzRkExMUUyQkI3Qzg1QTdDNzFGOUM2QSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlNUAI4AAAGMSURBVHjavNhBbsIwEAVQZ5QDwA3Y9AS9At3SDdchUel12JQtuULu0GV2cAAk6pFsKTVOPPb8YGmkSCjOw4nHHlfDMJhIO9j4tLG1cTO4trLR2fix8R3+WEduaGx8uesOCPKQdxcmBNEMxLibOtcRCuLb0b2BKCaEoEAxSBRECYgWNAd5AtUCSAiSfkMSyBhU8cjsMv6pdIRyIL7tGPNhoweCSiD8/C1jrkBQMYRfvf+AESAVJJzaGtBGC+FWRZaDtY1LZsf3iWwuhsQycOkIqSFTmFKQCjKHWQLUpxImJTq4ug76pSESjHEdaEAiiBTjQXs3a0zmLNtL90NSDCe0U+as8bPsJF3tSQjJTWhF248UZq2EZIEoAbkAIGIQvQgiAhEIckeACADhPPKG2A8RAMIJ7bcgMT6BCAC5KTL1PxCBIAYBIiBEDWLMeYFFrwR0JldAtcjVtwDEheSRRhVdC4TkgBp/GkFBidkCIRJQMz4WoUjN2wIhc6AmPJ+pJ4rwxwInVx40eXL1J8AAWnae68oeivQAAAAASUVORK5CYII=") no-repeat scroll 0 0;
+           background-size:cover;
+       }
    }
-   .textarea-block{
-       width:310px;
-       margin-left:-150px;
-       position:fixed;
-       bottom:10px;
 
-
-   }
    .comments-wrap{
        position:relative;
        margin-top:45px;
@@ -458,7 +456,11 @@
 
 
 .textarea-block{
-    position:relative;
+    position:fixed;
+    left:50%;
+    width:298px;
+    bottom:10px;
+    margin-left:-160px;
     padding:6px 10px 6px 12px;
     height:33px;
     display:-webkit-box;

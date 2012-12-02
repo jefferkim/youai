@@ -19,8 +19,8 @@ Youai.Router = Backbone.Router.extend({
 
         var wTitle = function () {
             var h1Map = {
-                    '首页':/#!home/,
-                    '逛逛':/#!stroll\/p\d*/,
+                    '有爱':/#!home/,
+                    '有爱':/#!stroll\/p\d*/,
                     '喜欢':/#!like\/[0-9]*/,
                     '详情页':/#!detail\/[0-9]*/,
                     '推荐':/#!association\/[0-9]*/,
@@ -56,7 +56,9 @@ Youai.Router = Backbone.Router.extend({
         $(displayHomeOrBackButton)
 
         window.addEventListener("hashchange", function () {
-            window.scrollTo(0,0)
+            if(!location.hash.match(/$(search|list|stroll)/gi)){//详情页ios history.back能返回原先位置就不去处理它
+                window.scrollTo(0,0)
+            }
             wTitle();
             displayHomeOrBackButton()
         }, false);
