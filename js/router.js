@@ -19,7 +19,6 @@ Youai.Router = Backbone.Router.extend({
 
         var wTitle = function () {
             var h1Map = {
-                    '有爱':/#!home/,
                     '有爱':/#!stroll\/p\d*/,
                     '喜欢':/#!like\/[0-9]*/,
                     '详情页':/#!detail\/[0-9]*/,
@@ -67,6 +66,7 @@ Youai.Router = Backbone.Router.extend({
     },
     //首页
     index:function () {
+        $("#J-headerT").text("有爱");
         var indexView = new Youai.indexView();
     },
 
