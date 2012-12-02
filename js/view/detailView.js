@@ -56,6 +56,7 @@ Youai.DetailView = Backbone.View.extend({
             self.displayItem(id, isvCode, albumId)
           } else {
             console.log('mtop error')
+            notification.flash('加载失败，请刷新页面重试。').show()
           }
       });
 
