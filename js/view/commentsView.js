@@ -17,14 +17,23 @@ Youai.commentsView = Backbone.View.extend({
     initialize:function (options) {
         var self = this,
             commentUrl,
-            U = Youai.Util;
+            U = Youai.Util,
+            docH = window.innerHeight;
+
+
+        window.scrollTo(0,0);
+
+        $("#tbh5v0").css({
+            height:docH,
+            overflow:"hidden"
+        });
+        $(document.body).addClass("oh");
         $("#J-mask").show().css({
-            height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)
-            //height:window.innerHeight
+           height:docH
         }).animate({
             opacity:0.8
         }, 1000, 'ease');
-        window.scrollTo(0,0);
+
 
         $(this.el).undelegate("#J-submit","click");
 
@@ -54,11 +63,13 @@ Youai.commentsView = Backbone.View.extend({
 
     closePop:function(e){
         e.preventDefault();
-        /*$("#J-mask").animate({
-            opacity:0
-        }, 1000, 'ease', function () {
-            $(this).hide();
-        });*/
+        $(document.body).removeClass("oh");
+        $("#tbh5v0").css({
+            height:"100%",
+            overflow:"visible"
+        });
+
+
         $("#J-mask").hide();
         $("#J-tplComment").hide();
         $("#J-comment","#J-tplComment").html("");
@@ -73,7 +84,6 @@ Youai.commentsView = Backbone.View.extend({
         var commentBlock = $(".textarea-block","#J-tplComment"),
             inputField = $(".J-inputField","#J-tplComment"),
             inputContent = $.trim(inputField.val());
-
 
         if ($.trim(inputField.val()) === "") {
             notification.flash("请填写评论内容").show();
@@ -94,7 +104,6 @@ Youai.commentsView = Backbone.View.extend({
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
                 Youai.Util._checkLogin(response);
                 var result = response.ret[0];
-                notification.flash(result).show();
                 if (result.indexOf("DUPLICATE_DATA::") != -1) {
                     notification.flash('评论重复或过于频繁哦').show();
                 }

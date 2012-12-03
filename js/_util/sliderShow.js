@@ -158,7 +158,7 @@ Youai.sliderShow = {
     },
     destroyUI:function () {
         var self = this;
-        $('body > div').click(function (ev) {
+        /*$('body > div').click(function (ev) {
             var target = ev.target || ev.srcElement;
             if (target.nodeName.toUpperCase() === 'DIV') {
                 if ($(target).attr('id') == 'J-mask') {
@@ -167,6 +167,12 @@ Youai.sliderShow = {
                     self._hideMask();
                 }
             }
+        });*/
+
+        $("#J-mask").on("click",function(){
+            self.goodSlider.destroy();
+            $("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
+            self._hideMask();
         });
     }
 
