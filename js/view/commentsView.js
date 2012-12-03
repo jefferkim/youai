@@ -74,6 +74,7 @@ Youai.commentsView = Backbone.View.extend({
             inputField = $(".J-inputField","#J-tplComment"),
             inputContent = $.trim(inputField.val());
 
+
         if ($.trim(inputField.val()) === "") {
             notification.flash("请填写评论内容").show();
             return;
@@ -84,6 +85,7 @@ Youai.commentsView = Backbone.View.extend({
         }
         else {
             if(this.options.method == "getItemComments"){
+                console.log(inputContent);
                 url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode,"albumId":YA_GLOBAL.albumId}};
             }else{
                 url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
@@ -92,6 +94,7 @@ Youai.commentsView = Backbone.View.extend({
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
                 Youai.Util._checkLogin(response);
                 var result = response.ret[0];
+                notification.flash(result).show();
                 if (result.indexOf("DUPLICATE_DATA::") != -1) {
                     notification.flash('评论重复或过于频繁哦').show();
                 }
