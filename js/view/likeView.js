@@ -59,7 +59,7 @@ Youai.LikeView = Backbone.View.extend({
 
     this.$el.append('<div id="J-pageNav" class="c-pnav-con"></div>')
 
-    Youai.Mod.renderPageNav(this.result.recordTotal)
+    Youai.Mod.renderPageNav(this.result.recordTotal,10)
 
     $('.separator').last().remove()
 
