@@ -24,6 +24,7 @@ Youai.sliderShow = {
             opacity:0.8
         }, 1000, 'ease');
 
+
     },
 
     _hideMask:function () {

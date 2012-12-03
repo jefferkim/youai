@@ -55,6 +55,14 @@ Youai.Router = Backbone.Router.extend({
         $(displayHomeOrBackButton)
 
         window.addEventListener("hashchange", function () {
+            $("#J-mask").hide();
+            $("#J-popWrap").html("");
+            $(document.body).removeClass("oh");
+            $("#tbh5v0").css({
+                height:"100%",
+                overflow:"visible"
+            });
+
             if(!location.hash.match(/$(search|list|stroll)/gi)){//详情页ios history.back能返回原先位置就不去处理它
                 window.scrollTo(0,0)
             }
@@ -277,7 +285,7 @@ Youai.Router = Backbone.Router.extend({
                 } else {
                     albumList.reset(data);
                 }
-
+                Youai.DATA_AlbumList= albumList;
                 new Youai.albumsView({
                     "data":albumList
                 }).render();

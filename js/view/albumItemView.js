@@ -20,8 +20,8 @@ Youai.albumItemView = Backbone.View.extend({
             opacity:0
         }, 800, 'ease', function () {
             el.remove();
-            //TODO:length的获取未处理好，到时将albumList的collection实例暴露到Youai.data.albumList上
-            if($("#J-ablums>li").length == 0){
+            //DATA_AlbumList collection
+            if(Youai.DATA_AlbumList.length == 0){
                $("#J-pageNav").html("")
                $("#J-ablums").html('<div style="margin-top:30px;">您还没有收集任何专辑,先去逛逛吧!</div>');
             }
