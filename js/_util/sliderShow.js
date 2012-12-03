@@ -15,7 +15,6 @@ Youai.sliderShow = {
             this.likeAction();
         }
 
-
         /*function prefixStyle (style) {
             if ( vendor === '' ) return style;
 
