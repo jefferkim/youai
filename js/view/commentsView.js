@@ -86,7 +86,7 @@ Youai.commentsView = Backbone.View.extend({
             inputField = $(".J-inputField","#J-tplComment"),
             inputContent = $.trim(inputField.val());
         console.log("===11===");
-        console.log(inputContent.toString().replace('@',''));
+        console.log(inputContent.toString().substr(0,2));
         console.log("===11===");
         if (inputContent === "") {
             notification.flash("请填写评论内容").show();

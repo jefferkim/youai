@@ -226,7 +226,6 @@ Youai.Router = Backbone.Router.extend({
     },
     //搜索页
     search:function (keyword, pageNo) {
-        console.log(decodeURI(keyword));
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":decodeURI(keyword)}};
 
         var searchList = new Youai.GoodList();
