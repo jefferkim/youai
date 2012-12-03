@@ -18,7 +18,8 @@ Youai.commentsView = Backbone.View.extend({
         var self = this,
             commentUrl,
             U = Youai.Util,
-            docH = window.innerHeight;
+            docH = window.innerHeight,
+            commentBlockH = docH -105;
 
 
         window.scrollTo(0,0);
@@ -28,6 +29,7 @@ Youai.commentsView = Backbone.View.extend({
             overflow:"hidden"
         });
         $(document.body).addClass("oh");
+
         $("#J-mask").show().css({
            height:docH
         }).animate({
@@ -37,8 +39,7 @@ Youai.commentsView = Backbone.View.extend({
 
         $(this.el).undelegate("#J-submit","click");
 
-        $("#J-popWrap").html(this.tpl["commentsLayout"]()) ;
-        $("#J-comment-block").height(window.innerHeight-105);
+        $("#J-popWrap").html(this.tpl["commentsLayout"]({h:commentBlockH}))
 
         this.options = options;
 
