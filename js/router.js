@@ -55,6 +55,7 @@ Youai.Router = Backbone.Router.extend({
         $(displayHomeOrBackButton)
 
         window.addEventListener("hashchange", function () {
+            //TODO:后期提取个基本的方法
             $("#J-mask").hide();
             $("#J-popWrap").html("");
             $(document.body).removeClass("oh");
@@ -225,7 +226,8 @@ Youai.Router = Backbone.Router.extend({
     },
     //搜索页
     search:function (keyword, pageNo) {
-        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":unescape(keyword)}};
+        console.log(decodeURI(keyword));
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":decodeURI(keyword)}};
 
         var searchList = new Youai.GoodList();
 

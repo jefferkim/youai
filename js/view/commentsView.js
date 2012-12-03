@@ -85,12 +85,14 @@ Youai.commentsView = Backbone.View.extend({
         var commentBlock = $(".textarea-block","#J-tplComment"),
             inputField = $(".J-inputField","#J-tplComment"),
             inputContent = $.trim(inputField.val());
-
-        if ($.trim(inputField.val()) === "") {
+        console.log("===11===");
+        console.log(inputContent.toString().replace('@',''));
+        console.log("===11===");
+        if (inputContent === "") {
             notification.flash("请填写评论内容").show();
             return;
         }
-        if($.trim(inputField.val()).replace("/[^/x00-/xff]/g", "**").length > 140){
+        if(inputContent.replace("/[^/x00-/xff]/g", "**").length > 140){
             notification.flash("不能超出140个字数").show();
             return;
         }
@@ -105,6 +107,7 @@ Youai.commentsView = Backbone.View.extend({
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
                 Youai.Util._checkLogin(response);
                 var result = response.ret[0];
+                console.log(result);
                 if (result.indexOf("DUPLICATE_DATA::") != -1) {
                     notification.flash('评论重复或过于频繁哦').show();
                 }
