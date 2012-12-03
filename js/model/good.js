@@ -22,14 +22,15 @@ Youai.Good = Backbone.Model.extend({
     },
 
     //单个good的iteminfo
-    getItemInfo:function () {     
-        var data = {            
+    getItemInfo:function () {
+
+       var data = {
             "itemId":this.get("itemId"),
             "albumId":this.get("album") ? this.get("album").albumId : YA_GLOBAL.albumId,  //后端没有返回严格的Good的模型
             "isvCode":this.get("isvInfo").isvCode,
             "itemHeight":this.height(),
             "originalPrice":this._parsePrice(),
-            "comment":this.get("comments") ? Youai.Util.cutstr(this.get("comments"),50) : false, //comments对象存在的话弹出气泡评论
+            "comment":this.get("comments") ? Youai.Util.cutstr(this.get("comments").replace(/<\/?[^>]*>/g,''),50).toString() : false, //过滤html标签,comments对象存在的话弹出气泡评论
             "imgUrl":this.getMainPic()[0].url
         };
         return data;

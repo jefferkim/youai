@@ -121,6 +121,10 @@ Youai.Util = {
         var str_len = 0;
         str_cut = new String();
         str_len = str.length;
+        //如果给定字符串小于指定长度，则返回源字符串；
+        if (str_length < len) {
+            return  str;
+        }
         for (var i = 0; i < str_len; i++) {
             a = str.charAt(i);
             str_length++;
@@ -134,10 +138,7 @@ Youai.Util = {
                 return str_cut;
             }
         }
-        //如果给定字符串小于指定长度，则返回源字符串；
-        if (str_length < len) {
-            return  str;
-        }
+
     },
 
     _isPreview:function(){
@@ -189,7 +190,7 @@ Youai.Util = {
             var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi);
             //不关心返回
             $.ajax({
-                url:'http://wo.'+host[0]+'/operation.htm',
+                url:'http://wo'+host[0]+'/operation.htm',
                 data:{pds:pds},
                 success:function(response){
                     console.log(response)

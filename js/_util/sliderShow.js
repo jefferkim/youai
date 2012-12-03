@@ -21,6 +21,7 @@ Youai.sliderShow = {
             return { device: device, version: version.split('.'), mainVer: version.replace(/^(\d\.\d).*$/, '$1') };
         })(navigator.userAgent);
 
+        console.log(navigator.appVersion);
     },
 
     _showMask:function () {
@@ -42,13 +43,13 @@ Youai.sliderShow = {
         sliderEL.show();
 
 
-       if(!this.browser){
+     /*  if(!this.browser.device){
             sliderEL.animate({
                 scale:1
-            },'400','ease')
-        }else{
+            },'400','ease');
+        }else{*/
             sliderEL.removeClass("bounceOut").addClass("bounceIn");
-        }
+        //}
 
     },
 
@@ -162,7 +163,7 @@ Youai.sliderShow = {
     postStatistics:function(data){
         var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi);
         $.ajax({
-            url:'http://wo.'+host[0]+'/operation.htm',
+            url:'http://wo'+host[0]+'/operation.htm',
             data:{pds:"list_gotolargepic#h#youai"},
             success:function(){
 
@@ -172,11 +173,18 @@ Youai.sliderShow = {
     },
     destroyUI:function () {
         var self = this;
+
         $("#J-mask").on("click",function(){
             self.goodSlider.destroy();
-
-            $("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
-
+             if(!self.browser.device){
+                 $("#J-sliderHolder").animate({
+                     scale:0.01
+                 },'400','ease',function(){
+                     $("#J-sliderHolder").hide();
+                 })
+             }else{
+                 $("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
+             }
             self._hideMask();
         });
     }

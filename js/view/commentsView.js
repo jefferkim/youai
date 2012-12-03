@@ -85,9 +85,7 @@ Youai.commentsView = Backbone.View.extend({
         var commentBlock = $(".textarea-block","#J-tplComment"),
             inputField = $(".J-inputField","#J-tplComment"),
             inputContent = $.trim(inputField.val());
-        console.log("===11===");
-        console.log(inputContent.toString().substr(0,2));
-        console.log("===11===");
+
         if (inputContent === "") {
             notification.flash("请填写评论内容").show();
             return;
@@ -99,9 +97,9 @@ Youai.commentsView = Backbone.View.extend({
         else {
             if(this.options.method == "getItemComments"){
                 console.log(inputContent);
-                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode,"albumId":YA_GLOBAL.albumId}};
+                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent.replace(/<\/?[^>]*>/g,''),"isvCode":YA_GLOBAL.isvCode,"albumId":YA_GLOBAL.albumId}};
             }else{
-                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent,"isvCode":YA_GLOBAL.isvCode}};
+                url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForAblum","albumId":YA_GLOBAL.albumId,"content":inputContent.replace(/<\/?[^>]*>/g,''),"isvCode":YA_GLOBAL.isvCode}};
             }
 
             Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (response) {
@@ -118,7 +116,7 @@ Youai.commentsView = Backbone.View.extend({
                 if(result.indexOf("SUCCESS::") != -1){
                     var newComment = new Youai.Comment({
                         itemId:YA_GLOBAL.itemId,
-                        content:inputField.val(),
+                        content:inputField.val().replace(/<\/?[^>]*>/g,''),
                         user: {
                             userId:response.data.result.user.userId, 
                             userNick:response.data.result.user.userNick

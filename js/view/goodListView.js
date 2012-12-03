@@ -20,6 +20,7 @@ Youai.goodListView = Backbone.View.extend({
 
     addItem:function (good) {
 
+        console.log(good);
         var goodView = new Youai.goodItemView({model:good});
         return goodView.render();
 
@@ -36,10 +37,13 @@ Youai.goodListView = Backbone.View.extend({
                 var items = [],
                     heights = [];
 
+
                 self.goodList.each(function (good) {
                     items.push(self.addItem(good))
                     heights.push(parseInt(good.height()) + 34);
                 });
+                console.log(items);
+                console.log(heights);
 
                 success(items, heights);
             }
