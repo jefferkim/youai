@@ -15,33 +15,12 @@ Youai.sliderShow = {
             this.likeAction();
         }
 
-        /*function prefixStyle (style) {
-            if ( vendor === '' ) return style;
+        this.browser = (function (ua) {
+            var device = '', version = '', android;
+            (android = ua.match(/(Android)\s+([\d.]+)/)) && (device = 'android') && (version = android[2]);
+            return { device: device, version: version.split('.'), mainVer: version.replace(/^(\d\.\d).*$/, '$1') };
+        })(navigator.userAgent);
 
-            style = style.charAt(0).toUpperCase() + style.substr(1);
-            return vendor + style;
-        }
-        var m = Math,
-            dummyStyle = document.createElement('div').style,
-            vendor = (function () {
-                var vendors = 't,webkitT,MozT,msT,OT'.split(','),
-                    t,
-                    i = 0,
-                    l = vendors.length;
-
-                for ( ; i < l; i++ ) {
-                    t = vendors[i] + 'ransform';
-                    if ( t in dummyStyle ) {
-                        return vendors[i].substr(0, vendors[i].length - 1);
-                    }
-                }
-
-                return false;
-            })();
-
-        var  hasTransform = !!vendor;
-        var has3d = prefixStyle('perspective') in dummyStyle;
-        notification.flash(has3d).show();*/
     },
 
     _showMask:function () {
@@ -61,11 +40,15 @@ Youai.sliderShow = {
         var sliderH = 325;
         sliderEL.css({"top":document.body.scrollTop + (window.innerHeight-sliderH)/2});
         sliderEL.show();
-        sliderEL.removeClass("bounceOut").addClass("bounceIn");
-       /* sliderEL.animate({
-            scale:1
-        },'400','ease')*/
 
+
+       if(!this.browser){
+            sliderEL.animate({
+                scale:1
+            },'400','ease')
+        }else{
+            sliderEL.removeClass("bounceOut").addClass("bounceIn");
+        }
 
     },
 
@@ -189,26 +172,11 @@ Youai.sliderShow = {
     },
     destroyUI:function () {
         var self = this;
-        /*$('body > div').click(function (ev) {
-            var target = ev.target || ev.srcElement;
-            if (target.nodeName.toUpperCase() === 'DIV') {
-                if ($(target).attr('id') == 'J-mask') {
-                    self.goodSlider.destroy();
-                    $("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
-                    self._hideMask();
-                }
-            }
-        });*/
-
         $("#J-mask").on("click",function(){
             self.goodSlider.destroy();
 
-            /*$("#J-sliderHolder").animate({
-                scale:0.01
-            },'400','ease',function(){
-                $(this).hide();
-            })
-            //*/$("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
+            $("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
+
             self._hideMask();
         });
     }
