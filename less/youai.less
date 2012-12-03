@@ -253,16 +253,23 @@
 
     -webkit-backface-visibility: hidden;
     backface-visibility:hidden;
+
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+
     -webkit-animation-duration: 1s;
-    -webkit-animation-delay: .2s;
-    -webkit-animation-timing-function: ease;
-    -webkit-animation-fill-mode: both;
     animation-duration: 1s;
+    -webkit-animation-delay: .2s;
     animation-delay: .2s;
+    -webkit-animation-timing-function: ease;
     animation-timing-function: ease;
+    -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
+
+
+
+    animation-iteration-count:1;
+    -webkit-animation-iteration-count:1;
 
 }
 
@@ -321,7 +328,7 @@
 
     100% {
         opacity: 0;
-        -webkit-transform: scale(0.01);
+        -webkit-transform: scale(.01);
     }
 }
 

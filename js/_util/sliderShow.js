@@ -15,6 +15,34 @@ Youai.sliderShow = {
             this.likeAction();
         }
 
+
+        /*function prefixStyle (style) {
+            if ( vendor === '' ) return style;
+
+            style = style.charAt(0).toUpperCase() + style.substr(1);
+            return vendor + style;
+        }
+        var m = Math,
+            dummyStyle = document.createElement('div').style,
+            vendor = (function () {
+                var vendors = 't,webkitT,MozT,msT,OT'.split(','),
+                    t,
+                    i = 0,
+                    l = vendors.length;
+
+                for ( ; i < l; i++ ) {
+                    t = vendors[i] + 'ransform';
+                    if ( t in dummyStyle ) {
+                        return vendors[i].substr(0, vendors[i].length - 1);
+                    }
+                }
+
+                return false;
+            })();
+
+        var  hasTransform = !!vendor;
+        var has3d = prefixStyle('perspective') in dummyStyle;
+        notification.flash(has3d).show();*/
     },
 
     _showMask:function () {
@@ -23,8 +51,6 @@ Youai.sliderShow = {
         }).show().animate({
             opacity:0.8
         }, 1000, 'ease');
-
-
     },
 
     _hideMask:function () {
@@ -37,6 +63,11 @@ Youai.sliderShow = {
         sliderEL.css({"top":document.body.scrollTop + (window.innerHeight-sliderH)/2});
         sliderEL.show();
         sliderEL.removeClass("bounceOut").addClass("bounceIn");
+       /* sliderEL.animate({
+            scale:1
+        },'400','ease')*/
+
+
     },
 
     renderUI:function (sliderID) {
@@ -172,7 +203,13 @@ Youai.sliderShow = {
 
         $("#J-mask").on("click",function(){
             self.goodSlider.destroy();
-            $("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
+
+            /*$("#J-sliderHolder").animate({
+                scale:0.01
+            },'400','ease',function(){
+                $(this).hide();
+            })
+            //*/$("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
             self._hideMask();
         });
     }

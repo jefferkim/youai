@@ -21,7 +21,7 @@ Youai.commentsView = Backbone.View.extend({
             docH = window.innerHeight,
             commentBlockH = docH -105;
 
-
+        $("#J-mask").off("click");
         window.scrollTo(0,0);
 
         $("#tbh5v0").css({
@@ -125,7 +125,7 @@ Youai.commentsView = Backbone.View.extend({
                         }
                     });
                    //TODO:先只是修改dom
-                    var commentNumObj = $("strong",".comment-count");
+                    var commentNumObj = $("strong",".comment-count").length >0?$("strong",".comment-count"):$("span",".comments");
                     var commentNum = commentNumObj.text() == "" ? 0 :parseInt(commentNumObj.text());
                     commentNumObj.text(commentNum+1);
                     //TODO：考虑将校验都加入到model
