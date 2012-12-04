@@ -38,7 +38,8 @@ Youai.LikeView = Backbone.View.extend({
         var goodlist = new Youai.GoodList().reset(this.data[i].records)
 
         this.$el.append(JST['template/like_section'](this.data[i]))
-
+          Youai.DATA_ITEMID_INDEX = [];
+          Youai.DATA_ITEMID_H = [];
         new Youai.Waterfall(this.$('.good-list').last(), {
           colWidth: 153,
           load: function(success) {

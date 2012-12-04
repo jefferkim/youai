@@ -72,6 +72,7 @@ Waterfall.prototype = {
 
         self.curColHeights[dest] += parseInt(height) + 10; //图片垂直间距为10px
 
+
         Youai.DATA_ITEMID_H.push(Math.max.apply(Math, this.curColHeights));
 
         return item;
