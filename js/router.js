@@ -64,9 +64,6 @@ Youai.Router = Backbone.Router.extend({
                 overflow:"visible"
             });
 
-
-           if(location.hash.split("/"))
-
            if(!location.hash.match(/$(search|list|stroll)/gi)){//详情页ios history.back能返回原先位置就不去处理它
                 window.scrollTo(0,0)
            }
