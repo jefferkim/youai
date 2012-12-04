@@ -12,8 +12,6 @@ Youai.searchListView = Backbone.View.extend({
 
     initialize:function (options) {
 
-        this.$el.html(this.tpl["goodLayout"]());
-
         this.searchGoodList = options.data;
 
         //弹出气泡提示
@@ -31,6 +29,7 @@ Youai.searchListView = Backbone.View.extend({
     render:function () {
 
         var self = this;
+        $("#J-waterfall").html("");
         Youai.DATA_ITEMID_INDEX = [];
         Youai.DATA_ITEMID_H = [];
         new Youai.Waterfall("#J-waterfall", {
@@ -50,6 +49,9 @@ Youai.searchListView = Backbone.View.extend({
 
         lazyload.init();
 
+        Youai.DATA_LISTHTML = $("#J-waterfall");
+
+        YA_GLOBAL.itemIdForListBack = null;
 
     }
 

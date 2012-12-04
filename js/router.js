@@ -1,3 +1,8 @@
+/*
+* TODO:goodListView 和searchListView 统一
+*
+*
+* */
 Youai.Router = Backbone.Router.extend({
 
     routes:{
@@ -182,6 +187,7 @@ Youai.Router = Backbone.Router.extend({
                     if (result.recordTotal === "0") {
                         $(".no-search-result").show();
                     } else {
+                        $("#content").html(JST["template/list_good"]());
 
                         searchGoodList.reset(result.data);
                         new Youai.searchListView({
@@ -233,6 +239,9 @@ Youai.Router = Backbone.Router.extend({
     search:function (keyword, pageNo) {
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":pageNo || 1, "keyword":decodeURI(keyword)}};
 
+        $("#content").html(JST["template/list_good"]());
+
+        if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
         var searchList = new Youai.GoodList();
 
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
@@ -344,7 +353,7 @@ Youai.Router = Backbone.Router.extend({
 
                 Youai.Mod.renderPageNav(result.itemTotal);
             } else {
-                notification.flash('接口调用错误，请刷新重试').show();
+                //notification.flash('接口调用错误，请刷新重试').show();
             }
         });
     }

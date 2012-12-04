@@ -48,7 +48,6 @@ Youai.goodListView = Backbone.View.extend({
 
         Youai.DATA_LISTHTML = $("#J-waterfall");
 
-
         YA_GLOBAL.itemIdForListBack = null;
     }
 
