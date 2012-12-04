@@ -80,7 +80,7 @@ Youai.sliderShow = {
 
 
          
-        this.postStatistics();
+
         this._showMask();
         this._bounceSlider();
     },
@@ -153,18 +153,6 @@ Youai.sliderShow = {
                 }
             }
         )
-
-    },
-    //打点，统计点击次数
-    postStatistics:function(data){
-        var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi);
-        $.ajax({
-            url:'http://wo'+host[0]+'/operation.htm',
-            data:{pds:"list_gotolargepic#h#youai"},
-            success:function(){
-
-            }
-        });
 
     },
     destroyUI:function () {

@@ -27,6 +27,13 @@ Youai.goodItemView = Backbone.View.extend({
     /*图片放大*/
     zoomPic:function (e) {
         e.preventDefault();
+        var host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi);
+        $.ajax({
+            url:'http://wo'+host[0]+'/operation.htm',
+            data:{pds:"list_gotolargepic#h#youai"},
+            success:function(){
+            }
+        });
         Youai.sliderShow.init('slider',this.model);
     },
 
