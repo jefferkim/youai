@@ -1,5 +1,5 @@
 /*
-* TODO:goodListView 和searchListView 统一
+* TODO:
 *
 *
 * */
@@ -190,7 +190,7 @@ Youai.Router = Backbone.Router.extend({
                         $("#content").html(JST["template/list_good"]());
 
                         searchGoodList.reset(result.data);
-                        new Youai.searchListView({
+                        new Youai.goodListView({
                             data:searchGoodList
                         }).render();
 
@@ -225,11 +225,12 @@ Youai.Router = Backbone.Router.extend({
     queryAssociation:function(itemId){
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAssociation", "pageSize":"10", "pageNo":1, "itemId":itemId}};
         var associationList = new Youai.GoodList();
+        $("#content").html(JST["template/list_good"]());
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             if(resp.ret[0].indexOf("SUCCESS::") != -1){
                 YA_GLOBAL.albumId = 0;  //关联推荐默认albumId设置成0
                 associationList.reset(resp.data.result.data);
-                new Youai.searchListView({
+                new Youai.goodListView({
                     "data":associationList
                 }).render();
             }
@@ -249,7 +250,7 @@ Youai.Router = Backbone.Router.extend({
                 var result = resp.data.result;
                 searchList.reset(result.data);
 
-                new Youai.searchListView({
+                new Youai.goodListView({
                     "data":searchList
                 }).render();
 
