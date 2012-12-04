@@ -64,7 +64,7 @@ Youai.Router = Backbone.Router.extend({
                 overflow:"visible"
             });
 
-            if(!location.hash.match(/$(search|list|stroll)/gi)){//详情页ios history.back能返回原先位置就不去处理它
+           if(!location.hash.match(/$(search|list|stroll)/gi)){//详情页ios history.back能返回原先位置就不去处理它
                 window.scrollTo(0,0)
             }
             wTitle();
@@ -84,6 +84,8 @@ Youai.Router = Backbone.Router.extend({
     stroll:function (pageNo) {
 
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
+
+        if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
 
         //判断是否是预览状态
         var args = Youai.Util._isPreview();
@@ -123,7 +125,6 @@ Youai.Router = Backbone.Router.extend({
                 $("#J-headerT").text(result.title); //增加标题
 
                 goodList.reset(result.data);
-
                 new Youai.goodListView({
                     "data":goodList
                 }).render();

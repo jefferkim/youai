@@ -32,7 +32,9 @@ Youai.goodItemView = Backbone.View.extend({
 
 
     render:function () {
-        return this.$el.html(this.templates["list-goodItem"](this.model.getItemInfo()));
+        var goodItemInfo = this.model.getItemInfo();
+        Youai.DATA_ITEMID_INDEX.push(goodItemInfo.itemId);
+        return this.$el.html(this.templates["list-goodItem"](goodItemInfo));
 
     }
 

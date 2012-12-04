@@ -68,6 +68,7 @@ Youai.DetailView = Backbone.View.extend({
 
     //added by jinjianfeng, for comments
     YA_GLOBAL.itemId = this.data.itemId;
+    YA_GLOBAL.itemIdForListBack = this.data.itemId; //用于返回列表页时的标志位
     YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
     YA_GLOBAL.albumId = albumId;
 

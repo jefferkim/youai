@@ -28,7 +28,8 @@ Youai.goodListView = Backbone.View.extend({
 
         var self = this;
         $("#J-waterfall").html("");
-        //window.scrollTo(0,0);//点分页时页面可能会停留在中间
+        Youai.DATA_ITEMID_INDEX = [];
+        Youai.DATA_ITEMID_H = [];
         new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
             load:function (success) {
@@ -36,16 +37,17 @@ Youai.goodListView = Backbone.View.extend({
                     heights = [];
 
                 self.goodList.each(function (good) {
-                    items.push(self.addItem(good))
+                    items.push(self.addItem(good));
                     heights.push(parseInt(good.height()) + 34);
                 });
-
                 success(items, heights);
             }
         });
 
         lazyload.init();
 
+        Youai.DATA_LISTHTML = $("#J-waterfall");
+        YA_GLOBAL.itemIdForListBack = null;
     }
 
 });

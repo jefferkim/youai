@@ -93,6 +93,23 @@ Youai.Util = {
         return true;
     },
 
+    listBackFixPosition:function(){
+        if(YA_GLOBAL.itemIdForListBack){
+            $("#J-waterfall").html(Youai.DATA_LISTHTML);
+            for(var i = 0,itemsIndex = Youai.DATA_ITEMID_INDEX; i < itemsIndex.length;i++){
+                if(itemsIndex[i] == YA_GLOBAL.itemIdForListBack){
+                    window.scrollTo(0,Youai.DATA_ITEMID_H[i]-130);
+                    $("#J-pageNav").html(Youai.DATA_PAGENAV);
+                    YA_GLOBAL.itemIdForListBack = null;
+                    break;
+                }
+            }
+            return false;
+        }else{
+            return true;
+        }
+    },
+
     Ajax:function (url, callback) {
         var self = this;
         $.ajax({
