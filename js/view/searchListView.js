@@ -31,7 +31,8 @@ Youai.searchListView = Backbone.View.extend({
     render:function () {
 
         var self = this;
-
+        Youai.DATA_ITEMID_INDEX = [];
+        Youai.DATA_ITEMID_H = [];
         new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
             load:function (success) {
