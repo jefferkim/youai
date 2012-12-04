@@ -112,6 +112,8 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-list").length < 1 && $("#content").html(JST["template/list_good"]());
 
+        if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
+
         var args = Youai.Util._isPreview();
         var extraParams = args ? {isPreview:args["isPreview"]} : {};
 
