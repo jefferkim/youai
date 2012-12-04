@@ -18,6 +18,7 @@ Youai.indexView = Backbone.View.extend({
     initialize:function () {
         //加载整体框架数据
         this.loadLayout();
+        YA_GLOBAL.itemIdForListBack = null;
     },
 
     //将天气参数map到不同的天气情况

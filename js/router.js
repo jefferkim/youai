@@ -139,7 +139,7 @@ Youai.Router = Backbone.Router.extend({
     //类目
     category:function (type) {
         var self = this;
-
+        YA_GLOBAL.itemIdForListBack = null;
         $("#J-tagLayout").length < 1 && $("#content").html(JST["template/tag_layout"]());
 
         Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"1"}, {},
@@ -203,6 +203,7 @@ Youai.Router = Backbone.Router.extend({
 
         $("#J-styleLayout").length < 1 && $("#content").html(JST["template/style_layout"]());
 
+        YA_GLOBAL.itemIdForListBack = null;
         Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"2"}, {},
             function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {
@@ -279,6 +280,8 @@ Youai.Router = Backbone.Router.extend({
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result,
                     data = result.data;
+
+                YA_GLOBAL.itemIdForListBack = null;
 
                 //我关注的专辑数据接口是不一样的
                 if (resp.data.method === "getLikeAlbums") {
