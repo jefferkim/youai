@@ -167,6 +167,8 @@ Youai.Router = Backbone.Router.extend({
                 return;
             }
 
+            searchTxt = searchTxt.replace(/<\/?[^>]*>/g,'');
+
             var searchGoodList = new Youai.GoodList();
 
             var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":"1", "keyword":searchTxt}};
