@@ -28,24 +28,26 @@ Youai.DetailView = Backbone.View.extend({
 
   render: function(template) {
 
-    var content = template( $.extend(this.data, { img: this.getValidImage(this.data.images), tags: this.data.tags }) )
+    var content = template( $.extend(this.data, { img: this.getValidImage(this.data.images), tags: this.data.tags , scm: this.scmParams}) )
     this.$el.html(content)
   },
 
-  itemUrl: function(id,isvCode,albumId) {
+  itemUrl: function(id,isvCode,albumId,scmParams) {
     //return 'http://api.waptest.taobao.com/rest/api2.do?api=com.taobao.wap.rest2.wo3&type=jsonp&callback=jsonp1&v=*&source=wo&sid=83fb97e85b9c12374f8b8426e5d564d8&data={"method":"getItemDetail","srcType":"10","srcCode":"1","isvCode":"12","itemId":"12121"}'
 
     return {
       api:"com.taobao.wap.rest2.wo3",
-      data:{"method":"getItemDetail","itemId":id,"isvCode":isvCode, "albumId": albumId }
+      data:{"method":"getItemDetail","itemId":id,"isvCode":isvCode, "albumId": albumId},
+      extParam:{"scm":scmParams}
     }
   },
 
-  getItemData: function(id,isvCode, albumId) {
+  getItemData: function(id,isvCode, albumId , scmParams) {
       var self = this;
-      var url = this.itemUrl(id,isvCode, albumId);
+      this.scmParams = scmParams;
+      var url = this.itemUrl(id,isvCode, albumId,scmParams);
 
-      Youai.mtopH5.getApi(url.api, "1.0", url.data, {},function (json) {
+      Youai.mtopH5.getApi(url.api, "1.0", url.data, url.extParam ,function (json) {
 
         if (json.ret[0].search('SUCCESS') > -1) {
             self.data = json.data.result
@@ -53,7 +55,7 @@ Youai.DetailView = Backbone.View.extend({
             self.currentItemImages = self.data.images;
             self.currentItemLikeNum = self.data.likeNum;
             self.likeCurrentItem    = self.data.like == 'true';
-            self.displayItem(id, isvCode, albumId)
+            self.displayItem(id, isvCode, albumId,scmParams)
           } else {
             console.log('mtop error')
             notification.flash('加载失败，请刷新页面重试。').show()
@@ -62,12 +64,12 @@ Youai.DetailView = Backbone.View.extend({
 
   },
 
-  displayItem: function(id,isvCode, albumId) {
+  displayItem: function(id,isvCode, albumId,scmParams) {
 
     //added by jinjianfeng, for comments
     YA_GLOBAL.itemId = this.data.itemId;
     YA_GLOBAL.isvCode = this.data.isvInfo.isvCode;
-    YA_GLOBAL.albumId = albumId
+    YA_GLOBAL.albumId = albumId;
 
     if (this.data.album && this.data.album.data) {  //有专辑
       this.render(JST['template/detail_collection'])
@@ -138,7 +140,7 @@ Youai.DetailView = Backbone.View.extend({
     YA_GLOBAL.itemId = item.itemId;
     YA_GLOBAL.isvCode = item.isvInfo.isvCode;
 
-    Youai.router.navigate('!detail/' + item.itemId + '/' + item.isvInfo.isvCode + '/' + YA_GLOBAL.albumId, { replace: true })
+    Youai.router.navigate('!detail/' + item.itemId + '/' + item.isvInfo.isvCode + '/' + YA_GLOBAL.albumId + '/0.0.0.0', { replace: true })
   },
 
   showComemnts: function() {

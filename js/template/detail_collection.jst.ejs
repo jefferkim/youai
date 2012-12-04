@@ -5,7 +5,7 @@
   <div class="main-view">
     <div class="big-pic"><img src="<%= img.url + '_500x450.jpg' + Youai.imageFormat %>" ></div>
     <div class="item-info">
-      <p class="price"><a style="color: #333" href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>">
+      <p class="price"><a style="color: #333" href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm?scm=' + scm %>">
         ￥<%= (originalPrice / 100).toFixed(2) %></a></p>
       <p class="comment-count"><strong><%= commentNum %></strong><span></span></p>
       <p class="like-count">
@@ -42,10 +42,10 @@
 <header>
   <h1><a class="isv" href="<%= isvInfo.url %>">
     来自<span class="isv-name"><%= isvInfo.name %></span></a>
-    <a style="color: #333" href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>" class="description">
+    <a style="color: #333" href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm?scm=' + scm %>" class="description">
       <%= description %></a>
   </h1></header>
-<div class="go-buy"><a href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm' %>" ><span></span>去购买</a></div>
+<div class="go-buy"><a href="<%= 'http://a.m.taobao.com/i' + itemId + '.htm?scm=' + scm %>" ><span></span>去购买</a></div>
 <div class="separator"></div>
 
 <section class="recommendations">

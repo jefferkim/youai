@@ -5,7 +5,7 @@ Youai.Router = Backbone.Router.extend({
         '!home':"index", //首页
         '!list/:listCode/p:page':'list', //商品列表
         '!like/:userId/p:page':'like',
-        '!detail/:id/:isvCode/:albumId':'detail', //详情页
+        '!detail/:id/:isvCode/:albumId/:scmParams':'detail', //详情页,scmParams:scm参数，额外的统计
         '!category/:type':'category', //类目页,v=>查看，s=>搜索
         '!association/:itemId':'queryAssociation', //相关推荐
         '!style':'style', //风格
@@ -255,12 +255,12 @@ Youai.Router = Backbone.Router.extend({
     },
 
     //详情页
-    detail:function (id, isvCode, albumId) {
+    detail:function (id, isvCode, albumId , scmParams) {
 
         Youai.detail = new Youai.DetailView()
         $('#content').html(Youai.detail.el)
 
-        Youai.detail.getItemData(id, isvCode, albumId)
+        Youai.detail.getItemData(id, isvCode, albumId , scmParams)
 
     },
 
