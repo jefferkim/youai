@@ -94,7 +94,8 @@ Youai.commentsView = Backbone.View.extend({
             notification.flash("不能超出140个字数").show();
             return;
         }
-        else {
+
+
             if(this.options.method == "getItemComments"){
                 console.log(inputContent);
                 url = {api:"com.taobao.wap.rest2.wo3",data:{"method":"addCommentForItem","itemId":YA_GLOBAL.itemId,"content":inputContent.replace(/<\/?[^>]*>/g,''),"isvCode":YA_GLOBAL.isvCode,"albumId":YA_GLOBAL.albumId}};
@@ -138,7 +139,6 @@ Youai.commentsView = Backbone.View.extend({
                 
             });
 
-        }
     },
 
 

@@ -15,13 +15,12 @@ Youai.sliderShow = {
             this.likeAction();
         }
 
-        this.browser = (function (ua) {
-            var device = '', version = '', android;
-            (android = ua.match(/(Android)\s+([\d.]+)/)) && (device = 'android') && (version = android[2]);
-            return { device: device, version: version.split('.'), mainVer: version.replace(/^(\d\.\d).*$/, '$1') };
-        })(navigator.userAgent);
 
-        console.log(navigator.appVersion);
+        this.mainVer = "v";
+        if((/android/gi).test(navigator.appVersion)){
+            var android = navigator.userAgent.match(/(Android)\s+([\d.]+)/);
+            this.mainVer = android[2].replace(/^(\d\.\d).*$/, '$1');
+        }
     },
 
     _showMask:function () {
@@ -42,14 +41,11 @@ Youai.sliderShow = {
         sliderEL.css({"top":document.body.scrollTop + (window.innerHeight-sliderH)/2});
         sliderEL.show();
 
-
-     /*  if(!this.browser.device){
-            sliderEL.animate({
-                scale:1
-            },'400','ease');
-        }else{*/
+       if(this.mainVer != "v"){
+           $("#J-sliderHolder").show();
+       }else{
             sliderEL.removeClass("bounceOut").addClass("bounceIn");
-        //}
+       }
 
     },
 
@@ -176,12 +172,8 @@ Youai.sliderShow = {
 
         $("#J-mask").on("click",function(){
             self.goodSlider.destroy();
-             if(!self.browser.device){
-                 $("#J-sliderHolder").animate({
-                     scale:0.01
-                 },'400','ease',function(){
-                     $("#J-sliderHolder").hide();
-                 })
+             if(self.mainVer != "v"){
+                 $("#J-sliderHolder").hide();
              }else{
                  $("#J-sliderHolder").removeClass("bounceIn").addClass("bounceOut");
              }
