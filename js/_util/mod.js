@@ -67,9 +67,9 @@ Youai.Mod = {
             var pSize = pageSize || 30;
             var t = total/pSize > 100 ? 100 : total/pSize; //总页码超过100
             //pageNav组件增加destroy方法
-            var pageNavigation = new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(t), 'objId':'p'});
-            Youai.DATA_PAGENAV = pageNavigation.$container;
-            return pageNavigation;
+            Youai.DATA_PAGETOTAL = t;
+
+            return new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(t), 'objId':'p'});
         }else{
             $("#J-pageNav").html("");
         }

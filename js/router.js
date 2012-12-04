@@ -64,9 +64,12 @@ Youai.Router = Backbone.Router.extend({
                 overflow:"visible"
             });
 
+
+           if(location.hash.split("/"))
+
            if(!location.hash.match(/$(search|list|stroll)/gi)){//详情页ios history.back能返回原先位置就不去处理它
                 window.scrollTo(0,0)
-            }
+           }
             wTitle();
             displayHomeOrBackButton()
         }, false);
@@ -307,6 +310,9 @@ Youai.Router = Backbone.Router.extend({
     albumItems:function (albumId, pageNo) {
 
         $("#J-albumItemInfo").length < 1 && $("#content").html(JST["template/album_info_layout"]());
+
+
+
         var self = this,
             url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"30", "pageNo":pageNo}};
 
@@ -328,9 +334,13 @@ Youai.Router = Backbone.Router.extend({
                 YA_GLOBAL.albumId = result.albumId;
                 YA_GLOBAL.isvCode = result.isvInfo.isvCode;
 
+                if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
+
                 new Youai.goodListView({
                     data:albumGoods
                 }).render();
+
+
 
                 Youai.Mod.renderPageNav(result.itemTotal);
             } else {

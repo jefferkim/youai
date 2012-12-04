@@ -99,7 +99,7 @@ Youai.Util = {
             for(var i = 0,itemsIndex = Youai.DATA_ITEMID_INDEX; i < itemsIndex.length;i++){
                 if(itemsIndex[i] == YA_GLOBAL.itemIdForListBack){
                     window.scrollTo(0,Youai.DATA_ITEMID_H[i]-130);
-                    $("#J-pageNav").html(Youai.DATA_PAGENAV);
+                    var p = new PageNav({'id':'#J-pageNav', 'pageCount':Math.ceil(Youai.DATA_PAGETOTAL), 'objId':'p'});
                     YA_GLOBAL.itemIdForListBack = null;
                     break;
                 }
