@@ -79,7 +79,7 @@ Youai.Util = {
     //TODO:判断是否登录了
     _checkLogin:function(response){
         if (response.ret[0].indexOf("CHECKUSER_FAIL::") != -1) {
-            var currentUrl = encodeURIComponent(location.href),
+            var currentUrl = encodeURIComponent(location.href.split("#")[0]),
                 host = location.hostname.match(/$|\.(?:m|waptest|wapa)\.taobao\.com/gi);
             if(location.href.indexOf("localhost") != -1){
                host[0] = ".waptest.taobao.com";

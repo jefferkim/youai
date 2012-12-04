@@ -216,7 +216,6 @@ Youai.Router = Backbone.Router.extend({
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAssociation", "pageSize":"10", "pageNo":1, "itemId":itemId}};
         var associationList = new Youai.GoodList();
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
-            console.log(resp);
             if(resp.ret[0].indexOf("SUCCESS::") != -1){
                 YA_GLOBAL.albumId = 0;  //关联推荐默认albumId设置成0
                 associationList.reset(resp.data.result.data);

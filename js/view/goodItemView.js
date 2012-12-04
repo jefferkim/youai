@@ -32,8 +32,6 @@ Youai.goodItemView = Backbone.View.extend({
 
 
     render:function () {
-        console.log(this.model.getItemInfo());
-
         return this.$el.html(this.templates["list-goodItem"](this.model.getItemInfo()));
 
     }

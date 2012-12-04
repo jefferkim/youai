@@ -19,8 +19,6 @@ Youai.goodListView = Backbone.View.extend({
     },
 
     addItem:function (good) {
-
-        console.log(good);
         var goodView = new Youai.goodItemView({model:good});
         return goodView.render();
 
