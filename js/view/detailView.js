@@ -16,7 +16,7 @@ Youai.DetailView = Backbone.View.extend({
 
   addAssociationTagToItem: function(item) {
     if (item.tags) {
-      if (item.tags[0].name != '推荐') item.tags.splice(0, 0, { name: '推荐' })
+      if (item.tags.length && item.tags[0].name != '推荐') item.tags.splice(0, 0, { name: '推荐' })
     } else {
       item.tags = [ {name: '推荐'} ];
     }
