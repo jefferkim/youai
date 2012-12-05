@@ -1,5 +1,7 @@
 /*
-* TODO:
+* TODO:后期detail页的代码要统一到模型上，有些逻辑在detail页处理后很难反馈到collection上，
+* 导致有部分逻辑和代码会冗余并且操作繁琐
+* 后期全局数据放到  Youai.DATA命名空间上
 *
 *
 * */
@@ -151,6 +153,9 @@ Youai.Router = Backbone.Router.extend({
             function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                     $("#J-tagPageContent").html(resp.data.result.data);
+                    if (type == "s") {
+                        $("#J-searchContent").focus();
+                    }
                 } else {
                     notification.flash('接口调用错误，请刷新重试').show();
                 }
@@ -159,9 +164,7 @@ Youai.Router = Backbone.Router.extend({
 
         var searchInput = $("#J-searchContent");
 
-        if (type == "s") {
-            searchInput.focus();
-        }
+
 
         searchInput.focus(function () {
             $(".no-search-result").hide();

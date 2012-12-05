@@ -9,10 +9,11 @@ Youai.sliderShow = {
         
         this.renderUI(id);
         this.destroyUI();
+
         if(likeAction){
             likeAction();
         }else{
-            this.likeAction();
+            this.doLikeAction();
         }
 
 
@@ -86,9 +87,10 @@ Youai.sliderShow = {
     },
 
 
-    likeAction:function(){
+    doLikeAction:function(){
         var self = this;
         $(".J-like").off("click");
+        $("#J-webapp").undelegate(".J-like","click");
         $(".J-like").on("click",function(e){
             e.preventDefault();
             //暂时去掉disable状态

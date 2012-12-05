@@ -89,6 +89,20 @@ Youai.DetailView = Backbone.View.extend({
     }
 
   },
+  //修改collection,考虑到后侧专辑也会有itemId出现在列表中
+  _changeCollection:function(){
+     if(Youai.DATA_ITEMCOLLECTION){
+         Youai.DATA_ITEMCOLLECTION.each(function(item){
+             if(parseInt(item.get("itemId")) == YA_GLOBAL.itemIdForListBack){
+                 var curItemLike = item.get("like");
+                 item.set({
+                     "like":curItemLike == "true"?"false":"true"
+                 });
+             }
+         });
+     }
+  },
+
 
   displayAnotherItem: function(e) {
     $('.vslide li').removeClass('selected')
@@ -173,13 +187,10 @@ Youai.DetailView = Backbone.View.extend({
             self.currentItem.like = "true"
             self.currentItem.likeNum = parseInt(self.currentItem.likeNum) + 1
             $('.like-count strong').text(self.currentItem.likeNum)
-              console.log("---");
-              console.log(self.data);
-              console.log(self.currentItem);
-              console.log(self.currentItemForSlider);
-              console.log("---");
+
 
           }
+          self._changeCollection();
           $(document.body).trigger("likeAction:like");
         }
       } else {
@@ -211,6 +222,7 @@ Youai.DetailView = Backbone.View.extend({
             if (likeNum) self.currentItem.likeNum = likeNum - 1
             $('.like-count strong').text(self.currentItem.likeNum)
           }
+          self._changeCollection();
           $(document.body).trigger("likeAction:dump");
         }
       } else {

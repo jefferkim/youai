@@ -28,10 +28,13 @@ Youai.goodListView = Backbone.View.extend({
 
         var self = this;
         $("#J-waterfall").html("");
+        //TODO:后期将data统一加到Youai.DATA命名空间上
+        Youai.DATA_ITEMCOLLECTION = self.goodList;
         Youai.DATA_ITEMID_INDEX = [];
         Youai.DATA_ITEMID_H = [];
         Youai.DATA_CURRENTHASH = location.hash;
-        new Youai.Waterfall("#J-waterfall", {
+        //TODO:后期waterfall的渲染create一个dom先在内存中渲染后一次性添加到页面中
+       var t= new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
             load:function (success) {
                 var items = [],

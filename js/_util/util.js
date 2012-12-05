@@ -94,7 +94,6 @@ Youai.Util = {
     },
 
     listBackFixPosition:function(){
-        console.log(location.hash);
         if(YA_GLOBAL.itemIdForListBack && Youai.DATA_CURRENTHASH == location.hash){
             $("#J-waterfall").html(Youai.DATA_LISTHTML);
             for(var i = 0,itemsIndex = Youai.DATA_ITEMID_INDEX; i < itemsIndex.length;i++){
