@@ -20,10 +20,10 @@ Youai.albumItemView = Backbone.View.extend({
             opacity:0
         }, 800, 'ease', function () {
             el.remove();
-            //DATA_AlbumList collection
-            if(Youai.DATA_AlbumList.length == 0){
-               $("#J-pageNav").html("")
-               $("#J-ablums").html('<div style="margin-top:30px;">您还没有收集任何专辑,先去逛逛吧!</div>');
+            if($("#J-ablums>li").length == 0){
+                var hashV = location.hash;
+                var pageNo = hashV.substr(hashV.lastIndexOf("/")+2);
+                Youai.router.navigate("!albums/like/p"+(parseInt(pageNo)-1),{trigger: true});
             }
         });
     },

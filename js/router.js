@@ -40,7 +40,10 @@ Youai.Router = Backbone.Router.extend({
             for (var key in h1Map) {
                 var m = lc.match(h1Map[key]);
                 if (m) {
-                    $("#J-headerT").text(m[1]?decodeURI(m[1]):key);
+                    var title = m[1]?decodeURI(m[1]):key;
+
+                    $("#J-headerT").text(title);
+                    title != "详情页" && (Youai.DATA_HEADTITLE = title);
                     break;
                 }
             }
@@ -132,7 +135,7 @@ Youai.Router = Backbone.Router.extend({
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
                 $("#J-headerT").text(result.title); //增加标题
-
+                Youai.DATA_HEADTITLE = result.title;
                 goodList.reset(result.data);
                 new Youai.goodListView({
                     "data":goodList
@@ -304,7 +307,6 @@ Youai.Router = Backbone.Router.extend({
                 } else {
                     albumList.reset(data);
                 }
-                Youai.DATA_AlbumList= albumList;
                 new Youai.albumsView({
                     "data":albumList
                 }).render();
@@ -335,6 +337,7 @@ Youai.Router = Backbone.Router.extend({
                 $("#J-headerT").text(result.title);
 
                 albumGoods.reset(result.data);
+                Youai.DATA_HEADTITLE = result.title;
 
                 var albumInfo = new Youai.Album();
                 albumInfo.set(result);
