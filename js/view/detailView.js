@@ -90,14 +90,14 @@ Youai.DetailView = Backbone.View.extend({
 
   },
   //修改collection,考虑到后侧专辑也会有itemId出现在列表中
-  _changeCollection:function(){
+  _changeCollection:function(type){
      if(Youai.DATA_ITEMCOLLECTION){
          Youai.DATA_ITEMCOLLECTION.each(function(item){
-             if(parseInt(item.get("itemId")) == YA_GLOBAL.itemIdForListBack){
-                 var curItemLike = item.get("like");
+             if(item.get("itemId") == YA_GLOBAL.itemIdForListBack){
                  item.set({
-                     "like":curItemLike == "true"?"false":"true"
+                     "like":type==1?"true":"false"
                  });
+                 console.log(item.toJSON());
              }
          });
      }
@@ -190,7 +190,7 @@ Youai.DetailView = Backbone.View.extend({
 
 
           }
-          self._changeCollection();
+          self._changeCollection(1);
           $(document.body).trigger("likeAction:like");
         }
       } else {
@@ -222,7 +222,7 @@ Youai.DetailView = Backbone.View.extend({
             if (likeNum) self.currentItem.likeNum = likeNum - 1
             $('.like-count strong').text(self.currentItem.likeNum)
           }
-          self._changeCollection();
+          self._changeCollection(0);
           $(document.body).trigger("likeAction:dump");
         }
       } else {

@@ -148,14 +148,15 @@ Youai.Router = Backbone.Router.extend({
         var self = this;
         YA_GLOBAL.itemIdForListBack = null;
         $("#J-tagLayout").length < 1 && $("#content").html(JST["template/tag_layout"]());
-
+        if (type == "s") {
+            console.log(type);
+            $("#J-searchContent").focus();
+        }
         Youai.mtopH5.getApi("com.taobao.wap.rest2.wo3", "1.0", {"method":"getCategoryConfig", "type":"1"}, {},
             function (resp) {
                 if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                     $("#J-tagPageContent").html(resp.data.result.data);
-                    if (type == "s") {
-                        $("#J-searchContent").focus();
-                    }
+
                 } else {
                     notification.flash('接口调用错误，请刷新重试').show();
                 }
@@ -163,9 +164,6 @@ Youai.Router = Backbone.Router.extend({
         );
 
         var searchInput = $("#J-searchContent");
-
-
-
         searchInput.focus(function () {
             $(".no-search-result").hide();
         });
