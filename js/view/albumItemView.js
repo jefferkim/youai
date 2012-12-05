@@ -20,10 +20,15 @@ Youai.albumItemView = Backbone.View.extend({
             opacity:0
         }, 800, 'ease', function () {
             el.remove();
-            if($("#J-ablums>li").length == 0){
+            if($("#J-ablums>li").length == 0){  //清空当前页的专辑
                 var hashV = location.hash;
                 var pageNo = hashV.substr(hashV.lastIndexOf("/")+2);
-                Youai.router.navigate("!albums/like/p"+(parseInt(pageNo)-1),{trigger: true});
+                var goPage = Math.max(parseInt(pageNo)-1,1);
+                if(goPage == 1){
+                    location.reload();//TODO:会触发刷新页面，hash不变的话不触发也买更新
+                }else{
+                    Youai.router.navigate("!albums/like/p"+goPage,{trigger: true});
+                }
             }
         });
     },
@@ -53,10 +58,10 @@ Youai.albumItemView = Backbone.View.extend({
                             });
                         } else {
                             self.model.set({
-                                "likeNum":likeNum - 1,
+                                "likeNum":Math.max(likeNum - 1,0),
                                 "like":"false"
                             });
-                            $(target).html("<em>收集</em><b>" + (likeNum - 1) + "</b>");
+                            $(target).html("<em>收集</em><b>" + Math.max(likeNum - 1,0) + "</b>");
                         }
                     } else {
                         self.model.destroy();

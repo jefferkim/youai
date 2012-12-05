@@ -107,7 +107,7 @@ Youai.sliderShow = {
             model = this.model,
             operater = $(target).parents(".good-operater"),
             likebox = operater.find(".like-num");
-            if(method === "dumpItem"){
+            if(method == "dumpItem"){
                 likebox.text("成功取消");
             }else{
                 likebox.text("成功收藏");
@@ -115,9 +115,9 @@ Youai.sliderShow = {
 
             $(target).toggleClass("on");
             $(target).removeClass("disable");
-
+        //设置模型
         model.set({
-          "like":$(target).hasClass("on")
+          "like": method=="dumpItem" ? "false" : "true"
         });
 
         clearTimeout(timer);
