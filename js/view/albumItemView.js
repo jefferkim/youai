@@ -24,8 +24,8 @@ Youai.albumItemView = Backbone.View.extend({
                 var hashV = location.hash;
                 var pageNo = hashV.substr(hashV.lastIndexOf("/")+2);
                 var goPage = Math.max(parseInt(pageNo)-1,1);
-                if(goPage == 1){
-                    location.reload();//TODO:会触发刷新页面，hash不变的话不触发也买更新
+                if(goPage == pageNo){
+                    location.reload();//TODO:会触发刷新页面，hash不变的话不触发也不更新
                 }else{
                     Youai.router.navigate("!albums/like/p"+goPage,{trigger: true});
                 }
