@@ -30,6 +30,7 @@ Youai.goodListView = Backbone.View.extend({
         $("#J-waterfall").html("");
         Youai.DATA_ITEMID_INDEX = [];
         Youai.DATA_ITEMID_H = [];
+        Youai.DATA_CURRENTHASH = location.hash;
         new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
             load:function (success) {

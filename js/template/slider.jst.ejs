@@ -8,9 +8,14 @@
             </ul>
         </div>
         <div class="good-operater">
+           <%if(images.length >1){%>
+           <span class="img-count">滑动查看<%= images.length %>张宝贝图</span>
+           <%}%>
            <a href="#" class="J-like <%= (isLiked ? 'on' : '')%>"></a><span class="like-num">添加喜欢成功</span>
         </div>
       </div>
+      <%if(images.length > 1){%>
       <div class="nav-holder"><a href="#" class="prev" id="J-prev"></a><a href="#" class="next" id="J-next"></a></div>
+      <%}%>
 </div>
 

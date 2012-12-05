@@ -140,9 +140,7 @@ Youai.sliderShow = {
 
         var currentGoodInfo = this.model.getItemInfo(),
             method = $(target).hasClass("on") ? "dumpItem" : "likeItem";
-        console.log("this actions is "+method );
-
-        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":method, "itemId":currentGoodInfo.itemId, "isvCode":currentGoodInfo.isvCode}};
+        var url = {api:"com.taobao.wap.rest2.wo3",data:{"method":method, "itemId":currentGoodInfo.itemId, "isvCode":currentGoodInfo.isvCode , "albumId":currentGoodInfo.albumId}};
    
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function(response){
             Youai.Util._checkLogin(response);
