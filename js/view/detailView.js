@@ -97,7 +97,6 @@ Youai.DetailView = Backbone.View.extend({
                  item.set({
                      "like":type==1?"true":"false"
                  });
-                 console.log(item.toJSON());
              }
          });
      }
