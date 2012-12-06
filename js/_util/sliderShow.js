@@ -149,7 +149,7 @@ Youai.sliderShow = {
             if(response.ret[0].indexOf("SUCCESS::") != -1){
                     self.changeUI(target,response.data.method);
                 }else{
-                    notification.flash('接口调用错误，请刷新重试').show();
+                    notification.flash('请刷新重试').show();
                 }
             }
         )
