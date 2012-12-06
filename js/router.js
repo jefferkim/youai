@@ -175,12 +175,11 @@ Youai.Router = Backbone.Router.extend({
         $("#J-searchBtn").on("click", function (e) {
             e.preventDefault();
             var searchTxt = $.trim(searchInput.val());
+            searchTxt = searchTxt.replace(/[~!@#$%^&*.<>]*/g,"");
             if (searchTxt === "") {
                 self.navigate('!stroll/p1', {trigger: true});
                 return;
             }
-
-            searchTxt = searchTxt.replace(/<\/?[^>]*>/g,'');
 
             var searchGoodList = new Youai.GoodList();
 
