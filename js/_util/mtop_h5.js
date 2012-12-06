@@ -557,7 +557,7 @@ function mtop_h5() {
                 //fail ,remove token
                 //TODO:修改登录，令牌失效
                 if(-1 != ret.indexOf('TOKEN_EXOIRED::')){
-                    notification.flash("令牌失效，请刷新页面或者重新登录").show();
+                    notification.flash("发生了一点小问题，请刷新页面").show();
                 }
                 if (-1 == ret.indexOf('SUCCESS')) {
                     _removeToken();

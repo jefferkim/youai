@@ -81,6 +81,7 @@ Youai.DetailView = Backbone.View.extend({
       }
 
       this.currentItem = _.find(this.data.album.data, function(item) { return item.itemId == YA_GLOBAL.itemId })
+        console.log(this.currentItem);
       this.currentItemForSlider = this.currentItem
     } else {  // 无专辑
       this.isSingleItem = true
@@ -92,13 +93,15 @@ Youai.DetailView = Backbone.View.extend({
   //修改collection,考虑到后侧专辑也会有itemId出现在列表中
   _changeCollection:function(type){
      if(Youai.DATA_ITEMCOLLECTION){
-         Youai.DATA_ITEMCOLLECTION.each(function(item){
-             if(item.get("itemId") == YA_GLOBAL.itemIdForListBack){
-                 item.set({
-                     "like":type==1?"true":"false"
+         for(var i = 0,models = Youai.DATA_ITEMCOLLECTION.models;i<models.length;i++){
+             var curModel = models[i];
+             if(curModel.get("itemId") == YA_GLOBAL.itemIdForListBack){
+                 curModel.set({
+                     "like":type ?"true":"false"
                  });
+                 break;
              }
-         });
+         }
      }
   },
 
@@ -236,6 +239,7 @@ Youai.DetailView = Backbone.View.extend({
             model = new Youai.Good();
         //TODO:后期优化
         model.set(this.currentItemForSlider);
+      console.log(model);
         Youai.sliderShow.init('slider', model, function () {
             $("#J-webapp").undelegate(".J-like","click");
             $("#J-webapp").delegate(".J-like", "click", function (e) {
