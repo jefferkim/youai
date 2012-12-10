@@ -17,23 +17,14 @@ Youai.Comment = Backbone.Model.extend({
         return "http://wwc.taobaocdn.com/avatar/getAvatar.do?userId=" + id + "&width=80&height=80&type=sns";
     },
 
-    /*获取父级评论*/
-    getSuperComment:function () {
-        return (this.get("superiors")["id"] != undefined) ? {
-            "author":this.get("superiors").user["userNick"],
-            "content":this.get("superiors").content
-        } : false
-    },
 
-    /*单个comment*/
     getComment:function () {
-        var data = {
+        return {
+            "commentId":this.get("id"),
             "avatar":this._getAvatar(this.get("user").userId),
-            "content":this.get("content").replace(/<\/?[^>]*>/g,''),
+            "content":this.escape("content"),
             "userId":this.get("user").userId,
-            "author":this.get("user").userNick,
-            "commentId":this.get("id")
-        };
-        return data;
+            "author":this.get("user").userNick
+        }
     }
 });

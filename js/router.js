@@ -5,7 +5,13 @@
 *
 *
 * */
-Youai.Router = Backbone.Router.extend({
+
+//create global collection
+ Youai.Goods = new Youai.GoodList;
+
+
+//begin router
+ Youai.Router = Backbone.Router.extend({
 
     routes:{
         '':"index", //首页
@@ -103,15 +109,15 @@ Youai.Router = Backbone.Router.extend({
 
         var url = {api:"com.taobao.wap.rest2.wo3",data:$.extend({"method":"getItemsFromVisit", "pageSize":"30", "pageNo":pageNo || 1},extraParams)};
 
-        var strollGoodList = new Youai.GoodList();
+
 
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
 
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
-                strollGoodList.reset(result.data);
+                Youai.Goods.reset(result.data);
                 new Youai.goodListView({
-                    "data":strollGoodList
+                    "data":Youai.Goods
                 }).render();
                 Youai.Mod.renderPageNav(result.recordTotal);
             }
@@ -129,16 +135,17 @@ Youai.Router = Backbone.Router.extend({
 
         var url = {api:"com.taobao.wap.rest2.wo3", data:$.extend({"method":"getItemsFromList", "listCode":listCode, "pageSize":"30", "pageNo":pageNo || 1},extraParams)};
 
-        var goodList = new Youai.GoodList();
+
 
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
                 $("#J-headerT").text(result.title); //增加标题
                 Youai.DATA_HEADTITLE = result.title;
-                goodList.reset(result.data);
+
+                Youai.Goods.reset(result.data);
                 new Youai.goodListView({
-                    "data":goodList
+                    "data":Youai.Goods
                 }).render();
 
                 Youai.Mod.renderPageNav(result.recordTotal);
@@ -181,7 +188,7 @@ Youai.Router = Backbone.Router.extend({
                 return;
             }
 
-            var searchGoodList = new Youai.GoodList();
+
 
             var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromSearch", "pageSize":"30", "pageNo":"1", "keyword":searchTxt}};
 
@@ -193,9 +200,10 @@ Youai.Router = Backbone.Router.extend({
                     } else {
                         $("#content").html(JST["template/list_good"]());
 
-                        searchGoodList.reset(result.data);
+                        Youai.Goods.reset(result.data);
+
                         new Youai.goodListView({
-                            data:searchGoodList
+                            data:Youai.Goods
                         }).render();
 
                         self.navigate('!search/'+encodeURI(searchTxt)+'/p1');//不encode会出问题
@@ -228,14 +236,16 @@ Youai.Router = Backbone.Router.extend({
     //关联推荐
     queryAssociation:function(itemId){
         var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAssociation", "pageSize":"10", "pageNo":1, "itemId":itemId}};
-        var associationList = new Youai.GoodList();
+
         $("#content").html(JST["template/list_good"]());
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             if(resp.ret[0].indexOf("SUCCESS::") != -1){
                 YA_GLOBAL.albumId = 0;  //关联推荐默认albumId设置成0
-                associationList.reset(resp.data.result.data);
+
+                Youai.Goods.reset(resp.data.result.data);
+
                 new Youai.goodListView({
-                    "data":associationList
+                    "data":Youai.Goods
                 }).render();
             }
         });
@@ -329,14 +339,14 @@ Youai.Router = Backbone.Router.extend({
         var self = this,
             url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"30", "pageNo":pageNo}};
 
-        var albumGoods = new Youai.GoodList();
+
 
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
             if (resp.ret[0].indexOf("SUCCESS::") != -1) {
                 var result = resp.data.result;
                 $("#J-headerT").text(result.title);
 
-                albumGoods.reset(result.data);
+                Youai.Goods.reset(result.data);
                 Youai.DATA_HEADTITLE = result.title;
 
                 var albumInfo = new Youai.Album();
@@ -351,7 +361,7 @@ Youai.Router = Backbone.Router.extend({
                 if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
 
                 new Youai.goodListView({
-                    data:albumGoods
+                    data:Youai.Goods
                 }).render();
 
 
