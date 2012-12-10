@@ -334,8 +334,7 @@
 
         $("#J-albumItemInfo").length < 1 && $("#content").html(JST["template/album_info_layout"]());
 
-        var self = this,
-            url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"30", "pageNo":pageNo}};
+        var url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"30", "pageNo":pageNo}};
 
 
 
@@ -356,7 +355,7 @@
                 YA_GLOBAL.albumId = result.albumId;
                 YA_GLOBAL.isvCode = result.isvInfo.isvCode;
 
-                if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
+                if(!Youai.Util.listBackFixPosition()) return;//回到列表位置
 
                 new Youai.goodListView({
                     data:Youai.Goods
