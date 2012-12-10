@@ -2,10 +2,6 @@ Youai.goodListView = Backbone.View.extend({
 
     el:"#J-webapp",
 
-    tpl:{
-        "goodLayout":JST["template/list_good"]
-    },
-
     events:{
         
     },
@@ -15,13 +11,11 @@ Youai.goodListView = Backbone.View.extend({
         this.goodList = options.data;
         //弹出气泡提示
         Youai.Mod.popComment();
-
     },
 
     addItem:function (good) {
         var goodView = new Youai.goodItemView({model:good});
         return goodView.render();
-
     },
 
     render:function () {
@@ -34,7 +28,7 @@ Youai.goodListView = Backbone.View.extend({
         Youai.DATA_ITEMID_H = [];
         Youai.DATA_CURRENTHASH = location.hash;
         //TODO:后期waterfall的渲染create一个dom先在内存中渲染后一次性添加到页面中
-       var t= new Youai.Waterfall("#J-waterfall", {
+        new Youai.Waterfall("#J-waterfall", {
             colWidth:152,
             load:function (success) {
                 var items = [],

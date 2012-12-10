@@ -101,7 +101,7 @@
 
         $("#J-strollLayout").length < 1 && $("#content").html(JST["template/stroll_layout"]());
 
-        if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
+        if(!Youai.Util.listBackFixPosition()) return ;//回到列表位置
 
         //判断是否是预览状态
         var args = Youai.Util._isPreview();
@@ -128,7 +128,7 @@
 
         $("#J-list").length < 1 && $("#content").html(JST["template/list_good"]());
 
-        if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
+        if(!Youai.Util.listBackFixPosition()) return ;//回到列表位置
 
         var args = Youai.Util._isPreview();
         var extraParams = args ? {isPreview:args["isPreview"]} : {};
@@ -256,7 +256,7 @@
 
         $("#content").html(JST["template/list_good"]());
 
-        if(!Youai.Util.listBackFixPosition()){return false};//回到列表位置
+        if(!Youai.Util.listBackFixPosition()) return;//回到列表位置
         var searchList = new Youai.GoodList();
 
         Youai.mtopH5.getApi(url.api, "1.0", url.data, {}, function (resp) {
@@ -333,8 +333,6 @@
     albumItems:function (albumId, pageNo) {
 
         $("#J-albumItemInfo").length < 1 && $("#content").html(JST["template/album_info_layout"]());
-
-
 
         var self = this,
             url = {api:"com.taobao.wap.rest2.wo3", data:{"method":"getItemsFromAlbum", "albumId":albumId, "pageSize":"30", "pageNo":pageNo}};

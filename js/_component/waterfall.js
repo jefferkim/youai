@@ -2,7 +2,7 @@
 * 不考虑横屏等涉及resize的问题
 * h5暂时没有横屏
 * */
-Waterfall = function (container, options) {
+Waterfall = function (containerEl, options) {
     var setting = {
         colCount:2,
         colWidth:150, //定义每列宽度
@@ -13,12 +13,11 @@ Waterfall = function (container, options) {
     $.extend(setting, options || {});
 
 
-    var container = $(container), //容器
+    var container = $(containerEl), //容器
         containerWidth = container.width(), //容器宽度
         colHeight = container.offset().top;	//容器距顶部的高度
 
-    var nextpage = 0, //记录加载的页数
-        loading = 0, //标志是否正在加载
+    var loading = 0, //标志是否正在加载
         adjusting = 0, //标志是否正在调整
         curColHeights = []; //记录当前每列的高度
 
@@ -35,10 +34,6 @@ Waterfall = function (container, options) {
     this.setting = setting;
 
     this.loadData();
-
-
-
-
 };
 
 
@@ -81,7 +76,7 @@ Waterfall.prototype = {
         return item;
     },
 
-    /*提高灵活性，将item渲染放在load配置中，items将会是元素渲染后html片段的数组*/
+    //提高灵活性，将item渲染放在load配置中，items将会是元素渲染后html片段的数组
     addItems:function (items, heights) {
         for (var i = 0; i < items.length; i++) {
             this.adjustItem(items[i], heights[i]);
@@ -102,7 +97,6 @@ Waterfall.prototype = {
     destroy:function () {
         $(window).unbind("scroll");
     }
-}
+};
 
 Youai.Waterfall = Waterfall;
-

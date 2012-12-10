@@ -7,9 +7,9 @@ Youai.Album = Backbone.Model.extend({
     url:function () {
     },
 
-    /*查询推荐的专辑列表或者用户关注列表*/
+    //查询推荐的专辑列表或者用户关注列表
     getAlbums:function () {
-        var data = {
+        return {
             "albumId":this.get("albumId"),
             "title":this.get("title"),
             "description":this.get("description"),
@@ -19,19 +19,17 @@ Youai.Album = Backbone.Model.extend({
             "likeNum":this.get("likeNum"),
             "itemTotal":this.get("itemTotal"),
             "albumPic":this.get("images")[0].url
-        };
-        return data;
+        }
     },
 
     getAlbumInfo:function(){
-        var data = {
+        return {
             "user":this.get("user"),
             "likeNum":this.get("likeNum"),
             "isLiked":this.get("like") === "true",
             "commentNum":this.get("commentNum"),
             "description":this.get("description")
-        };
-        return data;
+        }
     }
 
 });
