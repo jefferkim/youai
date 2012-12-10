@@ -6,6 +6,9 @@ Waterfall = function (containerEl, options) {
     var setting = {
         colCount:2,
         colWidth:150, //定义每列宽度
+
+        itemMargin:6,
+
         load:function () {
         }
     };
@@ -13,8 +16,10 @@ Waterfall = function (containerEl, options) {
     $.extend(setting, options || {});
 
 
-    var container = $(containerEl), //容器
+    var container = $("<ul/>",{id:containerEl}), //创建容器
         containerWidth = container.width(), //容器宽度
+
+
         colHeight = container.offset().top;	//容器距顶部的高度
 
     var loading = 0, //标志是否正在加载
@@ -58,7 +63,11 @@ Waterfall.prototype = {
         }
 
         // 计算图片间隔
-        var margin = Math.max(self.containerWidth - curColCount * setting.colWidth, 0) / (curColCount - 1);
+    //    var margin = Math.max(self.containerWidth - curColCount * setting.colWidth, 0) / (curColCount - 1);
+
+
+        var margin = setting.itemMargin;
+
 
         item.css({
             left:dest == 0 ? 0 : dest * setting.colWidth + dest * margin,
@@ -66,14 +75,14 @@ Waterfall.prototype = {
         });
 
 
-        $(self.container).append(item);
+        self.container.append(item);
 
         self.curColHeights[dest] += parseInt(height) + 10; //图片垂直间距为10px
 
-
+        //列表返回增加的一个参数
         Youai.DATA_ITEMID_H.push(Math.max.apply(Math, this.curColHeights));
 
-        return item;
+       // return item;
     },
 
     //提高灵活性，将item渲染放在load配置中，items将会是元素渲染后html片段的数组
@@ -82,7 +91,7 @@ Waterfall.prototype = {
             this.adjustItem(items[i], heights[i]);
         }
         //获得最高的高度，赋值给container
-        $(this.container).height(Math.max.apply(Math, this.curColHeights));
+        this.container.height(Math.max.apply(Math, this.curColHeights));
     },
 
     loadData:function () {
@@ -92,6 +101,7 @@ Waterfall.prototype = {
         function success(items, heights) {
             self.addItems(items, heights);
         }
+        return self.container;
     },
 
     destroy:function () {

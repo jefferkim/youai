@@ -95,7 +95,7 @@ Youai.Util = {
 
     listBackFixPosition:function(){
         if(YA_GLOBAL.itemIdForListBack && Youai.DATA_CURRENTHASH == location.hash){
-            $("#J-waterfall").html(Youai.DATA_LISTHTML);
+            $("#J-list").html(Youai.DATA_LISTHTML);
             for(var i = 0,itemsIndex = Youai.DATA_ITEMID_INDEX; i < itemsIndex.length;i++){
                 if(itemsIndex[i] == YA_GLOBAL.itemIdForListBack){
                     window.scrollTo(0,Youai.DATA_ITEMID_H[i]-130);
